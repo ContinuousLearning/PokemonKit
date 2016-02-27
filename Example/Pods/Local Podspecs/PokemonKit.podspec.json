@@ -1,0 +1,25 @@
+{
+  "name": "PokemonKit",
+  "version": "0.1.0",
+  "summary": "A short description of PokemonKit.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/PokemonKit",
+  "license": "MIT",
+  "authors": {
+    "Yeung Yiu Hung": "hkclex@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/PokemonKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "PokemonKit": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}

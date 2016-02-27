@@ -1,0 +1,14 @@
+PODS:
+  - PokemonKit (0.1.0)
+
+DEPENDENCIES:
+  - PokemonKit (from `../`)
+
+EXTERNAL SOURCES:
+  PokemonKit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  PokemonKit: f77f10f93bb9334c73549c0fa38e8b589d7b2000
+
+COCOAPODS: 0.39.0
