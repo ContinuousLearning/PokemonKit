@@ -9,12 +9,17 @@
 import Foundation
 import Alamofire
 
+// MARK: Constant
+
 let baseURL: String = "http://pokeapi.co/api/v2"
 
 @objc public enum PokemonKitError: Int, ErrorType {
     case BerryListError, B, C
 }
 
+// MARKL Model Classes
+
+// MARK: Functions
 
 /**
  Fetching Berry List for pokeapi
@@ -36,3 +41,5 @@ public func fetchBerryList(completion: (result: NSArray) -> Void, failure: (erro
         }
     }
 }
+
+
