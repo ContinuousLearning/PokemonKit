@@ -1,5 +1,7 @@
 PODS:
-  - PokemonKit (0.1.0)
+  - Alamofire (3.2.0)
+  - PokemonKit (0.1.0):
+    - Alamofire (~> 3.0)
 
 DEPENDENCIES:
   - PokemonKit (from `../`)
@@ -9,6 +11,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  PokemonKit: f77f10f93bb9334c73549c0fa38e8b589d7b2000
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  PokemonKit: dacfa8a0c32508b2c29d34b286c8055a433ad4ca
 
 COCOAPODS: 0.39.0
