@@ -1,7 +1,12 @@
 PODS:
   - Alamofire (3.2.0)
+  - AlamofireObjectMapper (2.1.2):
+    - Alamofire (~> 3.2)
+    - ObjectMapper (~> 1.0)
+  - ObjectMapper (1.1.5)
   - PokemonKit (0.1.0):
     - Alamofire (~> 3.0)
+    - AlamofireObjectMapper (~> 2.1)
 
 DEPENDENCIES:
   - PokemonKit (from `../`)
@@ -12,6 +17,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
-  PokemonKit: dacfa8a0c32508b2c29d34b286c8055a433ad4ca
+  AlamofireObjectMapper: 82391c31f23e37bdb2660da174bcf81b202da39d
+  ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
+  PokemonKit: 27b17a0e417d2e8acb2570161365b8a33763ed27
 
 COCOAPODS: 0.39.0
