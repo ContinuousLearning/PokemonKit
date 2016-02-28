@@ -8,6 +8,8 @@
 
 import Foundation
 import Alamofire
+import ObjectMapper
+import AlamofireObjectMapper
 
 // MARK: Constant
 
@@ -17,7 +19,69 @@ let baseURL: String = "http://pokeapi.co/api/v2"
     case BerryListError, B, C
 }
 
-// MARKL Model Classes
+// MARK: Classes
+
+public class PKMBaseObject: Mappable{
+    public var name: String?
+    public var url: String?
+    
+    required public init?(_ map: Map){
+        
+    }
+    
+    public func mapping(map: Map) {
+        name <- map["name"]
+        url <- map["url"]
+    }
+}
+
+public class PKMBerryFlavour: Mappable{
+    public var potency: Int?
+    public var flavor: PKMBaseObject?
+    
+    required public init?(_ map: Map){
+        
+    }
+    
+    public func mapping(map: Map) {
+        potency <- map["potency"]
+        flavor <- map["flavor"]
+    }
+}
+
+public class PKMBerry: Mappable{
+    public var id: Int?
+    public var name: String?
+    public var growthTime: Int?
+    public var maxHarvest: Int?
+    public var naturalGiftPower: Int?
+    public var size: Int?
+    public var smoothness: Int?
+    public var soilDryness: Int?
+    public var firmness: PKMBaseObject?
+    public var flavors: [PKMBerryFlavour]?
+    public var item: PKMBaseObject?
+    public var naturalGiftType: PKMBaseObject?
+    
+    required public init?(_ map: Map){
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        growthTime <- map["growth_time"]
+        maxHarvest <- map["max_harvest"]
+        naturalGiftPower <- map["natural-gift-power"]
+        size <- map["size"]
+        smoothness <- map["smoothness"]
+        soilDryness <- map["soil-dryness"]
+        firmness <- map["firmness"]
+        flavors <- map["flavors"]
+        item <- map["item"]
+        naturalGiftType <- map["natural-gift-type"]
+    }
+}
 
 // MARK: Functions
 
@@ -39,6 +103,20 @@ public func fetchBerryList(completion: (result: NSArray) -> Void, failure: (erro
             }
             completion(result: result)
         }
+    }
+}
+
+public func fetchBerry(berryId: String, completion: (result: PKMBerry) -> Void, failure: (error: NSError) -> Void){
+    let URL = baseURL + "/berry/" + berryId
+    
+    Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMBerry, NSError>) in
+        
+        if (response.result.isSuccess) {
+            completion(result: response.result.value!)
+        }else{
+            failure(error: response.result.error!)
+        }
+
     }
 }
 

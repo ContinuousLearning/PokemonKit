@@ -15,9 +15,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         PokemonKit.fetchBerryList({ (result) -> Void in
-            print(result);
-            })
-            { (error) -> Void in
+//            print(result);
+            }) { (error) -> Void in
+                print(error)
+        }
+        
+        PokemonKit.fetchBerry("1",
+            completion: { (result) -> Void in
+                print("Berry name: \(result.name)")
+            }) { (error) -> Void in
                 print(error)
         }
     }
