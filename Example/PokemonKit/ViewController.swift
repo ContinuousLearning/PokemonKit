@@ -10,24 +10,25 @@ import UIKit
 import PokemonKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var testLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        PokemonKit.fetchBerryList({ (result) -> Void in
-//            print(result);
-            }) { (error) -> Void in
+        PokemonKit.fetchBerryList()
+            .then { berryList in
+                print(berryList)
+            }.error { error in
                 print(error)
         }
         
-        PokemonKit.fetchBerry("1",
-            completion: { (result) -> Void in
-                print("Berry name: \(result.name)")
-                self.testLabel.text = result.name
-            }) { (error) -> Void in
+        PokemonKit.fetchBerry("1")
+            .then { berryInfo in
+                self.testLabel.text = berryInfo.name;
+            }.error {error in
                 print(error)
         }
+
     }
 
     override func didReceiveMemoryWarning() {

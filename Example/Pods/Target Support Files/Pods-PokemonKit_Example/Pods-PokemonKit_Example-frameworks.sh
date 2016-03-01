@@ -86,12 +86,16 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-PokemonKit_Example/Alamofire.framework"
   install_framework "Pods-PokemonKit_Example/AlamofireObjectMapper.framework"
+  install_framework "Pods-PokemonKit_Example/OMGHTTPURLRQ.framework"
   install_framework "Pods-PokemonKit_Example/ObjectMapper.framework"
   install_framework "Pods-PokemonKit_Example/PokemonKit.framework"
+  install_framework "Pods-PokemonKit_Example/PromiseKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-PokemonKit_Example/Alamofire.framework"
   install_framework "Pods-PokemonKit_Example/AlamofireObjectMapper.framework"
+  install_framework "Pods-PokemonKit_Example/OMGHTTPURLRQ.framework"
   install_framework "Pods-PokemonKit_Example/ObjectMapper.framework"
   install_framework "Pods-PokemonKit_Example/PokemonKit.framework"
+  install_framework "Pods-PokemonKit_Example/PromiseKit.framework"
 fi

@@ -11,6 +11,8 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 
+import PromiseKit
+
 // MARK: Constant
 
 let baseURL: String = "http://pokeapi.co/api/v2"
@@ -119,82 +121,61 @@ public class PKMBerryFirmness: Mappable {
 // MARK: -
 // MARK: Functions
 
-/**
- Fetching All Berry List
- 
- - parameter completion: result array
- - parameter failure:    error description
- */
-public func fetchBerryList(completion: (result: NSArray) -> Void, failure: (error: NSError) -> Void){
-    let URL = baseURL + "/berry"
-    
-    Alamofire.request(.GET, URL).responseArray { (response: Response<[PKMBaseObject], NSError>) in
-        if (response.result.isSuccess) {
-            completion(result: response.result.value!)
-        }else{
-            failure(error: response.result.error!)
+public func fetchBerryList() -> Promise<[PKMBaseObject]>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/berry"
+        
+        Alamofire.request(.GET, URL).responseArray { (response: Response<[PKMBaseObject], NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    };
+}
+
+public func fetchBerry(berryId: String) -> Promise<PKMBerry>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/berry/" + berryId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMBerry, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
         }
     }
 }
 
-
-/**
- Fetching Berry Information
- 
- - parameter berryId:    Id for berry
- - parameter completion: complete with PKMBerry object
- - parameter failure:    error description
- */
-public func fetchBerry(berryId: String, completion: (result: PKMBerry) -> Void, failure: (error: NSError) -> Void){
-    let URL = baseURL + "/berry/" + berryId
-    
-    Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMBerry, NSError>) in
+public func fetchBerryFirmnessList() -> Promise<[PKMBaseObject]>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/berry-firmness"
         
-        if (response.result.isSuccess) {
-            completion(result: response.result.value!)
-        }else{
-            failure(error: response.result.error!)
-        }
-
-    }
-}
-
-/**
- Fetching All Berry firmness List
- 
- - parameter completion: result array
- - parameter failure:    error description
- */
-public func fetchBerryFirmnessList(completion: (result: NSArray) -> Void, failure: (error: NSError) -> Void){
-    let URL = baseURL + "/berry-firmness"
-    
-    Alamofire.request(.GET, URL).responseArray { (response: Response<[PKMBaseObject], NSError>) in
-        if (response.result.isSuccess) {
-            completion(result: response.result.value!)
-        }else{
-            failure(error: response.result.error!)
+        Alamofire.request(.GET, URL).responseArray { (response: Response<[PKMBaseObject], NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
         }
     }
 }
 
-/**
- Fetching berry firmness information
- 
- - parameter berryFirmnessId: Id for Berry Firmness
- - parameter completion:      complete with PKMBerryFirmness
- - parameter failure:         error description
- */
-public func fetchBerryFirmness(berryFirmnessId: String, completion: (result: PKMBerryFirmness) -> Void, failure: (error: NSError) -> Void){
-    let URL = baseURL + "/berry-firmness/" + berryFirmnessId
-    
-    Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMBerryFirmness, NSError>) in
+public func fetchBerryFirmness(berryFirmnessId: String) -> Promise<PKMBerryFirmness>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/berry-firmness/" + berryFirmnessId
         
-        if (response.result.isSuccess) {
-            completion(result: response.result.value!)
-        }else{
-            failure(error: response.result.error!)
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMBerryFirmness, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
         }
-        
     }
 }
 

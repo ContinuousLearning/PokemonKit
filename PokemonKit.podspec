@@ -39,4 +39,5 @@ A wrapper for pokeapi v2, written in swift
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'Alamofire', '~> 3.0'
   s.dependency 'AlamofireObjectMapper', '~> 2.1'
+  s.dependency 'PromiseKit'
 end

@@ -28,6 +28,9 @@
     ],
     "AlamofireObjectMapper": [
       "~> 2.1"
+    ],
+    "PromiseKit": [
+
     ]
   }
 }
