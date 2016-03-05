@@ -1,6 +1,6 @@
 # PokemonKit
 
-[![CI Status](http://img.shields.io/travis/Yeung Yiu Hung/PokemonKit.svg?style=flat)](https://travis-ci.org/Yeung Yiu Hung/PokemonKit)
+[![Build Status](https://travis-ci.org/ContinuousLearning/PokemonKit.svg?branch=master)](https://travis-ci.org/ContinuousLearning/PokemonKit)
 [![Version](https://img.shields.io/cocoapods/v/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
 [![License](https://img.shields.io/cocoapods/l/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
 [![Platform](https://img.shields.io/cocoapods/p/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
