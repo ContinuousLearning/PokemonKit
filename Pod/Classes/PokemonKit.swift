@@ -22,6 +22,19 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 }
 
 // MARK: Classes
+public class PKMLanguageObject: Mappable{
+    public var name: String?
+    public var language: PKMBaseObject?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        name <- map["name"]
+        language <- map["language"]
+    }
+}
 
 public class PKMBaseObject: Mappable{
     public var name: String?
@@ -37,7 +50,7 @@ public class PKMBaseObject: Mappable{
     }
 }
 
-public class PKMBerryFlavour: Mappable{
+public class PKMBerryFlavourMap: Mappable{
     public var potency: Int?
     public var flavor: PKMBaseObject?
     
@@ -51,6 +64,47 @@ public class PKMBerryFlavour: Mappable{
     }
 }
 
+
+//id	The identifier for this berry flavor resource	integer
+//name	The name for this berry flavor resource	string
+//berries	A list of the berries with this flavor	list FlavorBerryMap
+//contest_type	The contest type that correlates with this berry flavor	NamedAPIResource (ContestType)
+//names	The name of this berry flavor listed in different languages	list Name
+
+public class PKMBerryFlavour: Mappable{
+    public var id: Int?
+    public var name: String?
+    public var berries: [PKMFlavourBerryMap]?
+    public var contestType: PKMBaseObject?
+    public var names:[PKMLanguageObject]?
+    
+    required public init?(_ map: Map){
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        berries <- map["berries"]
+        contestType <- map["contest_type"]
+        names <- map["names"]
+    }
+}
+
+public class PKMFlavourBerryMap: Mappable {
+    public var potency: Int?
+    public var berry: PKMBaseObject?
+    
+    required public init?(_ map: Map){
+        
+    }
+    
+    public func mapping(map: Map) {
+        potency <- map["potency"]
+        berry <- map["berry"]
+    }
+}
+
 public class PKMBerry: Mappable{
     public var id: Int?
     public var name: String?
@@ -61,7 +115,7 @@ public class PKMBerry: Mappable{
     public var smoothness: Int?
     public var soilDryness: Int?
     public var firmness: PKMBaseObject?
-    public var flavors: [PKMBerryFlavour]?
+    public var flavors: [PKMBerryFlavourMap]?
     public var item: PKMBaseObject?
     public var naturalGiftType: PKMBaseObject?
     
@@ -180,3 +234,32 @@ public func fetchBerryFirmness(berryFirmnessId: String) -> Promise<PKMBerryFirmn
 }
 
 
+public func fetchBerryFlavours() -> Promise<[PKMBaseObject]>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/berry-flavor"
+        
+        Alamofire.request(.GET, URL).responseArray { (response: Response<[PKMBaseObject], NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchBerryFlavour(berryFlavourId: String) -> Promise<PKMBerryFlavour>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/berry-flavor/" + berryFlavourId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMBerryFlavour, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
