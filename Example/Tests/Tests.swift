@@ -14,9 +14,22 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testFetchingBerries() {
+        let asyncExpectation = expectationWithDescription("Fetch berries")
+        
+        PokemonKit.fetchBerryList()
+            .then { response in
+                
+                asyncExpectation.fulfill()
+            }
+            .error{ err in
+                XCTFail("Should not failed with \(err)")
+            }
+        
+        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+            XCTAssertNil(err, "Something went wrong")
+        }
+        
     }
     
     func testPerformanceExample() {
