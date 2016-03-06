@@ -22,6 +22,24 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 }
 
 // MARK: Classes
+public class PKMPagedObject: Mappable{
+    public var count: Int?
+    public var next: String?
+    public var previous: String?
+    public var results: [PKMBaseObject]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        count <- map["count"]
+        next <- map["next"]
+        previous <- map["previous"]
+        results <- map["results"]
+    }
+}
+
 public class PKMLanguageObject: Mappable{
     public var name: String?
     public var language: PKMBaseObject?
@@ -175,11 +193,11 @@ public class PKMBerryFirmness: Mappable {
 // MARK: -
 // MARK: Functions
 
-public func fetchBerryList() -> Promise<[PKMBaseObject]>{
+public func fetchBerryList() -> Promise<PKMPagedObject>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/berry"
         
-        Alamofire.request(.GET, URL).responseArray { (response: Response<[PKMBaseObject], NSError>) in
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
             }else{
@@ -203,11 +221,11 @@ public func fetchBerry(berryId: String) -> Promise<PKMBerry>{
     }
 }
 
-public func fetchBerryFirmnessList() -> Promise<[PKMBaseObject]>{
+public func fetchBerryFirmnessList() -> Promise<PKMPagedObject>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/berry-firmness"
         
-        Alamofire.request(.GET, URL).responseArray { (response: Response<[PKMBaseObject], NSError>) in
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
             }else{
@@ -234,11 +252,11 @@ public func fetchBerryFirmness(berryFirmnessId: String) -> Promise<PKMBerryFirmn
 }
 
 
-public func fetchBerryFlavours() -> Promise<[PKMBaseObject]>{
+public func fetchBerryFlavours() -> Promise<PKMPagedObject>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/berry-flavor"
         
-        Alamofire.request(.GET, URL).responseArray { (response: Response<[PKMBaseObject], NSError>) in
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
             }else{
@@ -263,3 +281,4 @@ public func fetchBerryFlavour(berryFlavourId: String) -> Promise<PKMBerryFlavour
         }
     }
 }
+
