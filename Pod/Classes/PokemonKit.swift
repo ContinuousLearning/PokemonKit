@@ -17,11 +17,77 @@ import PromiseKit
 
 let baseURL: String = "http://pokeapi.co/api/v2"
 
-@objc public enum PokemonKitError: Int, ErrorType {
-    case BerryListError, B, C
+// MARK: Classes
+
+public class PKMFlavorText: Mappable {
+    public var flavorText: String?
+    public var language: PKMLanguageObject?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        flavorText <- map["flavor_text"]
+        language <- map["language"]
+    }
 }
 
-// MARK: Classes
+//effect	The localized effect text for an API resource in a specific language	string
+//language	The language this effect is in	NamedAPIResource (Language)
+
+public class PKMEffectEntry: Mappable {
+    public var effect: String?
+    public var language: PKMLanguageObject?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        effect <- map["effect"]
+        language <- map["language"]
+    }
+}
+
+public class PKMContestEffect: Mappable {
+    public var id: Int?
+    public var appeal: String?
+    public var jam: Int?
+    public var effectEntries: [PKMEffectEntry]?
+    public var flavorTextEntries: [PKMFlavorText]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        appeal <- map["appeal"]
+        jam <- map["jam"]
+        effectEntries <- map["effect_entries"]
+        flavorTextEntries <- map["flavor_text_entries"]
+    }
+}
+
+public class PKMContestType: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var berryFlavor: PKMBaseObject?
+    public var names: [PKMLanguageObject]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        berryFlavor <- map["berry_flavor"]
+        names <- map["results"]
+    }
+}
+
 public class PKMPagedObject: Mappable{
     public var count: Int?
     public var next: String?
@@ -82,13 +148,6 @@ public class PKMBerryFlavourMap: Mappable{
     }
 }
 
-
-//id	The identifier for this berry flavor resource	integer
-//name	The name for this berry flavor resource	string
-//berries	A list of the berries with this flavor	list FlavorBerryMap
-//contest_type	The contest type that correlates with this berry flavor	NamedAPIResource (ContestType)
-//names	The name of this berry flavor listed in different languages	list Name
-
 public class PKMBerryFlavour: Mappable{
     public var id: Int?
     public var name: String?
@@ -146,14 +205,14 @@ public class PKMBerry: Mappable{
         name <- map["name"]
         growthTime <- map["growth_time"]
         maxHarvest <- map["max_harvest"]
-        naturalGiftPower <- map["natural-gift-power"]
+        naturalGiftPower <- map["natural_gift_power"]
         size <- map["size"]
         smoothness <- map["smoothness"]
-        soilDryness <- map["soil-dryness"]
+        soilDryness <- map["soil_dryness"]
         firmness <- map["firmness"]
         flavors <- map["flavors"]
         item <- map["item"]
-        naturalGiftType <- map["natural-gift-type"]
+        naturalGiftType <- map["natural_gift_type"]
     }
 }
 
@@ -282,3 +341,62 @@ public func fetchBerryFlavour(berryFlavourId: String) -> Promise<PKMBerryFlavour
     }
 }
 
+public func fetchContestList() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/contest-type"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchContestType(contestTypeId: String) -> Promise<PKMContestType>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/contest-type/" + contestTypeId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMContestType, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchContestEffects() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/contest-effect"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchContestEffect(contestEffectId: String) -> Promise<PKMContestEffect>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/contest-effect/" + contestEffectId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMContestEffect, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
