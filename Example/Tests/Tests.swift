@@ -1,6 +1,7 @@
 import UIKit
 import XCTest
 import PokemonKit
+import OHHTTPStubs
 
 class Tests: XCTestCase {
     
@@ -11,7 +12,9 @@ class Tests: XCTestCase {
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        OHHTTPStubs.removeAllStubs()
         super.tearDown()
+        
     }
     
     func testFetchingBerries() {
@@ -33,7 +36,11 @@ class Tests: XCTestCase {
     
     func testFectingBerryInfo() {
         let asyncExpectation = expectationWithDescription("Fetch berries")
-        
+        stub(isHost("pokeapi.co")) { _ in
+            // Stub it with our "wsresponse.json" stub file (which is in same bundle as self)
+            let stubPath = NSBundle.mainBundle().pathForResource("berry-stub", ofType: "json")
+            return fixture(stubPath!, headers: ["Content-Type":"application/json"])
+        }
         PokemonKit.fetchBerry("1")
             .then { response  -> Void in
                 XCTAssertEqual(response.id, 1, "Should be 1");

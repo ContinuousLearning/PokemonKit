@@ -90,6 +90,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-PokemonKit_Tests/ObjectMapper.framework"
   install_framework "Pods-PokemonKit_Tests/PokemonKit.framework"
   install_framework "Pods-PokemonKit_Tests/PromiseKit.framework"
+  install_framework "Pods-PokemonKit_Tests/OHHTTPStubs.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-PokemonKit_Tests/Alamofire.framework"
@@ -98,4 +99,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-PokemonKit_Tests/ObjectMapper.framework"
   install_framework "Pods-PokemonKit_Tests/PokemonKit.framework"
   install_framework "Pods-PokemonKit_Tests/PromiseKit.framework"
+  install_framework "Pods-PokemonKit_Tests/OHHTTPStubs.framework"
 fi

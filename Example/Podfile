@@ -7,6 +7,6 @@ end
 
 target 'PokemonKit_Tests', :exclusive => true do
   pod 'PokemonKit', :path => '../'
-
+  pod 'OHHTTPStubs/Swift'
   
 end

@@ -4,6 +4,9 @@ PODS:
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
   - ObjectMapper (1.1.5)
+  - OHHTTPStubs/Core (4.7.1)
+  - OHHTTPStubs/Swift (4.7.1):
+    - OHHTTPStubs/Core
   - OMGHTTPURLRQ (3.1.1):
     - OMGHTTPURLRQ/RQ (= 3.1.1)
   - OMGHTTPURLRQ/FormURLEncode (3.1.1)
@@ -29,6 +32,7 @@ PODS:
     - PromiseKit/CorePromise
 
 DEPENDENCIES:
+  - OHHTTPStubs/Swift
   - PokemonKit (from `../`)
 
 EXTERNAL SOURCES:
@@ -39,6 +43,7 @@ SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   AlamofireObjectMapper: 82391c31f23e37bdb2660da174bcf81b202da39d
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
+  OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
   OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
   PokemonKit: a1af9e614b6ae0777f2696738d541d4ed5373e38
   PromiseKit: 00ec2a219bf5ad2833f95977698e921932b8dfd3
