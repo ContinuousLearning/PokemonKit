@@ -19,6 +19,28 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 
 // MARK: Classes
 
+//id	The identifier for this super contest effect resource	integer
+//appeal	The level of appeal this super contest effect has	string
+//flavor_text_entries	The flavor text of this super contest effect listed in different languages	list FlavorText
+//moves	A list of moves that have the effect when used in super contests	list NamedAPIResource (Move)
+public class PKMSuperContestEffect: Mappable {
+    public var id: Int?
+    public var appeal: String?
+    public var flavorTextEntries: [PKMFlavorText]?
+    public var moves: [PKMBaseObject]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["flavor_text"]
+        appeal <- map["appeal"]
+        flavorTextEntries <- map["flavor_text_entries"]
+        moves <- map["moves"]
+    }
+}
+
 public class PKMFlavorText: Mappable {
     public var flavorText: String?
     public var language: PKMLanguageObject?
@@ -32,9 +54,6 @@ public class PKMFlavorText: Mappable {
         language <- map["language"]
     }
 }
-
-//effect	The localized effect text for an API resource in a specific language	string
-//language	The language this effect is in	NamedAPIResource (Language)
 
 public class PKMEffectEntry: Mappable {
     public var effect: String?
@@ -390,6 +409,36 @@ public func fetchContestEffect(contestEffectId: String) -> Promise<PKMContestEff
         let URL = baseURL + "/contest-effect/" + contestEffectId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMContestEffect, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchSuperContestEffects() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/contest-effect"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchSuperContestEffect(superContestEffectId: String) -> Promise<PKMSuperContestEffect>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/super-contest-effect/" + superContestEffectId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMSuperContestEffect, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)

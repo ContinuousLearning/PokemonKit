@@ -518,7 +518,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E72154B723F46ED106213505 /* Pods-PokemonKit_Tests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -539,7 +538,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2622527539D442C8E1A5530B /* Pods-PokemonKit_Tests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
