@@ -20,12 +20,48 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
-id	The identifier for this encounter method resource	integer
-name	The name for this encounter method resource	string
-order	A good value for sorting	integer
-names	The name of this encounter method listed in different languages	list Name
+id	The identifier for this encounter condition value resource	integer
+name	The name for this encounter condition value resource	string
+condition	The condition this encounter condition value pertains to	list NamedAPIResource (EncounterCondition)
+names	The name of this encounter condition value listed in different languages	list Name
 
 */
+public class PKMEncounterConditionValue: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var condition: [PKMBaseObject]?
+    public var names: [PKMLanguageObject]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["flavor_text"]
+        name <- map["name"]
+        condition <- map["condition"]
+        names <- map["names"]
+    }
+}
+
+public class PKMEncounterCondition: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var values: [PKMBaseObject]?
+    public var names: [PKMLanguageObject]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["flavor_text"]
+        name <- map["name"]
+        values <- map["values"]
+        names <- map["names"]
+    }
+}
+
 public class PKMEncounterMethod: Mappable {
     public var id: Int?
     public var name: String?
@@ -490,6 +526,66 @@ public func fetchEncounterMethod(encounterMethodId: String) -> Promise<PKMEncoun
         let URL = baseURL + "/encounter-method/" + encounterMethodId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEncounterMethod, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchEncounterConditions() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/encounter-condition"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchEncounterCondition(encounterConditionId: String) -> Promise<PKMEncounterMethod>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/encounter-condition/" + encounterConditionId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEncounterMethod, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchEncounterConditionValues() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/encounter-condition-value"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchEncounterConditionValue(encounterConditionValueId: String) -> Promise<PKMEncounterConditionValue>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/encounter-condition-value/" + encounterConditionValueId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEncounterConditionValue, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
