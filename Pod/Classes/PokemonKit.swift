@@ -19,10 +19,31 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 
 // MARK: Classes
 
-//id	The identifier for this super contest effect resource	integer
-//appeal	The level of appeal this super contest effect has	string
-//flavor_text_entries	The flavor text of this super contest effect listed in different languages	list FlavorText
-//moves	A list of moves that have the effect when used in super contests	list NamedAPIResource (Move)
+/*
+id	The identifier for this encounter method resource	integer
+name	The name for this encounter method resource	string
+order	A good value for sorting	integer
+names	The name of this encounter method listed in different languages	list Name
+
+*/
+public class PKMEncounterMethod: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var order: Int?
+    public var names: [PKMLanguageObject]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["flavor_text"]
+        name <- map["name"]
+        order <- map["order"]
+        names <- map["names"]
+    }
+}
+
 public class PKMSuperContestEffect: Mappable {
     public var id: Int?
     public var appeal: String?
@@ -439,6 +460,36 @@ public func fetchSuperContestEffect(superContestEffectId: String) -> Promise<PKM
         let URL = baseURL + "/super-contest-effect/" + superContestEffectId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMSuperContestEffect, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchEncounterMethods() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/encounter-method"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchEncounterMethod(encounterMethodId: String) -> Promise<PKMEncounterMethod>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/encounter-method/" + encounterMethodId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEncounterMethod, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
