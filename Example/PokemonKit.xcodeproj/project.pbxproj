@@ -14,6 +14,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		74302C1C1C8DBDB4006F27FE /* berry-stub.json in Resources */ = {isa = PBXBuildFile; fileRef = 74302C1B1C8DBDB4006F27FE /* berry-stub.json */; };
+		74302C1E1C8F1732006F27FE /* evolution-stub.json in Resources */ = {isa = PBXBuildFile; fileRef = 74302C1D1C8F1732006F27FE /* evolution-stub.json */; };
 		B651A8D1305C64C15B8AAABD /* Pods_PokemonKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C2369B3CA286B9950876B02 /* Pods_PokemonKit_Tests.framework */; };
 		D43AFFED4712DA5090633B48 /* Pods_PokemonKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267D8D088F3770C0F79577F3 /* Pods_PokemonKit_Example.framework */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		74302C1B1C8DBDB4006F27FE /* berry-stub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "berry-stub.json"; path = "../berry-stub.json"; sourceTree = "<group>"; };
+		74302C1D1C8F1732006F27FE /* evolution-stub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "evolution-stub.json"; sourceTree = "<group>"; };
 		D710CD00518857A7D3D9D8B6 /* Pods-PokemonKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonKit_Example/Pods-PokemonKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E370F868A980248B300D6487 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E3E886A5B72D8EBA111F8E18 /* PokemonKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PokemonKit.podspec; path = ../PokemonKit.podspec; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				74302C1B1C8DBDB4006F27FE /* berry-stub.json */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				74302C1D1C8F1732006F27FE /* evolution-stub.json */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				74302C1E1C8F1732006F27FE /* evolution-stub.json in Resources */,
 				74302C1C1C8DBDB4006F27FE /* berry-stub.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,

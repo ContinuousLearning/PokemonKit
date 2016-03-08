@@ -65,6 +65,28 @@ class Tests: XCTestCase {
             }
             .error{ err in
                 XCTFail("Should not failed with \(err)")
+                asyncExpectation.fulfill();
+        }
+        
+        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+            XCTAssertNil(err, "Something went wrong")
+        }
+    }
+    
+    func testFetchingEvolution() {
+        let asyncExpectation = expectationWithDescription("Fetch Evo Chain")
+        stub(isHost("pokeapi.co")) { _ in
+            let stubPath = NSBundle.mainBundle().pathForResource("evolution-stub", ofType: "json")
+            return fixture(stubPath!, headers: ["Content-Type":"application/json"])
+        }
+        PokemonKit.fetchEvolutionChain("1")
+            .then{ response -> Void in
+                XCTAssertNotNil(response);
+                asyncExpectation.fulfill();
+            }.error{ err in
+                XCTFail("Should not failed with \(err)")
+                asyncExpectation.fulfill();
+                
         }
         
         self.waitForExpectationsWithTimeout(30) { (err) -> Void in

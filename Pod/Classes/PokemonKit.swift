@@ -20,16 +20,130 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
-id	The identifier for this encounter condition value resource	integer
-name	The name for this encounter condition value resource	string
-condition	The condition this encounter condition value pertains to	list NamedAPIResource (EncounterCondition)
-names	The name of this encounter condition value listed in different languages	list Name
+item	The item required to cause evolution this into Pokémon species	NamedAPIResource (Item)
+trigger	The type of event that triggers evolution into this Pokémon species	NamedAPIResource (EvolutionTrigger)
+gender	The gender the evolving Pokémon species must be in order to evolve into this Pokémon species	NamedAPIResource (Gender)
+held_item	The item the evolving Pokémon species must be holding during the evolution trigger event to evolve into this Pokémon species	NamedAPIResource (Item)
+known_move	The move that must be known by the evolving Pokémon species during the evolution trigger event in order to evolve into this Pokémon species	NamedAPIResource (Move)
+known_move_type	The evolving Pokémon species must know a move with this type during the evolution trigger event in order to evolve into this Pokémon species	NamedAPIResource (Type)
+location	The location the evolution must be triggered at.	NamedAPIResource (Location)
+min_level	The minimum required level of the evolving Pokémon species to evolve into this Pokémon species	integer
+min_happiness	The minimum required level of happiness the evolving Pokémon species to evolve into this Pokémon species	integer
+min_beauty	The minimum required level of beauty the evolving Pokémon species to evolve into this Pokémon species	integer
+min_affection	The minimum required level of affection the evolving Pokémon species to evolve into this Pokémon species	integer
+needs_overworld_rain	Whether or not it must be raining in the overworld to cause evolution this Pokémon species	boolean
+party_species	The pokemon species that must be in the players party in order for the evolving Pokémon species to evolve into this Pokémon species	NamedAPIResource (PokemonSpecies)
+party_type	The player must have a pokemon of this type in their party during the evolution trigger event in order for the evolving Pokémon species to evolve into this Pokémon species	NamedAPIResource (Type)
+relative_physical_stats	The required relation between the Pokémon's Attack and Defense stats. 1 means Attack > Defense. 0 means Attack = Defense. -1 means Attack < Defense.	integer
+time_of_day	The required time of day. Day or night.	string
+trade_species	Pokémon species for which this one must be traded.	NamedAPIResource (Pokemon Species)
+turn_upside_down	Whether or not the 3DS needs to be turned upside-down as this Pokémon levels up.	boolean
 
 */
-public class PKMEncounterConditionValue: Mappable {
+public class PKMEvolutionDetail: Mappable {
+    public var item: PKMBaseObject?
+    public var trigger: PKMBaseObject?
+    public var gender: PKMBaseObject?
+    public var heldItem: PKMBaseObject?
+    public var knownMove: PKMBaseObject?
+    public var knownMoveType: PKMBaseObject?
+    public var location: PKMBaseObject?
+    public var minLevel: Int?
+    public var minHappiness: Int?
+    public var minBeauty: Int?
+    public var minAffection: Int?
+    public var needsOverworldRain: Bool?
+    public var partySpecies: PKMBaseObject?
+    public var partyType: PKMBaseObject?
+    public var relativePhysicalStats: Int?
+    public var timeOfDay: String?
+    public var tradeSpecies: PKMBaseObject?
+    public var turnUpsideDown: Bool?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        item <- map["item"];
+        trigger <- map["trigger"];
+        gender <- map["gender"];
+        heldItem <- map["held_item"];
+        knownMove <- map["known_move"];
+        knownMoveType <- map["known_move_type"];
+        location <- map["location"];
+        minLevel <- map["min_level"];
+        minHappiness <- map["min_happiness"];
+        minBeauty <- map["min_beauty"];
+        minAffection <- map["min_affection"];
+        needsOverworldRain <- map["needs_overworld_rain"];
+        partySpecies <- map["party_species"];
+        partyType <- map["party_type"];
+        relativePhysicalStats <- map["relative_physical_stats"];
+        timeOfDay <- map["time_of_day"];
+        tradeSpecies <- map["trade_species"];
+        turnUpsideDown <- map["turn_upside_down"];
+    }
+}
+
+/*
+is_baby	Whether or not this link is for a baby Pokémon. This would only ever be true on the base link.	boolean
+species	The Pokémon species at this point in the evolution chain	NamedAPIResource (PokemonSpecies)
+evolution_details	All details regarding the specific details of the referenced Pokémon species evolution	EvolutionDetail
+evolves_to	A List of chain objects.	list ChainLink
+*/
+public class PKMClainLink: Mappable {
+    public var isBaby: Bool?
+    public var species: PKMBaseObject?
+    public var evolutionDetails: PKMEvolutionDetail?
+    public var evolvesTo: [PKMClainLink]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        isBaby <- map["is_baby"]
+        species <- map["species"]
+        evolutionDetails <- map["evolution_details"]
+        evolvesTo <- map["evolves_to"]
+    }
+}
+
+/*
+id	The identifier for this evolution chain resource	integer
+baby_trigger_item	The item that a Pokémon would be holding when mating that would trigger the egg hatching a baby Pokémon rather than a basic Pokémon	NamedAPIResource (Item)
+chain	The base chain link object. Each link contains evolution details for a Pokémon in the chain. Each link references the next Pokémon in the natural evolution order.	ChainLink
+
+*/
+public class PKMEvolutionChain: Mappable {
     public var id: Int?
+    public var babyTriggerItem: PKMBaseObject?
+    public var chain: PKMClainLink?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        babyTriggerItem <- map["baby_trigger_item"]
+        chain <- map["chain"]
+    }
+}
+
+public class PKMEncounterConditionValue: Mappable {
+    
+    /// The identifier for this encounter condition value resource
+    public var id: Int?
+    
+    /// The name for this encounter condition value resource
     public var name: String?
+    
+    /// The condition this encounter condition value pertains to
     public var condition: [PKMBaseObject]?
+    
+    /// The name of this encounter condition value listed in different languages
     public var names: [PKMLanguageObject]?
     
     required public init?(_ map: Map) {
@@ -586,6 +700,36 @@ public func fetchEncounterConditionValue(encounterConditionValueId: String) -> P
         let URL = baseURL + "/encounter-condition-value/" + encounterConditionValueId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEncounterConditionValue, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchEvolutionChains() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/evolution-chain"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchEvolutionChain(evolutionChainId: String) -> Promise<PKMEvolutionChain>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/evolution-chain/" + evolutionChainId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEvolutionChain, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
