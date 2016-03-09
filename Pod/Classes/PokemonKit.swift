@@ -19,27 +19,25 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 
 // MARK: Classes
 
-/*
-item	The item required to cause evolution this into Pokémon species	NamedAPIResource (Item)
-trigger	The type of event that triggers evolution into this Pokémon species	NamedAPIResource (EvolutionTrigger)
-gender	The gender the evolving Pokémon species must be in order to evolve into this Pokémon species	NamedAPIResource (Gender)
-held_item	The item the evolving Pokémon species must be holding during the evolution trigger event to evolve into this Pokémon species	NamedAPIResource (Item)
-known_move	The move that must be known by the evolving Pokémon species during the evolution trigger event in order to evolve into this Pokémon species	NamedAPIResource (Move)
-known_move_type	The evolving Pokémon species must know a move with this type during the evolution trigger event in order to evolve into this Pokémon species	NamedAPIResource (Type)
-location	The location the evolution must be triggered at.	NamedAPIResource (Location)
-min_level	The minimum required level of the evolving Pokémon species to evolve into this Pokémon species	integer
-min_happiness	The minimum required level of happiness the evolving Pokémon species to evolve into this Pokémon species	integer
-min_beauty	The minimum required level of beauty the evolving Pokémon species to evolve into this Pokémon species	integer
-min_affection	The minimum required level of affection the evolving Pokémon species to evolve into this Pokémon species	integer
-needs_overworld_rain	Whether or not it must be raining in the overworld to cause evolution this Pokémon species	boolean
-party_species	The pokemon species that must be in the players party in order for the evolving Pokémon species to evolve into this Pokémon species	NamedAPIResource (PokemonSpecies)
-party_type	The player must have a pokemon of this type in their party during the evolution trigger event in order for the evolving Pokémon species to evolve into this Pokémon species	NamedAPIResource (Type)
-relative_physical_stats	The required relation between the Pokémon's Attack and Defense stats. 1 means Attack > Defense. 0 means Attack = Defense. -1 means Attack < Defense.	integer
-time_of_day	The required time of day. Day or night.	string
-trade_species	Pokémon species for which this one must be traded.	NamedAPIResource (Pokemon Species)
-turn_upside_down	Whether or not the 3DS needs to be turned upside-down as this Pokémon levels up.	boolean
+public class PKMEvolutionTrigger: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var names: [PKMLanguageObject]?
+    public var pokemonSpecies: PKMBaseObject?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        names <- map["names"]
+        pokemonSpecies <- map["pokemon_species"]
+    }
+}
 
-*/
+
 public class PKMEvolutionDetail: Mappable {
     public var item: PKMBaseObject?
     public var trigger: PKMBaseObject?
@@ -730,6 +728,36 @@ public func fetchEvolutionChain(evolutionChainId: String) -> Promise<PKMEvolutio
         let URL = baseURL + "/evolution-chain/" + evolutionChainId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEvolutionChain, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchEvolutionTriggers() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/evolution-trigger"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchEvolutionTrigger(evolutionTriggerId: String) -> Promise<PKMEvolutionTrigger>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/evolution-trigger/" + evolutionTriggerId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEvolutionTrigger, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
