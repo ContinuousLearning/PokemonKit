@@ -18,6 +18,46 @@ import PromiseKit
 let baseURL: String = "http://pokeapi.co/api/v2"
 
 // MARK: Classes
+/*
+id	The identifier for this generation resource	integer
+name	The name for this generation resource	string
+abilities	A list of abilities that were introduced in this generation	list NamedAPIResource (Ability)
+names	The name of this generation listed in different languages	list Name
+main_region	The main region travelled in this generation	NamedAPIResource (Region)
+moves	A list of moves that were introduced in this generation	list NamedAPIResource (Move)
+pokemon_species	A list of Pokémon species that were introduced in this generation	list NamedAPIResource (PokemonSpecies)
+types	A list of types that were introduced in this generation	list NamedAPIResource (Type)
+version_groups	A list of version groups that were introduced in this generation	list NamedAPIResource (VersionGroup)
+*/
+
+public class PKMGeneration: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var names: [PKMLanguageObject]?
+    public var abilities: [PKMBaseObject]?
+    public var mainRegion: PKMBaseObject?
+    public var moves: [PKMBaseObject]?
+    public var pokemonSpecies: [PKMBaseObject]?
+    public var types: [PKMBaseObject]?
+    public var versionGroups: [PKMBaseObject]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        names <- map["names"]
+        abilities <- map["abilities"]
+        mainRegion <- map["id"]
+        moves <- map["moves"]
+        pokemonSpecies <- map["pokemon_species"]
+        types <- map["types"]
+        versionGroups <- map["versionGroups"]
+    }
+}
+
 
 public class PKMEvolutionTrigger: Mappable {
     public var id: Int?
@@ -758,6 +798,36 @@ public func fetchEvolutionTrigger(evolutionTriggerId: String) -> Promise<PKMEvol
         let URL = baseURL + "/evolution-trigger/" + evolutionTriggerId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEvolutionTrigger, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchGenerations() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/generation"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchGeneration(generationId: String) -> Promise<PKMGeneration>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/generation/" + generationId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMGeneration, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
