@@ -20,6 +20,31 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this item pocket resource	integer
+name	The name for this item pocket resource	string
+categories	A list of item categories that are relevent to this item pocket	list NamedAPIResource (ItemCategory)
+names	The name of this item pocket listed in different languages	list Name
+*/
+public class PKMItemPocket: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var categories: [PKMNamedAPIResource]?
+    public var names: [PKMName]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        categories <- map["categories"]
+        names <- map["names"]
+    }
+}
+
+
+/*
 effect	The localized effect text for an API resource in a specific language	string
 language	The language this effect is in	NamedAPIResource (Language)
 */
@@ -1411,6 +1436,36 @@ public func fetchItemFlingEffect(itemFlingEffectsId: String) -> Promise<PKMItemF
         let URL = baseURL + "/item-fling-effect/" + itemFlingEffectsId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMItemFlingEffect, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchItemPockets() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/item-pocket"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchItemPocket(itemPocketId: String) -> Promise<PKMItemPocket>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/item-pocket/" + itemPocketId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMItemPocket, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
