@@ -70,7 +70,7 @@ public class PKMPokedex: Mappable {
     public var name: String?
     public var isMainSeries: Bool?
     public var descriptions: [PKMDescription]?
-    public var names: [PKMLanguageObject]?
+    public var names: [PKMName]?
     public var pokemonEntries: [PKMEntry]?
     public var region: PKMBaseObject?
     public var versionGroups: [PKMBaseObject]?
@@ -95,7 +95,7 @@ public class PKMPokedex: Mappable {
 public class PKMGeneration: Mappable {
     public var id: Int?
     public var name: String?
-    public var names: [PKMLanguageObject]?
+    public var names: [PKMName]?
     public var abilities: [PKMBaseObject]?
     public var mainRegion: PKMBaseObject?
     public var moves: [PKMBaseObject]?
@@ -124,7 +124,7 @@ public class PKMGeneration: Mappable {
 public class PKMEvolutionTrigger: Mappable {
     public var id: Int?
     public var name: String?
-    public var names: [PKMLanguageObject]?
+    public var names: [PKMName]?
     public var pokemonSpecies: PKMBaseObject?
     
     required public init?(_ map: Map) {
@@ -244,7 +244,7 @@ public class PKMEncounterConditionValue: Mappable {
     public var condition: [PKMBaseObject]?
     
     /// The name of this encounter condition value listed in different languages
-    public var names: [PKMLanguageObject]?
+    public var names: [PKMName]?
     
     required public init?(_ map: Map) {
         
@@ -262,7 +262,7 @@ public class PKMEncounterCondition: Mappable {
     public var id: Int?
     public var name: String?
     public var values: [PKMBaseObject]?
-    public var names: [PKMLanguageObject]?
+    public var names: [PKMName]?
     
     required public init?(_ map: Map) {
         
@@ -280,7 +280,7 @@ public class PKMEncounterMethod: Mappable {
     public var id: Int?
     public var name: String?
     public var order: Int?
-    public var names: [PKMLanguageObject]?
+    public var names: [PKMName]?
     
     required public init?(_ map: Map) {
         
@@ -314,7 +314,7 @@ public class PKMSuperContestEffect: Mappable {
 
 public class PKMFlavorText: Mappable {
     public var flavorText: String?
-    public var language: PKMLanguageObject?
+    public var language: PKMName?
     
     required public init?(_ map: Map) {
         
@@ -328,7 +328,7 @@ public class PKMFlavorText: Mappable {
 
 public class PKMEffectEntry: Mappable {
     public var effect: String?
-    public var language: PKMLanguageObject?
+    public var language: PKMName?
     
     required public init?(_ map: Map) {
         
@@ -364,7 +364,7 @@ public class PKMContestType: Mappable {
     public var id: Int?
     public var name: String?
     public var berryFlavor: PKMBaseObject?
-    public var names: [PKMLanguageObject]?
+    public var names: [PKMName]?
     
     required public init?(_ map: Map) {
         
@@ -396,7 +396,7 @@ public class PKMPagedObject: Mappable{
     }
 }
 
-public class PKMLanguageObject: Mappable{
+public class PKMName: Mappable{
     public var name: String?
     public var language: PKMBaseObject?
     
@@ -443,7 +443,7 @@ public class PKMBerryFlavour: Mappable{
     public var name: String?
     public var berries: [PKMFlavourBerryMap]?
     public var contestType: PKMBaseObject?
-    public var names:[PKMLanguageObject]?
+    public var names:[PKMName]?
     
     required public init?(_ map: Map){
         
