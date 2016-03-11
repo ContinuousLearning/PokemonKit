@@ -20,6 +20,62 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this item category resource	integer
+name	The name for this item category resource	string
+items	A list of items that are a part of this category	list Item
+names	The name of this item category listed in different languages	list Name
+pocket	The pocket items in this category would be put in	NamedAPIResource (ItemPocket)
+*/
+public class PKMItemCategory: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var items: [PKMNamedAPIResource]?
+    public var names: [PKMName]?
+    public var pocket: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        items <- map["items"]
+        names <- map["names"]
+        pocket <- map["pocket"]
+    }
+}
+
+
+/*
+id	The identifier for this item attribute resource	integer
+name	The name for this item attribute resource	string
+items	A list of items that have this attribute	list NamedAPIResource (Item)
+names	The name of this item attribute listed in different languages	list Name
+descriptions	The description of this item attribute listed in different languages	list Description
+*/
+public class PKMItemAttribute: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var items: [PKMNamedAPIResource]?
+    public var names: [PKMName]?
+    public var descriptions: [PKMDescription]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        items <- map["items"]
+        names <- map["names"]
+        descriptions <- map["descriptions"]
+    }
+}
+
+
+/*
 effect	The localized effect text for an API resource in a specific language	string
 short_effect	The localized effect text in brief	string
 language	The language this effect is in	NamedAPIResource (Language)
@@ -1221,6 +1277,66 @@ public func fetchItem(itemId: String) -> Promise<PKMItem>{
         let URL = baseURL + "/item/" + itemId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMItem, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchItemAttributes() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/item-attribute"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchItemAttribute(itemAttributeId: String) -> Promise<PKMItemAttribute>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/item-attribute/" + itemAttributeId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMItemAttribute, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchItemCategories() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/item-category"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchItemCategory(itemCategoryId: String) -> Promise<PKMItemCategory>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/item-category/" + itemCategoryId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMItemCategory, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
