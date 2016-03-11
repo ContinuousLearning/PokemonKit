@@ -18,17 +18,79 @@ import PromiseKit
 let baseURL: String = "http://pokeapi.co/api/v2"
 
 // MARK: Classes
+
 /*
-id	The identifier for this generation resource	integer
-name	The name for this generation resource	string
-abilities	A list of abilities that were introduced in this generation	list NamedAPIResource (Ability)
-names	The name of this generation listed in different languages	list Name
-main_region	The main region travelled in this generation	NamedAPIResource (Region)
-moves	A list of moves that were introduced in this generation	list NamedAPIResource (Move)
-pokemon_species	A list of Pokémon species that were introduced in this generation	list NamedAPIResource (PokemonSpecies)
-types	A list of types that were introduced in this generation	list NamedAPIResource (Type)
-version_groups	A list of version groups that were introduced in this generation	list NamedAPIResource (VersionGroup)
+description	The localized description for an API resource in a specific language	string
+language	The language this name is in	NamedAPIResource (Language)
 */
+public class PKMDescription: Mappable {
+    public var description: String?
+    public var language: PKMBaseObject?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        description <- map["description"]
+        language <- map["language"]
+    }
+}
+
+/*
+entry_number	The index of this pokemon species entry within the Pokédex	integer
+pokemon_species	The Pokémon species being encountered	NamedAPIResource (PokemonSpecies)
+*/
+public class PKMEntry: Mappable {
+    public var entryNumber: Int?
+    public var pokemonSpecies: PKMBaseObject?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        entryNumber <- map["entry_number"]
+        pokemonSpecies <- map["pokemon_species"]
+    }
+}
+
+/*
+id	The identifier for this Pokédex resource	integer
+name	The name for this Pokédex resource	string
+is_main_series	Whether or not this Pokédex originated in the main series of the video games	boolean
+descriptions	The description of this Pokédex listed in different languages	list Description
+names	The name of this Pokédex listed in different languages	list Name
+pokemon_entries	A list of pokemon catalogued in this Pokédex and their indexes	list PokemonEntry
+region	The region this Pokédex catalogues pokemon for	NamedAPIResource (Region)
+version_groups	A list of version groups this Pokédex is relevent to	NamedAPIResource (VersionGroup)
+*/
+public class PKMPokedex: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var isMainSeries: Bool?
+    public var descriptions: [PKMDescription]?
+    public var names: [PKMLanguageObject]?
+    public var pokemonEntries: [PKMEntry]?
+    public var region: PKMBaseObject?
+    public var versionGroups: [PKMBaseObject]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        isMainSeries <- map["is_main_series"]
+        descriptions <- map["descriptions"]
+        names <- map["names"]
+        pokemonEntries <- map["pokemon_entries"]
+        region <- map["region"]
+        versionGroups <- map["version_groups"]
+    }
+}
+
 
 public class PKMGeneration: Mappable {
     public var id: Int?
@@ -828,6 +890,36 @@ public func fetchGeneration(generationId: String) -> Promise<PKMGeneration>{
         let URL = baseURL + "/generation/" + generationId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMGeneration, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchPokedexes() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokedex"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchPokedex(pokedexId: String) -> Promise<PKMPokedex>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokedex/" + pokedexId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokedex, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
