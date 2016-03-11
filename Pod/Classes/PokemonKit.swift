@@ -29,7 +29,7 @@ public class PKMVersion: Mappable {
     public var id: Int?
     public var name: String?
     public var names: [PKMName]?
-    public var versionGroup: PKMBaseObject?
+    public var versionGroup: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
         
@@ -50,7 +50,7 @@ language	The language this name is in	NamedAPIResource (Language)
 */
 public class PKMDescription: Mappable {
     public var description: String?
-    public var language: PKMBaseObject?
+    public var language: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
         
@@ -68,7 +68,7 @@ pokemon_species	The Pokémon species being encountered	NamedAPIResource (Pokemon
 */
 public class PKMEntry: Mappable {
     public var entryNumber: Int?
-    public var pokemonSpecies: PKMBaseObject?
+    public var pokemonSpecies: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
         
@@ -97,8 +97,8 @@ public class PKMPokedex: Mappable {
     public var descriptions: [PKMDescription]?
     public var names: [PKMName]?
     public var pokemonEntries: [PKMEntry]?
-    public var region: PKMBaseObject?
-    public var versionGroups: [PKMBaseObject]?
+    public var region: PKMNamedAPIResource?
+    public var versionGroups: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
         
@@ -121,12 +121,12 @@ public class PKMGeneration: Mappable {
     public var id: Int?
     public var name: String?
     public var names: [PKMName]?
-    public var abilities: [PKMBaseObject]?
-    public var mainRegion: PKMBaseObject?
-    public var moves: [PKMBaseObject]?
-    public var pokemonSpecies: [PKMBaseObject]?
-    public var types: [PKMBaseObject]?
-    public var versionGroups: [PKMBaseObject]?
+    public var abilities: [PKMNamedAPIResource]?
+    public var mainRegion: PKMNamedAPIResource?
+    public var moves: [PKMNamedAPIResource]?
+    public var pokemonSpecies: [PKMNamedAPIResource]?
+    public var types: [PKMNamedAPIResource]?
+    public var versionGroups: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
         
@@ -150,7 +150,7 @@ public class PKMEvolutionTrigger: Mappable {
     public var id: Int?
     public var name: String?
     public var names: [PKMName]?
-    public var pokemonSpecies: PKMBaseObject?
+    public var pokemonSpecies: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
         
@@ -166,23 +166,23 @@ public class PKMEvolutionTrigger: Mappable {
 
 
 public class PKMEvolutionDetail: Mappable {
-    public var item: PKMBaseObject?
-    public var trigger: PKMBaseObject?
-    public var gender: PKMBaseObject?
-    public var heldItem: PKMBaseObject?
-    public var knownMove: PKMBaseObject?
-    public var knownMoveType: PKMBaseObject?
-    public var location: PKMBaseObject?
+    public var item: PKMNamedAPIResource?
+    public var trigger: PKMNamedAPIResource?
+    public var gender: PKMNamedAPIResource?
+    public var heldItem: PKMNamedAPIResource?
+    public var knownMove: PKMNamedAPIResource?
+    public var knownMoveType: PKMNamedAPIResource?
+    public var location: PKMNamedAPIResource?
     public var minLevel: Int?
     public var minHappiness: Int?
     public var minBeauty: Int?
     public var minAffection: Int?
     public var needsOverworldRain: Bool?
-    public var partySpecies: PKMBaseObject?
-    public var partyType: PKMBaseObject?
+    public var partySpecies: PKMNamedAPIResource?
+    public var partyType: PKMNamedAPIResource?
     public var relativePhysicalStats: Int?
     public var timeOfDay: String?
-    public var tradeSpecies: PKMBaseObject?
+    public var tradeSpecies: PKMNamedAPIResource?
     public var turnUpsideDown: Bool?
     
     required public init?(_ map: Map) {
@@ -219,7 +219,7 @@ evolves_to	A List of chain objects.	list ChainLink
 */
 public class PKMClainLink: Mappable {
     public var isBaby: Bool?
-    public var species: PKMBaseObject?
+    public var species: PKMNamedAPIResource?
     public var evolutionDetails: PKMEvolutionDetail?
     public var evolvesTo: [PKMClainLink]?
     
@@ -243,7 +243,7 @@ chain	The base chain link object. Each link contains evolution details for a Pok
 */
 public class PKMEvolutionChain: Mappable {
     public var id: Int?
-    public var babyTriggerItem: PKMBaseObject?
+    public var babyTriggerItem: PKMNamedAPIResource?
     public var chain: PKMClainLink?
     
     required public init?(_ map: Map) {
@@ -266,7 +266,7 @@ public class PKMEncounterConditionValue: Mappable {
     public var name: String?
     
     /// The condition this encounter condition value pertains to
-    public var condition: [PKMBaseObject]?
+    public var condition: [PKMNamedAPIResource]?
     
     /// The name of this encounter condition value listed in different languages
     public var names: [PKMName]?
@@ -286,7 +286,7 @@ public class PKMEncounterConditionValue: Mappable {
 public class PKMEncounterCondition: Mappable {
     public var id: Int?
     public var name: String?
-    public var values: [PKMBaseObject]?
+    public var values: [PKMNamedAPIResource]?
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -323,7 +323,7 @@ public class PKMSuperContestEffect: Mappable {
     public var id: Int?
     public var appeal: String?
     public var flavorTextEntries: [PKMFlavorText]?
-    public var moves: [PKMBaseObject]?
+    public var moves: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
         
@@ -388,7 +388,7 @@ public class PKMContestEffect: Mappable {
 public class PKMContestType: Mappable {
     public var id: Int?
     public var name: String?
-    public var berryFlavor: PKMBaseObject?
+    public var berryFlavor: PKMNamedAPIResource?
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -407,7 +407,7 @@ public class PKMPagedObject: Mappable{
     public var count: Int?
     public var next: String?
     public var previous: String?
-    public var results: [PKMBaseObject]?
+    public var results: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
         
@@ -423,7 +423,7 @@ public class PKMPagedObject: Mappable{
 
 public class PKMName: Mappable{
     public var name: String?
-    public var language: PKMBaseObject?
+    public var language: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
         
@@ -435,7 +435,7 @@ public class PKMName: Mappable{
     }
 }
 
-public class PKMBaseObject: Mappable{
+public class PKMNamedAPIResource: Mappable{
     public var name: String?
     public var url: String?
     
@@ -451,7 +451,7 @@ public class PKMBaseObject: Mappable{
 
 public class PKMBerryFlavourMap: Mappable{
     public var potency: Int?
-    public var flavor: PKMBaseObject?
+    public var flavor: PKMNamedAPIResource?
     
     required public init?(_ map: Map){
         
@@ -467,7 +467,7 @@ public class PKMBerryFlavour: Mappable{
     public var id: Int?
     public var name: String?
     public var berries: [PKMFlavourBerryMap]?
-    public var contestType: PKMBaseObject?
+    public var contestType: PKMNamedAPIResource?
     public var names:[PKMName]?
     
     required public init?(_ map: Map){
@@ -485,7 +485,7 @@ public class PKMBerryFlavour: Mappable{
 
 public class PKMFlavourBerryMap: Mappable {
     public var potency: Int?
-    public var berry: PKMBaseObject?
+    public var berry: PKMNamedAPIResource?
     
     required public init?(_ map: Map){
         
@@ -506,10 +506,10 @@ public class PKMBerry: Mappable{
     public var size: Int?
     public var smoothness: Int?
     public var soilDryness: Int?
-    public var firmness: PKMBaseObject?
+    public var firmness: PKMNamedAPIResource?
     public var flavors: [PKMBerryFlavourMap]?
-    public var item: PKMBaseObject?
-    public var naturalGiftType: PKMBaseObject?
+    public var item: PKMNamedAPIResource?
+    public var naturalGiftType: PKMNamedAPIResource?
     
     required public init?(_ map: Map){
         
@@ -532,7 +532,7 @@ public class PKMBerry: Mappable{
 }
 
 public class PKMBerryName: Mappable {
-    var language: PKMBaseObject?
+    var language: PKMNamedAPIResource?
     var name: String?
     
     required public init?(_ map: Map){
@@ -547,7 +547,7 @@ public class PKMBerryName: Mappable {
 
 public class PKMBerryFirmness: Mappable {
     public var id: Int?
-    public var berries: [PKMBaseObject]?
+    public var berries: [PKMNamedAPIResource]?
     public var names: [PKMBerryName]?
     public var name: String?
     
