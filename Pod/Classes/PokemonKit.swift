@@ -20,6 +20,31 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this version resource	integer
+name	The name for this version resource	string
+names	The name of this version listed in different languages	list Name
+version_group	The version group this version belongs to	NamedAPIResource (VersionGroup)
+*/
+public class PKMVersion: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var names: [PKMName]?
+    public var versionGroup: PKMBaseObject?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        names <- map["names"]
+        versionGroup <- map["version_group"]
+    }
+}
+
+
+/*
 description	The localized description for an API resource in a specific language	string
 language	The language this name is in	NamedAPIResource (Language)
 */
@@ -920,6 +945,36 @@ public func fetchPokedex(pokedexId: String) -> Promise<PKMPokedex>{
         let URL = baseURL + "/pokedex/" + pokedexId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokedex, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchVersions() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/version"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchVersion(versionId: String) -> Promise<PKMVersion>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/version/" + versionId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMVersion, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
