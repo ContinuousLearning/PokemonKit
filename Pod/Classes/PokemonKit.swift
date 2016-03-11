@@ -20,6 +20,192 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+effect	The localized effect text for an API resource in a specific language	string
+short_effect	The localized effect text in brief	string
+language	The language this effect is in	NamedAPIResource (Language)
+*/
+public class PKMVerboseEffect: Mappable {
+    public var effect: String?
+    public var shortEffect: String?
+    public var language: Bool?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        effect <- map["effect"]
+        shortEffect <- map["short_effect"]
+        language <- map["language"]
+    }
+}
+
+
+/*
+text	The localized name for an API resource in a specific language	string
+language	The language this name is in	NamedAPIResource (Language)
+version_group	The version group which uses this flavor text	NamedAPIResource (VersionGroup)
+*/
+public class PKMVersionGroupFlavorText: Mappable {
+    public var text: String?
+    public var language: PKMNamedAPIResource?
+    public var versionGroup: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        text <- map["text"]
+        language <- map["language"]
+        versionGroup <- map["version_group"]
+    }
+}
+
+
+/*
+game_index	The internal id of an API resource within game data	integer
+generation	The generation relevent to this game index	NamedAPIResource (Generation)
+*/
+public class PKMGenerationGameIndex: Mappable {
+    public var gameIndex: Int?
+    public var generation: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        gameIndex <- map["game_index"]
+        generation <- map["generation"]
+    }
+}
+
+
+public class PKMItemSprites: Mappable {
+    /// The default depiction of this item
+    public var defaultDepiction: String?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        defaultDepiction <- map["default"]
+    }
+}
+
+
+/// API Referenced Resource
+public class PKMAPIResource: Mappable {
+    /// The URL of the referenced resource
+    public var url: String?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        url <- map["url"]
+    }
+}
+
+
+/*
+id	The identifier for this item resource	integer
+name	The name for this item resource	string
+cost	The price of this item in stores	integer
+fling_power	The power of the move Fling when used with this item.	integer
+fling_effect	The effect of the move Fling when used with this item	ItemFlingEffect
+attributes	A list of attributes this item has	list NamedAPIResource (ItemAttribute)
+category	The category of items this item falls into	ItemCategory
+effect_entries	The effect of this ability listed in different languages	list VerboseEffect
+flavor_text_entries	The flavor text of this ability listed in different languages	list VersionGroupFlavorText
+game_indices	A list of game indices relevent to this item by generation	list GenerationGameIndex
+names	The name of this item listed in different languages	list Name
+sprites	A set of sprites used to depict this item in the game	ItemSprites
+held_by_pokemon	A list of Pokémon that might be found in the wild holding this item	list NamedAPIResource (Pokemon)
+baby_trigger_for	An evolution chain this item requires to produce a bay during mating	list APIResource (EvolutionChain)
+*/
+public class PKMItem: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var cost: Int?
+    public var fling_power: Int?
+    public var fling_effect: PKMNamedAPIResource?
+    public var attributes: [PKMNamedAPIResource]?
+    public var category: PKMNamedAPIResource?
+    public var effect_entries: [PKMVerboseEffect]?
+    public var flavor_text_entries: [PKMVersionGroupFlavorText]?
+    public var game_indices: [PKMGenerationGameIndex]?
+    public var names: [PKMName]?
+    public var sprites: PKMItemSprites?
+    public var held_by_pokemon: [PKMNamedAPIResource]?
+    public var baby_trigger_for: [PKMAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        cost <- map["cost"]
+        fling_power <- map["fling_power"]
+        fling_effect <- map["fling_effect"]
+        attributes <- map["attributes"]
+        category <- map["category"]
+        effect_entries <- map["effect_entries"]
+        flavor_text_entries <- map["flavor_text_entries"]
+        game_indices <- map["game_indices"]
+        names <- map["names"]
+        sprites <- map["sprites"]
+        held_by_pokemon <- map["held_by_pokemon"]
+        baby_trigger_for <- map["baby_trigger_for"]
+    }
+}
+
+
+/*
+id	The identifier for this version group resource	integer
+name	The name for this version group resource	string
+order	Order for sorting. Almost by date of release, except similar versions are grouped together.	integer
+generation	The generation this version was introduced in	list NamedAPIResource (Generation)
+move_learn_methods	A list of methods in which Pokémon can learn moves in this version group	list NamedAPIResource (MoveLearnMethod)
+names	The name of this version group listed in different languages	list Name
+pokedexes	A list of Pokédexes introduces in this version group	list NamedAPIResource (Pokedex)
+regions	A list of regions that can be visited in this version group	list NamedAPIResource (Region)
+versions	The versions this version group owns	list NamedAPIResource (Version)
+*/
+public class PKMVersionGroup: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var order: Int?
+    public var generation: [PKMNamedAPIResource]?
+    public var moveLearnMethods: [PKMNamedAPIResource]?
+    public var names: [PKMName]?
+    public var pokedexes: [PKMNamedAPIResource]?
+    public var regions: [PKMNamedAPIResource]?
+    public var versions: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        order <- map["order"]
+        generation <- map["generation"]
+        moveLearnMethods <- map["move_learn_methods"]
+        names <- map["names"]
+        pokedexes <- map["pokedexes"]
+        regions <- map["regions"]
+        versions <- map["versions"]
+    }
+}
+
+/*
 id	The identifier for this version resource	integer
 name	The name for this version resource	string
 names	The name of this version listed in different languages	list Name
@@ -975,6 +1161,66 @@ public func fetchVersion(versionId: String) -> Promise<PKMVersion>{
         let URL = baseURL + "/version/" + versionId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMVersion, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchVersionGroups() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/version-group"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchVersionGroup(versionGroupId: String) -> Promise<PKMVersionGroup>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/version-group/" + versionGroupId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMVersionGroup, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchItems() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/item"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchItem(itemId: String) -> Promise<PKMItem>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/item/" + itemId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMItem, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)

@@ -26,7 +26,7 @@ class Tests: XCTestCase {
             }
             .error{ err in
                 XCTFail("Should not failed with \(err)")
-            }
+        }
         
         self.waitForExpectationsWithTimeout(30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
@@ -80,6 +80,40 @@ class Tests: XCTestCase {
             return fixture(stubPath!, headers: ["Content-Type":"application/json"])
         }
         PokemonKit.fetchEvolutionChain("1")
+            .then{ response -> Void in
+                XCTAssertNotNil(response);
+                asyncExpectation.fulfill();
+            }.error{ err in
+                XCTFail("Should not failed with \(err)")
+                asyncExpectation.fulfill();
+                
+        }
+        
+        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+            XCTAssertNil(err, "Something went wrong")
+        }
+    }
+    
+    func testFetchVersionGroup() {
+        let asyncExpectation = expectationWithDescription("Fetch Version Group")
+        PokemonKit.fetchVersionGroup("1")
+            .then{ response -> Void in
+                XCTAssertNotNil(response);
+                asyncExpectation.fulfill();
+            }.error{ err in
+                XCTFail("Should not failed with \(err)")
+                asyncExpectation.fulfill();
+                
+        }
+        
+        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+            XCTAssertNil(err, "Something went wrong")
+        }
+    }
+    
+    func testFetchitem() {
+        let asyncExpectation = expectationWithDescription("Fetch Version Group")
+        PokemonKit.fetchItem("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
                 asyncExpectation.fulfill();
