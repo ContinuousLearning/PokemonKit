@@ -20,6 +20,50 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+effect	The localized effect text for an API resource in a specific language	string
+language	The language this effect is in	NamedAPIResource (Language)
+*/
+public class PKMEffect: Mappable {
+    public var effect: String?
+    public var language: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        effect <- map["effect"]
+        language <- map["language"]
+    }
+}
+
+
+/*
+id	The identifier for this fling effect resource	integer
+name	The name for this fling effect resource	string
+effect_entries	The result of this fling effect listed in different languages	list Effect
+items	A list of items that have this fling effect	list NamedAPIResource (Item)
+*/
+public class PKMItemFlingEffect: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var effectEntries: [PKMEffect]?
+    public var items: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        effectEntries <- map["effect_entries"]
+        items <- map["items"]
+    }
+}
+
+
+/*
 id	The identifier for this item category resource	integer
 name	The name for this item category resource	string
 items	A list of items that are a part of this category	list Item
@@ -1337,6 +1381,36 @@ public func fetchItemCategory(itemCategoryId: String) -> Promise<PKMItemCategory
         let URL = baseURL + "/item-category/" + itemCategoryId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMItemCategory, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchItemFlingEffects() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/item-fling-effect"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchItemFlingEffect(itemFlingEffectsId: String) -> Promise<PKMItemFlingEffect>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/item-fling-effect/" + itemFlingEffectsId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMItemFlingEffect, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
