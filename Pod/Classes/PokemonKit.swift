@@ -20,6 +20,211 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+slot	The order the Pokémon's types are listed in	integer
+pokemon	The Pokémon that has the referenced type	NamedAPIResource (Pokemon)
+*/
+public class PKMTypePokemon: Mappable {
+    public var slot: Int?
+    public var pokemon: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        slot <- map["slot"]
+        pokemon <- map["pokemon"]
+    }
+}
+
+
+/*
+no_damage_to	A list of types this type has no effect on	list NamedAPIResource (Type)
+half_damage_to	A list of types this type is not very effect against	list NamedAPIResource (Type)
+double_damage_to	A list of types this type is very effect against	list NamedAPIResource (Type)
+no_damage_from	A list of types that have no effect on this type	list NamedAPIResource (Type)
+half_damage_from	A list of types that are not very effective against this type	list NamedAPIResource (Type)
+double_damage_from	A list of types that are very effective against this type	list NamedAPIResource (Type)
+*/
+public class PKMTypeRelations: Mappable {
+    public var noDamageTo: [PKMNamedAPIResource]?
+    public var halfDamageTo: [PKMNamedAPIResource]?
+    public var doubleDamageTo: [PKMNamedAPIResource]?
+    public var noDamageFrom: [PKMNamedAPIResource]?
+    public var halfDamageFrom: [PKMNamedAPIResource]?
+    public var doubleDamageFrom: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        noDamageTo <- map["no_damage_to"]
+        halfDamageTo <- map["half_damage_to"]
+        doubleDamageTo <- map["double_damage_to"]
+        noDamageFrom <- map["no_damage_from"]
+        halfDamageFrom <- map["half_damage_from"]
+        doubleDamageFrom <- map["double_damage_from"]
+    }
+}
+
+
+/*
+id	The identifier for this type resource	integer
+name	The name for this type resource	string
+damage_relations	A detail of how effective this type is toward others and vice versa	TypeRelations
+game_indices	A list of game indices relevent to this item by generation	list GenerationGameIndex
+generation	The generation this type was introduced in	NamedAPIResource (Generation)
+move_damage_class	The class of damage inflicted by this type	NamedAPIResource (MoveDamageClass)
+names	The name of this type listed in different languages	list Name
+pokemon	A list of details of Pokémon that have this type	TypePokemon
+moves	A list of moves that have this type	list NamedAPIResource (Move)
+*/
+public class PKMType: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var damageRelations: PKMTypeRelations?
+    public var gameIndices: [PKMGenerationGameIndex]?
+    public var generation: PKMNamedAPIResource?
+    public var moveDamageClass: PKMNamedAPIResource?
+    public var names: [PKMName]?
+    public var pokemon: [PKMTypePokemon]?
+    public var moves: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        damageRelations <- map["damage_relations"]
+        gameIndices <- map["game_indices"]
+        generation <- map["generation"]
+        moveDamageClass <- map["move_damage_class"]
+        names <- map["names"]
+        pokemon <- map["pokemon"]
+        moves <- map["moves"]
+    }
+}
+
+
+/*
+increase	A list of natures and how they change the referenced stat	list NatureStatAffect
+decrease	A list of nature sand how they change the referenced stat	list NatureStatAffect
+*/
+public class PKMNatureStatAffectSets: Mappable {
+    public var increase: [PKMNatureStatAffect]?
+    public var decrease: [PKMNatureStatAffect]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        increase <- map["increase"]
+        decrease <- map["decrease"]
+    }
+}
+
+
+/*
+max_change	The maximum amount of change to the referenced stat	integer
+nature	The nature causing the change	NamedAPIResource (Nature)
+*/
+public class PKMNatureStatAffect: Mappable {
+    public var maxChange: Int?
+    public var nature: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        maxChange <- map["max_change"]
+        nature <- map["nature"]
+    }
+}
+
+/*
+max_change	The maximum amount of change to the referenced stat	integer
+move	The move causing the change	NamedAPIResource (Move)
+*/
+public class PKMMoveStatAffect: Mappable {
+    public var maxChange: Int?
+    public var move: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        maxChange <- map["max_change"]
+        move <- map["move"]
+    }
+}
+
+
+/*
+increase	A list of natures and how they change the referenced stat	list NatureStatAffect
+decrease	A list of nature sand how they change the referenced stat	list NatureStatAffect
+*/
+public class PKMMoveStatAffectSets: Mappable {
+    public var increase: [PKMMoveStatAffect]?
+    public var decrease: [PKMMoveStatAffect]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        increase <- map["increase"]
+        decrease <- map["decrease"]
+    }
+}
+
+
+/*
+id	The identifier for this stat resource	integer
+name	The name for this stat resource	string
+game_index	ID the games use for this stat	integer
+is_battle_only	Whether this stat only exists within a battle	boolean
+affecting_moves	A detail of moves which affect this stat positively or negatively	MoveStatAffectSets
+affecting_natures	A detail of natures which affect this stat positively or negatively	NatureStatAffectSets
+characteristics	A list of characteristics that are set on a Pokémon when its highest base stat is this stat	list APIResource (Characteristic)
+move_damage_class	The class of damage this stat is directly related to	NamedAPIResource (MoveDamageClass)
+names	The name of this region listed in different languages	list Name
+*/
+public class PKMStat: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var gameIndex: Int?
+    public var isBattleOnly: Bool?
+    public var affectingMoves: PKMMoveStatAffectSets?
+    public var affectingNatures: PKMNatureStatAffectSets?
+    public var characteristics: [PKMAPIResource]?
+    public var moveDamageClass: PKMNamedAPIResource?
+    public var names: [PKMName]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        gameIndex <- map["game_index"]
+        isBattleOnly <- map["is_battle_only"]
+        affectingMoves <- map["affecting_moves"]
+        affectingNatures <- map["affecting_natures"]
+        characteristics <- map["characteristics"]
+        moveDamageClass <- map["move_damage_class"]
+        names <- map["names"]
+    }
+}
+
+
+/*
 entry_number	The index number within the Pokédex	integer
 name	The Pokédex the referenced Pokémon species can be found in	NamedAPIResource (Pokedex)
 */
@@ -3731,6 +3936,70 @@ public func fetchPokemonSpecies(pokemonSpeciesId: String) -> Promise<PKMPokemonS
         let URL = baseURL + "/pokemon-species/" + pokemonSpeciesId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemonSpecies, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//Stat
+
+public func fetchStats() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/stat"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchStat(statId: String) -> Promise<PKMStat>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/stat/" + statId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMStat, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//Type
+
+public func fetchType() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/type"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchType(typeId: String) -> Promise<PKMType>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/type/" + typeId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMType, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
