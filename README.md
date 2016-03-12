@@ -5,11 +5,29 @@
 [![License](https://img.shields.io/cocoapods/l/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
 [![Platform](https://img.shields.io/cocoapods/p/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
 
+## What is this?
+PokemonKit is a swift wrapper for Pokeapi. 
+
+PokemonKit use Alamofire and PromiseKit for async web requests handling.
+
 ## Usage
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+```swift
+import PokemonKit
 
-## Requirements
+PokemonKit.fetchBerry("1")
+            .then { berryInfo in
+                self.testLabel.text = berryInfo.name;
+            }.error {error in
+                print(error)
+        }
+```
+
+## TODO
+
+- [x] Wrap all API end points
+- [ ] Fully Documented
+- [ ] Fully tested
 
 ## Installation
 
@@ -17,7 +35,7 @@ PokemonKit is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "PokemonKit"
+pod 'PokemonKit'
 ```
 
 ## Author

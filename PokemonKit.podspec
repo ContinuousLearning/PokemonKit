@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PokemonKit"
-  s.version          = "0.1.0"
+  s.version          = "1.0.0"
   s.summary          = "A wrapper for pokeapi v2"
 
 # This description is used to generate tags and improve search results.
@@ -17,7 +17,8 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
-A wrapper for pokeapi v2, written in swift
+PokemonKit is a swift wrapper for Pokeapi.
+PokemonKit use Alamofire and PromiseKit for async web requests handling.
                        DESC
 
   s.homepage         = "https://github.com/darkcl/PokemonKit"
@@ -25,7 +26,7 @@ A wrapper for pokeapi v2, written in swift
   s.license          = 'MIT'
   s.author           = { "Yeung Yiu Hung" => "hkclex@gmail.com" }
   s.source           = { :git => "https://github.com/darkcl/PokemonKit.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://twitter.com/darkcl_dev'
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
