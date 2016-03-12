@@ -20,6 +20,28 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this move battle style resource	integer
+name	The name for this move battle style resource	string
+names	The name of this move battle style listed in different languages	list Name
+*/
+public class PKMMoveBattleStyle: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var names: [PKMName]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        names <- map["names"]
+    }
+}
+
+
+/*
 id	The identifier for this move ailment resource	integer
 name	The name for this move ailment resource	string
 moves	A list of moves that cause this ailment	list NamedAPIResource (Move)
@@ -1786,6 +1808,37 @@ public func fetchMoveAilment(moveAilmentId: String) -> Promise<PKMMoveAilment>{
         let URL = baseURL + "/move-ailment/" + moveAilmentId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMoveAilment, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//MoveBattleStyles
+public func fetchMoveBattleStyles() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move-battle-style"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchMoveBattleStyle(moveBattleStyleId: String) -> Promise<PKMMoveBattleStyle>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move-battle-style/" + moveBattleStyleId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMoveBattleStyle, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
