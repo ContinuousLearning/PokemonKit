@@ -20,6 +20,31 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this egg group resource	integer
+name	The name for this egg group resource	string
+names	The name of this egg group listed in different languages	list Name
+pokemon_species	A list of all Pokémon species that are members of this egg group	list NamedAPIResource (PokemonSpecies)
+*/
+public class PKMEggGroup: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var names: [PKMName]?
+    public var pokemonSpecies: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        names <- map["names"]
+        pokemonSpecies <- map["pokemon_species"]
+    }
+}
+
+
+/*
 id	The identifier for this characteristic resource	integer
 gene_modulo	The remainder of the highest stat/IV divided by 5	integer
 possible_values	The possible values of the highest stat that would result in a Pokémon recieving this characteristic when divided by 5	list integer
@@ -2607,6 +2632,38 @@ public func fetchCharacteristic(characteristicId: String) -> Promise<PKMCharacte
         let URL = baseURL + "/characteristic/" + characteristicId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMCharacteristic, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//EggGroup
+
+public func fetchEggGroup() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/egg-group"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchEggGroup(eggGroupId: String) -> Promise<PKMEggGroup>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/egg-group/" + eggGroupId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEggGroup, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
