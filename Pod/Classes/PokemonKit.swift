@@ -20,6 +20,31 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this characteristic resource	integer
+gene_modulo	The remainder of the highest stat/IV divided by 5	integer
+possible_values	The possible values of the highest stat that would result in a Pokémon recieving this characteristic when divided by 5	list integer
+descriptions	The descriptions of this characteristic listed in different languages	list (Description)
+*/
+public class PKMCharacteristic: Mappable {
+    public var id: Int?
+    public var geneModulo: Int?
+    public var possibleValues: [Int]?
+    public var descriptions: [PKMDescription]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        geneModulo <- map["gene_modulo"]
+        possibleValues <- map["possible_values"]
+        descriptions <- map["descriptions"]
+    }
+}
+
+
+/*
 is_hidden	Whether or not this a hidden ability for the referenced Pokémon	boolean
 slot	Pokémon have 3 ability 'slots' which hold references to possible abilities they could have. This is the slot of this ability for the referenced pokemon.	integer
 pokemon	The Pokémon this ability could belong to	NamedAPIResource (Pokemon)
@@ -2550,6 +2575,38 @@ public func fetchAbility(abilityId: String) -> Promise<PKMAbility>{
         let URL = baseURL + "/ability/" + abilityId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMAbility, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//Characteristic
+
+public func fetchCharacteristics() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/characteristic"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchCharacteristic(characteristicId: String) -> Promise<PKMCharacteristic>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/characteristic/" + characteristicId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMCharacteristic, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
