@@ -20,6 +20,241 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+change	The amount of change	integer
+stat	The stat being affected	NamedAPIResource (Stat)
+*/
+public class PKMMoveStatChange: Mappable {
+    public var change: Int?
+    public var stat: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        change <- map["change"]
+        stat <- map["stat"]
+    }
+}
+
+
+/*
+accuracy	The percent value of how likely this move is to be successful	integer
+effect_chance	The percent value of how likely it is this moves effect will take effect	integer
+power	The base power of this move with a value of 0 if it does not have a base power	integer
+pp	Power points. The number of times this move can be used	integer
+effect_entries	The effect of this move listed in different languages	list VerboseEffect
+type	The elemental type of this move	NamedAPIResource (Type)
+version_group	The version group in which these move stat values were in effect	NamedAPIResource (VersionGroup)
+*/
+public class PKMPastMoveStatValues: Mappable {
+    public var accuracy: Int?
+    public var effectChance: Int?
+    public var power: Int?
+    public var pp: Int?
+    public var effectEntries: [PKMVerboseEffect]?
+    public var type: PKMNamedAPIResource?
+    public var versionGroup: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        accuracy <- map["accuracy"]
+        effectChance <- map["effect_chance"]
+        power <- map["power"]
+        pp <- map["pp"]
+        effectEntries <- map["effect_entries"]
+        type <- map["type"]
+        versionGroup <- map["version_group"]
+    }
+}
+
+
+/*
+ailment	The status ailment this move inflicts on its target	NamedAPIResource (MoveAilment)
+category	The category of move this move falls under, e.g. damage or ailment	NamedAPIResource (Move)
+min_hits	The minimum number of times this move hits. Null if it always only hits once.	integer
+max_hits	The maximum number of times this move hits. Null if it always only hits once.	integer
+min_turns	The minimum number of turns this move continues to take effect. Null if it always only lasts one turn.	integer
+max_turns	The maximum number of turns this move continues to take effect. Null if it always only lasts one turn.	integer
+drain	HP drain (if positive) or Recoil damage (if negative), in percent of damage done	integer
+healing	The amount of hp gained by the attacking pokemon, in percent of it's maximum HP	integer
+crit_rate	Critical hit rate bonus	integer
+ailment_chance	The likelyhood this attack will cause an ailment	integer
+flinch_chance	The likelyhood this attack will cause the target pokemon to flinch	integer
+stat_chance	The likelyhood this attack will cause a stat change in the target pokemon	integer
+*/
+public class PKMMoveMetaData: Mappable {
+    public var ailment: PKMNamedAPIResource?
+    public var category: PKMNamedAPIResource?
+    public var minHits: Int?
+    public var maxHits: Int?
+    public var minTurns: Int?
+    public var maxTurns: Int?
+    public var drain: Int?
+    public var healing: Int?
+    public var critRate: Int?
+    public var ailmentChance: Int?
+    public var flinchEhance: Int?
+    public var statChance: Int?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        ailment <- map["ailment"]
+        category <- map["category"]
+        minHits <- map["min_hits"]
+        maxHits <- map["max_hits"]
+        minTurns <- map["min_turns"]
+        maxTurns <- map["max_turns"]
+        drain <- map["drain"]
+        healing <- map["healing"]
+        critRate <- map["crit_rate"]
+        ailmentChance <- map["ailment_chance"]
+        flinchEhance <- map["flinch_chance"]
+        statChance <- map["stat_chance"]
+    }
+}
+
+
+/*
+effect_entries	The previous effect of this ability listed in different languages	Effect
+version_group	The version group in which the previous effect of this ability originated	NamedAPIResource (VersionGroup)
+*/
+public class PKMAbilityEffectChange: Mappable {
+    public var effectEntries: PKMEffect?
+    public var versionGroup: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        effectEntries <- map["effect_entries"]
+        versionGroup <- map["version_group"]
+    }
+}
+
+
+/*
+use_before	A list of moves to use before this move	list NamedAPIResource (Move)
+use_after	A list of moves to use after this move	list NamedAPIResource (Move)
+*/
+public class PKMContestComboDetail: Mappable {
+    public var useBefore: [PKMNamedAPIResource]?
+    public var useAfter: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        useBefore <- map["use_before"]
+        useAfter <- map["use_after"]
+    }
+}
+
+/*
+normal	A detail of moves this move can be used before or after, granting additional appeal points in contests	list ContestComboDetail
+super	A detail of moves this move can be used before or after, granting additional appeal points in super contests	list ContestComboDetail
+*/
+public class PKMContestComboSets: Mappable {
+    public var normalMove: [PKMContestComboDetail]?
+    public var superMove: [PKMContestComboDetail]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        normalMove <- map["normal"]
+        superMove <- map["super"]
+    }
+}
+
+
+/*
+id	The identifier for this move resource	integer
+name	The name for this move resource	string
+accuracy	The percent value of how likely this move is to be successful	integer
+effect_chance	The percent value of how likely it is this moves effect will happen	integer
+pp	Power points. The number of times this move can be used	integer
+priority	A value between -8 and 8. Sets the order in which moves are executed during battle. See Bulbapedia for greater detail.	integer
+power	The base power of this move with a value of 0 if it does not have a base power	integer
+contest_combos	A detail of normal and super contest combos that require this move	list ContestComboSets
+contest_type	The type of appeal this move gives a Pokémon when used in a contest	NamedAPIResource (ContestType)
+
+contest_effect	The effect the move has when used in a contest	NamedAPIResource (ContestEffect)
+damage_class	The type of damage the move inflicts on the target, e.g. physical	NamedAPIResource (MoveDamageClass)
+effect_entries	The effect of this move listed in different languages	list VerboseEffect
+effect_changes	The list of previous effects this move has had across version groups of the games	list AbilityEffectChange
+generation	The generation in which this move was introduced	NamedAPIResource (Generation)
+meta	Metadata about this move	MoveMetaData
+names	The name of this move listed in different languages	list Name
+past_values	A list of move resource value changes across ersion groups of the game	list PastMoveStatValues
+stat_changes	A list of stats this moves effects and how much it effects them	list MoveStatChange
+super_contest_effect	The effect the move has when used in a super contest	APIResource (ContestEffect)
+target	The type of target that will recieve the effects of the attack	NamedAPIResource (MoveTarget)
+type	The elemental type of this move	NamedAPIResource (Type)
+*/
+public class PKMMove: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var accuracy: Int?
+    public var effect_chance: Int?
+    public var pp: Int?
+    public var priority: Int?
+    public var power: Int?
+    public var contestCombos: [PKMContestComboSets]?
+    public var contestType: PKMNamedAPIResource?
+    
+    public var contestEffect: PKMNamedAPIResource?
+    public var damageClass: PKMNamedAPIResource?
+    public var effectEntries: [PKMVerboseEffect]?
+    public var effectChanges: [PKMAbilityEffectChange]?
+    public var generation: PKMNamedAPIResource?
+    public var meta: PKMMoveMetaData?
+    public var pastValues: [PKMPastMoveStatValues]?
+    public var statChanges: [PKMMoveStatChange]?
+    public var superContestEffect: PKMAPIResource?
+    public var target: PKMNamedAPIResource?
+    public var type: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        accuracy <- map["accuracy"]
+        effect_chance <- map["effect_chance"]
+        pp <- map["pp"]
+        priority <- map["priority"]
+        power <- map["power"]
+        contestCombos <- map["contest_combos"]
+        contestType <- map["contest_type"]
+        
+        contestEffect <- map["contest_effect"]
+        damageClass <- map["damage_class"]
+        effectEntries <- map["effect_entries"]
+        effectChanges <- map["effect_changes"]
+        generation <- map["generation"]
+        meta <- map["meta"]
+        pastValues <- map["past_values"]
+        statChanges <- map["stat_changes"]
+        superContestEffect <- map["super_contest_effect"]
+        target <- map["target"]
+        type <- map["type"]
+    }
+}
+
+
+/*
 id	The identifier for this item pocket resource	integer
 name	The name for this item pocket resource	string
 categories	A list of item categories that are relevent to this item pocket	list NamedAPIResource (ItemCategory)
@@ -1466,6 +1701,36 @@ public func fetchItemPocket(itemPocketId: String) -> Promise<PKMItemPocket>{
         let URL = baseURL + "/item-pocket/" + itemPocketId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMItemPocket, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchMoves() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchMove(moveId: String) -> Promise<PKMMove>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move/" + moveId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMove, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
