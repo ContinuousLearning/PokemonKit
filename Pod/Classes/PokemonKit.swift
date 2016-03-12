@@ -20,6 +20,31 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this Pokémon color resource	integer
+name	The name for this Pokémon color resource	string
+names	The name of this Pokémon color listed in different languages	list Name
+pokemon_species	A list of the Pokémon species that have this color	list NamedAPIResource (PokemonSpecies)
+*/
+public class PKMPokemonColor: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var names: [PKMName]?
+    public var pokemonSpecies: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        names <- map["names"]
+        pokemonSpecies <- map["pokemon_species"]
+    }
+}
+
+
+/*
 game_index	The internal id of an API resource within game data	integer
 version	The version relevent to this game index	NamedAPIResource (Version)
 */
@@ -3238,6 +3263,38 @@ public func fetchPokemon(pokemonId: String) -> Promise<PKMPokemon>{
         let URL = baseURL + "/pokemon/" + pokemonId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemon, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//PokemonColor
+
+public func fetchPokemonColors() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon-color"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchPokemonColor(pokemonColorId: String) -> Promise<PKMPokemonColor>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon-color/" + pokemonColorId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemonColor, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
