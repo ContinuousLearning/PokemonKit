@@ -20,6 +20,53 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+base_score	The base score given to the player when this Pokémon is caught during a pal park run	integer
+rate	The base rate for encountering this Pokémon in this pal park area	integer
+pokemon_species	The Pokémon species being encountered	NamedAPIResource (PokemonSpecies)
+*/
+public class PKMPalParkEncounterSpecies: Mappable {
+    public var baseScore: Int?
+    public var rate: Int?
+    public var pokemonSpecies: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        baseScore <- map["base_score"]
+        rate <- map["rate"]
+        pokemonSpecies <- map["pokemon_species"]
+    }
+}
+
+
+/*
+id	The identifier for this pal park area resource	integer
+name	The name for this pal park area resource	string
+names	The name of this pal park area listed in different languages	list Name
+pokemon_encounters	A list of Pokémon encountered in thi pal park area along with details	list PalParkEncounterSpecies
+*/
+public class PKMPalParkArea: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var names: [PKMName]?
+    public var pokemonEncounters: [PKMPalParkEncounterSpecies]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        names <- map["names"]
+        pokemonEncounters <- map["pokemon_encounters"]
+    }
+}
+
+
+/*
 id	The identifier for this location resource	integer
 name	The name for this location resource	string
 region	The region this location can be found in	NamedAPIResource (Region)
@@ -2311,6 +2358,38 @@ public func fetchLocationArea(locationAreaId: String) -> Promise<PKMLocationArea
         let URL = baseURL + "/location-area/" + locationAreaId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMLocationArea, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//PalParkArea
+
+public func fetchPalParkAreas() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pal-park-area"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchPalParkArea(palParkAreaId: String) -> Promise<PKMPalParkArea>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pal-park-area/" + palParkAreaId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPalParkArea, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
