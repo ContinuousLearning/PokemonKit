@@ -20,6 +20,183 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+game_index	The internal id of an API resource within game data	integer
+version	The version relevent to this game index	NamedAPIResource (Version)
+*/
+public class PKMVersionGameIndex: Mappable {
+    public var gameIndex: Int?
+    public var version: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        gameIndex <- map["game_index"]
+        version <- map["version"]
+    }
+}
+
+
+/*
+is_hidden	Whether or not this is a hidden ability	boolean
+slot	The slot this ability occupies in this Pokémon species	integer
+ability	The ability the Pokémon may have	NamedAPIResource (Ability)
+*/
+public class PKMPokemonAbility: Mappable {
+    public var isHidden: Bool?
+    public var slot: Int?
+    public var ability: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        isHidden <- map["is_hidden"]
+        slot <- map["slot"]
+        ability <- map["ability"]
+    }
+}
+
+/*
+location_area	The location area the referenced Pokémon can be encountered in	APIResource (LocationArea)
+version_details	A list of versions and encounters with the referenced Pokémon that might happen	list VersionEncounterDetail
+*/
+public class PKMLocationAreaEncounter: Mappable {
+    public var locationArea: PKMAPIResource?
+    public var versionDetails: [PKMVersionEncounterDetail]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        locationArea <- map["location_area"]
+        versionDetails <- map["version_details"]
+    }
+}
+
+/*
+front_default	The default depiction of this Pokémon from the front in battle	string
+front_shiny	The shiny depiction of this Pokémon from the front in battle	string
+front_female	The female depiction of this Pokémon from the front in battle	string
+front_shiny_female	The shiny female depiction of this Pokémon from the front in battle	string
+back_default	The default depiction of this Pokémon from the back in battle	string
+back_shiny	The shiny depiction of this Pokémon from the back in battle	string
+back_female	The female depiction of this Pokémon from the back in battle	string
+back_shiny_female	The shiny female depiction of this Pokémon from the back in battle	string
+*/
+public class PKMPokemonSprites: Mappable {
+    public var frontDefault: String?
+    public var frontShiny: String?
+    public var frontFemale: String?
+    public var frontShinyFemale: String?
+    public var backDefault: String?
+    public var backShiny: String?
+    public var backFemale: String?
+    public var backShinyFemale: String?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        frontDefault <- map["front_default"]
+        frontShiny <- map["front_shiny"]
+        frontFemale <- map["front_female"]
+        frontShinyFemale <- map["front_shiny_female"]
+        backDefault <- map["back_default"]
+        backShiny <- map["back_shiny"]
+        backFemale <- map["back_female"]
+        backShinyFemale <- map["back_shiny_female"]
+    }
+}
+
+/*
+slot	The order the Pokémon's types are listed in	integer
+type	The type the referenced Pokémon has	string
+*/
+public class PKMPokemonType: Mappable {
+    public var slot: Int?
+    public var type: String?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        slot <- map["slot"]
+        type <- map["type"]
+    }
+}
+
+
+/*
+id	The identifier for this Pokémon resource	integer
+name	The name for this Pokémon resource	string
+base_experience	The base experience gained for defeating this Pokémon	integer
+height	The height of this Pokémon	integer
+is_default	Set for exactly one Pokémon used as the default for each species	boolean
+order	Order for sorting. Almost national order, except families are grouped together.	integer
+weight	The weight of this Pokémon	integer
+abilities	A list of abilities this Pokémon could potentially have	list PokemonAbility
+forms	A list of forms this Pokémon can take on	list NamedAPIResource (PokemonForm)
+game_indices	A list of game indices relevent to Pokémon item by generation	list VersionGameIndex
+held_items	A list of items this Pokémon may be holding when encountered	list NamedAPIResource (Item)
+location_area_encounters	A list of location areas as well as encounter details pertaining to specific versions	list LocationAreaEncounter
+moves	A list of moves along with learn methods and level details pertaining to specific version groups	list NamedAPIResource (Move)
+sprites	A set of sprites used to depict this Pokémon in the game	PokemonSprites
+species	The species this Pokémon belongs to	NamedAPIResource (PokemonSpecies)
+stats	A list of base stat values for this Pokémon	list NamedAPIResource (Stat)
+types	A list of details showing types this Pokémon has	list PokemonType
+*/
+public class PKMPokemon: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var base_experience: Int?
+    public var height: Int?
+    public var is_default: Bool?
+    public var order: Int?
+    public var weight: Int?
+    public var abilities: [PKMPokemonAbility]?
+    public var forms: [PKMNamedAPIResource]?
+    public var gameIndices: [PKMVersionGameIndex]?
+    public var heldItems: [PKMNamedAPIResource]?
+    public var locationAreaEncounters: [PKMLocationAreaEncounter]?
+    public var moves: [PKMNamedAPIResource]?
+    public var sprites: PKMPokemonSprites?
+    public var species: PKMNamedAPIResource?
+    public var stats: [PKMNamedAPIResource]?
+    public var types: [PKMPokemonType]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        base_experience <- map["base_experience"]
+        height <- map["height"]
+        is_default <- map["is_default"]
+        order <- map["order"]
+        weight <- map["weight"]
+        abilities <- map["abilities"]
+        forms <- map["forms"]
+        gameIndices <- map["game_indices"]
+        heldItems <- map["held_items"]
+        locationAreaEncounters <- map["location_area_encounters"]
+        moves <- map["moves"]
+        sprites <- map["sprites"]
+        species <- map["species"]
+        stats <- map["stats"]
+        types <- map["types"]
+    }
+}
+
+
+/*
 max_change	The maximum amount of change to the referenced Pokéathlon stat	integer
 nature	The nature causing the change	NamedAPIResource (Nature)
 */
@@ -3029,6 +3206,38 @@ public func fetchPokeathlonStat(pokeathlonStatId: String) -> Promise<PKMPokeathl
         let URL = baseURL + "/pokeathlon-stat/" + pokeathlonStatId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokeathlonStat, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//Pokemon
+
+public func fetchPokemons() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchPokemon(pokemonId: String) -> Promise<PKMPokemon>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon/" + pokemonId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemon, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
