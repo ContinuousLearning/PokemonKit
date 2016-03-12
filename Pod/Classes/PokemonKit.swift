@@ -20,6 +20,31 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this Pokémon habitat resource	integer
+name	The name for this Pokémon habitat resource	string
+names	The name of this Pokémon habitat listed in different languages	list Name
+pokemon_species	A list of the Pokémon species that can be found in this habitat	list NamedAPIResource (PokemonSpecies)
+*/
+public class PKMPokemonHabitat: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var names: [PKMName]?
+    public var pokemonSpecies: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        names <- map["names"]
+        pokemonSpecies <- map["pokemon_species"]
+    }
+}
+
+
+/*
 front_default	The default depiction of this Pokémon form from the front in battle	string
 front_shiny	The shiny depiction of this Pokémon form from the front in battle	string
 back_default	The default depiction of this Pokémon form from the back in battle	string
@@ -3398,6 +3423,38 @@ public func fetchPokemonForm(pokemonFormId: String) -> Promise<PKMPokemonForm>{
         let URL = baseURL + "/pokemon-form/" + pokemonFormId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemonForm, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//PokemonHabitat
+
+public func fetchPokemonHabitats() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon-habitat"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchPokemonHabitat(pokemonHabitatId: String) -> Promise<PKMPokemonHabitat>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon-habitat/" + pokemonHabitatId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemonHabitat, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
