@@ -20,6 +20,53 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+awesome_name	The localized "scientific" name for an API resource in a specific language	string
+language	The language this "scientific" name is in	NamedAPIResource (Language)
+*/
+public class PKMAwesomeName: Mappable {
+    public var awesomeName: String?
+    public var language: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        awesomeName <- map["awesome_name"]
+        language <- map["language"]
+    }
+}
+
+
+/*
+id	The identifier for this Pokémon shape resource	integer
+name	The name for this Pokémon shape resource	string
+awesome_names	The "scientific" name of this Pokémon shape listed in different languages	list AwesomeName
+names	The name of this Pokémon shape listed in different languages	list Name
+pokemon_species	A list of the Pokémon species that have this shape	list NamedAPIResource (PokemonSpecies)
+*/
+public class PKMPokemonShape: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var awesomeNames: [PKMAwesomeName]?
+    public var names: [PKMName]?
+    public var pokemonSpecies: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        awesomeNames <- map["awesome_names"]
+        names <- map["names"]
+        pokemonSpecies <- map["pokemon_species"]
+    }
+}
+
+
+/*
 id	The identifier for this Pokémon habitat resource	integer
 name	The name for this Pokémon habitat resource	string
 names	The name of this Pokémon habitat listed in different languages	list Name
@@ -3455,6 +3502,38 @@ public func fetchPokemonHabitat(pokemonHabitatId: String) -> Promise<PKMPokemonH
         let URL = baseURL + "/pokemon-habitat/" + pokemonHabitatId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemonHabitat, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//PokemonShape
+
+public func fetchPokemonShapes() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon-shape"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchPokemonShape(pokemonShapeId: String) -> Promise<PKMPokemonShape>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon-shape/" + pokemonShapeId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemonShape, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
