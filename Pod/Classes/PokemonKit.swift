@@ -20,6 +20,87 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+low_hp_preference	Chance of using the move, in percent, if HP is under one half	integer
+high_hp_preference	Chance of using the move, in percent, if HP is over one half	integer
+move_battle_style	The move battle style	NamedAPIResource (MoveBattleStyle)
+*/
+public class PKMMoveBattleStylePreference: Mappable {
+    public var lowHpPreference: Int?
+    public var highHpPreference: Int?
+    public var moveBattleStyle: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        lowHpPreference <- map["low_hp_preference"]
+        highHpPreference <- map["high_hp_preference"]
+        moveBattleStyle <- map["move_battle_style"]
+    }
+}
+
+
+/*
+change	The amount of change	integer
+stat	The stat being affected	NamedAPIResource (PokeathlonStat)
+*/
+public class PKMNatureStatChange: Mappable {
+    public var maxChange: Int?
+    public var pokeathlonStat: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        maxChange <- map["max_change"]
+        pokeathlonStat <- map["pokeathlon_stat"]
+    }
+}
+
+
+/*
+id	The identifier for this nature resource	integer
+name	The name for this nature resource	string
+decreased_stat	The stat decreased by 10% in Pokémon with this nature	NamedAPIResource (Stat)
+increased_stat	The stat increased by 10% in Pokémon with this nature	NamedAPIResource (Stat)
+hates_flavor	The flavor hated by Pokémon with this nature	NamedAPIResource (BerryFlavor)
+likes_flavor	The flavor liked by Pokémon with this nature	NamedAPIResource (BerryFlavor)
+pokeathlon_stat_changes	A list of Pokéathlon stats this nature effects and how much it effects them	list NatureStatChange
+move_battle_style_preferences	A list of battle styles and how likely a Pokémon with this nature is to use them in the Battle Palace or Battle Tent.	list MoveBattleStylePreference
+names	The name of this nature listed in different languages	list Name
+*/
+public class PKMNature: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var decreasedStat: PKMNamedAPIResource?
+    public var increasedStat: PKMNamedAPIResource?
+    public var hatesFlavor: PKMNamedAPIResource?
+    public var likesFlavor: PKMNamedAPIResource?
+    public var pokeathlonStatChanges: [PKMNatureStatChange]?
+    public var moveBattleStylePreferences: [PKMMoveBattleStylePreference]?
+    public var names: [PKMName]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        decreasedStat <- map["decreased_stat"]
+        increasedStat <- map["increased_stat"]
+        hatesFlavor <- map["hates_flavor"]
+        likesFlavor <- map["likes_flavor"]
+        pokeathlonStatChanges <- map["pokeathlon_stat_changes"]
+        moveBattleStylePreferences <- map["move_battle_style_preferences"]
+        names <- map["names"]
+    }
+}
+
+
+/*
 level	The level gained	integer
 experience	The amount of experience required to reach the referenced level	integer
 */
@@ -2822,6 +2903,38 @@ public func fetchGrowthRate(growthRateId: String) -> Promise<PKMGrowthRate>{
         let URL = baseURL + "/growth-rate/" + growthRateId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMGrowthRate, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//Nature
+
+public func fetchNatures() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/nature"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchNature(natureId: String) -> Promise<PKMNature>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/nature/" + natureId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMNature, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
