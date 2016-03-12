@@ -20,6 +20,178 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this location resource	integer
+name	The name for this location resource	string
+region	The region this location can be found in	NamedAPIResource (Region)
+names	The name of this language listed in different languages	list Name
+game_indices	A list of game indices relevent to this location by generation	list GenerationGameIndex
+areas	Areas that can be found within this location	APIResource (LocationArea)
+*/
+public class PKMLocation: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var region: PKMNamedAPIResource?
+    public var names: [PKMName]?
+    public var gameIndices: [PKMGenerationGameIndex]?
+    public var areas: PKMAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        region <- map["region"]
+        names <- map["names"]
+        gameIndices <- map["game_indices"]
+        areas <- map["areas"]
+    }
+}
+
+
+/*
+min_level	The lowest level the Pokémon could be encountered at	integer
+max_level	The highest level the Pokémon could be encountered at	integer
+condition_values	A list of condition values that must be in effect for this encounter to occur	list NamedAPIResource (EncounterConditionValue)
+chance	percent chance that this encounter will occur	integer
+method	The method by which this encounter happens	NamedAPIResource (EncounterMethod)
+*/
+public class PKMEncounter: Mappable {
+    public var minLevel: Int?
+    public var maxLevel: Int?
+    public var conditionValues: [PKMNamedAPIResource]?
+    public var chance: Int?
+    public var method: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        minLevel <- map["min_level"]
+        maxLevel <- map["max_level"]
+        conditionValues <- map["condition_values"]
+        chance <- map["chance"]
+        method <- map["method"]
+    }
+}
+
+
+/*
+version	The game version this encounter happens in	NamedAPIResource (Version)
+max_chance	The total percentage of all encounter potential	integer
+encounter_details	A list of encounters and their specifics	list Encounter
+*/
+public class PKMVersionEncounterDetail: Mappable {
+    public var version: PKMNamedAPIResource?
+    public var maxChance: Int?
+    public var encounterDetails: [PKMEncounter]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        version <- map["version"]
+        maxChance <- map["max_chance"]
+        encounterDetails <- map["encounter_details"]
+    }
+}
+
+
+/*
+pokemon	The Pokémon being encountered	NamedAPIResource (Pokemon)
+version_details	A list of versions and encounters with Pokémon that might happen in the referenced location area	list VersionEncounterDetail
+*/
+public class PKMPokemonEncounter: Mappable {
+    public var pokemon: PKMNamedAPIResource?
+    public var versionDetails: [PKMVersionEncounterDetail]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        pokemon <- map["pokemon"]
+        versionDetails <- map["version_details"]
+    }
+}
+
+
+/*
+rate	The chance of an encounter to occur.	integer
+version	The version of the game in which the encounter can occur with the given chance.	NamedAPIResource (Version)
+*/
+public class PKMEncounterVersionDetails: Mappable {
+    public var rate: Int?
+    public var version: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        rate <- map["rate"]
+        version <- map["version"]
+    }
+}
+
+
+/*
+encounter_method	The method in which Pokémon may be encountered in an area.	EncounterMethod
+version_details	The chance of the encounter to occur on a version of the game.	list EncounterVersionDetails
+*/
+public class PKMEncounterMethodRate: Mappable {
+    public var encounterEethod: PKMEncounterMethod?
+    public var versionDetails: [PKMEncounterVersionDetails]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        encounterEethod <- map["encounter_method"]
+        versionDetails <- map["version_details"]
+    }
+}
+
+
+/*
+id	The identifier for this location resource	integer
+name	The name for this location resource	string
+game_index	The internal id of an API resource within game data	integer
+encounter_method_rates	A list of methods in which Pokémon may be encountered in this area and how likely the method will occur depending on the version of the game	list EncounterMethodRate
+location	The region this location can be found in	NamedAPIResource (Region)
+names	The name of this location area listed in different languages	list Name
+pokemon_encounters	A list of Pokémon that can be encountered in this area along with version specific details about the encounter	list PokemonEncounter
+*/
+public class PKMLocationArea: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var gameIndex: Int?
+    public var encounterMethodRates: [PKMEncounterMethodRate]?
+    public var location: PKMNamedAPIResource?
+    public var names: [PKMName]?
+    public var pokemonEncounters: [PKMPokemonEncounter]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        gameIndex <- map["game_index"]
+        encounterMethodRates <- map["encounter_method_rates"]
+        location <- map["location"]
+        names <- map["names"]
+        pokemonEncounters <- map["pokemon_encounters"]
+    }
+}
+
+
+/*
 id	The identifier for this move target resource	integer
 name	The name for this move target resource	string
 descriptions	The description of this move target listed in different languages	list Description
@@ -2075,6 +2247,70 @@ public func fetchMoveTarget(moveTargetId: String) -> Promise<PKMMoveTarget>{
         let URL = baseURL + "/move-target/" + moveTargetId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMoveTarget, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//Location
+
+public func fetchLocations() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/location"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchLocation(locationId: String) -> Promise<PKMLocation>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/location/" + locationId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMLocation, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//LocationArea
+
+public func fetchLocationAreas() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/location-area"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchLocationArea(locationAreaId: String) -> Promise<PKMLocationArea>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/location-area/" + locationAreaId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMLocationArea, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
