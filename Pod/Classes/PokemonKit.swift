@@ -20,6 +20,77 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+front_default	The default depiction of this Pokémon form from the front in battle	string
+front_shiny	The shiny depiction of this Pokémon form from the front in battle	string
+back_default	The default depiction of this Pokémon form from the back in battle	string
+back_shiny	The shiny depiction of this Pokémon form from the back in battle	string
+*/
+public class PKMPokemonFormSprites: Mappable {
+    public var frontDefault: String?
+    public var frontShiny: String?
+    public var backDefault: String?
+    public var backShiny: String?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        frontDefault <- map["front_default"]
+        frontShiny <- map["front_shiny"]
+        backDefault <- map["back_default"]
+        backShiny <- map["back_shiny"]
+    }
+}
+
+
+/*
+id	The identifier for this Pokémon form resource	integer
+name	The name for this Pokémon form resource	string
+order	The order in which forms should be sorted within all forms. Multiple forms may have equal order, in which case they should fall back on sorting by name.	integer
+form_order	The order in which forms should be sorted within a species' forms	integer
+is_default	True for exactly one form used as the default for each Pokémon	boolean
+is_battle_only	Whether or not this form can only happen during battle	boolean
+is_mega	Whether or not this form requires mega evolution	boolean
+form_name	The name of this form	string
+pokemon	The Pokémon that can take on this form	NamedAPIResource (Pokemon)
+sprites	A set of sprites used to depict this Pokémon form in the game	PokemonFormSprites
+version_group	The version group this Pokémon form was introduced in	NamedAPIResource (VersionGroup)
+*/
+public class PKMPokemonForm: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var order: Int?
+    public var formOrder: Int?
+    public var isDefault: Bool?
+    public var isBattleOnly: Bool?
+    public var isMega: Bool?
+    public var formName: String?
+    public var pokemon: PKMNamedAPIResource?
+    public var sprites: PKMPokemonFormSprites?
+    public var versionGroup: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        order <- map["order"]
+        formOrder <- map["form_order"]
+        isDefault <- map["is_default"]
+        isBattleOnly <- map["is_battle_only"]
+        isMega <- map["is_mega"]
+        formName <- map["form_name"]
+        pokemon <- map["pokemon"]
+        sprites <- map["sprites"]
+        versionGroup <- map["version_group"]
+    }
+}
+
+
+/*
 id	The identifier for this Pokémon color resource	integer
 name	The name for this Pokémon color resource	string
 names	The name of this Pokémon color listed in different languages	list Name
@@ -3295,6 +3366,38 @@ public func fetchPokemonColor(pokemonColorId: String) -> Promise<PKMPokemonColor
         let URL = baseURL + "/pokemon-color/" + pokemonColorId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemonColor, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//PokemonForm
+
+public func fetchPokemonForms() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon-form"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchPokemonForm(pokemonFormId: String) -> Promise<PKMPokemonForm>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon-form/" + pokemonFormId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemonForm, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
