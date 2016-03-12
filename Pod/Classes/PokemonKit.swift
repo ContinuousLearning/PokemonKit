@@ -20,6 +20,31 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this move category resource	integer
+name	The name for this move category resource	string
+moves	A list of moves that fall into this category	list NamedAPIResource (Move)
+descriptions	The description of this move ailment listed in different languages	list Description
+*/
+public class PKMMoveCategory: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var moves: [PKMNamedAPIResource]?
+    public var descriptions: [PKMDescription]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        moves <- map["moves"]
+        descriptions <- map["descriptions"]
+    }
+}
+
+
+/*
 id	The identifier for this move battle style resource	integer
 name	The name for this move battle style resource	string
 names	The name of this move battle style listed in different languages	list Name
@@ -1839,6 +1864,37 @@ public func fetchMoveBattleStyle(moveBattleStyleId: String) -> Promise<PKMMoveBa
         let URL = baseURL + "/move-battle-style/" + moveBattleStyleId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMoveBattleStyle, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//MoveCategory
+public func fetchMoveCategories() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move-category"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchMoveCategory(moveCategoryId: String) -> Promise<PKMMoveCategory>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move-category/" + moveCategoryId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMoveCategory, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
