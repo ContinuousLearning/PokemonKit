@@ -20,6 +20,37 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this language resource	integer
+name	The name for this language resource	string
+official	Whether or not the games are published in this language	boolean
+iso639	The two-letter code of the country where this language is spoken. Note that it is not unique.	string
+iso3166	The two-letter code of the language. Note that it is not unique.	string
+names	The name of this language listed in different languages	list Name
+*/
+public class PKMLanguage: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var official: Bool?
+    public var iso639: String?
+    public var iso3166: String?
+    public var names: [PKMName]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        official <- map["official"]
+        iso639 <- map["iso639"]
+        iso3166 <- map["iso3166"]
+        names <- map["names"]
+    }
+}
+
+
+/*
 slot	The order the Pokémon's types are listed in	integer
 pokemon	The Pokémon that has the referenced type	NamedAPIResource (Pokemon)
 */
@@ -4000,6 +4031,38 @@ public func fetchType(typeId: String) -> Promise<PKMType>{
         let URL = baseURL + "/type/" + typeId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMType, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//Language
+
+public func fetchLanguages() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/language"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchLanguage(languageId: String) -> Promise<PKMLanguage>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/language/" + languageId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMLanguage, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
