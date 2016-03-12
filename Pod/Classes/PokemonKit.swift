@@ -20,6 +20,31 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this move ailment resource	integer
+name	The name for this move ailment resource	string
+moves	A list of moves that cause this ailment	list NamedAPIResource (Move)
+names	The name of this move ailment listed in different languages	list Name
+*/
+public class PKMMoveAilment: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var moves: [PKMNamedAPIResource]?
+    public var names: [PKMName]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        moves <- map["moves"]
+        names <- map["names"]
+    }
+}
+
+
+/*
 change	The amount of change	integer
 stat	The stat being affected	NamedAPIResource (Stat)
 */
@@ -1731,6 +1756,36 @@ public func fetchMove(moveId: String) -> Promise<PKMMove>{
         let URL = baseURL + "/move/" + moveId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMove, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+public func fetchMoveAilments() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move-ailment"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchMoveAilment(moveAilmentId: String) -> Promise<PKMMoveAilment>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move-ailment/" + moveAilmentId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMoveAilment, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
