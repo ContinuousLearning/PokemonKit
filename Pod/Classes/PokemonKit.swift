@@ -20,6 +20,50 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+rate	The chance of this Pokémon being female, in eighths; or -1 for genderless	integer
+pokemon_species	A Pokémon species that can be the referenced gender	NamedAPIResource (PokemonSpecies)
+*/
+public class PKMPokemonSpeciesGender: Mappable {
+    public var rate: Int?
+    public var pokemonSpecies: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        rate <- map["rate"]
+        pokemonSpecies <- map["pokemon_species"]
+    }
+}
+
+
+/*
+id	The identifier for this gender resource	integer
+name	The name for this gender resource	string
+pokemon_species_details	A list of Pokémon species that can be this gender and how likely it is that they will be	list PokemonSpeciesGender
+required_for_evolution	A list of Pokémon species that required this gender in order for a Pokémon to evolve into them	list NamedAPIResource (PokemonSpecies)
+*/
+public class PKMGender: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var pokemonSpeciesDetails: [PKMPokemonSpeciesGender]?
+    public var requiredForEvolution: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        pokemonSpeciesDetails <- map["pokemon_species_details"]
+        requiredForEvolution <- map["required_for_evolution"]
+    }
+}
+
+
+/*
 id	The identifier for this egg group resource	integer
 name	The name for this egg group resource	string
 names	The name of this egg group listed in different languages	list Name
@@ -2664,6 +2708,38 @@ public func fetchEggGroup(eggGroupId: String) -> Promise<PKMEggGroup>{
         let URL = baseURL + "/egg-group/" + eggGroupId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEggGroup, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//Gender
+
+public func fetchGenders() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/gender"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchGender(genderId: String) -> Promise<PKMGender>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/gender/" + genderId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMGender, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
