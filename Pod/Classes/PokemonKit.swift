@@ -20,6 +20,68 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+max_change	The maximum amount of change to the referenced Pokéathlon stat	integer
+nature	The nature causing the change	NamedAPIResource (Nature)
+*/
+public class PKMNaturePokeathlonStatAffect: Mappable {
+    public var maxChange: Int?
+    public var nature: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        maxChange <- map["max_change"]
+        nature <- map["nature"]
+    }
+}
+
+/*
+increase	A list of natures and how they change the referenced Pokéathlon stat	list NaturePokeathlonStatAffect
+decrease	A list of natures and how they change the referenced Pokéathlon stat	list NaturePokeathlonStatAffect
+*/
+public class PKMNaturePokeathlonStatAffectSets: Mappable {
+    public var increase: [PKMNaturePokeathlonStatAffect]?
+    public var decrease: [PKMNaturePokeathlonStatAffect]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        increase <- map["increase"]
+        decrease <- map["decrease"]
+    }
+}
+
+
+/*
+id	The identifier for this Pokéathlon stat resource	integer
+name	The name for this Pokéathlon stat resource	string
+names	The name of this Pokéathlon stat listed in different languages	list Name
+affecting_natures	A detail of natures which affect this Pokéathlon stat positively or negatively	NaturePokeathlonStatAffectSets
+*/
+public class PKMPokeathlonStat: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var names: [PKMName]?
+    public var affectingNatures: PKMNaturePokeathlonStatAffectSets?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        names <- map["names"]
+        affectingNatures <- map["affecting_natures"]
+    }
+}
+
+
+/*
 low_hp_preference	Chance of using the move, in percent, if HP is under one half	integer
 high_hp_preference	Chance of using the move, in percent, if HP is over one half	integer
 move_battle_style	The move battle style	NamedAPIResource (MoveBattleStyle)
@@ -2935,6 +2997,38 @@ public func fetchNature(natureId: String) -> Promise<PKMNature>{
         let URL = baseURL + "/nature/" + natureId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMNature, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//PokeathlonStat
+
+public func fetchPokeathlonStats() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokeathlon-stat"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchPokeathlonStat(pokeathlonStatId: String) -> Promise<PKMPokeathlonStat>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokeathlon-stat/" + pokeathlonStatId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokeathlonStat, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
