@@ -20,6 +20,102 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+is_hidden	Whether or not this a hidden ability for the referenced Pokémon	boolean
+slot	Pokémon have 3 ability 'slots' which hold references to possible abilities they could have. This is the slot of this ability for the referenced pokemon.	integer
+pokemon	The Pokémon this ability could belong to	NamedAPIResource (Pokemon)
+*/
+public class PKMAbilityPokemon: Mappable {
+    public var isHidden: Bool?
+    public var slot: Int?
+    public var pokemon: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        isHidden <- map["is_hidden"]
+        slot <- map["slot"]
+        pokemon <- map["pokemon"]
+    }
+}
+
+
+/*
+id	The identifier for this ability resource	integer
+name	The name for this ability resource	string
+is_main_series	Whether or not this ability originated in the main series of the video games	boolean
+generation	The generation this ability originated in	NamedAPIResource (Generation)
+names	The name of this ability listed in different languages	list Name
+effect_entries	The effect of this ability listed in different languages	list VerboseEffect
+effect_changes	The list of previous effects this ability has had across version groups	list AbilityEffectChange
+flavor_text_entries	The flavor text of this ability listed in different languages	list VersionGroupFlavorText
+pokemon	A list of Pokémon that could potentially have this ability	list AbilityPokemon
+*/
+public class PKMAbility: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var isMainSeries: Bool?
+    public var generation: PKMNamedAPIResource?
+    public var names: [PKMName]?
+    public var effectEntries: [PKMVerboseEffect]?
+    public var effectChanges: [PKMAbilityEffectChange]?
+    public var flavorTextEntries: [PKMVersionGroupFlavorText]?
+    public var pokemon: [PKMAbilityPokemon]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        isMainSeries <- map["is_main_series"]
+        generation <- map["generation"]
+        names <- map["names"]
+        effectEntries <- map["effect_entries"]
+        effectChanges <- map["effect_changes"]
+        flavorTextEntries <- map["flavor_text_entries"]
+        pokemon <- map["pokemon"]
+    }
+}
+
+
+/*
+id	The identifier for this region resource	integer
+name	The name for this region resource	string
+locations	A list of locations that can be found in this region	NamedAPIResource (Location)
+main_generation	The generation this region was introduced in	NamedAPIResource (Generation)
+names	The name of this region listed in different languages	list Name
+pokedexes	A list of pokédexes that catalogue Pokémon in this region	list NamedAPIResource (Pokedex)
+version_groups	A list of version groups where this region can be visited	list NamedAPIResource (VersionGroup)
+*/
+public class PKMRegion: Mappable {
+    public var id: Bool?
+    public var name: String?
+    public var locations: [PKMNamedAPIResource]?
+    public var mainGeneration: [PKMNamedAPIResource]?
+    public var names: [PKMName]?
+    public var pokedexes: [PKMNamedAPIResource]?
+    public var versionGroups: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        locations <- map["locations"]
+        mainGeneration <- map["main_generation"]
+        names <- map["names"]
+        pokedexes <- map["pokedexes"]
+        versionGroups <- map["version_groups"]
+    }
+}
+
+
+/*
 base_score	The base score given to the player when this Pokémon is caught during a pal park run	integer
 rate	The base rate for encountering this Pokémon in this pal park area	integer
 pokemon_species	The Pokémon species being encountered	NamedAPIResource (PokemonSpecies)
@@ -2390,6 +2486,70 @@ public func fetchPalParkArea(palParkAreaId: String) -> Promise<PKMPalParkArea>{
         let URL = baseURL + "/pal-park-area/" + palParkAreaId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPalParkArea, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//Region
+
+public func fetchRegions() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/region"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchRegion(regionId: String) -> Promise<PKMRegion>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/region/" + regionId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMRegion, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//Abilities
+
+public func fetchAbilities() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/ability"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchAbility(abilityId: String) -> Promise<PKMAbility>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/ability/" + abilityId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMAbility, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
