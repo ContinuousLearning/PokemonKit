@@ -20,6 +20,34 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this move learn method resource	integer
+name	The name for this move learn method resource	string
+descriptions	The description of this move learn method listed in different languages	list Description
+names	The name of this move learn method listed in different languages	list Name
+version_groups	A list of version groups where moves can be learned through this method	list NamedAPIResource (VersionGroup)
+*/
+public class PKMMoveLearnMethod: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var descriptions: [PKMDescription]?
+    public var names: [PKMName]?
+    public var versionGroups: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        descriptions <- map["descriptions"]
+        names <- map["names"]
+        versionGroups <- map["version_groups"]
+    }
+}
+
+
+/*
 id	The identifier for this move damage class resource	integer
 name	The name for this move damage class resource	string
 descriptions	The description of this move damage class listed in different languages	list Description
@@ -1955,6 +1983,38 @@ public func fetchMoveDamageClass(moveDamageClassId: String) -> Promise<PKMMoveDa
         let URL = baseURL + "/move-damage-class/" + moveDamageClassId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMoveDamageClass, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//MoveLearnMethods
+
+public func fetchMoveLearnMethods() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move-learn-method"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchMoveLearnMethod(moveLearnMethodId: String) -> Promise<PKMMoveLearnMethod>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move-learn-method/" + moveLearnMethodId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMoveLearnMethod, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
