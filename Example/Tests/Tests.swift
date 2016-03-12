@@ -609,4 +609,22 @@ class Tests: XCTestCase {
             XCTAssertNil(err, "Something went wrong")
         }
     }
+    
+    func testFetchPokemonSpecies() {
+        let asyncExpectation = expectationWithDescription("Fetch Pokemon Species")
+        PokemonKit.fetchPokemonSpecies("1")
+            .then{ response -> Void in
+                XCTAssertNotNil(response);
+                print(response);
+                asyncExpectation.fulfill();
+            }.error{ err in
+                XCTFail("Should not failed with \(err)")
+                asyncExpectation.fulfill();
+                
+        }
+        
+        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+            XCTAssertNil(err, "Something went wrong")
+        }
+    }
 }

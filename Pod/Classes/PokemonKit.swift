@@ -20,6 +20,171 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+entry_number	The index number within the Pokédex	integer
+name	The Pokédex the referenced Pokémon species can be found in	NamedAPIResource (Pokedex)
+*/
+public class PKMPokemonSpeciesDexEntry: Mappable {
+    public var entryNumber: Int?
+    public var name: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        entryNumber <- map["entry_number"]
+        name <- map["name"]
+    }
+}
+
+/*
+base_score	The base score given to the player when the referenced Pokémon is caught during a pal park run	integer
+rate	The base rate for encountering the referenced Pokémon in this pal park area	integer
+area	The pal park area where this encounter happens	NamedAPIResource (PalParkArea)
+*/
+public class PKMPalParkEncounterArea: Mappable {
+    public var baseScore: Int?
+    public var rate: Int?
+    public var area: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        baseScore <- map["base_score"]
+        rate <- map["rate"]
+        area <- map["area"]
+    }
+}
+
+/*
+flavor_text	The localized flavor text for an API resource in a specific language	string
+language	The language this name is in	NamedAPIResource (Language)
+version	The version this flavor text entry is used in	NamedAPIResource (Version)
+*/
+public class PKMPokemonSpeciesFlavorText: Mappable {
+    public var flavorText: String?
+    public var language: PKMNamedAPIResource?
+    public var version: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        flavorText <- map["flavor_text"]
+        language <- map["language"]
+        version <- map["version"]
+    }
+}
+
+/*
+genus	The localized genus for the referenced pokemon species	string
+language	The language this genus is in	NamedAPIResource (Language)
+*/
+public class PKMGenus: Mappable {
+    public var genus: String?
+    public var language: PKMNamedAPIResource?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        genus <- map["genus"]
+        language <- map["language"]
+    }
+}
+
+
+/*
+id	The identifier for this Pokémon species resource	integer
+name	The name for this Pokémon species resource	string
+order	The order in which species should be sorted. Based on National Dex order, except families are grouped together and sorted by stage.	integer
+gender_rate	The chance of this Pokémon being female, in eighths; or -1 for genderless	integer
+capture_rate	The base capture rate; up to 255. The higher the number, the easier the catch.	integer
+base_happiness	The happiness when caught by a normal Pokéball; up to 255. The higher the number, the happier the Pokémon.	integer
+is_baby	Whether or not this is a baby Pokémon	boolean
+hatch_counter	Initial hatch counter: one must walk 255 × (hatch_counter + 1) steps before this Pokémon's egg hatches, unless utilizing bonuses like Flame Body's	integer
+has_gender_differences	Whether or not this Pokémon can have different genders	boolean
+forms_switchable	Whether or not this Pokémon has multiple forms and can switch between them	boolean
+growth_rate	The rate at which this Pokémon species gains levels	NamedAPIResource (GrowthRate)
+pokedex_numbers	A list of pokedexes and the indexes reserved within them for this Pokémon species	list PokemonSpeciesDexEntry
+egg_groups	A list of egg groups this Pokémon species is a member of	list NamedAPIResource (EggGroup)
+color	The color of this Pokémon for gimmicky Pokédex search	list NamedAPIResource (PokemonColor)
+shape	The shape of this Pokémon for gimmicky Pokédex search	list NamedAPIResource (PokemonShape)
+evolves_from_species	The Pokémon species that evolves into this pokemon_species	NamedAPIResource (PokemonSpecies)
+evolution_chain	The evolution chain this Pokémon species is a member of	APIResource (EvolutionChain)
+habitat	The habitat this Pokémon species can be encountered in	NamedAPIResource (PokemonHabitat)
+generation	The generation this Pokémon species was introduced in	NamedAPIResource (Generation)
+names	The name of this Pokémon species listed in different languages	list Name
+pal_park_encounters	A list of encounters that can be had with this Pokémon species in pal park	list PalParkEncounterArea
+flavor_text_entries	The flavor text of this flavor text listed in different languages	list PokemonSpeciesFlavorText
+form_descriptions	Descriptions of different forms Pokémon take on within the Pokémon species	list Description
+genera	The genus of this Pokémon species listed in multiple languages	Genus
+varieties	A list of the Pokémon that exist within this Pokémon species	list NamedAPIResource (Pokemon)
+*/
+public class PKMPokemonSpecies: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var order: Int?
+    public var genderRate: Int?
+    public var captureRate: Int?
+    public var baseHappiness: Int?
+    public var isBaby: Bool?
+    public var hatchCounter: Int?
+    public var hasGenderDifferences: Bool?
+    public var formsSwitchable: Bool?
+    public var growthRate: PKMNamedAPIResource?
+    public var pokedexNumbers: [PKMPokemonSpeciesDexEntry]?
+    public var eggGroups: [PKMNamedAPIResource]?
+    public var color: PKMNamedAPIResource?
+    public var shape: PKMNamedAPIResource?
+    public var evolutionChain: PKMAPIResource?
+    public var habitat: PKMNamedAPIResource?
+    public var generation: PKMNamedAPIResource?
+    public var names: [PKMName]?
+    public var palParkEncounters: [PKMPalParkEncounterArea]?
+    public var flavorTextEntries: [PKMPokemonSpeciesFlavorText]?
+    public var formDescriptions: [PKMDescription]?
+    public var genera: [PKMGenus]?
+    public var varieties: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        order <- map["order"]
+        genderRate <- map["gender_rate"]
+        captureRate <- map["capture_rate"]
+        baseHappiness <- map["base_happiness"]
+        isBaby <- map["is_baby"]
+        hatchCounter <- map["hatch_counter"]
+        hasGenderDifferences <- map["has_gender_differences"]
+        formsSwitchable <- map["forms_switchable"]
+        growthRate <- map["growth_rate"]
+        pokedexNumbers <- map["pokedex_numbers"]
+        eggGroups <- map["egg_groups"]
+        color <- map["color"]
+        shape <- map["shape"]
+        evolutionChain <- map["evolution_chain"]
+        habitat <- map["habitat"]
+        generation <- map["generation"]
+        names <- map["names"]
+        palParkEncounters <- map["pal_park_encounters"]
+        flavorTextEntries <- map["flavor_text_entries"]
+        formDescriptions <- map["form_descriptions"]
+        genera <- map["genera"]
+        varieties <- map["varieties"]
+    }
+}
+
+
+/*
 awesome_name	The localized "scientific" name for an API resource in a specific language	string
 language	The language this "scientific" name is in	NamedAPIResource (Language)
 */
@@ -3534,6 +3699,38 @@ public func fetchPokemonShape(pokemonShapeId: String) -> Promise<PKMPokemonShape
         let URL = baseURL + "/pokemon-shape/" + pokemonShapeId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemonShape, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//PokemonSpecies
+
+public func fetchPokemonSpecies() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon-species"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchPokemonSpecies(pokemonSpeciesId: String) -> Promise<PKMPokemonSpecies>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/pokemon-species/" + pokemonSpeciesId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPokemonSpecies, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
