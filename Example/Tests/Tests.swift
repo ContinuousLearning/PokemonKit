@@ -112,7 +112,7 @@ class Tests: XCTestCase {
     }
     
     func testFetchitem() {
-        let asyncExpectation = expectationWithDescription("Fetch Version Group")
+        let asyncExpectation = expectationWithDescription("Fetch Item")
         PokemonKit.fetchItem("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -129,7 +129,7 @@ class Tests: XCTestCase {
     }
     
     func testFetchitemAttr() {
-        let asyncExpectation = expectationWithDescription("Fetch Version Group")
+        let asyncExpectation = expectationWithDescription("Fetch Item Attr")
         PokemonKit.fetchItemAttribute("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -146,7 +146,7 @@ class Tests: XCTestCase {
     }
     
     func testFetchitemCategory() {
-        let asyncExpectation = expectationWithDescription("Fetch Version Group")
+        let asyncExpectation = expectationWithDescription("Fetch Item Category")
         PokemonKit.fetchItemCategory("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -163,7 +163,7 @@ class Tests: XCTestCase {
     }
     
     func testFetchitemFlingEffect() {
-        let asyncExpectation = expectationWithDescription("Fetch Version Group")
+        let asyncExpectation = expectationWithDescription("Fetch Item Fling Effect")
         PokemonKit.fetchItemFlingEffect("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -180,7 +180,7 @@ class Tests: XCTestCase {
     }
     
     func testFetchItemPocket() {
-        let asyncExpectation = expectationWithDescription("Fetch Version Group")
+        let asyncExpectation = expectationWithDescription("Fetch Item Pocket")
         PokemonKit.fetchItemPocket("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -197,7 +197,7 @@ class Tests: XCTestCase {
     }
     
     func testFetchMove() {
-        let asyncExpectation = expectationWithDescription("Fetch Version Group")
+        let asyncExpectation = expectationWithDescription("Fetch Move")
         PokemonKit.fetchMove("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -215,7 +215,7 @@ class Tests: XCTestCase {
     }
     
     func testFetchMoveAilment() {
-        let asyncExpectation = expectationWithDescription("Fetch Version Group")
+        let asyncExpectation = expectationWithDescription("Fetch Move Ailment")
         PokemonKit.fetchMoveAilment("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
