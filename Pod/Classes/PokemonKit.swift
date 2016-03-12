@@ -20,6 +20,56 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+level	The level gained	integer
+experience	The amount of experience required to reach the referenced level	integer
+*/
+public class PKMGrowthRateExperienceLevel: Mappable {
+    public var level: Int?
+    public var experience: Int?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        level <- map["level"]
+        experience <- map["experience"]
+    }
+}
+
+
+/*
+id	The identifier for this gender resource	integer
+name	The name for this gender resource	string
+formula	The formula used to calculate the rate at which the Pokémon species gains level	string
+descriptions	The descriptions of this characteristic listed in different languages	list Description
+levels	A list of levels and the amount of experienced needed to atain them based on this growth rate	list GrowthRateExperienceLevel
+pokemon_species	A list of Pokémon species that gain levels at this growth rate	list NamedAPIResource (PokemonSpecies)
+*/
+public class PKMGrowthRate: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var formula: String?
+    public var descriptions: [PKMDescription]?
+    public var levels: [PKMGrowthRateExperienceLevel]?
+    public var pokemonSpecies: [PKMNamedAPIResource]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        formula <- map["formula"]
+        descriptions <- map["descriptions"]
+        levels <- map["levels"]
+        pokemonSpecies <- map["pokemon_species"]
+    }
+}
+
+
+/*
 rate	The chance of this Pokémon being female, in eighths; or -1 for genderless	integer
 pokemon_species	A Pokémon species that can be the referenced gender	NamedAPIResource (PokemonSpecies)
 */
@@ -2740,6 +2790,38 @@ public func fetchGender(genderId: String) -> Promise<PKMGender>{
         let URL = baseURL + "/gender/" + genderId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMGender, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//GrowthRate
+
+public func fetchGrowthRates() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/growth-rate"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchGrowthRate(growthRateId: String) -> Promise<PKMGrowthRate>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/growth-rate/" + growthRateId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMGrowthRate, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
