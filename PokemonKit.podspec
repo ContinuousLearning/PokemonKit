@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PokemonKit"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "A wrapper for pokeapi v2"
 
 # This description is used to generate tags and improve search results.
@@ -21,11 +21,11 @@ PokemonKit is a swift wrapper for Pokeapi.
 PokemonKit use Alamofire and PromiseKit for async web requests handling.
                        DESC
 
-  s.homepage         = "https://github.com/darkcl/PokemonKit"
+  s.homepage         = "https://github.com/ContinuousLearning/PokemonKit"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Yeung Yiu Hung" => "hkclex@gmail.com" }
-  s.source           = { :git => "https://github.com/darkcl/PokemonKit.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/ContinuousLearning/PokemonKit.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/darkcl_dev'
 
   s.platform     = :ios, '8.0'
