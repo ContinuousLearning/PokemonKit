@@ -20,6 +20,34 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /*
+id	The identifier for this move damage class resource	integer
+name	The name for this move damage class resource	string
+descriptions	The description of this move damage class listed in different languages	list Description
+moves	A list of moves that fall into this damage class	list NamedAPIResource (Move)
+names	The name of this move damage class listed in different languages	list Name
+*/
+public class PKMMoveDamageClass: Mappable {
+    public var id: Int?
+    public var name: String?
+    public var descriptions: [PKMDescription]?
+    public var moves: [PKMNamedAPIResource]?
+    public var names: [PKMName]?
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        descriptions <- map["descriptions"]
+        moves <- map["moves"]
+        names <- map["names"]
+    }
+}
+
+
+/*
 id	The identifier for this move category resource	integer
 name	The name for this move category resource	string
 moves	A list of moves that fall into this category	list NamedAPIResource (Move)
@@ -1895,6 +1923,38 @@ public func fetchMoveCategory(moveCategoryId: String) -> Promise<PKMMoveCategory
         let URL = baseURL + "/move-category/" + moveCategoryId
         
         Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMoveCategory, NSError>) in
+            
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+            
+        }
+    }
+}
+
+//MoveDamageClass
+
+public func fetchMoveDamageClasses() -> Promise<PKMPagedObject> {
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move-damage-class"
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMPagedObject, NSError>) in
+            if (response.result.isSuccess) {
+                fulfill(response.result.value!)
+            }else{
+                reject(response.result.error!)
+            }
+        }
+    }
+}
+
+public func fetchMoveDamageClass(moveDamageClassId: String) -> Promise<PKMMoveDamageClass>{
+    return Promise { fulfill, reject in
+        let URL = baseURL + "/move-damage-class/" + moveDamageClassId
+        
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMMoveDamageClass, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
