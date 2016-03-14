@@ -54,13 +54,13 @@ public class PKMLanguage: Mappable {
     }
 }
 
-
-/*
-slot	The order the Pokémon's types are listed in	integer
-pokemon	The Pokémon that has the referenced type	NamedAPIResource (Pokemon)
-*/
+/// Pokemon Type
 public class PKMTypePokemon: Mappable {
+    
+    /// The order the Pokémon's types are listed in
     public var slot: Int?
+    
+    /// The Pokémon that has the referenced type
     public var pokemon: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -73,21 +73,25 @@ public class PKMTypePokemon: Mappable {
     }
 }
 
-
-/*
-no_damage_to	A list of types this type has no effect on	list NamedAPIResource (Type)
-half_damage_to	A list of types this type is not very effect against	list NamedAPIResource (Type)
-double_damage_to	A list of types this type is very effect against	list NamedAPIResource (Type)
-no_damage_from	A list of types that have no effect on this type	list NamedAPIResource (Type)
-half_damage_from	A list of types that are not very effective against this type	list NamedAPIResource (Type)
-double_damage_from	A list of types that are very effective against this type	list NamedAPIResource (Type)
-*/
+/// Pokemon Type Relations
 public class PKMTypeRelations: Mappable {
+    
+    /// A list of types this type has no effect on
     public var noDamageTo: [PKMNamedAPIResource]?
+    
+    /// A list of types this type is not very effect against
     public var halfDamageTo: [PKMNamedAPIResource]?
+    
+    /// A list of types this type is very effect against
     public var doubleDamageTo: [PKMNamedAPIResource]?
+    
+    /// A list of types that have no effect on this type
     public var noDamageFrom: [PKMNamedAPIResource]?
+    
+    /// A list of types that are not very effective against this type
     public var halfDamageFrom: [PKMNamedAPIResource]?
+    
+    /// A list of types that are very effective against this type
     public var doubleDamageFrom: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -104,27 +108,34 @@ public class PKMTypeRelations: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this type resource	integer
-name	The name for this type resource	string
-damage_relations	A detail of how effective this type is toward others and vice versa	TypeRelations
-game_indices	A list of game indices relevent to this item by generation	list GenerationGameIndex
-generation	The generation this type was introduced in	NamedAPIResource (Generation)
-move_damage_class	The class of damage inflicted by this type	NamedAPIResource (MoveDamageClass)
-names	The name of this type listed in different languages	list Name
-pokemon	A list of details of Pokémon that have this type	TypePokemon
-moves	A list of moves that have this type	list NamedAPIResource (Move)
-*/
+/// Types are properties for Pokémon and their moves. Each type has three properties: which types of Pokémon it is super effective against, which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against.
 public class PKMType: Mappable {
+    
+    /// The identifier for this type resource
     public var id: Int?
+    
+    /// The name for this type resource
     public var name: String?
+    
+    /// A detail of how effective this type is toward others and vice versa
     public var damageRelations: PKMTypeRelations?
+    
+    /// A list of game indices relevent to this item by generation
     public var gameIndices: [PKMGenerationGameIndex]?
+    
+    /// The generation this type was introduced in
     public var generation: PKMNamedAPIResource?
+    
+    /// The class of damage inflicted by this type
     public var moveDamageClass: PKMNamedAPIResource?
+    
+    /// The name of this type listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of details of Pokémon that have this type
     public var pokemon: [PKMTypePokemon]?
+    
+    /// A list of moves that have this type
     public var moves: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -145,12 +156,13 @@ public class PKMType: Mappable {
 }
 
 
-/*
-increase	A list of natures and how they change the referenced stat	list NatureStatAffect
-decrease	A list of nature sand how they change the referenced stat	list NatureStatAffect
-*/
+/// Nature Affect Set
 public class PKMNatureStatAffectSets: Mappable {
+    
+    /// A list of natures and how they change the referenced stat
     public var increase: [PKMNatureStatAffect]?
+    
+    /// A list of nature sand how they change the referenced stat
     public var decrease: [PKMNatureStatAffect]?
     
     required public init?(_ map: Map) {
@@ -164,12 +176,13 @@ public class PKMNatureStatAffectSets: Mappable {
 }
 
 
-/*
-max_change	The maximum amount of change to the referenced stat	integer
-nature	The nature causing the change	NamedAPIResource (Nature)
-*/
+/// Nature Stat Affect
 public class PKMNatureStatAffect: Mappable {
+    
+    /// The maximum amount of change to the referenced stat
     public var maxChange: Int?
+    
+    /// The nature causing the change
     public var nature: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
