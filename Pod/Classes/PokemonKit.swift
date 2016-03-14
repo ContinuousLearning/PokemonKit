@@ -661,13 +661,13 @@ public class PKMPokemonColor: Mappable {
     }
 }
 
-
-/*
-game_index	The internal id of an API resource within game data	integer
-version	The version relevent to this game index	NamedAPIResource (Version)
-*/
+/// Version Game Index
 public class PKMVersionGameIndex: Mappable {
+    
+    /// The internal id of an API resource within game data
     public var gameIndex: Int?
+    
+    /// The version relevent to this game index
     public var version: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -680,15 +680,16 @@ public class PKMVersionGameIndex: Mappable {
     }
 }
 
-
-/*
-is_hidden	Whether or not this is a hidden ability	boolean
-slot	The slot this ability occupies in this Pokémon species	integer
-ability	The ability the Pokémon may have	NamedAPIResource (Ability)
-*/
+/// Pokemon Ability
 public class PKMPokemonAbility: Mappable {
+    
+    /// Whether or not this is a hidden ability
     public var isHidden: Bool?
+    
+    /// The slot this ability occupies in this Pokémon species
     public var slot: Int?
+    
+    /// The ability the Pokémon may have
     public var ability: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -702,12 +703,13 @@ public class PKMPokemonAbility: Mappable {
     }
 }
 
-/*
-location_area	The location area the referenced Pokémon can be encountered in	APIResource (LocationArea)
-version_details	A list of versions and encounters with the referenced Pokémon that might happen	list VersionEncounterDetail
-*/
+/// Location Area Encounter
 public class PKMLocationAreaEncounter: Mappable {
+    
+    /// The location area the referenced Pokémon can be encountered in
     public var locationArea: PKMAPIResource?
+    
+    /// A list of versions and encounters with the referenced Pokémon that might happen
     public var versionDetails: [PKMVersionEncounterDetail]?
     
     required public init?(_ map: Map) {
@@ -720,24 +722,31 @@ public class PKMLocationAreaEncounter: Mappable {
     }
 }
 
-/*
-front_default	The default depiction of this Pokémon from the front in battle	string
-front_shiny	The shiny depiction of this Pokémon from the front in battle	string
-front_female	The female depiction of this Pokémon from the front in battle	string
-front_shiny_female	The shiny female depiction of this Pokémon from the front in battle	string
-back_default	The default depiction of this Pokémon from the back in battle	string
-back_shiny	The shiny depiction of this Pokémon from the back in battle	string
-back_female	The female depiction of this Pokémon from the back in battle	string
-back_shiny_female	The shiny female depiction of this Pokémon from the back in battle	string
-*/
+/// Pokemon Sprites
 public class PKMPokemonSprites: Mappable {
+    
+    /// The default depiction of this Pokémon from the front in battle
     public var frontDefault: String?
+    
+    /// The shiny depiction of this Pokémon from the front in battle
     public var frontShiny: String?
+    
+    /// The female depiction of this Pokémon from the front in battle
     public var frontFemale: String?
+    
+    /// The shiny female depiction of this Pokémon from the front
     public var frontShinyFemale: String?
+    
+    /// The default depiction of this Pokémon from the back in battle
     public var backDefault: String?
+    
+    /// The shiny depiction of this Pokémon from the back in battle
     public var backShiny: String?
+    
+    /// The female depiction of this Pokémon from the back in battle
     public var backFemale: String?
+    
+    /// The shiny female depiction of this Pokémon from the back in battle
     public var backShinyFemale: String?
     
     required public init?(_ map: Map) {
@@ -756,12 +765,13 @@ public class PKMPokemonSprites: Mappable {
     }
 }
 
-/*
-slot	The order the Pokémon's types are listed in	integer
-type	The type the referenced Pokémon has	string
-*/
+/// Pokemon Type
 public class PKMPokemonType: Mappable {
+    
+    /// The order the Pokémon's types are listed in
     public var slot: Int?
+    
+    /// The type the referenced Pokémon has
     public var type: String?
     
     required public init?(_ map: Map) {
@@ -794,6 +804,8 @@ species	The species this Pokémon belongs to	NamedAPIResource (PokemonSpecies)
 stats	A list of base stat values for this Pokémon	list NamedAPIResource (Stat)
 types	A list of details showing types this Pokémon has	list PokemonType
 */
+
+/// Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon. See Bulbapedia for greater detail.
 public class PKMPokemon: Mappable {
     public var id: Int?
     public var name: String?
