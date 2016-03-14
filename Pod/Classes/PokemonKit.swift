@@ -475,13 +475,13 @@ public class PKMPokemonSpecies: Mappable {
     }
 }
 
-
-/*
-awesome_name	The localized "scientific" name for an API resource in a specific language	string
-language	The language this "scientific" name is in	NamedAPIResource (Language)
-*/
+/// An Awesome Name
 public class PKMAwesomeName: Mappable {
+    
+    /// The localized "scientific" name for an API resource in a specific language
     public var awesomeName: String?
+    
+    /// The language this "scientific" name is in
     public var language: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -494,19 +494,22 @@ public class PKMAwesomeName: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this Pokémon shape resource	integer
-name	The name for this Pokémon shape resource	string
-awesome_names	The "scientific" name of this Pokémon shape listed in different languages	list AwesomeName
-names	The name of this Pokémon shape listed in different languages	list Name
-pokemon_species	A list of the Pokémon species that have this shape	list NamedAPIResource (PokemonSpecies)
-*/
+/// Shapes used for sorting Pokémon in a Pokédex.
 public class PKMPokemonShape: Mappable {
+    
+    /// The identifier for this Pokémon shape
     public var id: Int?
+    
+    /// The name for this Pokémon shape resource
     public var name: String?
+    
+    /// The "scientific" name of this Pokémon shape listed in different languages
     public var awesomeNames: [PKMAwesomeName]?
+    
+    /// The name of this Pokémon shape listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of the Pokémon species that have this shape
     public var pokemonSpecies: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -522,17 +525,19 @@ public class PKMPokemonShape: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this Pokémon habitat resource	integer
-name	The name for this Pokémon habitat resource	string
-names	The name of this Pokémon habitat listed in different languages	list Name
-pokemon_species	A list of the Pokémon species that can be found in this habitat	list NamedAPIResource (PokemonSpecies)
-*/
+/// Habitats are generally different terrain Pokémon can be found in but can also be areas designated for rare or legendary Pokémon.
 public class PKMPokemonHabitat: Mappable {
+    
+    /// The identifier for this Pokémon habitat resource
     public var id: Int?
+    
+    /// The name for this Pokémon habitat resource
     public var name: String?
+    
+    /// The name of this Pokémon habitat listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of the Pokémon species that can be found in this habitat
     public var pokemonSpecies: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -547,17 +552,19 @@ public class PKMPokemonHabitat: Mappable {
     }
 }
 
-
-/*
-front_default	The default depiction of this Pokémon form from the front in battle	string
-front_shiny	The shiny depiction of this Pokémon form from the front in battle	string
-back_default	The default depiction of this Pokémon form from the back in battle	string
-back_shiny	The shiny depiction of this Pokémon form from the back in battle	string
-*/
+/// Pokemon Form Sprites
 public class PKMPokemonFormSprites: Mappable {
+    
+    /// The default depiction of this Pokémon form from the front in battle
     public var frontDefault: String?
+    
+    /// The shiny depiction of this Pokémon form from the front in battle
     public var frontShiny: String?
+    
+    /// The default depiction of this Pokémon form from the back in battle
     public var backDefault: String?
+    
+    /// The shiny depiction of this Pokémon form from the back in battle
     public var backShiny: String?
     
     required public init?(_ map: Map) {
@@ -572,31 +579,40 @@ public class PKMPokemonFormSprites: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this Pokémon form resource	integer
-name	The name for this Pokémon form resource	string
-order	The order in which forms should be sorted within all forms. Multiple forms may have equal order, in which case they should fall back on sorting by name.	integer
-form_order	The order in which forms should be sorted within a species' forms	integer
-is_default	True for exactly one form used as the default for each Pokémon	boolean
-is_battle_only	Whether or not this form can only happen during battle	boolean
-is_mega	Whether or not this form requires mega evolution	boolean
-form_name	The name of this form	string
-pokemon	The Pokémon that can take on this form	NamedAPIResource (Pokemon)
-sprites	A set of sprites used to depict this Pokémon form in the game	PokemonFormSprites
-version_group	The version group this Pokémon form was introduced in	NamedAPIResource (VersionGroup)
-*/
+/// Some Pokémon have the ability to take on different forms. At times, these differences are purely cosmetic and have no bearing on the difference in the Pokémon's stats from another; however, several Pokémon differ in stats (other than HP), type, and Ability depending on their form.
 public class PKMPokemonForm: Mappable {
+    
+    /// The identifier for this Pokémon form resource
     public var id: Int?
+    
+    /// The name for this Pokémon form resource
     public var name: String?
+    
+    /// The order in which forms should be sorted within all forms. Multiple forms may have equal order, in which case they should fall back on sorting by name.
     public var order: Int?
+    
+    /// The order in which forms should be sorted within a species' forms
     public var formOrder: Int?
+    
+    /// True for exactly one form used as the default for each Pokémon
     public var isDefault: Bool?
+    
+    /// Whether or not this form can only happen during battle
     public var isBattleOnly: Bool?
+    
+    /// Whether or not this form requires mega evolution
     public var isMega: Bool?
+    
+    /// The name of this form
     public var formName: String?
+    
+    /// The Pokémon that can take on this form
     public var pokemon: PKMNamedAPIResource?
+    
+    /// A set of sprites used to depict this Pokémon form in the game
     public var sprites: PKMPokemonFormSprites?
+    
+    /// The version group this Pokémon form was introduced in
     public var versionGroup: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -618,17 +634,19 @@ public class PKMPokemonForm: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this Pokémon color resource	integer
-name	The name for this Pokémon color resource	string
-names	The name of this Pokémon color listed in different languages	list Name
-pokemon_species	A list of the Pokémon species that have this color	list NamedAPIResource (PokemonSpecies)
-*/
+/// Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that are primarily orange are listed as red or brown.
 public class PKMPokemonColor: Mappable {
+    
+    /// The identifier for this Pokémon color resource
     public var id: Int?
+    
+    /// The name for this Pokémon color resource
     public var name: String?
+    
+    /// The name of this Pokémon color listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of the Pokémon species that have this color
     public var pokemonSpecies: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
