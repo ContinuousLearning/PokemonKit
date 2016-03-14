@@ -784,45 +784,58 @@ public class PKMPokemonType: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this Pokémon resource	integer
-name	The name for this Pokémon resource	string
-base_experience	The base experience gained for defeating this Pokémon	integer
-height	The height of this Pokémon	integer
-is_default	Set for exactly one Pokémon used as the default for each species	boolean
-order	Order for sorting. Almost national order, except families are grouped together.	integer
-weight	The weight of this Pokémon	integer
-abilities	A list of abilities this Pokémon could potentially have	list PokemonAbility
-forms	A list of forms this Pokémon can take on	list NamedAPIResource (PokemonForm)
-game_indices	A list of game indices relevent to Pokémon item by generation	list VersionGameIndex
-held_items	A list of items this Pokémon may be holding when encountered	list NamedAPIResource (Item)
-location_area_encounters	A list of location areas as well as encounter details pertaining to specific versions	list LocationAreaEncounter
-moves	A list of moves along with learn methods and level details pertaining to specific version groups	list NamedAPIResource (Move)
-sprites	A set of sprites used to depict this Pokémon in the game	PokemonSprites
-species	The species this Pokémon belongs to	NamedAPIResource (PokemonSpecies)
-stats	A list of base stat values for this Pokémon	list NamedAPIResource (Stat)
-types	A list of details showing types this Pokémon has	list PokemonType
-*/
-
 /// Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon. See Bulbapedia for greater detail.
 public class PKMPokemon: Mappable {
+    
+    /// The identifier for this Pokémon resource
     public var id: Int?
+    
+    /// The name for this Pokémon resource
     public var name: String?
+    
+    /// The base experience gained for defeating this Pokémon
     public var base_experience: Int?
+    
+    /// The height of this Pokémon
     public var height: Int?
-    public var is_default: Bool?
+    
+    /// Set for exactly one Pokémon used as the default for each species
+    public var isDefault: Bool?
+    
+    /// Order for sorting. Almost national order, except families are grouped together.
     public var order: Int?
+    
+    /// The weight of this Pokémon
     public var weight: Int?
+    
+    /// A list of abilities this Pokémon could potentially have
     public var abilities: [PKMPokemonAbility]?
+    
+    /// A list of forms this Pokémon can take on
     public var forms: [PKMNamedAPIResource]?
+    
+    /// A list of game indices relevent to Pokémon item by generation
     public var gameIndices: [PKMVersionGameIndex]?
+    
+    /// A list of items this Pokémon may be holding when encountered
     public var heldItems: [PKMNamedAPIResource]?
+    
+    /// A list of location areas as well as encounter details pertaining to specific versions
     public var locationAreaEncounters: [PKMLocationAreaEncounter]?
+    
+    /// A list of moves along with learn methods and level details pertaining to specific version groups
     public var moves: [PKMNamedAPIResource]?
+    
+    /// A set of sprites used to depict this Pokémon in the game
     public var sprites: PKMPokemonSprites?
+    
+    /// The species this Pokémon belongs to
     public var species: PKMNamedAPIResource?
+    
+    /// A list of base stat values for this Pokémon
     public var stats: [PKMNamedAPIResource]?
+    
+    /// A list of details showing types this Pokémon has
     public var types: [PKMPokemonType]?
     
     required public init?(_ map: Map) {
@@ -834,7 +847,7 @@ public class PKMPokemon: Mappable {
         name <- map["name"]
         base_experience <- map["base_experience"]
         height <- map["height"]
-        is_default <- map["is_default"]
+        isDefault <- map["is_default"]
         order <- map["order"]
         weight <- map["weight"]
         abilities <- map["abilities"]
