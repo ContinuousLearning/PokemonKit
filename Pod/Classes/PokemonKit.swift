@@ -195,12 +195,13 @@ public class PKMNatureStatAffect: Mappable {
     }
 }
 
-/*
-max_change	The maximum amount of change to the referenced stat	integer
-move	The move causing the change	NamedAPIResource (Move)
-*/
+/// Move Stat Affect
 public class PKMMoveStatAffect: Mappable {
+    
+    /// The maximum amount of change to the referenced stat
     public var maxChange: Int?
+    
+    /// The move causing the change
     public var move: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -213,13 +214,13 @@ public class PKMMoveStatAffect: Mappable {
     }
 }
 
-
-/*
-increase	A list of natures and how they change the referenced stat	list NatureStatAffect
-decrease	A list of nature sand how they change the referenced stat	list NatureStatAffect
-*/
+/// Move Stat Affect Sets
 public class PKMMoveStatAffectSets: Mappable {
+    
+    /// A list of natures and how they change the referenced stat
     public var increase: [PKMMoveStatAffect]?
+    
+    /// A list of nature sand how they change the referenced stat
     public var decrease: [PKMMoveStatAffect]?
     
     required public init?(_ map: Map) {
@@ -232,27 +233,34 @@ public class PKMMoveStatAffectSets: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this stat resource	integer
-name	The name for this stat resource	string
-game_index	ID the games use for this stat	integer
-is_battle_only	Whether this stat only exists within a battle	boolean
-affecting_moves	A detail of moves which affect this stat positively or negatively	MoveStatAffectSets
-affecting_natures	A detail of natures which affect this stat positively or negatively	NatureStatAffectSets
-characteristics	A list of characteristics that are set on a Pokémon when its highest base stat is this stat	list APIResource (Characteristic)
-move_damage_class	The class of damage this stat is directly related to	NamedAPIResource (MoveDamageClass)
-names	The name of this region listed in different languages	list Name
-*/
+/// Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.
 public class PKMStat: Mappable {
+    
+    /// The identifier for this stat resource
     public var id: Int?
+    
+    /// The name for this stat resource
     public var name: String?
+    
+    /// ID the games use for this stat
     public var gameIndex: Int?
+    
+    /// Whether this stat only exists within a battle
     public var isBattleOnly: Bool?
+    
+    /// A detail of moves which affect this stat positively or negatively
     public var affectingMoves: PKMMoveStatAffectSets?
+    
+    //// A detail of natures which affect this stat positively or negatively
     public var affectingNatures: PKMNatureStatAffectSets?
+    
+    /// A list of characteristics that are set on a Pokémon when its highest base stat is this stat
     public var characteristics: [PKMAPIResource]?
+    
+    /// The class of damage this stat is directly related to
     public var moveDamageClass: PKMNamedAPIResource?
+    
+    /// The name of this region listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -272,13 +280,13 @@ public class PKMStat: Mappable {
     }
 }
 
-
-/*
-entry_number	The index number within the Pokédex	integer
-name	The Pokédex the referenced Pokémon species can be found in	NamedAPIResource (Pokedex)
-*/
+/// Pokemon Species Dex Entry
 public class PKMPokemonSpeciesDexEntry: Mappable {
+    
+    /// The index number within the Pokédex
     public var entryNumber: Int?
+    
+    /// The Pokédex the referenced Pokémon species can be found in
     public var name: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -291,14 +299,16 @@ public class PKMPokemonSpeciesDexEntry: Mappable {
     }
 }
 
-/*
-base_score	The base score given to the player when the referenced Pokémon is caught during a pal park run	integer
-rate	The base rate for encountering the referenced Pokémon in this pal park area	integer
-area	The pal park area where this encounter happens	NamedAPIResource (PalParkArea)
-*/
+/// PalPark Encounter Area
 public class PKMPalParkEncounterArea: Mappable {
+    
+    /// The base score given to the player when the referenced Pokémon is caught during a pal park run
     public var baseScore: Int?
+    
+    /// The base rate for encountering the referenced Pokémon in this pal park area
     public var rate: Int?
+    
+    /// The pal park area where this encounter happens
     public var area: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -312,14 +322,16 @@ public class PKMPalParkEncounterArea: Mappable {
     }
 }
 
-/*
-flavor_text	The localized flavor text for an API resource in a specific language	string
-language	The language this name is in	NamedAPIResource (Language)
-version	The version this flavor text entry is used in	NamedAPIResource (Version)
-*/
+/// Pokemon Species Flavor Text
 public class PKMPokemonSpeciesFlavorText: Mappable {
+    
+    /// The localized flavor text for an API resource in a specific language
     public var flavorText: String?
+    
+    /// The language this name is in
     public var language: PKMNamedAPIResource?
+    
+    /// The version this flavor text entry is used in
     public var version: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -333,12 +345,13 @@ public class PKMPokemonSpeciesFlavorText: Mappable {
     }
 }
 
-/*
-genus	The localized genus for the referenced pokemon species	string
-language	The language this genus is in	NamedAPIResource (Language)
-*/
+/// Genus
 public class PKMGenus: Mappable {
+    
+    /// The localized genus for the referenced pokemon species
     public var genus: String?
+    
+    /// The language this genus is in
     public var language: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -351,58 +364,82 @@ public class PKMGenus: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this Pokémon species resource	integer
-name	The name for this Pokémon species resource	string
-order	The order in which species should be sorted. Based on National Dex order, except families are grouped together and sorted by stage.	integer
-gender_rate	The chance of this Pokémon being female, in eighths; or -1 for genderless	integer
-capture_rate	The base capture rate; up to 255. The higher the number, the easier the catch.	integer
-base_happiness	The happiness when caught by a normal Pokéball; up to 255. The higher the number, the happier the Pokémon.	integer
-is_baby	Whether or not this is a baby Pokémon	boolean
-hatch_counter	Initial hatch counter: one must walk 255 × (hatch_counter + 1) steps before this Pokémon's egg hatches, unless utilizing bonuses like Flame Body's	integer
-has_gender_differences	Whether or not this Pokémon can have different genders	boolean
-forms_switchable	Whether or not this Pokémon has multiple forms and can switch between them	boolean
-growth_rate	The rate at which this Pokémon species gains levels	NamedAPIResource (GrowthRate)
-pokedex_numbers	A list of pokedexes and the indexes reserved within them for this Pokémon species	list PokemonSpeciesDexEntry
-egg_groups	A list of egg groups this Pokémon species is a member of	list NamedAPIResource (EggGroup)
-color	The color of this Pokémon for gimmicky Pokédex search	list NamedAPIResource (PokemonColor)
-shape	The shape of this Pokémon for gimmicky Pokédex search	list NamedAPIResource (PokemonShape)
-evolves_from_species	The Pokémon species that evolves into this pokemon_species	NamedAPIResource (PokemonSpecies)
-evolution_chain	The evolution chain this Pokémon species is a member of	APIResource (EvolutionChain)
-habitat	The habitat this Pokémon species can be encountered in	NamedAPIResource (PokemonHabitat)
-generation	The generation this Pokémon species was introduced in	NamedAPIResource (Generation)
-names	The name of this Pokémon species listed in different languages	list Name
-pal_park_encounters	A list of encounters that can be had with this Pokémon species in pal park	list PalParkEncounterArea
-flavor_text_entries	The flavor text of this flavor text listed in different languages	list PokemonSpeciesFlavorText
-form_descriptions	Descriptions of different forms Pokémon take on within the Pokémon species	list Description
-genera	The genus of this Pokémon species listed in multiple languages	Genus
-varieties	A list of the Pokémon that exist within this Pokémon species	list NamedAPIResource (Pokemon)
-*/
+/// A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species are shared across all varieties of Pokémon within the species. A good example is Wormadam; Wormadam is the species which can be found in three different varieties, Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant.
 public class PKMPokemonSpecies: Mappable {
+    
+    /// The identifier for this Pokémon species resource
     public var id: Int?
+    
+    /// The name for this Pokémon species resource
     public var name: String?
+    
+    /// The order in which species should be sorted. Based on National Dex order, except families are grouped together and sorted by stage.
     public var order: Int?
+    
+    /// The chance of this Pokémon being female, in eighths; or -1 for genderless
     public var genderRate: Int?
+    
+    /// The base capture rate; up to 255. The higher the number, the easier the catch.
     public var captureRate: Int?
+    
+    /// The happiness when caught by a normal Pokéball; up to 255. The higher the number, the happier the Pokémon.
     public var baseHappiness: Int?
+    
+    /// Whether or not this is a baby Pokémon
     public var isBaby: Bool?
+    
+    /// Initial hatch counter: one must walk 255 × (hatch_counter + 1) steps before this Pokémon's egg hatches, unless utilizing bonuses like Flame Body's
     public var hatchCounter: Int?
+    
+    /// Whether or not this Pokémon can have different genders
     public var hasGenderDifferences: Bool?
+    
+    /// Whether or not this Pokémon has multiple forms and can switch between them
     public var formsSwitchable: Bool?
+    
+    /// The rate at which this Pokémon species gains levels
     public var growthRate: PKMNamedAPIResource?
+    
+    /// A list of pokedexes and the indexes reserved within them for this Pokémon species
     public var pokedexNumbers: [PKMPokemonSpeciesDexEntry]?
+    
+    /// A list of egg groups this Pokémon species is a member of
     public var eggGroups: [PKMNamedAPIResource]?
+    
+    /// The color of this Pokémon for gimmicky Pokédex search
     public var color: PKMNamedAPIResource?
+    
+    /// The shape of this Pokémon for gimmicky Pokédex search
     public var shape: PKMNamedAPIResource?
+    
+    /// The Pokémon species that evolves into this pokemon_species
+    public var evolvesFromSpecies: PKMNamedAPIResource?
+    
+    /// The evolution chain this Pokémon species is a member of
     public var evolutionChain: PKMAPIResource?
+    
+    /// The habitat this Pokémon species can be encountered in
     public var habitat: PKMNamedAPIResource?
+    
+    /// The generation this Pokémon species was introduced in
     public var generation: PKMNamedAPIResource?
+    
+    /// The name of this Pokémon species listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of encounters that can be had with this Pokémon species in pal park
     public var palParkEncounters: [PKMPalParkEncounterArea]?
+    
+    /// The flavor text of this flavor text listed in different languages
     public var flavorTextEntries: [PKMPokemonSpeciesFlavorText]?
+    
+    /// Descriptions of different forms Pokémon take on within the Pokémon species
     public var formDescriptions: [PKMDescription]?
+    
+    /// The genus of this Pokémon species listed in multiple languages
     public var genera: [PKMGenus]?
+    
+    /// A list of the Pokémon that exist within this Pokémon species
     public var varieties: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -425,6 +462,7 @@ public class PKMPokemonSpecies: Mappable {
         eggGroups <- map["egg_groups"]
         color <- map["color"]
         shape <- map["shape"]
+        evolvesFromSpecies <- map["evolves_from_species"]
         evolutionChain <- map["evolution_chain"]
         habitat <- map["habitat"]
         generation <- map["generation"]
