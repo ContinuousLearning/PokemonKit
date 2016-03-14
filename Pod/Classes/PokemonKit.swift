@@ -19,20 +19,25 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 
 // MARK: Classes
 
-/*
-id	The identifier for this language resource	integer
-name	The name for this language resource	string
-official	Whether or not the games are published in this language	boolean
-iso639	The two-letter code of the country where this language is spoken. Note that it is not unique.	string
-iso3166	The two-letter code of the language. Note that it is not unique.	string
-names	The name of this language listed in different languages	list Name
-*/
+/// Languages for translations of API resource information.
 public class PKMLanguage: Mappable {
+    
+    /// The identifier for this language resource
     public var id: Int?
+    
+    /// The name for this language resource
     public var name: String?
+    
+    /// Whether or not the games are published in this language
     public var official: Bool?
+    
+    /// The two-letter code of the country where this language is spoken. Note that it is not unique.
     public var iso639: String?
+    
+    /// The two-letter code of the language. Note that it is not unique.
     public var iso3166: String?
+    
+    /// The name of this language listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
