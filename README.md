@@ -38,6 +38,25 @@ it, simply add the following line to your Podfile:
 pod 'PokemonKit'
 ```
 
+In your Info.plist, add
+```plist
+<key>NSAppTransportSecurity</key>
+<dict>
+	<key>NSExceptionDomains</key>
+	<dict>
+		<key>pokeapi.co</key>
+		<dict>
+			<key>NSIncludesSubdomains</key>
+			<true/>
+			<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+			<true/>
+			<key>NSTemporaryExceptionMinimumTLSVersion</key>
+			<string>TLSv1.1</string>
+		</dict>
+	</dict>
+</dict>
+```
+
 ## Author
 
 Yeung Yiu Hung, hkclex@gmail.com
