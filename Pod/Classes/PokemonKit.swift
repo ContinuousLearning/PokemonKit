@@ -863,13 +863,13 @@ public class PKMPokemon: Mappable {
     }
 }
 
-
-/*
-max_change	The maximum amount of change to the referenced Pokéathlon stat	integer
-nature	The nature causing the change	NamedAPIResource (Nature)
-*/
+/// Nature Pokeathlon Stat Affect
 public class PKMNaturePokeathlonStatAffect: Mappable {
+    
+    /// The maximum amount of change to the referenced Pokéathlon stat
     public var maxChange: Int?
+    
+    /// The nature causing the change
     public var nature: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -882,12 +882,13 @@ public class PKMNaturePokeathlonStatAffect: Mappable {
     }
 }
 
-/*
-increase	A list of natures and how they change the referenced Pokéathlon stat	list NaturePokeathlonStatAffect
-decrease	A list of natures and how they change the referenced Pokéathlon stat	list NaturePokeathlonStatAffect
-*/
+/// Nature Pokeathlon Stat Affect Sets
 public class PKMNaturePokeathlonStatAffectSets: Mappable {
+    
+    /// A list of natures and how they change the referenced Pokéathlon stat
     public var increase: [PKMNaturePokeathlonStatAffect]?
+    
+    /// A list of natures and how they change the referenced Pokéathlon stat
     public var decrease: [PKMNaturePokeathlonStatAffect]?
     
     required public init?(_ map: Map) {
