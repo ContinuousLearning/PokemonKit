@@ -970,27 +970,34 @@ public class PKMNatureStatChange: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this nature resource	integer
-name	The name for this nature resource	string
-decreased_stat	The stat decreased by 10% in Pokémon with this nature	NamedAPIResource (Stat)
-increased_stat	The stat increased by 10% in Pokémon with this nature	NamedAPIResource (Stat)
-hates_flavor	The flavor hated by Pokémon with this nature	NamedAPIResource (BerryFlavor)
-likes_flavor	The flavor liked by Pokémon with this nature	NamedAPIResource (BerryFlavor)
-pokeathlon_stat_changes	A list of Pokéathlon stats this nature effects and how much it effects them	list NatureStatChange
-move_battle_style_preferences	A list of battle styles and how likely a Pokémon with this nature is to use them in the Battle Palace or Battle Tent.	list MoveBattleStylePreference
-names	The name of this nature listed in different languages	list Name
-*/
+/// Natures influence how a Pokémon's stats grow. See Bulbapedia ( http://bulbapedia.bulbagarden.net/wiki/Nature ) for greater detail.
 public class PKMNature: Mappable {
+    
+    /// The identifier for this nature resource
     public var id: Int?
+    
+    /// The name for this nature resource
     public var name: String?
+    
+    /// The stat decreased by 10% in Pokémon with this nature
     public var decreasedStat: PKMNamedAPIResource?
+    
+    /// The stat increased by 10% in Pokémon with this nature
     public var increasedStat: PKMNamedAPIResource?
+    
+    /// The flavor hated by Pokémon with this nature
     public var hatesFlavor: PKMNamedAPIResource?
+    
+    /// he flavor liked by Pokémon with this nature
     public var likesFlavor: PKMNamedAPIResource?
+    
+    /// A list of Pokéathlon stats this nature effects and how much it effects them
     public var pokeathlonStatChanges: [PKMNatureStatChange]?
+    
+    /// A list of battle styles and how likely a Pokémon with this nature is to use them in the Battle Palace or Battle Tent.
     public var moveBattleStylePreferences: [PKMMoveBattleStylePreference]?
+    
+    /// The name of this nature listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -1015,8 +1022,14 @@ public class PKMNature: Mappable {
 level	The level gained	integer
 experience	The amount of experience required to reach the referenced level	integer
 */
+
+/// Growth Rate Experience Level
 public class PKMGrowthRateExperienceLevel: Mappable {
+    
+    /// The level gained
     public var level: Int?
+    
+    /// The amount of experience required to reach the referenced level
     public var experience: Int?
     
     required public init?(_ map: Map) {
@@ -1029,21 +1042,25 @@ public class PKMGrowthRateExperienceLevel: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this gender resource	integer
-name	The name for this gender resource	string
-formula	The formula used to calculate the rate at which the Pokémon species gains level	string
-descriptions	The descriptions of this characteristic listed in different languages	list Description
-levels	A list of levels and the amount of experienced needed to atain them based on this growth rate	list GrowthRateExperienceLevel
-pokemon_species	A list of Pokémon species that gain levels at this growth rate	list NamedAPIResource (PokemonSpecies)
-*/
+/// Growth rates are the speed with which Pokémon gain levels through experience. Check out Bulbapedia ( http://bulbapedia.bulbagarden.net/wiki/Experience ) for greater detail.
 public class PKMGrowthRate: Mappable {
+    
+    /// The identifier for this gender resource
     public var id: Int?
+    
+    /// The name for this gender resource
     public var name: String?
+    
+    /// The formula used to calculate the rate at which the Pokémon species gains level
     public var formula: String?
+    
+    /// The descriptions of this characteristic listed in different languages
     public var descriptions: [PKMDescription]?
+    
+    /// A list of levels and the amount of experienced needed to atain them based on this growth rate
     public var levels: [PKMGrowthRateExperienceLevel]?
+    
+    /// A list of Pokémon species that gain levels at this growth rate
     public var pokemonSpecies: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -1060,13 +1077,13 @@ public class PKMGrowthRate: Mappable {
     }
 }
 
-
-/*
-rate	The chance of this Pokémon being female, in eighths; or -1 for genderless	integer
-pokemon_species	A Pokémon species that can be the referenced gender	NamedAPIResource (PokemonSpecies)
-*/
+/// Pokemon Species Gender
 public class PKMPokemonSpeciesGender: Mappable {
+    
+    /// The chance of this Pokémon being female, in eighths; or -1 for genderless
     public var rate: Int?
+    
+    /// A Pokémon species that can be the referenced gender
     public var pokemonSpecies: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1079,17 +1096,19 @@ public class PKMPokemonSpeciesGender: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this gender resource	integer
-name	The name for this gender resource	string
-pokemon_species_details	A list of Pokémon species that can be this gender and how likely it is that they will be	list PokemonSpeciesGender
-required_for_evolution	A list of Pokémon species that required this gender in order for a Pokémon to evolve into them	list NamedAPIResource (PokemonSpecies)
-*/
+/// Genders were introduced in Generation II for the purposes of breeding Pokémon but can also result in visual differences or even different evolutionary lines. Check out Bulbapedia for greater detail.
 public class PKMGender: Mappable {
+    
+    /// The identifier for this gender resource
     public var id: Int?
+    
+    /// The name for this gender resource
     public var name: String?
+    
+    /// A list of Pokémon species that can be this gender and how likely it is that they will be
     public var pokemonSpeciesDetails: [PKMPokemonSpeciesGender]?
+    
+    /// A list of Pokémon species that required this gender in order for a Pokémon to evolve into them
     public var requiredForEvolution: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -1104,17 +1123,19 @@ public class PKMGender: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this egg group resource	integer
-name	The name for this egg group resource	string
-names	The name of this egg group listed in different languages	list Name
-pokemon_species	A list of all Pokémon species that are members of this egg group	list NamedAPIResource (PokemonSpecies)
-*/
+/// Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may belong to either one or two Egg Groups. Check out Bulbapedia for greater detail.
 public class PKMEggGroup: Mappable {
+    
+    /// The identifier for this egg group resource
     public var id: Int?
+    
+    /// The name for this egg group resource
     public var name: String?
+    
+    /// The name of this egg group listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of all Pokémon species that are members of this egg group
     public var pokemonSpecies: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -1129,17 +1150,19 @@ public class PKMEggGroup: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this characteristic resource	integer
-gene_modulo	The remainder of the highest stat/IV divided by 5	integer
-possible_values	The possible values of the highest stat that would result in a Pokémon recieving this characteristic when divided by 5	list integer
-descriptions	The descriptions of this characteristic listed in different languages	list (Description)
-*/
+/// Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo). Check out Bulbapedia for greater detail.
 public class PKMCharacteristic: Mappable {
+    
+    /// The identifier for this characteristic resource
     public var id: Int?
+    
+    /// The remainder of the highest stat/IV divided by 5
     public var geneModulo: Int?
+    
+    /// The possible values of the highest stat that would result in a Pokémon recieving this characteristic when divided by 5
     public var possibleValues: [Int]?
+    
+    /// The descriptions of this characteristic listed in different languages
     public var descriptions: [PKMDescription]?
     
     required public init?(_ map: Map) {
@@ -1154,15 +1177,16 @@ public class PKMCharacteristic: Mappable {
     }
 }
 
-
-/*
-is_hidden	Whether or not this a hidden ability for the referenced Pokémon	boolean
-slot	Pokémon have 3 ability 'slots' which hold references to possible abilities they could have. This is the slot of this ability for the referenced pokemon.	integer
-pokemon	The Pokémon this ability could belong to	NamedAPIResource (Pokemon)
-*/
+/// Ability Pokemon
 public class PKMAbilityPokemon: Mappable {
+    
+    /// Whether or not this a hidden ability for the referenced Pokémon
     public var isHidden: Bool?
+    
+    /// Pokémon have 3 ability 'slots' which hold references to possible abilities they could have. This is the slot of this ability for the referenced pokemon.
     public var slot: Int?
+    
+    /// The Pokémon this ability could belong to
     public var pokemon: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1176,27 +1200,34 @@ public class PKMAbilityPokemon: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this ability resource	integer
-name	The name for this ability resource	string
-is_main_series	Whether or not this ability originated in the main series of the video games	boolean
-generation	The generation this ability originated in	NamedAPIResource (Generation)
-names	The name of this ability listed in different languages	list Name
-effect_entries	The effect of this ability listed in different languages	list VerboseEffect
-effect_changes	The list of previous effects this ability has had across version groups	list AbilityEffectChange
-flavor_text_entries	The flavor text of this ability listed in different languages	list VersionGroupFlavorText
-pokemon	A list of Pokémon that could potentially have this ability	list AbilityPokemon
-*/
+/// Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have mutiple possible abilities but can have only one ability at a time. Check out Bulbapedia for greater detail.
 public class PKMAbility: Mappable {
+    
+    /// The identifier for this ability resource
     public var id: Int?
+    
+    /// The name for this ability resource
     public var name: String?
+    
+    /// Whether or not this ability originated in the main series of the video games
     public var isMainSeries: Bool?
+    
+    /// The generation this ability originated in
     public var generation: PKMNamedAPIResource?
+    
+    /// The name of this ability listed in different languages
     public var names: [PKMName]?
+    
+    /// The effect of this ability listed in different languages
     public var effectEntries: [PKMVerboseEffect]?
+    
+    /// The list of previous effects this ability has had across version groups
     public var effectChanges: [PKMAbilityEffectChange]?
+    
+    /// The flavor text of this ability listed in different languages
     public var flavorTextEntries: [PKMVersionGroupFlavorText]?
+    
+    /// A list of Pokémon that could potentially have this ability
     public var pokemon: [PKMAbilityPokemon]?
     
     required public init?(_ map: Map) {
@@ -1216,23 +1247,28 @@ public class PKMAbility: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this region resource	integer
-name	The name for this region resource	string
-locations	A list of locations that can be found in this region	NamedAPIResource (Location)
-main_generation	The generation this region was introduced in	NamedAPIResource (Generation)
-names	The name of this region listed in different languages	list Name
-pokedexes	A list of pokédexes that catalogue Pokémon in this region	list NamedAPIResource (Pokedex)
-version_groups	A list of version groups where this region can be visited	list NamedAPIResource (VersionGroup)
-*/
+/// A region is an organized area of the Pokémon world. Most often, the main difference between regions is the species of Pokémon that can be encountered within them.
 public class PKMRegion: Mappable {
+    
+    /// The identifier for this region resource
     public var id: Bool?
+    
+    /// The name for this region resource
     public var name: String?
+    
+    /// A list of locations that can be found in this region
     public var locations: [PKMNamedAPIResource]?
+    
+    /// The generation this region was introduced in
     public var mainGeneration: [PKMNamedAPIResource]?
+    
+    /// The name of this region listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of pokédexes that catalogue Pokémon in this region
     public var pokedexes: [PKMNamedAPIResource]?
+    
+    /// A list of version groups where this region can be visited
     public var versionGroups: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -1250,15 +1286,16 @@ public class PKMRegion: Mappable {
     }
 }
 
-
-/*
-base_score	The base score given to the player when this Pokémon is caught during a pal park run	integer
-rate	The base rate for encountering this Pokémon in this pal park area	integer
-pokemon_species	The Pokémon species being encountered	NamedAPIResource (PokemonSpecies)
-*/
+/// Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are specific to Pal Park.
 public class PKMPalParkEncounterSpecies: Mappable {
+    
+    /// The base score given to the player when this Pokémon is caught during a pal park run
     public var baseScore: Int?
+    
+    /// The base rate for encountering this Pokémon in this pal park area
     public var rate: Int?
+    
+    /// The Pokémon species being encountered
     public var pokemonSpecies: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1272,17 +1309,19 @@ public class PKMPalParkEncounterSpecies: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this pal park area resource	integer
-name	The name for this pal park area resource	string
-names	The name of this pal park area listed in different languages	list Name
-pokemon_encounters	A list of Pokémon encountered in thi pal park area along with details	list PalParkEncounterSpecies
-*/
+/// Pal Park Area
 public class PKMPalParkArea: Mappable {
+    
+    /// The identifier for this pal park area resource
     public var id: Int?
+    
+    /// The name for this pal park area resource
     public var name: String?
+    
+    /// The name of this pal park area listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of Pokémon encountered in thi pal park area along with details
     public var pokemonEncounters: [PKMPalParkEncounterSpecies]?
     
     required public init?(_ map: Map) {
@@ -1297,21 +1336,25 @@ public class PKMPalParkArea: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this location resource	integer
-name	The name for this location resource	string
-region	The region this location can be found in	NamedAPIResource (Region)
-names	The name of this language listed in different languages	list Name
-game_indices	A list of game indices relevent to this location by generation	list GenerationGameIndex
-areas	Areas that can be found within this location	APIResource (LocationArea)
-*/
+/// Locations that can be visited within the games. Locations make up sizable portions of regions, like cities or routes.
 public class PKMLocation: Mappable {
+    
+    /// The identifier for this location resource
     public var id: Int?
+    
+    /// The name for this location resource
     public var name: String?
+    
+    /// The region this location can be found in
     public var region: PKMNamedAPIResource?
+    
+    /// The name of this language listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of game indices relevent to this location by generation
     public var gameIndices: [PKMGenerationGameIndex]?
+    
+    /// Areas that can be found within this location
     public var areas: PKMAPIResource?
     
     required public init?(_ map: Map) {
@@ -1328,19 +1371,22 @@ public class PKMLocation: Mappable {
     }
 }
 
-
-/*
-min_level	The lowest level the Pokémon could be encountered at	integer
-max_level	The highest level the Pokémon could be encountered at	integer
-condition_values	A list of condition values that must be in effect for this encounter to occur	list NamedAPIResource (EncounterConditionValue)
-chance	percent chance that this encounter will occur	integer
-method	The method by which this encounter happens	NamedAPIResource (EncounterMethod)
-*/
+/// Encounter
 public class PKMEncounter: Mappable {
+    
+    /// The lowest level the Pokémon could be encountered at
     public var minLevel: Int?
+    
+    /// The highest level the Pokémon could be encountered at
     public var maxLevel: Int?
+    
+    /// A list of condition values that must be in effect for this encounter to occur
     public var conditionValues: [PKMNamedAPIResource]?
+    
+    /// percent chance that this encounter will occur
     public var chance: Int?
+    
+    /// The method by which this encounter happens
     public var method: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1356,15 +1402,16 @@ public class PKMEncounter: Mappable {
     }
 }
 
-
-/*
-version	The game version this encounter happens in	NamedAPIResource (Version)
-max_chance	The total percentage of all encounter potential	integer
-encounter_details	A list of encounters and their specifics	list Encounter
-*/
+/// Version Encounter Detail
 public class PKMVersionEncounterDetail: Mappable {
+    
+    /// The game version this encounter happens in
     public var version: PKMNamedAPIResource?
+    
+    /// The total percentage of all encounter potential
     public var maxChance: Int?
+    
+    /// A list of encounters and their specifics
     public var encounterDetails: [PKMEncounter]?
     
     required public init?(_ map: Map) {
@@ -1378,13 +1425,13 @@ public class PKMVersionEncounterDetail: Mappable {
     }
 }
 
-
-/*
-pokemon	The Pokémon being encountered	NamedAPIResource (Pokemon)
-version_details	A list of versions and encounters with Pokémon that might happen in the referenced location area	list VersionEncounterDetail
-*/
+/// Pokemon Encounter
 public class PKMPokemonEncounter: Mappable {
+    
+    /// The Pokémon being encountered
     public var pokemon: PKMNamedAPIResource?
+    
+    /// A list of versions and encounters with Pokémon that might happen in the referenced location area
     public var versionDetails: [PKMVersionEncounterDetail]?
     
     required public init?(_ map: Map) {
@@ -1397,13 +1444,13 @@ public class PKMPokemonEncounter: Mappable {
     }
 }
 
-
-/*
-rate	The chance of an encounter to occur.	integer
-version	The version of the game in which the encounter can occur with the given chance.	NamedAPIResource (Version)
-*/
+/// Encounter Version Details
 public class PKMEncounterVersionDetails: Mappable {
+    
+    /// The chance of an encounter to occur.
     public var rate: Int?
+    
+    /// The version of the game in which the encounter can occur with the given chance.
     public var version: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1416,13 +1463,13 @@ public class PKMEncounterVersionDetails: Mappable {
     }
 }
 
-
-/*
-encounter_method	The method in which Pokémon may be encountered in an area.	EncounterMethod
-version_details	The chance of the encounter to occur on a version of the game.	list EncounterVersionDetails
-*/
+/// Encounter Method Rate
 public class PKMEncounterMethodRate: Mappable {
+    
+    /// The method in which Pokémon may be encountered in an area.
     public var encounterEethod: PKMEncounterMethod?
+    
+    /// The chance of the encounter to occur on a version of the game.
     public var versionDetails: [PKMEncounterVersionDetails]?
     
     required public init?(_ map: Map) {
@@ -1435,23 +1482,28 @@ public class PKMEncounterMethodRate: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this location resource	integer
-name	The name for this location resource	string
-game_index	The internal id of an API resource within game data	integer
-encounter_method_rates	A list of methods in which Pokémon may be encountered in this area and how likely the method will occur depending on the version of the game	list EncounterMethodRate
-location	The region this location can be found in	NamedAPIResource (Region)
-names	The name of this location area listed in different languages	list Name
-pokemon_encounters	A list of Pokémon that can be encountered in this area along with version specific details about the encounter	list PokemonEncounter
-*/
+/// Location areas are sections of areas, such as floors in a building or cave. Each area has its own set of possible Pokémon encounters.
 public class PKMLocationArea: Mappable {
+    
+    /// The identifier for this location resource
     public var id: Int?
+    
+    /// The name for this location resource
     public var name: String?
+    
+    /// The internal id of an API resource within game data
     public var gameIndex: Int?
+    
+    /// A list of methods in which Pokémon may be encountered in this area and how likely the method will occur depending on the version of the game
     public var encounterMethodRates: [PKMEncounterMethodRate]?
+    
+    /// The region this location can be found in
     public var location: PKMNamedAPIResource?
+    
+    /// The name of this location area listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of Pokémon that can be encountered in this area along with version specific details about the encounter
     public var pokemonEncounters: [PKMPokemonEncounter]?
     
     required public init?(_ map: Map) {
@@ -1469,19 +1521,22 @@ public class PKMLocationArea: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this move target resource	integer
-name	The name for this move target resource	string
-descriptions	The description of this move target listed in different languages	list Description
-moves	A list of moves that that are directed at this target	list NamedAPIResource (Move)
-names	The name of this move target listed in different languages	list Name
-*/
+/// Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.
 public class PKMMoveTarget: Mappable {
+    
+    /// The identifier for this move target resource
     public var id: Int?
+    
+    /// The name for this move target resource
     public var name: String?
+    
+    /// The description of this move target listed in different languages
     public var descriptions: [PKMDescription]?
+    
+    /// A list of moves that that are directed at this target
     public var moves: [PKMNamedAPIResource]?
+    
+    /// The name of this move target listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -1497,19 +1552,22 @@ public class PKMMoveTarget: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this move learn method resource	integer
-name	The name for this move learn method resource	string
-descriptions	The description of this move learn method listed in different languages	list Description
-names	The name of this move learn method listed in different languages	list Name
-version_groups	A list of version groups where moves can be learned through this method	list NamedAPIResource (VersionGroup)
-*/
+/// Methods by which Pokémon can learn moves.
 public class PKMMoveLearnMethod: Mappable {
+    
+    /// The identifier for this move learn method resource
     public var id: Int?
+    
+    /// The name for this move learn method resource
     public var name: String?
+    
+    /// The description of this move learn method listed in different languages
     public var descriptions: [PKMDescription]?
+    
+    /// The name of this move learn method listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of version groups where moves can be learned through this method
     public var versionGroups: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -1525,19 +1583,22 @@ public class PKMMoveLearnMethod: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this move damage class resource	integer
-name	The name for this move damage class resource	string
-descriptions	The description of this move damage class listed in different languages	list Description
-moves	A list of moves that fall into this damage class	list NamedAPIResource (Move)
-names	The name of this move damage class listed in different languages	list Name
-*/
+/// Damage classes moves can have, e.g. physical, special, or non-damaging.
 public class PKMMoveDamageClass: Mappable {
+    
+    /// The identifier for this move damage class resource
     public var id: Int?
+    
+    /// The name for this move damage class resource
     public var name: String?
+    
+    /// The description of this move damage class listed in different languages
     public var descriptions: [PKMDescription]?
+    
+    /// A list of moves that fall into this damage class
     public var moves: [PKMNamedAPIResource]?
+    
+    /// The name of this move damage class listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -1553,17 +1614,19 @@ public class PKMMoveDamageClass: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this move category resource	integer
-name	The name for this move category resource	string
-moves	A list of moves that fall into this category	list NamedAPIResource (Move)
-descriptions	The description of this move ailment listed in different languages	list Description
-*/
+/// Very general categories that loosely group move effects.
 public class PKMMoveCategory: Mappable {
+    
+    /// The identifier for this move category resource
     public var id: Int?
+    
+    /// The name for this move category resource
     public var name: String?
+    
+    /// A list of moves that fall into this category
     public var moves: [PKMNamedAPIResource]?
+    
+    /// The description of this move ailment listed in different languages
     public var descriptions: [PKMDescription]?
     
     required public init?(_ map: Map) {
@@ -1578,15 +1641,16 @@ public class PKMMoveCategory: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this move battle style resource	integer
-name	The name for this move battle style resource	string
-names	The name of this move battle style listed in different languages	list Name
-*/
+/// Styles of moves when used in the Battle Palace. See Bulbapedia for greater detail.
 public class PKMMoveBattleStyle: Mappable {
+    
+    /// The identifier for this move battle style resource
     public var id: Int?
+    
+    /// The name for this move battle style resource
     public var name: String?
+    
+    /// The name of this move battle style listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -1600,17 +1664,19 @@ public class PKMMoveBattleStyle: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this move ailment resource	integer
-name	The name for this move ailment resource	string
-moves	A list of moves that cause this ailment	list NamedAPIResource (Move)
-names	The name of this move ailment listed in different languages	list Name
-*/
+/// Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for greater detail.
 public class PKMMoveAilment: Mappable {
+    
+    /// The identifier for this move ailment resource
     public var id: Int?
+    
+    /// The name for this move ailment resource
     public var name: String?
+    
+    /// A list of moves that cause this ailment
     public var moves: [PKMNamedAPIResource]?
+    
+    /// The name of this move ailment listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -1625,13 +1691,13 @@ public class PKMMoveAilment: Mappable {
     }
 }
 
-
-/*
-change	The amount of change	integer
-stat	The stat being affected	NamedAPIResource (Stat)
-*/
+/// Move Stat Change
 public class PKMMoveStatChange: Mappable {
+    
+    /// The amount of change
     public var change: Int?
+    
+    /// The stat being affected
     public var stat: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1644,23 +1710,28 @@ public class PKMMoveStatChange: Mappable {
     }
 }
 
-
-/*
-accuracy	The percent value of how likely this move is to be successful	integer
-effect_chance	The percent value of how likely it is this moves effect will take effect	integer
-power	The base power of this move with a value of 0 if it does not have a base power	integer
-pp	Power points. The number of times this move can be used	integer
-effect_entries	The effect of this move listed in different languages	list VerboseEffect
-type	The elemental type of this move	NamedAPIResource (Type)
-version_group	The version group in which these move stat values were in effect	NamedAPIResource (VersionGroup)
-*/
+/// Past Move Stat Values
 public class PKMPastMoveStatValues: Mappable {
+    
+    /// The percent value of how likely this move is to be successful
     public var accuracy: Int?
+    
+    /// The percent value of how likely it is this moves effect will take effect
     public var effectChance: Int?
+    
+    /// The base power of this move with a value of 0 if it does not have a base power
     public var power: Int?
+    
+    /// Power points. The number of times this move can be used
     public var pp: Int?
+    
+    /// The effect of this move listed in different languages
     public var effectEntries: [PKMVerboseEffect]?
+    
+    /// The elemental type of this move
     public var type: PKMNamedAPIResource?
+    
+    /// The version group in which these move stat values were in effect
     public var versionGroup: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1678,33 +1749,43 @@ public class PKMPastMoveStatValues: Mappable {
     }
 }
 
-
-/*
-ailment	The status ailment this move inflicts on its target	NamedAPIResource (MoveAilment)
-category	The category of move this move falls under, e.g. damage or ailment	NamedAPIResource (Move)
-min_hits	The minimum number of times this move hits. Null if it always only hits once.	integer
-max_hits	The maximum number of times this move hits. Null if it always only hits once.	integer
-min_turns	The minimum number of turns this move continues to take effect. Null if it always only lasts one turn.	integer
-max_turns	The maximum number of turns this move continues to take effect. Null if it always only lasts one turn.	integer
-drain	HP drain (if positive) or Recoil damage (if negative), in percent of damage done	integer
-healing	The amount of hp gained by the attacking pokemon, in percent of it's maximum HP	integer
-crit_rate	Critical hit rate bonus	integer
-ailment_chance	The likelyhood this attack will cause an ailment	integer
-flinch_chance	The likelyhood this attack will cause the target pokemon to flinch	integer
-stat_chance	The likelyhood this attack will cause a stat change in the target pokemon	integer
-*/
+/// Move Meta Data
 public class PKMMoveMetaData: Mappable {
+    
+    /// The status ailment this move inflicts on its target
     public var ailment: PKMNamedAPIResource?
+    
+    /// The category of move this move falls under, e.g. damage or ailment
     public var category: PKMNamedAPIResource?
+    
+    /// The minimum number of times this move hits. Null if it always only hits once.
     public var minHits: Int?
+    
+    /// The maximum number of times this move hits. Null if it always only hits once.
     public var maxHits: Int?
+    
+    /// The minimum number of turns this move continues to take effect. Null if it always only lasts one turn.
     public var minTurns: Int?
+    
+    /// The maximum number of turns this move continues to take effect. Null if it always only lasts one turn.
     public var maxTurns: Int?
+    
+    /// HP drain (if positive) or Recoil damage (if negative), in percent of damage done
     public var drain: Int?
+    
+    /// The amount of hp gained by the attacking pokemon, in percent of it's maximum HP
     public var healing: Int?
+    
+    /// Critical hit rate bonus
     public var critRate: Int?
+    
+    /// The likelyhood this attack will cause an ailment
     public var ailmentChance: Int?
+    
+    /// The likelyhood this attack will cause the target pokemon to flinch
     public var flinchEhance: Int?
+    
+    /// The likelyhood this attack will cause a stat change in the target pokemon
     public var statChance: Int?
     
     required public init?(_ map: Map) {
@@ -1727,13 +1808,13 @@ public class PKMMoveMetaData: Mappable {
     }
 }
 
-
-/*
-effect_entries	The previous effect of this ability listed in different languages	Effect
-version_group	The version group in which the previous effect of this ability originated	NamedAPIResource (VersionGroup)
-*/
+/// Ability Effect Change
 public class PKMAbilityEffectChange: Mappable {
+    
+    /// The previous effect of this ability listed in different languages
     public var effectEntries: PKMEffect?
+    
+    /// The version group in which the previous effect of this ability originated
     public var versionGroup: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1746,13 +1827,13 @@ public class PKMAbilityEffectChange: Mappable {
     }
 }
 
-
-/*
-use_before	A list of moves to use before this move	list NamedAPIResource (Move)
-use_after	A list of moves to use after this move	list NamedAPIResource (Move)
-*/
+/// Contest Combo Detail
 public class PKMContestComboDetail: Mappable {
+    
+    /// A list of moves to use before this move
     public var useBefore: [PKMNamedAPIResource]?
+    
+    /// A list of moves to use after this move
     public var useAfter: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -1765,12 +1846,13 @@ public class PKMContestComboDetail: Mappable {
     }
 }
 
-/*
-normal	A detail of moves this move can be used before or after, granting additional appeal points in contests	list ContestComboDetail
-super	A detail of moves this move can be used before or after, granting additional appeal points in super contests	list ContestComboDetail
-*/
+/// Contest Combo Sets
 public class PKMContestComboSets: Mappable {
+    
+    /// A detail of moves this move can be used before or after, granting additional appeal points in contests
     public var normalMove: [PKMContestComboDetail]?
+    
+    /// A detail of moves this move can be used before or after, granting additional appeal points in super contests
     public var superMove: [PKMContestComboDetail]?
     
     required public init?(_ map: Map) {
@@ -1783,52 +1865,70 @@ public class PKMContestComboSets: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this move resource	integer
-name	The name for this move resource	string
-accuracy	The percent value of how likely this move is to be successful	integer
-effect_chance	The percent value of how likely it is this moves effect will happen	integer
-pp	Power points. The number of times this move can be used	integer
-priority	A value between -8 and 8. Sets the order in which moves are executed during battle. See Bulbapedia for greater detail.	integer
-power	The base power of this move with a value of 0 if it does not have a base power	integer
-contest_combos	A detail of normal and super contest combos that require this move	list ContestComboSets
-contest_type	The type of appeal this move gives a Pokémon when used in a contest	NamedAPIResource (ContestType)
-
-contest_effect	The effect the move has when used in a contest	NamedAPIResource (ContestEffect)
-damage_class	The type of damage the move inflicts on the target, e.g. physical	NamedAPIResource (MoveDamageClass)
-effect_entries	The effect of this move listed in different languages	list VerboseEffect
-effect_changes	The list of previous effects this move has had across version groups of the games	list AbilityEffectChange
-generation	The generation in which this move was introduced	NamedAPIResource (Generation)
-meta	Metadata about this move	MoveMetaData
-names	The name of this move listed in different languages	list Name
-past_values	A list of move resource value changes across ersion groups of the game	list PastMoveStatValues
-stat_changes	A list of stats this moves effects and how much it effects them	list MoveStatChange
-super_contest_effect	The effect the move has when used in a super contest	APIResource (ContestEffect)
-target	The type of target that will recieve the effects of the attack	NamedAPIResource (MoveTarget)
-type	The elemental type of this move	NamedAPIResource (Type)
-*/
+/// Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.
 public class PKMMove: Mappable {
+    
+    /// The identifier for this move resource
     public var id: Int?
+    
+    /// The name for this move resource
     public var name: String?
+    
+    /// The percent value of how likely this move is to be successful
     public var accuracy: Int?
+    
+    /// The percent value of how likely it is this moves effect will happen
     public var effect_chance: Int?
+    
+    /// Power points. The number of times this move can be used
     public var pp: Int?
+    
+    /// A value between -8 and 8. Sets the order in which moves are executed during battle. See Bulbapedia for greater detail.
     public var priority: Int?
+    
+    /// The base power of this move with a value of 0 if it does not have a base power
     public var power: Int?
+    
+    /// A detail of normal and super contest combos that require this move
     public var contestCombos: [PKMContestComboSets]?
+    
+    /// The type of appeal this move gives a Pokémon when used in a contest
     public var contestType: PKMNamedAPIResource?
     
+    /// The effect the move has when used in a contest
     public var contestEffect: PKMNamedAPIResource?
+    
+    /// The type of damage the move inflicts on the target, e.g. physical
     public var damageClass: PKMNamedAPIResource?
+    
+    /// The effect of this move listed in different languages
     public var effectEntries: [PKMVerboseEffect]?
+    
+    /// The list of previous effects this move has had across version groups of the games
     public var effectChanges: [PKMAbilityEffectChange]?
+    
+    /// The generation in which this move was introduced
     public var generation: PKMNamedAPIResource?
+    
+    /// Metadata about this move
     public var meta: PKMMoveMetaData?
+    
+    /// The name of this move listed in different languages
+    public var names: [PKMName]?
+    
+    /// A list of move resource value changes across ersion groups of the game
     public var pastValues: [PKMPastMoveStatValues]?
+    
+    /// A list of stats this moves effects and how much it effects them
     public var statChanges: [PKMMoveStatChange]?
+    
+    /// The effect the move has when used in a super contest
     public var superContestEffect: PKMAPIResource?
+    
+    /// The type of target that will recieve the effects of the attack
     public var target: PKMNamedAPIResource?
+    
+    /// The elemental type of this move	NamedAPIResource
     public var type: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1838,6 +1938,7 @@ public class PKMMove: Mappable {
     public func mapping(map: Map) {
         id <- map["id"]
         name <- map["name"]
+        names <- map["name"]
         accuracy <- map["accuracy"]
         effect_chance <- map["effect_chance"]
         pp <- map["pp"]
@@ -1860,17 +1961,19 @@ public class PKMMove: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this item pocket resource	integer
-name	The name for this item pocket resource	string
-categories	A list of item categories that are relevent to this item pocket	list NamedAPIResource (ItemCategory)
-names	The name of this item pocket listed in different languages	list Name
-*/
+/// Pockets within the players bag used for storing items by category.
 public class PKMItemPocket: Mappable {
+    
+    /// The identifier for this item pocket resource
     public var id: Int?
+    
+    /// The name for this item pocket resource
     public var name: String?
+    
+    /// A list of item categories that are relevent to this item pocket
     public var categories: [PKMNamedAPIResource]?
+    
+    /// The name of this item pocket listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -1885,13 +1988,13 @@ public class PKMItemPocket: Mappable {
     }
 }
 
-
-/*
-effect	The localized effect text for an API resource in a specific language	string
-language	The language this effect is in	NamedAPIResource (Language)
-*/
+/// Effect
 public class PKMEffect: Mappable {
+    
+    /// The localized effect text for an API resource in a specific language
     public var effect: String?
+    
+    /// The language this effect is in
     public var language: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1904,17 +2007,19 @@ public class PKMEffect: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this fling effect resource	integer
-name	The name for this fling effect resource	string
-effect_entries	The result of this fling effect listed in different languages	list Effect
-items	A list of items that have this fling effect	list NamedAPIResource (Item)
-*/
+/// The various effects of the move "Fling" when used with different items.
 public class PKMItemFlingEffect: Mappable {
+    
+    /// The identifier for this fling effect resource
     public var id: Int?
+    
+    /// The name for this fling effect resource
     public var name: String?
+    
+    /// The result of this fling effect listed in different languages
     public var effectEntries: [PKMEffect]?
+    
+    /// A list of items that have this fling effect	list
     public var items: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -1929,19 +2034,22 @@ public class PKMItemFlingEffect: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this item category resource	integer
-name	The name for this item category resource	string
-items	A list of items that are a part of this category	list Item
-names	The name of this item category listed in different languages	list Name
-pocket	The pocket items in this category would be put in	NamedAPIResource (ItemPocket)
-*/
+/// Item categories determine where items will be placed in the players bag.
 public class PKMItemCategory: Mappable {
+    
+    /// The identifier for this item category resource
     public var id: Int?
+    
+    /// The name for this item category resource
     public var name: String?
+    
+    /// A list of items that are a part of this category
     public var items: [PKMNamedAPIResource]?
+    
+    /// The name of this item category listed in different languages
     public var names: [PKMName]?
+    
+    /// The pocket items in this category would be put in
     public var pocket: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -1957,19 +2065,22 @@ public class PKMItemCategory: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this item attribute resource	integer
-name	The name for this item attribute resource	string
-items	A list of items that have this attribute	list NamedAPIResource (Item)
-names	The name of this item attribute listed in different languages	list Name
-descriptions	The description of this item attribute listed in different languages	list Description
-*/
+/// Item attributes define particular aspects of items, e.g. "usable in battle" or "consumable".
 public class PKMItemAttribute: Mappable {
+    
+    /// The identifier for this item attribute resource
     public var id: Int?
+    
+    /// The name for this item attribute resource
     public var name: String?
+    
+    /// A list of items that have this attribute
     public var items: [PKMNamedAPIResource]?
+    
+    /// The name of this item attribute listed in different languages
     public var names: [PKMName]?
+    
+    /// The description of this item attribute listed in different languages
     public var descriptions: [PKMDescription]?
     
     required public init?(_ map: Map) {
@@ -1985,15 +2096,16 @@ public class PKMItemAttribute: Mappable {
     }
 }
 
-
-/*
-effect	The localized effect text for an API resource in a specific language	string
-short_effect	The localized effect text in brief	string
-language	The language this effect is in	NamedAPIResource (Language)
-*/
+/// Verbose Effect
 public class PKMVerboseEffect: Mappable {
+    
+    /// The localized effect text for an API resource in a specific language
     public var effect: String?
+    
+    /// The localized effect text in brief
     public var shortEffect: String?
+    
+    /// The language this effect is in
     public var language: Bool?
     
     required public init?(_ map: Map) {
@@ -2007,15 +2119,16 @@ public class PKMVerboseEffect: Mappable {
     }
 }
 
-
-/*
-text	The localized name for an API resource in a specific language	string
-language	The language this name is in	NamedAPIResource (Language)
-version_group	The version group which uses this flavor text	NamedAPIResource (VersionGroup)
-*/
+/// Version Group Flavor Text
 public class PKMVersionGroupFlavorText: Mappable {
+    
+    /// The localized name for an API resource in a specific language
     public var text: String?
+    
+    /// The language this name is in
     public var language: PKMNamedAPIResource?
+    
+    /// The version group which uses this flavor text
     public var versionGroup: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -2029,13 +2142,13 @@ public class PKMVersionGroupFlavorText: Mappable {
     }
 }
 
-
-/*
-game_index	The internal id of an API resource within game data	integer
-generation	The generation relevent to this game index	NamedAPIResource (Generation)
-*/
+/// Generation Game Index
 public class PKMGenerationGameIndex: Mappable {
+    
+    /// The internal id of an API resource within game data
     public var gameIndex: Int?
+    
+    /// The generation relevent to this game index
     public var generation: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -2048,7 +2161,7 @@ public class PKMGenerationGameIndex: Mappable {
     }
 }
 
-
+/// Item Sprites
 public class PKMItemSprites: Mappable {
     /// The default depiction of this item
     public var defaultDepiction: String?
@@ -2094,20 +2207,50 @@ sprites	A set of sprites used to depict this item in the game	ItemSprites
 held_by_pokemon	A list of Pokémon that might be found in the wild holding this item	list NamedAPIResource (Pokemon)
 baby_trigger_for	An evolution chain this item requires to produce a bay during mating	list APIResource (EvolutionChain)
 */
+
+/// An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.
 public class PKMItem: Mappable {
+    
+    /// The identifier for this item resource
     public var id: Int?
+    
+    /// The name for this item resource
     public var name: String?
+    
+    /// The price of this item in stores
     public var cost: Int?
+    
+    /// The power of the move Fling when used with this item.
     public var fling_power: Int?
+    
+    /// The effect of the move Fling when used with this item
     public var fling_effect: PKMNamedAPIResource?
+    
+    /// A list of attributes this item has
     public var attributes: [PKMNamedAPIResource]?
+    
+    /// The category of items this item falls into
     public var category: PKMNamedAPIResource?
+    
+    /// The effect of this ability listed in different languages
     public var effect_entries: [PKMVerboseEffect]?
+    
+    /// The flavor text of this ability listed in different languages
     public var flavor_text_entries: [PKMVersionGroupFlavorText]?
+    
+    /// A list of game indices relevent to this item by generation
     public var game_indices: [PKMGenerationGameIndex]?
+    
+    /// The name of this item listed in different languages
     public var names: [PKMName]?
+    
+    /// A set of sprites used to depict this item in the game
     public var sprites: PKMItemSprites?
+    
+    /// A list of Pokémon that might be found in the wild holding this item
     public var held_by_pokemon: [PKMNamedAPIResource]?
+    
+    /// An evolution chain this item requires to produce a bay during mating
     public var baby_trigger_for: [PKMAPIResource]?
     
     required public init?(_ map: Map) {
