@@ -26,7 +26,7 @@ PokemonKit.fetchBerry("1")
 ## TODO
 
 - [x] Wrap all API end points
-- [ ] Fully Documented (In progress: 17% documented)
+- [x] Fully [Documented](http://continuouslearning.github.io/PokemonKit/)
 - [ ] Fully tested
 
 ## Installation
