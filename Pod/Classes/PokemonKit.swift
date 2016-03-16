@@ -2190,24 +2190,6 @@ public class PKMAPIResource: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this item resource	integer
-name	The name for this item resource	string
-cost	The price of this item in stores	integer
-fling_power	The power of the move Fling when used with this item.	integer
-fling_effect	The effect of the move Fling when used with this item	ItemFlingEffect
-attributes	A list of attributes this item has	list NamedAPIResource (ItemAttribute)
-category	The category of items this item falls into	ItemCategory
-effect_entries	The effect of this ability listed in different languages	list VerboseEffect
-flavor_text_entries	The flavor text of this ability listed in different languages	list VersionGroupFlavorText
-game_indices	A list of game indices relevent to this item by generation	list GenerationGameIndex
-names	The name of this item listed in different languages	list Name
-sprites	A set of sprites used to depict this item in the game	ItemSprites
-held_by_pokemon	A list of Pokémon that might be found in the wild holding this item	list NamedAPIResource (Pokemon)
-baby_trigger_for	An evolution chain this item requires to produce a bay during mating	list APIResource (EvolutionChain)
-*/
-
 /// An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.
 public class PKMItem: Mappable {
     
@@ -2275,27 +2257,34 @@ public class PKMItem: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this version group resource	integer
-name	The name for this version group resource	string
-order	Order for sorting. Almost by date of release, except similar versions are grouped together.	integer
-generation	The generation this version was introduced in	list NamedAPIResource (Generation)
-move_learn_methods	A list of methods in which Pokémon can learn moves in this version group	list NamedAPIResource (MoveLearnMethod)
-names	The name of this version group listed in different languages	list Name
-pokedexes	A list of Pokédexes introduces in this version group	list NamedAPIResource (Pokedex)
-regions	A list of regions that can be visited in this version group	list NamedAPIResource (Region)
-versions	The versions this version group owns	list NamedAPIResource (Version)
-*/
+/// Version groups categorize highly similar versions of the games.
 public class PKMVersionGroup: Mappable {
+    
+    /// The identifier for this version group resource
     public var id: Int?
+    
+    /// The name for this version group resource
     public var name: String?
+    
+    /// Order for sorting. Almost by date of release, except similar versions are grouped together.
     public var order: Int?
+    
+    /// The generation this version was introduced in
     public var generation: [PKMNamedAPIResource]?
+    
+    /// A list of methods in which Pokémon can learn moves in this version group
     public var moveLearnMethods: [PKMNamedAPIResource]?
+    
+    /// The name of this version group listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of Pokédexes introduces in this version group
     public var pokedexes: [PKMNamedAPIResource]?
+    
+    /// A list of regions that can be visited in this version group	list
     public var regions: [PKMNamedAPIResource]?
+    
+    /// The versions this version group owns
     public var versions: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -2315,16 +2304,19 @@ public class PKMVersionGroup: Mappable {
     }
 }
 
-/*
-id	The identifier for this version resource	integer
-name	The name for this version resource	string
-names	The name of this version listed in different languages	list Name
-version_group	The version group this version belongs to	NamedAPIResource (VersionGroup)
-*/
+/// Versions of the games, e.g., Red, Blue or Yellow.
 public class PKMVersion: Mappable {
+    
+    /// The identifier for this version resource
     public var id: Int?
+    
+    /// The name for this version resource
     public var name: String?
+    
+    /// The name of this version listed in different languages
     public var names: [PKMName]?
+    
+    /// The version group this version belongs to
     public var versionGroup: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -2339,13 +2331,13 @@ public class PKMVersion: Mappable {
     }
 }
 
-
-/*
-description	The localized description for an API resource in a specific language	string
-language	The language this name is in	NamedAPIResource (Language)
-*/
+/// Description
 public class PKMDescription: Mappable {
+    
+    /// The localized description for an API resource in a specific language
     public var description: String?
+    
+    /// The language this name is in
     public var language: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -2358,12 +2350,13 @@ public class PKMDescription: Mappable {
     }
 }
 
-/*
-entry_number	The index of this pokemon species entry within the Pokédex	integer
-pokemon_species	The Pokémon species being encountered	NamedAPIResource (PokemonSpecies)
-*/
+/// Entry
 public class PKMEntry: Mappable {
+    
+    /// The index of this pokemon species entry within the Pokédex
     public var entryNumber: Int?
+    
+    /// The Pokémon species being encountered
     public var pokemonSpecies: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -2376,24 +2369,31 @@ public class PKMEntry: Mappable {
     }
 }
 
-/*
-id	The identifier for this Pokédex resource	integer
-name	The name for this Pokédex resource	string
-is_main_series	Whether or not this Pokédex originated in the main series of the video games	boolean
-descriptions	The description of this Pokédex listed in different languages	list Description
-names	The name of this Pokédex listed in different languages	list Name
-pokemon_entries	A list of pokemon catalogued in this Pokédex and their indexes	list PokemonEntry
-region	The region this Pokédex catalogues pokemon for	NamedAPIResource (Region)
-version_groups	A list of version groups this Pokédex is relevent to	NamedAPIResource (VersionGroup)
-*/
+/// A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and retaining information of the various Pokémon in a given region with the exception of the national dex and some smaller dexes related to portions of a region. See Bulbapedia for greater detail.
 public class PKMPokedex: Mappable {
+    
+    /// The identifier for this Pokédex resource
     public var id: Int?
+    
+    /// The name for this Pokédex resource
     public var name: String?
+    
+    /// Whether or not this Pokédex originated in the main series of the video games
     public var isMainSeries: Bool?
+    
+    /// The description of this Pokédex listed in different languages
     public var descriptions: [PKMDescription]?
+    
+    /// The name of this Pokédex listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of pokemon catalogued in this Pokédex and their indexes
     public var pokemonEntries: [PKMEntry]?
+    
+    /// The region this Pokédex catalogues pokemon for
     public var region: PKMNamedAPIResource?
+    
+    /// A list of version groups this Pokédex is relevent to
     public var versionGroups: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -2412,16 +2412,34 @@ public class PKMPokedex: Mappable {
     }
 }
 
-
+/// A generation is a grouping of the Pokémon games that separates them based on the Pokémon they include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not exist in the previous generation are released.
 public class PKMGeneration: Mappable {
+    
+    /// The identifier for this generation resource
     public var id: Int?
+    
+    /// The name for this generation resource
     public var name: String?
+    
+    /// The name of this generation listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of abilities that were introduced in this generation
     public var abilities: [PKMNamedAPIResource]?
+    
+    /// The main region travelled in this generation
     public var mainRegion: PKMNamedAPIResource?
+    
+    /// A list of moves that were introduced in this generation
     public var moves: [PKMNamedAPIResource]?
+    
+    /// A list of Pokémon species that were introduced in this generation
     public var pokemonSpecies: [PKMNamedAPIResource]?
+    
+    /// A list of types that were introduced in this generation
     public var types: [PKMNamedAPIResource]?
+    
+    /// A list of version groups that were introduced in this generation
     public var versionGroups: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -2441,11 +2459,19 @@ public class PKMGeneration: Mappable {
     }
 }
 
-
+/// Evolution triggers are the events and conditions that cause a pokemon to evolve. Check out Bulbapedia for greater detail.
 public class PKMEvolutionTrigger: Mappable {
+    
+    /// The identifier for this evolution trigger resource
     public var id: Int?
+    
+    /// The name for this evolution trigger resource
     public var name: String?
+    
+    /// The name of this evolution trigger listed in different languages
     public var names: [PKMName]?
+    
+    /// A list of pokemon species that result from this evolution trigger
     public var pokemonSpecies: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -2460,25 +2486,61 @@ public class PKMEvolutionTrigger: Mappable {
     }
 }
 
-
+/// Evolution Detail
 public class PKMEvolutionDetail: Mappable {
+    
+    /// The item required to cause evolution this into Pokémon species
     public var item: PKMNamedAPIResource?
+    
+    /// The type of event that triggers evolution into this Pokémon species
     public var trigger: PKMNamedAPIResource?
+    
+    /// The gender the evolving Pokémon species must be in order to evolve into this Pokémon species
     public var gender: PKMNamedAPIResource?
+    
+    /// The item the evolving Pokémon species must be holding during the evolution
     public var heldItem: PKMNamedAPIResource?
+    
+    /// The move that must be known by the evolving Pokémon species during the evolution trigger event in order to evolve into this Pokémon species
     public var knownMove: PKMNamedAPIResource?
+    
+    /// The evolving Pokémon species must know a move with this type during the evolution trigger event in order to evolve into this Pokémon species
     public var knownMoveType: PKMNamedAPIResource?
+    
+    /// The location the evolution must be triggered at.
     public var location: PKMNamedAPIResource?
+    
+    /// The minimum required level of the evolving Pokémon species to evolve into this Pokémon species
     public var minLevel: Int?
+    
+    /// The minimum required level of happiness the evolving Pokémon species to evolve into this Pokémon species
     public var minHappiness: Int?
+    
+    /// The minimum required level of beauty the evolving Pokémon species to evolve into this Pokémon species
     public var minBeauty: Int?
+    
+    /// The minimum required level of affection the evolving Pokémon species to evolve into this Pokémon species
     public var minAffection: Int?
+    
+    /// Whether or not it must be raining in the overworld to cause evolution this Pokémon species
     public var needsOverworldRain: Bool?
+    
+    /// The pokemon species that must be in the players party in order for the evolving Pokémon species to evolve into this Pokémon species
     public var partySpecies: PKMNamedAPIResource?
+    
+    /// The player must have a pokemon of this type in their party during the evolution trigger event in order for the evolving Pokémon species to evolve into this Pokémon species
     public var partyType: PKMNamedAPIResource?
+    
+    /// The required relation between the Pokémon's Attack and Defense stats. 1 means Attack > Defense. 0 means Attack = Defense. -1 means Attack < Defense.
     public var relativePhysicalStats: Int?
+    
+    /// The required time of day. Day or night.
     public var timeOfDay: String?
+    
+    /// Pokémon species for which this one must be traded.
     public var tradeSpecies: PKMNamedAPIResource?
+    
+    /// Whether or not the 3DS needs to be turned upside-down as this Pokémon levels up.
     public var turnUpsideDown: Bool?
     
     required public init?(_ map: Map) {
@@ -2507,16 +2569,19 @@ public class PKMEvolutionDetail: Mappable {
     }
 }
 
-/*
-is_baby	Whether or not this link is for a baby Pokémon. This would only ever be true on the base link.	boolean
-species	The Pokémon species at this point in the evolution chain	NamedAPIResource (PokemonSpecies)
-evolution_details	All details regarding the specific details of the referenced Pokémon species evolution	EvolutionDetail
-evolves_to	A List of chain objects.	list ChainLink
-*/
+/// Clain Link
 public class PKMClainLink: Mappable {
+    
+    /// Whether or not this link is for a baby Pokémon. This would only ever be true on the base link.
     public var isBaby: Bool?
+    
+    /// The Pokémon species at this point in the evolution chain
     public var species: PKMNamedAPIResource?
+    
+    /// All details regarding the specific details of the referenced Pokémon species evolution
     public var evolutionDetails: PKMEvolutionDetail?
+    
+    /// A List of chain objects.
     public var evolvesTo: [PKMClainLink]?
     
     required public init?(_ map: Map) {
@@ -2531,15 +2596,16 @@ public class PKMClainLink: Mappable {
     }
 }
 
-/*
-id	The identifier for this evolution chain resource	integer
-baby_trigger_item	The item that a Pokémon would be holding when mating that would trigger the egg hatching a baby Pokémon rather than a basic Pokémon	NamedAPIResource (Item)
-chain	The base chain link object. Each link contains evolution details for a Pokémon in the chain. Each link references the next Pokémon in the natural evolution order.	ChainLink
-
-*/
+/// Evolution Chain
 public class PKMEvolutionChain: Mappable {
+    
+    /// The identifier for this evolution chain resource
     public var id: Int?
+    
+    /// The item that a Pokémon would be holding when mating that would trigger the egg hatching a baby Pokémon rather than a basic Pokémon
     public var babyTriggerItem: PKMNamedAPIResource?
+    
+    /// The base chain link object. Each link contains evolution details for a Pokémon in the chain. Each link references the next Pokémon in the natural evolution order.
     public var chain: PKMClainLink?
     
     required public init?(_ map: Map) {
@@ -2553,6 +2619,8 @@ public class PKMEvolutionChain: Mappable {
     }
 }
 
+
+/// Encounter Condition Value
 public class PKMEncounterConditionValue: Mappable {
     
     /// The identifier for this encounter condition value resource
@@ -2579,10 +2647,19 @@ public class PKMEncounterConditionValue: Mappable {
     }
 }
 
+/// Encounter Condition
 public class PKMEncounterCondition: Mappable {
+    
+    /// The identifier for this encounter condition resource
     public var id: Int?
+    
+    /// The name for this encounter condition resource
     public var name: String?
+    
+    /// A list of possible values for this encounter condition
     public var values: [PKMNamedAPIResource]?
+    
+    /// The name of this encounter method listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -2597,10 +2674,19 @@ public class PKMEncounterCondition: Mappable {
     }
 }
 
+/// Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall grass. Check out Bulbapedia for greater detail.
 public class PKMEncounterMethod: Mappable {
+    
+    /// The identifier for this encounter method resource
     public var id: Int?
+    
+    /// The name for this encounter method resource
     public var name: String?
+    
+    /// A good value for sorting
     public var order: Int?
+    
+    /// The name of this encounter method listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -2615,10 +2701,19 @@ public class PKMEncounterMethod: Mappable {
     }
 }
 
+/// Super contest effects refer to the effects of moves when used in super contests.
 public class PKMSuperContestEffect: Mappable {
+    
+    /// The identifier for this super contest effect resource
     public var id: Int?
+    
+    /// The level of appeal this super contest effect has
     public var appeal: String?
+    
+    /// The flavor text of this super contest effect listed in different languages
     public var flavorTextEntries: [PKMFlavorText]?
+    
+    /// A list of moves that have the effect when used in super contests
     public var moves: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -2633,8 +2728,14 @@ public class PKMSuperContestEffect: Mappable {
     }
 }
 
+
+/// Flavor Text
 public class PKMFlavorText: Mappable {
+    
+    /// The localized flavor text for an API resource in a specific language
     public var flavorText: String?
+    
+    /// The language this name is in
     public var language: PKMName?
     
     required public init?(_ map: Map) {
@@ -2647,8 +2748,14 @@ public class PKMFlavorText: Mappable {
     }
 }
 
+
+/// Effect Entry
 public class PKMEffectEntry: Mappable {
+    
+    /// The localized effect text for an API resource in a specific language
     public var effect: String?
+    
+    /// The language this effect is in
     public var language: PKMName?
     
     required public init?(_ map: Map) {
@@ -2661,11 +2768,22 @@ public class PKMEffectEntry: Mappable {
     }
 }
 
+/// Contest effects refer to the effects of moves when used in contests.
 public class PKMContestEffect: Mappable {
+    
+    /// The identifier for this contest type resource
     public var id: Int?
+    
+    /// The base number of hearts the user of this move gets
     public var appeal: String?
+    
+    /// The base number of hearts the user's opponent loses
     public var jam: Int?
+    
+    /// The result of this contest effect listed in different languages
     public var effectEntries: [PKMEffectEntry]?
+    
+    /// The flavor text of this contest effect listed in different languages
     public var flavorTextEntries: [PKMFlavorText]?
     
     required public init?(_ map: Map) {
@@ -2681,10 +2799,19 @@ public class PKMContestEffect: Mappable {
     }
 }
 
+/// Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests. Check out Bulbapedia for greater detail.
 public class PKMContestType: Mappable {
+    
+    /// The identifier for this contest type resource
     public var id: Int?
+    
+    /// The name for this contest type resource
     public var name: String?
+    
+    /// The berry flavor that correlates with this contest type
     public var berryFlavor: PKMNamedAPIResource?
+    
+    /// The name of this contest type listed in different languages
     public var names: [PKMName]?
     
     required public init?(_ map: Map) {
@@ -2699,10 +2826,19 @@ public class PKMContestType: Mappable {
     }
 }
 
+/// Paged Object
 public class PKMPagedObject: Mappable{
+    
+    /// The total number of resources abailable from this API
     public var count: Int?
+    
+    /// The url for the next 'page' in the list
     public var next: String?
+    
+    /// The url for the previous page in the list
     public var previous: String?
+    
+    /// List of unnamed API resources
     public var results: [PKMNamedAPIResource]?
     
     required public init?(_ map: Map) {
@@ -2717,8 +2853,13 @@ public class PKMPagedObject: Mappable{
     }
 }
 
+/// Name
 public class PKMName: Mappable{
+    
+    /// The localized name for an API resource in a specific language
     public var name: String?
+    
+    /// The language this name is in
     public var language: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
@@ -2731,8 +2872,14 @@ public class PKMName: Mappable{
     }
 }
 
+
+/// Named API Resource
 public class PKMNamedAPIResource: Mappable{
+    
+    /// The name of the referenced resource
     public var name: String?
+    
+    /// The URL of the referenced resource
     public var url: String?
     
     required public init?(_ map: Map){
@@ -2746,7 +2893,11 @@ public class PKMNamedAPIResource: Mappable{
 }
 
 public class PKMBerryFlavourMap: Mappable{
+    
+    /// How powerful the referenced flavor is for this berry
     public var potency: Int?
+    
+    /// The berry with the referenced flavor
     public var flavor: PKMNamedAPIResource?
     
     required public init?(_ map: Map){
@@ -2759,11 +2910,22 @@ public class PKMBerryFlavourMap: Mappable{
     }
 }
 
+/// Flavors determine whether a Pokémon will benefit or suffer from eating a berry based on their nature. Check out Bulbapedia for greater detail.
 public class PKMBerryFlavour: Mappable{
+    
+    /// The identifier for this berry flavor resource
     public var id: Int?
+    
+    /// The name for this berry flavor resource
     public var name: String?
+    
+    /// A list of the berries with this flavor
     public var berries: [PKMFlavourBerryMap]?
+    
+    /// The contest type that correlates with this berry flavor
     public var contestType: PKMNamedAPIResource?
+    
+    /// The name of this berry flavor listed in different languages
     public var names:[PKMName]?
     
     required public init?(_ map: Map){
@@ -2779,8 +2941,13 @@ public class PKMBerryFlavour: Mappable{
     }
 }
 
+/// Flavour Berry Map
 public class PKMFlavourBerryMap: Mappable {
+    
+    /// How powerful the referenced flavor is for this berry
     public var potency: Int?
+    
+    /// The berry with the referenced flavor
     public var berry: PKMNamedAPIResource?
     
     required public init?(_ map: Map){
@@ -2793,18 +2960,43 @@ public class PKMFlavourBerryMap: Mappable {
     }
 }
 
+/// Berries are small fruits that can provide HP and status condition restoration, stat enhancement, and even damage negation when eaten by Pokémon. Check out Bulbapedia for greater detail.
 public class PKMBerry: Mappable{
+    
+    /// The identifier for this berry resource
     public var id: Int?
+    
+    /// The name for this berry resource
     public var name: String?
+    
+    /// Time it takes the tree to grow one stage, in hours. Berry trees go through four of these growth stages before they can be picked.
     public var growthTime: Int?
+    
+    /// The maximum number of these berries that can grow on one tree in Generation IV
     public var maxHarvest: Int?
+    
+    /// The power of the move "Natural Gift" when used with this Berry
     public var naturalGiftPower: Int?
+    
+    /// The size of this Berry, in millimeters
     public var size: Int?
+    
+    /// The smoothness of this Berry, used in making Pokéblocks or Poffins
     public var smoothness: Int?
+    
+    /// The speed at which this Berry dries out the soil as it grows. A higher rate means the soil dries more quickly.
     public var soilDryness: Int?
+    
+    /// The firmness of this berry, used in making Pokéblocks or Poffins
     public var firmness: PKMNamedAPIResource?
+    
+    /// A list of references to each flavor a berry can have and the potency of each of those flavors in regard to this berry
     public var flavors: [PKMBerryFlavourMap]?
+    
+    /// Berries are actually items. This is a reference to the item specific data for this berry.
     public var item: PKMNamedAPIResource?
+    
+    /// The Type the move "Natural Gift" has when used with this Berry
     public var naturalGiftType: PKMNamedAPIResource?
     
     required public init?(_ map: Map){
@@ -2827,24 +3019,19 @@ public class PKMBerry: Mappable{
     }
 }
 
-public class PKMBerryName: Mappable {
-    var language: PKMNamedAPIResource?
-    var name: String?
-    
-    required public init?(_ map: Map){
-        
-    }
-    
-    public func mapping(map: Map) {
-        language <- map["language"]
-        name <- map["name"]
-    }
-}
-
+/// Berry Firmness
 public class PKMBerryFirmness: Mappable {
+    
+    /// The identifier for this berry firmness resource
     public var id: Int?
+    
+    /// The name of this berry firmness listed in different languages
     public var berries: [PKMNamedAPIResource]?
-    public var names: [PKMBerryName]?
+    
+    /// A list of the berries with this firmness
+    public var names: [PKMName]?
+    
+    /// The name for this berry firmness resource
     public var name: String?
     
     
