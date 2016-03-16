@@ -3050,6 +3050,11 @@ public class PKMBerryFirmness: Mappable {
 // MARK: -
 // MARK: Functions
 
+/**
+Fetch Berry list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchBerryList() -> Promise<PKMPagedObject>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/berry"
@@ -3064,6 +3069,13 @@ public func fetchBerryList() -> Promise<PKMPagedObject>{
     };
 }
 
+/**
+ Fetch Berry Information
+ 
+ - parameter berryId: Berry ID
+ 
+ - returns: A promise with PKMBerry
+ */
 public func fetchBerry(berryId: String) -> Promise<PKMBerry>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/berry/" + berryId
@@ -3078,6 +3090,11 @@ public func fetchBerry(berryId: String) -> Promise<PKMBerry>{
     }
 }
 
+/**
+Fetch Berry Firmness list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchBerryFirmnessList() -> Promise<PKMPagedObject>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/berry-firmness"
@@ -3092,6 +3109,13 @@ public func fetchBerryFirmnessList() -> Promise<PKMPagedObject>{
     }
 }
 
+/**
+ Fetch Berry Firmness Information
+ 
+ - parameter berryFirmnessId: Berry Firmness ID
+ 
+ - returns: A promise with PKMBerryFirmness
+ */
 public func fetchBerryFirmness(berryFirmnessId: String) -> Promise<PKMBerryFirmness>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/berry-firmness/" + berryFirmnessId
@@ -3108,7 +3132,11 @@ public func fetchBerryFirmness(berryFirmnessId: String) -> Promise<PKMBerryFirmn
     }
 }
 
+/**
+Fetch Berry Flavours list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchBerryFlavours() -> Promise<PKMPagedObject>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/berry-flavor"
@@ -3123,6 +3151,13 @@ public func fetchBerryFlavours() -> Promise<PKMPagedObject>{
     }
 }
 
+/**
+ Fetch Berry Flavour Information
+ 
+ - parameter berryFlavourId: Berry Flavour ID
+ 
+ - returns: A promise with PKMBerryFlavour
+ */
 public func fetchBerryFlavour(berryFlavourId: String) -> Promise<PKMBerryFlavour>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/berry-flavor/" + berryFlavourId
@@ -3139,6 +3174,11 @@ public func fetchBerryFlavour(berryFlavourId: String) -> Promise<PKMBerryFlavour
     }
 }
 
+/**
+Fetch Contest list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchContestList() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/contest-type"
@@ -3153,6 +3193,13 @@ public func fetchContestList() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Contest Type Information
+ 
+ - parameter contestTypeId: Contest Type ID
+ 
+ - returns: A promise with PKMContestType
+ */
 public func fetchContestType(contestTypeId: String) -> Promise<PKMContestType>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/contest-type/" + contestTypeId
@@ -3169,6 +3216,11 @@ public func fetchContestType(contestTypeId: String) -> Promise<PKMContestType>{
     }
 }
 
+/**
+Fetch Contest Effects list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchContestEffects() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/contest-effect"
@@ -3183,6 +3235,13 @@ public func fetchContestEffects() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Contest Effect Information
+ 
+ - parameter contestEffectId: Contest Effect ID
+ 
+ - returns: A promise with PKMContestEffect
+ */
 public func fetchContestEffect(contestEffectId: String) -> Promise<PKMContestEffect>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/contest-effect/" + contestEffectId
@@ -3199,6 +3258,11 @@ public func fetchContestEffect(contestEffectId: String) -> Promise<PKMContestEff
     }
 }
 
+/**
+Fetch Super Contest Effects list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchSuperContestEffects() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/contest-effect"
@@ -3213,6 +3277,13 @@ public func fetchSuperContestEffects() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Super Contest Effect Information
+ 
+ - parameter superContestEffectId: Super Contest Effect ID
+ 
+ - returns: A promise with PKMSuperContestEffect
+ */
 public func fetchSuperContestEffect(superContestEffectId: String) -> Promise<PKMSuperContestEffect>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/super-contest-effect/" + superContestEffectId
@@ -3229,6 +3300,11 @@ public func fetchSuperContestEffect(superContestEffectId: String) -> Promise<PKM
     }
 }
 
+/**
+Fetch Encounter Methods list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchEncounterMethods() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/encounter-method"
@@ -3243,6 +3319,13 @@ public func fetchEncounterMethods() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Encounter Method Information
+ 
+ - parameter encounterMethodId: Encounter Method ID
+ 
+ - returns: A promise with PKMEncounterMethod
+ */
 public func fetchEncounterMethod(encounterMethodId: String) -> Promise<PKMEncounterMethod>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/encounter-method/" + encounterMethodId
@@ -3259,6 +3342,11 @@ public func fetchEncounterMethod(encounterMethodId: String) -> Promise<PKMEncoun
     }
 }
 
+/**
+Fetch Encounter Conditions list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchEncounterConditions() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/encounter-condition"
@@ -3273,11 +3361,18 @@ public func fetchEncounterConditions() -> Promise<PKMPagedObject> {
     }
 }
 
-public func fetchEncounterCondition(encounterConditionId: String) -> Promise<PKMEncounterMethod>{
+/**
+ Fetch Encounter Condition Information
+ 
+ - parameter encounterConditionId: Encounter Condition ID
+ 
+ - returns: A promise with PKMEncounterCondition
+ */
+public func fetchEncounterCondition(encounterConditionId: String) -> Promise<PKMEncounterCondition>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/encounter-condition/" + encounterConditionId
         
-        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEncounterMethod, NSError>) in
+        Alamofire.request(.GET, URL).responseObject() { (response: Response<PKMEncounterCondition, NSError>) in
             
             if (response.result.isSuccess) {
                 fulfill(response.result.value!)
@@ -3289,6 +3384,11 @@ public func fetchEncounterCondition(encounterConditionId: String) -> Promise<PKM
     }
 }
 
+/**
+Fetch Encounter Condition Values list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchEncounterConditionValues() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/encounter-condition-value"
@@ -3303,6 +3403,13 @@ public func fetchEncounterConditionValues() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Encounter Condition Value Information
+ 
+ - parameter encounterConditionValueId: Encounter Condition Value ID
+ 
+ - returns: A promise with PKMEncounterConditionValue
+ */
 public func fetchEncounterConditionValue(encounterConditionValueId: String) -> Promise<PKMEncounterConditionValue>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/encounter-condition-value/" + encounterConditionValueId
@@ -3319,6 +3426,11 @@ public func fetchEncounterConditionValue(encounterConditionValueId: String) -> P
     }
 }
 
+/**
+Fetch Encounter Chains list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchEvolutionChains() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/evolution-chain"
@@ -3333,6 +3445,13 @@ public func fetchEvolutionChains() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Evolution Chain Information
+ 
+ - parameter evolutionChainId: Evolution Chain ID
+ 
+ - returns: A promise with PKMEvolutionChain
+ */
 public func fetchEvolutionChain(evolutionChainId: String) -> Promise<PKMEvolutionChain>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/evolution-chain/" + evolutionChainId
@@ -3349,6 +3468,11 @@ public func fetchEvolutionChain(evolutionChainId: String) -> Promise<PKMEvolutio
     }
 }
 
+/**
+Fetch Encounter Triggers list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchEvolutionTriggers() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/evolution-trigger"
@@ -3363,6 +3487,13 @@ public func fetchEvolutionTriggers() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Evolution Trigger Information
+ 
+ - parameter evolutionTriggerId: Evolution Trigger ID
+ 
+ - returns: A promise with PKMEvolutionTrigger
+ */
 public func fetchEvolutionTrigger(evolutionTriggerId: String) -> Promise<PKMEvolutionTrigger>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/evolution-trigger/" + evolutionTriggerId
@@ -3379,6 +3510,11 @@ public func fetchEvolutionTrigger(evolutionTriggerId: String) -> Promise<PKMEvol
     }
 }
 
+/**
+Fetch Generations list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchGenerations() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/generation"
@@ -3393,6 +3529,13 @@ public func fetchGenerations() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Generation Information
+ 
+ - parameter generationId: Generation ID
+ 
+ - returns: A promise with PKMGeneration
+ */
 public func fetchGeneration(generationId: String) -> Promise<PKMGeneration>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/generation/" + generationId
@@ -3409,6 +3552,11 @@ public func fetchGeneration(generationId: String) -> Promise<PKMGeneration>{
     }
 }
 
+/**
+Fetch Pokedexes list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchPokedexes() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokedex"
@@ -3423,6 +3571,13 @@ public func fetchPokedexes() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Pokedex Information
+ 
+ - parameter pokedexId: Pokedex ID
+ 
+ - returns: A promise with PKMPokedex
+ */
 public func fetchPokedex(pokedexId: String) -> Promise<PKMPokedex>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokedex/" + pokedexId
@@ -3439,6 +3594,11 @@ public func fetchPokedex(pokedexId: String) -> Promise<PKMPokedex>{
     }
 }
 
+/**
+Fetch Versions list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchVersions() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/version"
@@ -3453,6 +3613,13 @@ public func fetchVersions() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Version Information
+ 
+ - parameter versionId: Version ID
+ 
+ - returns: A promise with PKMVersion
+ */
 public func fetchVersion(versionId: String) -> Promise<PKMVersion>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/version/" + versionId
@@ -3469,6 +3636,11 @@ public func fetchVersion(versionId: String) -> Promise<PKMVersion>{
     }
 }
 
+/**
+Fetch Versions Groups list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchVersionGroups() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/version-group"
@@ -3483,6 +3655,13 @@ public func fetchVersionGroups() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Version Group Information
+ 
+ - parameter versionGroupId: Version Group ID
+ 
+ - returns: A promise with PKMVersionGroup
+ */
 public func fetchVersionGroup(versionGroupId: String) -> Promise<PKMVersionGroup>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/version-group/" + versionGroupId
@@ -3499,6 +3678,11 @@ public func fetchVersionGroup(versionGroupId: String) -> Promise<PKMVersionGroup
     }
 }
 
+/**
+Fetch Items list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchItems() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/item"
@@ -3513,6 +3697,13 @@ public func fetchItems() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Item Information
+ 
+ - parameter itemId: Item ID
+ 
+ - returns: A promise with PKMItem
+ */
 public func fetchItem(itemId: String) -> Promise<PKMItem>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/item/" + itemId
@@ -3529,6 +3720,11 @@ public func fetchItem(itemId: String) -> Promise<PKMItem>{
     }
 }
 
+/**
+Fetch Item Attributes list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchItemAttributes() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/item-attribute"
@@ -3543,6 +3739,13 @@ public func fetchItemAttributes() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Item Attribute Information
+ 
+ - parameter itemAttributeId: Item Attribute ID
+ 
+ - returns: A promise with PKMItemAttribute
+ */
 public func fetchItemAttribute(itemAttributeId: String) -> Promise<PKMItemAttribute>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/item-attribute/" + itemAttributeId
@@ -3559,6 +3762,11 @@ public func fetchItemAttribute(itemAttributeId: String) -> Promise<PKMItemAttrib
     }
 }
 
+/**
+Fetch Item Categories list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchItemCategories() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/item-category"
@@ -3573,6 +3781,13 @@ public func fetchItemCategories() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Item Category Information
+ 
+ - parameter itemCategoryId: Item Category ID
+ 
+ - returns: A promise with PKMItemCategory
+ */
 public func fetchItemCategory(itemCategoryId: String) -> Promise<PKMItemCategory>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/item-category/" + itemCategoryId
@@ -3589,6 +3804,11 @@ public func fetchItemCategory(itemCategoryId: String) -> Promise<PKMItemCategory
     }
 }
 
+/**
+Fetch Item Fling Effects list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchItemFlingEffects() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/item-fling-effect"
@@ -3603,6 +3823,13 @@ public func fetchItemFlingEffects() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Item Fling Effect Information
+ 
+ - parameter itemFlingEffectsId: Item Fling Effect ID
+ 
+ - returns: A promise with PKMItemFlingEffect
+ */
 public func fetchItemFlingEffect(itemFlingEffectsId: String) -> Promise<PKMItemFlingEffect>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/item-fling-effect/" + itemFlingEffectsId
@@ -3619,6 +3846,11 @@ public func fetchItemFlingEffect(itemFlingEffectsId: String) -> Promise<PKMItemF
     }
 }
 
+/**
+Fetch Item Pockets list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchItemPockets() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/item-pocket"
@@ -3633,6 +3865,13 @@ public func fetchItemPockets() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Item Pocket Information
+ 
+ - parameter itemPocketId: Item Pocket ID
+ 
+ - returns: A promise with PKMItemPocket
+ */
 public func fetchItemPocket(itemPocketId: String) -> Promise<PKMItemPocket>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/item-pocket/" + itemPocketId
@@ -3649,6 +3888,11 @@ public func fetchItemPocket(itemPocketId: String) -> Promise<PKMItemPocket>{
     }
 }
 
+/**
+Fetch Moves list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchMoves() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/move"
@@ -3663,6 +3907,13 @@ public func fetchMoves() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Move Information
+ 
+ - parameter moveId: Move ID
+ 
+ - returns: A promise with PKMMove
+ */
 public func fetchMove(moveId: String) -> Promise<PKMMove>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/move/" + moveId
@@ -3679,6 +3930,11 @@ public func fetchMove(moveId: String) -> Promise<PKMMove>{
     }
 }
 
+/**
+Fetch Moves Ailments list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchMoveAilments() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-ailment"
@@ -3693,6 +3949,13 @@ public func fetchMoveAilments() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Move Ailment Information
+ 
+ - parameter moveAilmentId: Move Ailment ID
+ 
+ - returns: A promise with PKMMoveAilment
+ */
 public func fetchMoveAilment(moveAilmentId: String) -> Promise<PKMMoveAilment>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-ailment/" + moveAilmentId
@@ -3709,7 +3972,11 @@ public func fetchMoveAilment(moveAilmentId: String) -> Promise<PKMMoveAilment>{
     }
 }
 
-//MoveBattleStyles
+/**
+Fetch Moves Battle Styles list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchMoveBattleStyles() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-battle-style"
@@ -3724,6 +3991,13 @@ public func fetchMoveBattleStyles() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Move Battle Style Information
+ 
+ - parameter moveBattleStyleId: Move Battle Style ID
+ 
+ - returns: A promise with PKMMoveBattleStyle
+ */
 public func fetchMoveBattleStyle(moveBattleStyleId: String) -> Promise<PKMMoveBattleStyle>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-battle-style/" + moveBattleStyleId
@@ -3740,7 +4014,11 @@ public func fetchMoveBattleStyle(moveBattleStyleId: String) -> Promise<PKMMoveBa
     }
 }
 
-//MoveCategory
+/**
+Fetch Moves Categories list
+
+- returns: A promise with PKMPagedObject
+*/
 public func fetchMoveCategories() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-category"
@@ -3755,6 +4033,13 @@ public func fetchMoveCategories() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Move Category Information
+ 
+ - parameter moveCategoryId: Move Category ID
+ 
+ - returns: A promise with PKMMoveCategory
+ */
 public func fetchMoveCategory(moveCategoryId: String) -> Promise<PKMMoveCategory>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-category/" + moveCategoryId
@@ -3771,8 +4056,11 @@ public func fetchMoveCategory(moveCategoryId: String) -> Promise<PKMMoveCategory
     }
 }
 
-//MoveDamageClass
+/**
+Fetch Moves Damage Classes list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchMoveDamageClasses() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-damage-class"
@@ -3787,6 +4075,13 @@ public func fetchMoveDamageClasses() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Move Damage Class Information
+ 
+ - parameter moveDamageClassId: Move Damage Class ID
+ 
+ - returns: A promise with PKMMoveDamageClass
+ */
 public func fetchMoveDamageClass(moveDamageClassId: String) -> Promise<PKMMoveDamageClass>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-damage-class/" + moveDamageClassId
@@ -3803,8 +4098,11 @@ public func fetchMoveDamageClass(moveDamageClassId: String) -> Promise<PKMMoveDa
     }
 }
 
-//MoveLearnMethods
+/**
+Fetch Moves Learn Methods list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchMoveLearnMethods() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-learn-method"
@@ -3819,6 +4117,13 @@ public func fetchMoveLearnMethods() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Move Learn Method Information
+ 
+ - parameter moveLearnMethodId: Move Learn Method ID
+ 
+ - returns: A promise with PKMMoveLearnMethod
+ */
 public func fetchMoveLearnMethod(moveLearnMethodId: String) -> Promise<PKMMoveLearnMethod>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-learn-method/" + moveLearnMethodId
@@ -3835,8 +4140,11 @@ public func fetchMoveLearnMethod(moveLearnMethodId: String) -> Promise<PKMMoveLe
     }
 }
 
-//MoveTarget
+/**
+Fetch Moves Targets list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchMoveTargets() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-target"
@@ -3851,6 +4159,13 @@ public func fetchMoveTargets() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Move Target Information
+ 
+ - parameter moveTargetId: Move Target ID
+ 
+ - returns: A promise with PKMMoveTarget
+ */
 public func fetchMoveTarget(moveTargetId: String) -> Promise<PKMMoveTarget>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/move-target/" + moveTargetId
@@ -3867,8 +4182,11 @@ public func fetchMoveTarget(moveTargetId: String) -> Promise<PKMMoveTarget>{
     }
 }
 
-//Location
+/**
+Fetch Locations list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchLocations() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/location"
@@ -3883,6 +4201,13 @@ public func fetchLocations() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Location Information
+ 
+ - parameter locationId: Location ID
+ 
+ - returns: A promise with PKMLocation
+ */
 public func fetchLocation(locationId: String) -> Promise<PKMLocation>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/location/" + locationId
@@ -3899,8 +4224,11 @@ public func fetchLocation(locationId: String) -> Promise<PKMLocation>{
     }
 }
 
-//LocationArea
+/**
+Fetch Location Area list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchLocationAreas() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/location-area"
@@ -3915,6 +4243,13 @@ public func fetchLocationAreas() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Location Area Information
+ 
+ - parameter locationAreaId: Location Area ID
+ 
+ - returns: A promise with PKMLocationArea
+ */
 public func fetchLocationArea(locationAreaId: String) -> Promise<PKMLocationArea>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/location-area/" + locationAreaId
@@ -3931,8 +4266,11 @@ public func fetchLocationArea(locationAreaId: String) -> Promise<PKMLocationArea
     }
 }
 
-//PalParkArea
+/**
+Fetch Pal Park Areas list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchPalParkAreas() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/pal-park-area"
@@ -3947,6 +4285,13 @@ public func fetchPalParkAreas() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Pal Park Area Information
+ 
+ - parameter palParkAreaId: Pal Park Area ID
+ 
+ - returns: A promise with PKMPalParkArea
+ */
 public func fetchPalParkArea(palParkAreaId: String) -> Promise<PKMPalParkArea>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/pal-park-area/" + palParkAreaId
@@ -3963,8 +4308,11 @@ public func fetchPalParkArea(palParkAreaId: String) -> Promise<PKMPalParkArea>{
     }
 }
 
-//Region
+/**
+Fetch Regions list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchRegions() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/region"
@@ -3979,6 +4327,13 @@ public func fetchRegions() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Region Information
+ 
+ - parameter regionId: Region ID
+ 
+ - returns: A promise with PKMRegion
+ */
 public func fetchRegion(regionId: String) -> Promise<PKMRegion>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/region/" + regionId
@@ -3995,8 +4350,11 @@ public func fetchRegion(regionId: String) -> Promise<PKMRegion>{
     }
 }
 
-//Abilities
+/**
+Fetch Abilities list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchAbilities() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/ability"
@@ -4011,6 +4369,13 @@ public func fetchAbilities() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Ability Information
+ 
+ - parameter abilityId: Ability ID
+ 
+ - returns: A promise with PKMAbility
+ */
 public func fetchAbility(abilityId: String) -> Promise<PKMAbility>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/ability/" + abilityId
@@ -4027,8 +4392,11 @@ public func fetchAbility(abilityId: String) -> Promise<PKMAbility>{
     }
 }
 
-//Characteristic
+/**
+Fetch Characteristics list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchCharacteristics() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/characteristic"
@@ -4043,6 +4411,13 @@ public func fetchCharacteristics() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Characteristic Information
+ 
+ - parameter characteristicId: Characteristic ID
+ 
+ - returns: A promise with PKMCharacteristic
+ */
 public func fetchCharacteristic(characteristicId: String) -> Promise<PKMCharacteristic>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/characteristic/" + characteristicId
@@ -4059,8 +4434,11 @@ public func fetchCharacteristic(characteristicId: String) -> Promise<PKMCharacte
     }
 }
 
-//EggGroup
+/**
+Fetch Egg Group list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchEggGroup() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/egg-group"
@@ -4075,6 +4453,13 @@ public func fetchEggGroup() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Egg Group Information
+ 
+ - parameter eggGroupId: Egg Group ID
+ 
+ - returns: A promise with PKMEggGroup
+ */
 public func fetchEggGroup(eggGroupId: String) -> Promise<PKMEggGroup>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/egg-group/" + eggGroupId
@@ -4091,8 +4476,11 @@ public func fetchEggGroup(eggGroupId: String) -> Promise<PKMEggGroup>{
     }
 }
 
-//Gender
+/**
+Fetch Genders list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchGenders() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/gender"
@@ -4107,6 +4495,13 @@ public func fetchGenders() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Gender Information
+ 
+ - parameter genderId: Gender ID
+ 
+ - returns: A promise with PKMGender
+ */
 public func fetchGender(genderId: String) -> Promise<PKMGender>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/gender/" + genderId
@@ -4123,8 +4518,11 @@ public func fetchGender(genderId: String) -> Promise<PKMGender>{
     }
 }
 
-//GrowthRate
+/**
+Fetch Growth Rate list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchGrowthRates() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/growth-rate"
@@ -4139,6 +4537,13 @@ public func fetchGrowthRates() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Growth Rate Information
+ 
+ - parameter growthRateId: Growth Rate ID
+ 
+ - returns: A promise with PKMGrowthRate
+ */
 public func fetchGrowthRate(growthRateId: String) -> Promise<PKMGrowthRate>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/growth-rate/" + growthRateId
@@ -4155,8 +4560,11 @@ public func fetchGrowthRate(growthRateId: String) -> Promise<PKMGrowthRate>{
     }
 }
 
-//Nature
+/**
+Fetch Nature list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchNatures() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/nature"
@@ -4171,6 +4579,13 @@ public func fetchNatures() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Nature Information
+ 
+ - parameter natureId: Nature ID
+ 
+ - returns: A promise with PKMNature
+ */
 public func fetchNature(natureId: String) -> Promise<PKMNature>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/nature/" + natureId
@@ -4187,8 +4602,11 @@ public func fetchNature(natureId: String) -> Promise<PKMNature>{
     }
 }
 
-//PokeathlonStat
+/**
+Fetch Pokeathlon Stat list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchPokeathlonStats() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokeathlon-stat"
@@ -4203,6 +4621,13 @@ public func fetchPokeathlonStats() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Pokeathlon Stat Information
+ 
+ - parameter pokeathlonStatId: Pokeathlon Stat ID
+ 
+ - returns: A promise with PKMPokeathlonStat
+ */
 public func fetchPokeathlonStat(pokeathlonStatId: String) -> Promise<PKMPokeathlonStat>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokeathlon-stat/" + pokeathlonStatId
@@ -4219,8 +4644,11 @@ public func fetchPokeathlonStat(pokeathlonStatId: String) -> Promise<PKMPokeathl
     }
 }
 
-//Pokemon
+/**
+Fetch Pokemon list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchPokemons() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon"
@@ -4235,6 +4663,13 @@ public func fetchPokemons() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Pokemon Information
+ 
+ - parameter pokemonId: Pokemon( ID
+ 
+ - returns: A promise with PKMPokemon
+ */
 public func fetchPokemon(pokemonId: String) -> Promise<PKMPokemon>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon/" + pokemonId
@@ -4251,8 +4686,11 @@ public func fetchPokemon(pokemonId: String) -> Promise<PKMPokemon>{
     }
 }
 
-//PokemonColor
+/**
+Fetch Pokemon Color list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchPokemonColors() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon-color"
@@ -4267,6 +4705,13 @@ public func fetchPokemonColors() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Pokemon Color Information
+ 
+ - parameter pokemonColorId: Pokemon Color ID
+ 
+ - returns: A promise with PKMPokemonColor
+ */
 public func fetchPokemonColor(pokemonColorId: String) -> Promise<PKMPokemonColor>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon-color/" + pokemonColorId
@@ -4283,8 +4728,11 @@ public func fetchPokemonColor(pokemonColorId: String) -> Promise<PKMPokemonColor
     }
 }
 
-//PokemonForm
+/**
+Fetch Pokemon Form list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchPokemonForms() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon-form"
@@ -4299,6 +4747,13 @@ public func fetchPokemonForms() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Pokemon Form Information
+ 
+ - parameter pokemonFormId: Pokemon Form ID
+ 
+ - returns: A promise with PKMPokemonForm
+ */
 public func fetchPokemonForm(pokemonFormId: String) -> Promise<PKMPokemonForm>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon-form/" + pokemonFormId
@@ -4315,8 +4770,11 @@ public func fetchPokemonForm(pokemonFormId: String) -> Promise<PKMPokemonForm>{
     }
 }
 
-//PokemonHabitat
+/**
+Fetch Pokemon Habitat list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchPokemonHabitats() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon-habitat"
@@ -4331,6 +4789,13 @@ public func fetchPokemonHabitats() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Pokemon Habitat Information
+ 
+ - parameter pokemonHabitatId: Pokemon Habitat ID
+ 
+ - returns: A promise with PKMPokemonHabitat
+ */
 public func fetchPokemonHabitat(pokemonHabitatId: String) -> Promise<PKMPokemonHabitat>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon-habitat/" + pokemonHabitatId
@@ -4347,8 +4812,11 @@ public func fetchPokemonHabitat(pokemonHabitatId: String) -> Promise<PKMPokemonH
     }
 }
 
-//PokemonShape
+/**
+Fetch Pokemon Shape list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchPokemonShapes() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon-shape"
@@ -4363,6 +4831,13 @@ public func fetchPokemonShapes() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Pokemon Shape Information
+ 
+ - parameter pokemonShapeId: Pokemon Shape ID
+ 
+ - returns: A promise with PKMPokemonShape
+ */
 public func fetchPokemonShape(pokemonShapeId: String) -> Promise<PKMPokemonShape>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon-shape/" + pokemonShapeId
@@ -4379,8 +4854,11 @@ public func fetchPokemonShape(pokemonShapeId: String) -> Promise<PKMPokemonShape
     }
 }
 
-//PokemonSpecies
+/**
+Fetch Pokemon Species list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchPokemonSpecies() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon-species"
@@ -4395,6 +4873,13 @@ public func fetchPokemonSpecies() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Pokemon Species Information
+ 
+ - parameter pokemonSpeciesId: Pokemon Species ID
+ 
+ - returns: A promise with PKMPokemonSpecies
+ */
 public func fetchPokemonSpecies(pokemonSpeciesId: String) -> Promise<PKMPokemonSpecies>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/pokemon-species/" + pokemonSpeciesId
@@ -4411,8 +4896,11 @@ public func fetchPokemonSpecies(pokemonSpeciesId: String) -> Promise<PKMPokemonS
     }
 }
 
-//Stat
+/**
+Fetch Stat list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchStats() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/stat"
@@ -4427,6 +4915,13 @@ public func fetchStats() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Stat Information
+ 
+ - parameter statId: Stat ID
+ 
+ - returns: A promise with PKMStat
+ */
 public func fetchStat(statId: String) -> Promise<PKMStat>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/stat/" + statId
@@ -4443,8 +4938,11 @@ public func fetchStat(statId: String) -> Promise<PKMStat>{
     }
 }
 
-//Type
+/**
+Fetch Type list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchType() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/type"
@@ -4459,6 +4957,13 @@ public func fetchType() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Type Information
+ 
+ - parameter typeId: Type ID
+ 
+ - returns: A promise with PKMType
+ */
 public func fetchType(typeId: String) -> Promise<PKMType>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/type/" + typeId
@@ -4475,8 +4980,11 @@ public func fetchType(typeId: String) -> Promise<PKMType>{
     }
 }
 
-//Language
+/**
+Fetch Languages list
 
+- returns: A promise with PKMPagedObject
+*/
 public func fetchLanguages() -> Promise<PKMPagedObject> {
     return Promise { fulfill, reject in
         let URL = baseURL + "/language"
@@ -4491,6 +4999,13 @@ public func fetchLanguages() -> Promise<PKMPagedObject> {
     }
 }
 
+/**
+ Fetch Language Information
+ 
+ - parameter languageId: Language ID
+ 
+ - returns: A promise with PKMLanguage
+ */
 public func fetchLanguage(languageId: String) -> Promise<PKMLanguage>{
     return Promise { fulfill, reject in
         let URL = baseURL + "/language/" + languageId
