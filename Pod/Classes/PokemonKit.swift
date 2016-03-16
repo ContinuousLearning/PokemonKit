@@ -901,17 +901,19 @@ public class PKMNaturePokeathlonStatAffectSets: Mappable {
     }
 }
 
-
-/*
-id	The identifier for this Pokéathlon stat resource	integer
-name	The name for this Pokéathlon stat resource	string
-names	The name of this Pokéathlon stat listed in different languages	list Name
-affecting_natures	A detail of natures which affect this Pokéathlon stat positively or negatively	NaturePokeathlonStatAffectSets
-*/
+/// Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In Pokéathlons, competitions happen on different courses; one for each of the different Pokéathlon stats. See Bulbapedia for greater detail.
 public class PKMPokeathlonStat: Mappable {
+    
+    /// The identifier for this Pokéathlon stat resource
     public var id: Int?
+    
+    /// The name for this Pokéathlon stat resource
     public var name: String?
+    
+    /// The name of this Pokéathlon stat listed in different languages
     public var names: [PKMName]?
+    
+    /// A detail of natures which affect this Pokéathlon stat positively or negatively
     public var affectingNatures: PKMNaturePokeathlonStatAffectSets?
     
     required public init?(_ map: Map) {
@@ -926,15 +928,16 @@ public class PKMPokeathlonStat: Mappable {
     }
 }
 
-
-/*
-low_hp_preference	Chance of using the move, in percent, if HP is under one half	integer
-high_hp_preference	Chance of using the move, in percent, if HP is over one half	integer
-move_battle_style	The move battle style	NamedAPIResource (MoveBattleStyle)
-*/
+/// Move Battle Style Preference
 public class PKMMoveBattleStylePreference: Mappable {
+    
+    /// Chance of using the move, in percent, if HP is under one half
     public var lowHpPreference: Int?
+    
+    /// Chance of using the move, in percent, if HP is over one half
     public var highHpPreference: Int?
+    
+    /// The move battle style
     public var moveBattleStyle: PKMNamedAPIResource?
     
     required public init?(_ map: Map) {
