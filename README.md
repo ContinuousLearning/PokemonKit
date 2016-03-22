@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
 [![License](https://img.shields.io/cocoapods/l/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
 [![Platform](https://img.shields.io/cocoapods/p/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
+[![codebeat badge](https://codebeat.co/badges/8394f59e-c142-4477-b535-3d0b58007f78)](https://codebeat.co/projects/github-com-continuouslearning-pokemonkit)
 
 ## What is this?
 PokemonKit is a swift wrapper for Pokeapi. 
