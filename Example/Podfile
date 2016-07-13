@@ -1,11 +1,11 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-target 'PokemonKit_Example', :exclusive => true do
+target 'PokemonKit_Example' do
   pod 'PokemonKit', :path => '../'
 end
 
-target 'PokemonKit_Tests', :exclusive => true do
+target 'PokemonKit_Tests' do
   pod 'PokemonKit', :path => '../'
   pod 'OHHTTPStubs/Swift'
   

@@ -14,7 +14,7 @@ PODS:
     - OMGHTTPURLRQ/FormURLEncode
     - OMGHTTPURLRQ/UserAgent
   - OMGHTTPURLRQ/UserAgent (3.1.1)
-  - PokemonKit (0.1.0):
+  - PokemonKit (1.0.2):
     - Alamofire (~> 3.0)
     - AlamofireObjectMapper (~> 2.1)
     - PromiseKit
@@ -45,7 +45,9 @@ SPEC CHECKSUMS:
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
   OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
   OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
-  PokemonKit: a1af9e614b6ae0777f2696738d541d4ed5373e38
+  PokemonKit: e334cd270095b63f710df1a48abe813c9a307c23
   PromiseKit: 00ec2a219bf5ad2833f95977698e921932b8dfd3
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 3ea0816422bf40192ac189a9ba4ab19ece1e42fb
+
+COCOAPODS: 1.0.0
