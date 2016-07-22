@@ -37,5 +37,5 @@ PokemonKit use Alamofire and PromiseKit for async web requests handling.
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'Alamofire', '~> 3.0'
   s.dependency 'AlamofireObjectMapper', '~> 2.1'
-  s.dependency 'PromiseKit'
+  s.dependency 'PromiseKit', '~> 3.2'
 end
