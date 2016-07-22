@@ -12,7 +12,7 @@
 		095406039B4D371E48D08B38A2975AC8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0191F7D980748C94F9FFD4FBA036D22 /* Error.swift */; };
 		0A7C4FCF247DEC45FF2DC596C59D26C0 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0642774D52FC7FDC900E254446C222F /* Map.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0B34EB4425C08BB021C2D09F75C9C146 /* OMGHTTPURLRQ.h in Headers */ = {isa = PBXBuildFile; fileRef = 788F2913522A8D3B64621B1307154495 /* OMGHTTPURLRQ.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0BE729DF17F5E95679BC5B9D9587BDCE /* PokemonKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA9D7AD7A3CD700CDCEA2CFB087051 /* PokemonKit.swift */; };
+		0BE729DF17F5E95679BC5B9D9587BDCE /* PokemonKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73F0133195FE09ACA2EADF8BB4EF75D /* PokemonKit.swift */; };
 		10C5D38F9F11E0A7DCAF5814CA1B36FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBC98854919DC81F43643C56DCAA1CF /* Foundation.framework */; };
 		14FE9F5E5AE1E4D9A1CAEA2F49C5DC90 /* PromiseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E16C1B15A344503E58BF8C296EAF4C81 /* PromiseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1517882EAEBCC7BD4E2232FD64E6E6F4 /* CustomDateFormatTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3792F189048B1FD3EE1507B3CBFA0D3 /* CustomDateFormatTransform.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -48,13 +48,12 @@
 		4DE312318EECA9348DCEE850AF8D4951 /* URLDataPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B40AE965DC2C9DC2E138BD01EE024 /* URLDataPromise.swift */; };
 		4E0909C9F5935CF17E4FAD678933A773 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A30E4D3CA3790A8C19E86C1446F8C09 /* Mapper.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		506C52DB5151F5F0D3AEA6911ADA6EE7 /* UIActionSheet+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8532F25F6E290198CB838A0107D91FA /* UIActionSheet+Promise.swift */; };
-		5088417B58A8D821D0B8EBF6B922D209 /* PokemonKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28BDFF9016D04D7785E34CFB94F63A6F /* PokemonKit.bundle */; };
 		5192A7466019F9B3D7F1E987124E96BC /* OMGHTTPURLRQ-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EC2C200F7ED1630CDEBB9D14A95C3AAD /* OMGHTTPURLRQ-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		51EB3F3FDD66A6A1F0E847C36F0BA6EF /* Pods-PokemonKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 047ADEB6845538BCDB020E782FC78436 /* Pods-PokemonKit_Tests-dummy.m */; };
 		540596F86FB77001007A91179A698384 /* Umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B3401E0F6AD0ECD1BD80A48CDEEB02BC /* Umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5480169E42C456C49BE59E273D7E0115 /* OMGFormURLEncode.h in Headers */ = {isa = PBXBuildFile; fileRef = E9935FFC7C419C8496E3282A619060C1 /* OMGFormURLEncode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		565D62E4D2E284D0795FF8A7CB60AF22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBC98854919DC81F43643C56DCAA1CF /* Foundation.framework */; };
-		5A43D936B0B12BD7E114D5540757B475 /* PokemonKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2B512D9D19BEF868238E05EDE529D /* PokemonKit-dummy.m */; };
+		5A43D936B0B12BD7E114D5540757B475 /* PokemonKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 046D469AB195958D0FCFCF91DB6633B6 /* PokemonKit-dummy.m */; };
 		5BC19E6E0F199276003F0AF96838BCE5 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A6A22036D2E2E38383AEFA3AF28532 /* Upload.swift */; };
 		5CB05FBCB32D21E194B5ECF680CB6AE0 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48A5CAFBC4B658A3FBD3EB933E9A27 /* Download.swift */; };
 		5DEC707DD7B9F912E64F21EF68C1A39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBC98854919DC81F43643C56DCAA1CF /* Foundation.framework */; };
@@ -68,7 +67,7 @@
 		70C080DF6688E384401B30C4B82CFC9A /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9A3654DDD69A27AC336AEF693FBF58 /* AlamofireObjectMapper.framework */; };
 		70D5235E6222FCD63F0177A7FCD0B7B2 /* OMGHTTPURLRQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB3EE666B331FFBDB4E8EF4A9598C79 /* OMGHTTPURLRQ.framework */; };
 		70EE881C63366ED5008F7E8406D40069 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACD0C7AD8F0FCDFBF7F27443C910F0 /* State.swift */; };
-		73EC5A84973DC07D95DB799201905A9E /* PokemonKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 93FBF0E8AEF47C7BFB6CE14EFFCE757E /* PokemonKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73EC5A84973DC07D95DB799201905A9E /* PokemonKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C55F4DB3F9FC0B19C96F135267D3E31 /* PokemonKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		772440AF5598DB3E3A1547C28A03DFF7 /* NSURLConnection+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE77A1EB7097EDDC347A92497AF881FD /* NSURLConnection+Promise.swift */; };
 		7B48852C4D848FA2DA416A98F6425869 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE97EB32E61A8A5959371D04375925 /* ServerTrustPolicy.swift */; };
 		7FBF4E69536092D42A163B0DD25F301E /* AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 286E09060549F67036F3599B4292D40D /* AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -263,13 +262,6 @@
 			remoteGlobalIDString = C5CBCAA97E951CC882334464FBDF983D;
 			remoteInfo = ObjectMapper;
 		};
-		B40FD92F1991A6A81419D6006B4DFC3D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 023AE136B26AF35B46FBBB319622E10E;
-			remoteInfo = "PokemonKit-PokemonKit";
-		};
 		BE7DE8E48FB0B6564EA3B5CED10A1461 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -291,8 +283,8 @@
 		019709F95FFFFE21AF2C23FA2D0E3D87 /* DateFormatterTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateFormatterTransform.swift; path = ObjectMapper/Transforms/DateFormatterTransform.swift; sourceTree = "<group>"; };
 		025C390E2B60B719325D0F45231D6D72 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		031C5AAE025E986B11935D093C22832F /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		046D469AB195958D0FCFCF91DB6633B6 /* PokemonKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PokemonKit-dummy.m"; sourceTree = "<group>"; };
 		047ADEB6845538BCDB020E782FC78436 /* Pods-PokemonKit_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PokemonKit_Tests-dummy.m"; sourceTree = "<group>"; };
-		05D1DF07186DF873C32BEE832B602909 /* ResourceBundle-PokemonKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-PokemonKit-Info.plist"; sourceTree = "<group>"; };
 		05FE46F6A79F694BBE36E4A0E95FD92B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07D3D2D73FB821518D9304C909671010 /* race.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = race.swift; path = Sources/race.swift; sourceTree = "<group>"; };
 		0B2CE1EDD86A15E5A24AFB55F5D91663 /* NSURLConnection+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLConnection+AnyPromise.m"; path = "Categories/Foundation/NSURLConnection+AnyPromise.m"; sourceTree = "<group>"; };
@@ -301,29 +293,25 @@
 		0EA4BF325ED9AF31F00E12D1D032FCA2 /* when.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = when.m; path = Sources/when.m; sourceTree = "<group>"; };
 		0EF87C07AA865DC97D662C8A6A197D50 /* OMGUserAgent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OMGUserAgent.h; path = Sources/OMGUserAgent.h; sourceTree = "<group>"; };
 		0FC294A58289BFFE3C745ED33CD03E37 /* Mappable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mappable.swift; path = ObjectMapper/Core/Mappable.swift; sourceTree = "<group>"; };
-		128A838A2C90E4B8581B236ADAD9E492 /* PokemonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PokemonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		139B6444B616979764BA718EDC72B7B1 /* Pods-PokemonKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PokemonKit_Tests-umbrella.h"; sourceTree = "<group>"; };
 		1478C4C1E415514177D8ECFB6C464784 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1604855A1B481C6C3700DC23AC260648 /* Pods-PokemonKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PokemonKit_Example.modulemap"; sourceTree = "<group>"; };
 		16C5397CAE32FABD54F6185E7D95C621 /* join.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = join.m; path = Sources/join.m; sourceTree = "<group>"; };
+		173FA3404059108C792C4F4BCE49841A /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C923461F5A093AF83EF5EB03D912B3 /* Promise+Properties.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+Properties.swift"; path = "Sources/Promise+Properties.swift"; sourceTree = "<group>"; };
 		18FB376D8FDA503413CDA5624BCA3676 /* UIViewController+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+AnyPromise.h"; path = "Categories/UIKit/UIViewController+AnyPromise.h"; sourceTree = "<group>"; };
-		1A47AD97B2033C88FE51FFFD9BA52055 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OHHTTPStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F5151B20EB2AA303B29C47AFCABF4AE /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA462B448D51E7B27D3FB1C19190C77 /* ObjectMapper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ObjectMapper.xcconfig; sourceTree = "<group>"; };
 		206F696EF081051559090ACE8A1FEC71 /* dispatch_promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = dispatch_promise.swift; path = Sources/dispatch_promise.swift; sourceTree = "<group>"; };
-		210F1E18995D1ACBEC53D6B5264156F1 /* OMGHTTPURLRQ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OMGHTTPURLRQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B0BD62C4BB6F14FC2B7E2B2EC53192 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
 		238B5F160B2D573635389EB7FBA14A9E /* Pods-PokemonKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PokemonKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		2390845B980393B90A8B3CD41EC310B3 /* PokemonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PokemonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		286E09060549F67036F3599B4292D40D /* AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AnyPromise.h; path = Sources/AnyPromise.h; sourceTree = "<group>"; };
-		28BDFF9016D04D7785E34CFB94F63A6F /* PokemonKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A75277556F37BDAE42D60F2FB7DE3E9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B5C48604B620A90EA26053995EA7740 /* OHHTTPStubs.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OHHTTPStubs.h; path = OHHTTPStubs/Sources/OHHTTPStubs.h; sourceTree = "<group>"; };
 		2B9A2F72DA2C5C180C44FBAEC5B9D043 /* ObjectMapper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ObjectMapper-dummy.m"; sourceTree = "<group>"; };
-		2BE394B7EBB626496A2F7352CD06FA90 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D70B41119920FAA79AEACC355BB7975 /* ObjectMapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ObjectMapper.modulemap; sourceTree = "<group>"; };
 		2DAC29EF2F49B1EFCD56BB48F9F535D3 /* UIView+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Promise.swift"; path = "Categories/UIKit/UIView+Promise.swift"; sourceTree = "<group>"; };
 		2DB060159FAF17C5A931CFAA6CB165D7 /* Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = Sources/Promise.swift; sourceTree = "<group>"; };
-		332B6061B5DDFC232DF5EE55B30AD6D8 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlamofireObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3469A3EC5FC4702BB7016D19B383A57E /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		376643B2165BF521A93CE4FE09401E45 /* Pods-PokemonKit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PokemonKit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		3842D4C4109E58471BE968C10FFCF3B7 /* AlamofireObjectMapper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlamofireObjectMapper.xcconfig; sourceTree = "<group>"; };
@@ -348,18 +336,19 @@
 		550B553ADAC1C95807EAEF0D2E25A269 /* OHHTTPStubsSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OHHTTPStubsSwift.swift; path = OHHTTPStubs/Sources/Swift/OHHTTPStubsSwift.swift; sourceTree = "<group>"; };
 		59C1EFE3DD0E7DD8378645E58FC98D12 /* OHHTTPStubs.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = OHHTTPStubs.modulemap; sourceTree = "<group>"; };
 		5A28E4AB4ABD1402F43CD71CB5EC7D69 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C55F4DB3F9FC0B19C96F135267D3E31 /* PokemonKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PokemonKit-umbrella.h"; sourceTree = "<group>"; };
 		5CA2F8563D4B6A185AB04AD587099089 /* URLTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLTransform.swift; path = ObjectMapper/Transforms/URLTransform.swift; sourceTree = "<group>"; };
 		5E66218009D3B39958AA900CFA4D0853 /* ObjectMapper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ObjectMapper-prefix.pch"; sourceTree = "<group>"; };
 		5F249E7C72DB2F5E419F013C31C38106 /* Pods-PokemonKit_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PokemonKit_Tests-resources.sh"; sourceTree = "<group>"; };
 		606BD794C061623569A38ADDBA93AA82 /* PromiseKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromiseKit-prefix.pch"; sourceTree = "<group>"; };
 		61A2E647F5B4B19E19D155038FC30210 /* Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = ObjectMapper/Core/Operators.swift; sourceTree = "<group>"; };
+		62E7497B57FD55EB1C149FC128840265 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlamofireObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		630C0E4720E398ADFFACE6F32EA09CD0 /* NSObject+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSObject+Promise.swift"; path = "Categories/Foundation/NSObject+Promise.swift"; sourceTree = "<group>"; };
-		644180EAAFB30A221AFEDAA7EA10ED2B /* PokemonKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PokemonKit.xcconfig; sourceTree = "<group>"; };
 		64F2504303F42C8E533D6A26DFE313A1 /* UIActionSheet+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIActionSheet+AnyPromise.m"; path = "Categories/UIKit/UIActionSheet+AnyPromise.m"; sourceTree = "<group>"; };
 		66A8682229BBB215C91C3300B02CB89F /* OMGHTTPURLRQ.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OMGHTTPURLRQ.xcconfig; sourceTree = "<group>"; };
 		681011B1D4BC7DD2249D0B24D0407C7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		681E6F7D53D592D41DD338D3AFD128A4 /* Pods_PokemonKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB3EE666B331FFBDB4E8EF4A9598C79 /* OMGHTTPURLRQ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OMGHTTPURLRQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CC097C5A91827663EAA33F0421415FB /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7375BBAC45E1868F9D05D57FD7235C48 /* AlamofireObjectMapper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlamofireObjectMapper-dummy.m"; sourceTree = "<group>"; };
 		7475CE32E7420C0E7358F4A4BA728A61 /* OMGHTTPURLRQ-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OMGHTTPURLRQ-prefix.pch"; sourceTree = "<group>"; };
 		760C68FDB9A8D3518042E1E3013306B2 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -375,14 +364,16 @@
 		890785C93A4F90B0096B2D9BF6B47B7E /* dispatch_promise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = dispatch_promise.m; path = Sources/dispatch_promise.m; sourceTree = "<group>"; };
 		8B48A5CAFBC4B658A3FBD3EB933E9A27 /* Download.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Download.swift; path = Source/Download.swift; sourceTree = "<group>"; };
 		8BC31346DCC0201C043839DF480936B5 /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ISO8601DateTransform.swift; path = ObjectMapper/Transforms/ISO8601DateTransform.swift; sourceTree = "<group>"; };
+		8BCD3BB77D08068B859EEE1C6318C594 /* OMGHTTPURLRQ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OMGHTTPURLRQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4ADD0F7E3616B547DC5CF37CB9DA07 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E9A3654DDD69A27AC336AEF693FBF58 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlamofireObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91F1A0DB9B01F82694CE70AC7B22AD34 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		939C8866E15BCE05DC1B6C758223BBEA /* PokemonKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PokemonKit.modulemap; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		93FBF0E8AEF47C7BFB6CE14EFFCE757E /* PokemonKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PokemonKit-umbrella.h"; sourceTree = "<group>"; };
 		95C879B85C8D0EAE6BE7EAD31DF02F37 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		99E96826EEEA8DD564484937942AFBC6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		9A7C5FE83D9626689D4C7E40B1DC806C /* Stream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Source/Stream.swift; sourceTree = "<group>"; };
+		9A87AEC5D701FDCEDC8A6A465E37A872 /* Pods_PokemonKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C6DE4989AA0F7113DA5273703879E3D /* OMGUserAgent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OMGUserAgent.m; path = Sources/OMGUserAgent.m; sourceTree = "<group>"; };
 		9EF6452688136CE1B6EA1723ADEE6264 /* join.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = join.swift; path = Sources/join.swift; sourceTree = "<group>"; };
 		A3B24EB73B47BAB11721D44D21BD1D2B /* Pods-PokemonKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PokemonKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -392,7 +383,7 @@
 		A76C4589B383413AAECE768D9209B3AD /* TransformType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransformType.swift; path = ObjectMapper/Transforms/TransformType.swift; sourceTree = "<group>"; };
 		A9D0718DFFB455983E851F5330B58DD0 /* OMGHTTPURLRQ.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OMGHTTPURLRQ.m; path = Sources/OMGHTTPURLRQ.m; sourceTree = "<group>"; };
 		AA7DD57666E9259F7B1CB863CF19F1B6 /* CALayer+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+AnyPromise.m"; path = "Categories/QuartzCore/CALayer+AnyPromise.m"; sourceTree = "<group>"; };
-		AC151988EA0CFCD2B2D8F00D500CDC3C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC501A8908634BA60344E162FB4C93D4 /* Pods_PokemonKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0502B57783759166BE9F19C78C93D6D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B078D21B58A4445D74CF14BC67C8BF31 /* Pods-PokemonKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PokemonKit_Example-dummy.m"; sourceTree = "<group>"; };
 		B2C036F42247E67261588D65296CA32F /* UIView+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+AnyPromise.h"; path = "Categories/UIKit/UIView+AnyPromise.h"; sourceTree = "<group>"; };
@@ -401,13 +392,11 @@
 		B465B0F4DE9CC7C73E6D8459125E32A1 /* OHHTTPStubs-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs-prefix.pch"; sourceTree = "<group>"; };
 		B7443F00BE1D9FF1949282B4F0A66D26 /* Pods-PokemonKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PokemonKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B803A293C20D5E949DFED5367EE5D4AD /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		B825888E3794A6B05EF8356C66C7722F /* Pods_PokemonKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8532F25F6E290198CB838A0107D91FA /* UIActionSheet+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIActionSheet+Promise.swift"; path = "Categories/UIKit/UIActionSheet+Promise.swift"; sourceTree = "<group>"; };
 		B9F9E8BB145B386778B12B3A14E2ED9B /* UIAlertView+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+AnyPromise.m"; path = "Categories/UIKit/UIAlertView+AnyPromise.m"; sourceTree = "<group>"; };
 		BCF1575CCF99F1EFC94671432843649E /* AlamofireObjectMapper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireObjectMapper-prefix.pch"; sourceTree = "<group>"; };
 		BD510D5F115911C5DF0CB73595B671DD /* NSURLConnection+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLConnection+AnyPromise.h"; path = "Categories/Foundation/NSURLConnection+AnyPromise.h"; sourceTree = "<group>"; };
 		BD9D781E75EE91F6338B54B855C7666D /* OHHTTPStubsResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OHHTTPStubsResponse.h; path = OHHTTPStubs/Sources/OHHTTPStubsResponse.h; sourceTree = "<group>"; };
-		BDEA9D7AD7A3CD700CDCEA2CFB087051 /* PokemonKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PokemonKit.swift; sourceTree = "<group>"; };
 		BE0D2914C143FFED221EB205A6E812C6 /* OHHTTPStubs-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs-umbrella.h"; sourceTree = "<group>"; };
 		C121FD97F113FE8FA17FAE30C78AA366 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C344B7B614A85E10A017A1F2860A4747 /* afterlife.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = afterlife.swift; path = Categories/Foundation/afterlife.swift; sourceTree = "<group>"; };
@@ -415,11 +404,9 @@
 		C6A4150B4312A16A65EC1B74491EA452 /* after.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = after.swift; path = Sources/after.swift; sourceTree = "<group>"; };
 		C7ACD0C7AD8F0FCDFBF7F27443C910F0 /* State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = State.swift; path = Sources/State.swift; sourceTree = "<group>"; };
 		C83A0922639FF12EF18C6397F9AD5EDB /* ObjectMapper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ObjectMapper-umbrella.h"; sourceTree = "<group>"; };
-		C91C5882E091D5CBF6AB9A1C412B0FB6 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C989FD1FF4DB26D5FDBD84A957831BB3 /* Pods-PokemonKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PokemonKit_Tests.modulemap"; sourceTree = "<group>"; };
 		CA216CD2DA5762878A8B9B28FEC8E842 /* PromiseKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PromiseKit-dummy.m"; sourceTree = "<group>"; };
 		CCFDECF57F3D48A1C985FC6B769F802A /* NSNotificationCenter+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSNotificationCenter+Promise.swift"; path = "Categories/Foundation/NSNotificationCenter+Promise.swift"; sourceTree = "<group>"; };
-		CEC2B512D9D19BEF868238E05EDE529D /* PokemonKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PokemonKit-dummy.m"; sourceTree = "<group>"; };
 		D0642774D52FC7FDC900E254446C222F /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = ObjectMapper/Core/Map.swift; sourceTree = "<group>"; };
 		D28A6DB0D2DEB1F49F3FDE53275D34C4 /* Pods-PokemonKit_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PokemonKit_Example-resources.sh"; sourceTree = "<group>"; };
 		D3275B5DAD84D9911E21CDBAB4FC821C /* OMGHTTPURLRQ-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OMGHTTPURLRQ-dummy.m"; sourceTree = "<group>"; };
@@ -429,15 +416,18 @@
 		D41E8D93AEB91E1D4DB5AE71896B0A5F /* after.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = after.m; path = Sources/after.m; sourceTree = "<group>"; };
 		D42C40ACFA696E51D6C727C2A899A427 /* AnyPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyPromise.swift; path = Sources/AnyPromise.swift; sourceTree = "<group>"; };
 		D51BF9B86D6D67D7F037AFD3D6085307 /* NSURLSession+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSURLSession+Promise.swift"; path = "Categories/Foundation/NSURLSession+Promise.swift"; sourceTree = "<group>"; };
-		D83CE9AC9F254D80E33BD878EF1475CC /* PokemonKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PokemonKit-prefix.pch"; sourceTree = "<group>"; };
+		D73F0133195FE09ACA2EADF8BB4EF75D /* PokemonKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PokemonKit.swift; sourceTree = "<group>"; };
+		D8C8C01F460492F8A402B8E13EA6D4C7 /* PokemonKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PokemonKit.xcconfig; sourceTree = "<group>"; };
 		D931D001C603DD9F4C4EB72BA582A007 /* OMGHTTPURLRQ.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = OMGHTTPURLRQ.modulemap; sourceTree = "<group>"; };
 		D9D92AFED7118C4A7E2C7661ED5CE1A3 /* Pods-PokemonKit_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PokemonKit_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		DB7830266008D5E265E6C8FD6F9B15A6 /* PokemonKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PokemonKit-prefix.pch"; sourceTree = "<group>"; };
 		DE66AE12491F7361E7EECA65AF847F76 /* EnumTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnumTransform.swift; path = ObjectMapper/Transforms/EnumTransform.swift; sourceTree = "<group>"; };
 		E16C1B15A344503E58BF8C296EAF4C81 /* PromiseKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PromiseKit.h; path = Sources/PromiseKit.h; sourceTree = "<group>"; };
 		E2181EC1FF2F979BDE58805CE538D58D /* AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AnyPromise.m; path = Sources/AnyPromise.m; sourceTree = "<group>"; };
 		E3792F189048B1FD3EE1507B3CBFA0D3 /* CustomDateFormatTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomDateFormatTransform.swift; path = ObjectMapper/Transforms/CustomDateFormatTransform.swift; sourceTree = "<group>"; };
 		E3FBFE33D4A1458253154A07577F59E6 /* Pods-PokemonKit_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PokemonKit_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E4BE97EB32E61A8A5959371D04375925 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		E542B707535518C580A0008BBA82EFE3 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OHHTTPStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57AC0B06BA3B253A8E6465FC61F847F /* Pods-PokemonKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PokemonKit_Example-frameworks.sh"; sourceTree = "<group>"; };
 		E5C4DB3EC93EA8C6DDC1A9959E408C45 /* when.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = when.swift; path = Sources/when.swift; sourceTree = "<group>"; };
 		E61F604A9F0D331410927451866DCD6E /* AlamofireObjectMapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AlamofireObjectMapper.modulemap; sourceTree = "<group>"; };
@@ -458,17 +448,10 @@
 		F7F97A57B80C9DCD0FB97C01F32C80B0 /* PromiseKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PromiseKit.xcconfig; sourceTree = "<group>"; };
 		FDBC98854919DC81F43643C56DCAA1CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		FE77A1EB7097EDDC347A92497AF881FD /* NSURLConnection+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSURLConnection+Promise.swift"; path = "Categories/Foundation/NSURLConnection+Promise.swift"; sourceTree = "<group>"; };
-		FEB5AA23B505772A258D3D4EF22855AC /* PokemonKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PokemonKit.modulemap; sourceTree = "<group>"; };
+		FE90D14E0E0806F9E3AA9CE237B4CD38 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		095D53D785709D0AA526834B8D4E4047 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		49DCF78146431CCC3601CEDCC5182CF7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -554,6 +537,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07324C131848803D4339E90DF171C936 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6CC097C5A91827663EAA33F0421415FB /* Alamofire.framework */,
+				62E7497B57FD55EB1C149FC128840265 /* AlamofireObjectMapper.framework */,
+				FE90D14E0E0806F9E3AA9CE237B4CD38 /* ObjectMapper.framework */,
+				E542B707535518C580A0008BBA82EFE3 /* OHHTTPStubs.framework */,
+				8BCD3BB77D08068B859EEE1C6318C594 /* OMGHTTPURLRQ.framework */,
+				9A87AEC5D701FDCEDC8A6A465E37A872 /* Pods_PokemonKit_Example.framework */,
+				AC501A8908634BA60344E162FB4C93D4 /* Pods_PokemonKit_Tests.framework */,
+				2390845B980393B90A8B3CD41EC310B3 /* PokemonKit.framework */,
+				173FA3404059108C792C4F4BCE49841A /* PromiseKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		10958B5412EF5659DB3DF57E8A8E4BF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,16 +573,6 @@
 				7007B4FF96A74BB69A6721021A1D984C /* Support Files */,
 			);
 			path = AlamofireObjectMapper;
-			sourceTree = "<group>";
-		};
-		164E9B227FF87E3526231CE111B2EF10 /* PokemonKit */ = {
-			isa = PBXGroup;
-			children = (
-				26C7CE22F73FCA159A401B5C5C90D4A8 /* Pod */,
-				D28209C8C60894C6BA7846518F57A344 /* Support Files */,
-			);
-			name = PokemonKit;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		1B1ADEB9385B063086FAB8745FF5EFF0 /* Pods */ = {
@@ -608,14 +597,6 @@
 				8749551FA90F8C36079ED8B1C3B0A220 /* UserAgent */,
 			);
 			path = OMGHTTPURLRQ;
-			sourceTree = "<group>";
-		};
-		26C7CE22F73FCA159A401B5C5C90D4A8 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				66095CEF9CB7BE930C1563F4048E128E /* Classes */,
-			);
-			path = Pod;
 			sourceTree = "<group>";
 		};
 		2B47764884B8C559A5797CAD4C713E48 /* Foundation */ = {
@@ -697,14 +678,6 @@
 			path = "../Target Support Files/OMGHTTPURLRQ";
 			sourceTree = "<group>";
 		};
-		66095CEF9CB7BE930C1563F4048E128E /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				BDEA9D7AD7A3CD700CDCEA2CFB087051 /* PokemonKit.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		6A05E3618852B97282FB8DAA85B5D469 /* ObjectMapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -741,6 +714,16 @@
 			path = "../Target Support Files/AlamofireObjectMapper";
 			sourceTree = "<group>";
 		};
+		7692F7A43C23D8CFC95B453EFDF1AAE9 /* PokemonKit */ = {
+			isa = PBXGroup;
+			children = (
+				E165CEA9088D95CFA6F59C5B1D8E3AA9 /* Pod */,
+				CA74EBDFFE7EF1BF9FDB9C85636802EB /* Support Files */,
+			);
+			name = PokemonKit;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		79A58BFE9D93D0CFE1A0051200EDB48C /* Swift */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,7 +739,7 @@
 				9D0D735CF96CEC69646B2BC620C09E44 /* Development Pods */,
 				10958B5412EF5659DB3DF57E8A8E4BF5 /* Frameworks */,
 				1B1ADEB9385B063086FAB8745FF5EFF0 /* Pods */,
-				EEFC624EEA6C6982292E74C0C4634C9A /* Products */,
+				07324C131848803D4339E90DF171C936 /* Products */,
 				E428B3639F7FFA0AEF8F4992A0FE4B7D /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -820,7 +803,7 @@
 		9D0D735CF96CEC69646B2BC620C09E44 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				164E9B227FF87E3526231CE111B2EF10 /* PokemonKit */,
+				7692F7A43C23D8CFC95B453EFDF1AAE9 /* PokemonKit */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -905,6 +888,20 @@
 			path = "../Target Support Files/ObjectMapper";
 			sourceTree = "<group>";
 		};
+		CA74EBDFFE7EF1BF9FDB9C85636802EB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2A75277556F37BDAE42D60F2FB7DE3E9 /* Info.plist */,
+				939C8866E15BCE05DC1B6C758223BBEA /* PokemonKit.modulemap */,
+				D8C8C01F460492F8A402B8E13EA6D4C7 /* PokemonKit.xcconfig */,
+				046D469AB195958D0FCFCF91DB6633B6 /* PokemonKit-dummy.m */,
+				DB7830266008D5E265E6C8FD6F9B15A6 /* PokemonKit-prefix.pch */,
+				5C55F4DB3F9FC0B19C96F135267D3E31 /* PokemonKit-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/PokemonKit";
+			sourceTree = "<group>";
+		};
 		CC4C63DD66E41C4E5D668596B555A498 /* PromiseKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,21 +912,6 @@
 				85F830E1C37D2D58B91FEE0DF8DBE8D9 /* UIKit */,
 			);
 			path = PromiseKit;
-			sourceTree = "<group>";
-		};
-		D28209C8C60894C6BA7846518F57A344 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				AC151988EA0CFCD2B2D8F00D500CDC3C /* Info.plist */,
-				FEB5AA23B505772A258D3D4EF22855AC /* PokemonKit.modulemap */,
-				644180EAAFB30A221AFEDAA7EA10ED2B /* PokemonKit.xcconfig */,
-				CEC2B512D9D19BEF868238E05EDE529D /* PokemonKit-dummy.m */,
-				D83CE9AC9F254D80E33BD878EF1475CC /* PokemonKit-prefix.pch */,
-				93FBF0E8AEF47C7BFB6CE14EFFCE757E /* PokemonKit-umbrella.h */,
-				05D1DF07186DF873C32BEE832B602909 /* ResourceBundle-PokemonKit-Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/PokemonKit";
 			sourceTree = "<group>";
 		};
 		DCE2D3168D42889103BB6FDA3D4C1BA6 /* Support Files */ = {
@@ -944,6 +926,14 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Alamofire";
+			sourceTree = "<group>";
+		};
+		E165CEA9088D95CFA6F59C5B1D8E3AA9 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				F0173D84FD55C3286FB6B39F425D1E24 /* Classes */,
+			);
+			path = Pod;
 			sourceTree = "<group>";
 		};
 		E428B3639F7FFA0AEF8F4992A0FE4B7D /* Targets Support Files */ = {
@@ -964,21 +954,12 @@
 			name = RQ;
 			sourceTree = "<group>";
 		};
-		EEFC624EEA6C6982292E74C0C4634C9A /* Products */ = {
+		F0173D84FD55C3286FB6B39F425D1E24 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2BE394B7EBB626496A2F7352CD06FA90 /* Alamofire.framework */,
-				332B6061B5DDFC232DF5EE55B30AD6D8 /* AlamofireObjectMapper.framework */,
-				C91C5882E091D5CBF6AB9A1C412B0FB6 /* ObjectMapper.framework */,
-				1A47AD97B2033C88FE51FFFD9BA52055 /* OHHTTPStubs.framework */,
-				210F1E18995D1ACBEC53D6B5264156F1 /* OMGHTTPURLRQ.framework */,
-				681E6F7D53D592D41DD338D3AFD128A4 /* Pods_PokemonKit_Example.framework */,
-				B825888E3794A6B05EF8356C66C7722F /* Pods_PokemonKit_Tests.framework */,
-				28BDFF9016D04D7785E34CFB94F63A6F /* PokemonKit.bundle */,
-				128A838A2C90E4B8581B236ADAD9E492 /* PokemonKit.framework */,
-				1F5151B20EB2AA303B29C47AFCABF4AE /* PromiseKit.framework */,
+				D73F0133195FE09ACA2EADF8BB4EF75D /* PokemonKit.swift */,
 			);
-			name = Products;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		F251FDBF8F627ADF49F85C28019B3CDE /* iOS */ = {
@@ -1100,23 +1081,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		023AE136B26AF35B46FBBB319622E10E /* PokemonKit-PokemonKit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00F77703A703FA7721DAA85E26365E47 /* Build configuration list for PBXNativeTarget "PokemonKit-PokemonKit" */;
-			buildPhases = (
-				9EF83CCE20740223E4AE90DDE5325241 /* Sources */,
-				095D53D785709D0AA526834B8D4E4047 /* Frameworks */,
-				14F7BBE6063458C4014D618BC11667A8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "PokemonKit-PokemonKit";
-			productName = "PokemonKit-PokemonKit";
-			productReference = 28BDFF9016D04D7785E34CFB94F63A6F /* PokemonKit.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
 		1469012BAF6CAE40359025F6C948438C /* OHHTTPStubs */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1196A1174E0782EF361764142DFDB98B /* Build configuration list for PBXNativeTarget "OHHTTPStubs" */;
@@ -1131,7 +1095,7 @@
 			);
 			name = OHHTTPStubs;
 			productName = OHHTTPStubs;
-			productReference = 1A47AD97B2033C88FE51FFFD9BA52055 /* OHHTTPStubs.framework */;
+			productReference = E542B707535518C580A0008BBA82EFE3 /* OHHTTPStubs.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		190ACD3A51BC90B85EADB13E9CDD207B /* OMGHTTPURLRQ */ = {
@@ -1148,7 +1112,7 @@
 			);
 			name = OMGHTTPURLRQ;
 			productName = OMGHTTPURLRQ;
-			productReference = 210F1E18995D1ACBEC53D6B5264156F1 /* OMGHTTPURLRQ.framework */;
+			productReference = 8BCD3BB77D08068B859EEE1C6318C594 /* OMGHTTPURLRQ.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4837EB29487E1414D68C020A07C75399 /* Pods-PokemonKit_Example */ = {
@@ -1171,7 +1135,7 @@
 			);
 			name = "Pods-PokemonKit_Example";
 			productName = "Pods-PokemonKit_Example";
-			productReference = 681E6F7D53D592D41DD338D3AFD128A4 /* Pods_PokemonKit_Example.framework */;
+			productReference = 9A87AEC5D701FDCEDC8A6A465E37A872 /* Pods_PokemonKit_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */ = {
@@ -1188,7 +1152,7 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = 2BE394B7EBB626496A2F7352CD06FA90 /* Alamofire.framework */;
+			productReference = 6CC097C5A91827663EAA33F0421415FB /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		7F90C7439546FD08827326C0D4489785 /* PromiseKit */ = {
@@ -1206,7 +1170,7 @@
 			);
 			name = PromiseKit;
 			productName = PromiseKit;
-			productReference = 1F5151B20EB2AA303B29C47AFCABF4AE /* PromiseKit.framework */;
+			productReference = 173FA3404059108C792C4F4BCE49841A /* PromiseKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B957C98FA098AF7A15442A0449AE89E9 /* Pods-PokemonKit_Tests */ = {
@@ -1230,7 +1194,7 @@
 			);
 			name = "Pods-PokemonKit_Tests";
 			productName = "Pods-PokemonKit_Tests";
-			productReference = B825888E3794A6B05EF8356C66C7722F /* Pods_PokemonKit_Tests.framework */;
+			productReference = AC501A8908634BA60344E162FB4C93D4 /* Pods_PokemonKit_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C5CBCAA97E951CC882334464FBDF983D /* ObjectMapper */ = {
@@ -1247,7 +1211,7 @@
 			);
 			name = ObjectMapper;
 			productName = ObjectMapper;
-			productReference = C91C5882E091D5CBF6AB9A1C412B0FB6 /* ObjectMapper.framework */;
+			productReference = FE90D14E0E0806F9E3AA9CE237B4CD38 /* ObjectMapper.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D1CF9C1AC265E910FC5B1CE5A44B2F15 /* PokemonKit */ = {
@@ -1256,7 +1220,6 @@
 			buildPhases = (
 				452148B3E7D5C501D3A4730BF3A6B641 /* Sources */,
 				F9D0F709010A80C35CEE75D7F45B8E85 /* Frameworks */,
-				47AC4071516830FA3C004E0EB09034C1 /* Resources */,
 				9A4AD6148FE22D7FEA8AA7AAE2BB116D /* Headers */,
 			);
 			buildRules = (
@@ -1265,12 +1228,11 @@
 				33DF0A5522B4032147B06D8C3486105E /* PBXTargetDependency */,
 				4A3CA7F3D6DAC6C9FE3EAB6B27793580 /* PBXTargetDependency */,
 				2473AF1D008FB53713467D769ED005D4 /* PBXTargetDependency */,
-				E5F2824115D45A3A2FFE669FA72B211D /* PBXTargetDependency */,
 				A39A988A1CCC9C954DA118E8BB6E1EF7 /* PBXTargetDependency */,
 			);
 			name = PokemonKit;
 			productName = PokemonKit;
-			productReference = 128A838A2C90E4B8581B236ADAD9E492 /* PokemonKit.framework */;
+			productReference = 2390845B980393B90A8B3CD41EC310B3 /* PokemonKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		FBD082A0D35F7917EAB9DD9D3CCA9976 /* AlamofireObjectMapper */ = {
@@ -1289,7 +1251,7 @@
 			);
 			name = AlamofireObjectMapper;
 			productName = AlamofireObjectMapper;
-			productReference = 332B6061B5DDFC232DF5EE55B30AD6D8 /* AlamofireObjectMapper.framework */;
+			productReference = 62E7497B57FD55EB1C149FC128840265 /* AlamofireObjectMapper.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1309,7 +1271,7 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = EEFC624EEA6C6982292E74C0C4634C9A /* Products */;
+			productRefGroup = 07324C131848803D4339E90DF171C936 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1321,29 +1283,10 @@
 				4837EB29487E1414D68C020A07C75399 /* Pods-PokemonKit_Example */,
 				B957C98FA098AF7A15442A0449AE89E9 /* Pods-PokemonKit_Tests */,
 				D1CF9C1AC265E910FC5B1CE5A44B2F15 /* PokemonKit */,
-				023AE136B26AF35B46FBBB319622E10E /* PokemonKit-PokemonKit */,
 				7F90C7439546FD08827326C0D4489785 /* PromiseKit */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		14F7BBE6063458C4014D618BC11667A8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47AC4071516830FA3C004E0EB09034C1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5088417B58A8D821D0B8EBF6B922D209 /* PokemonKit.bundle in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A0948CDC1D0D4309C0B7AFB3AB85A1E /* Sources */ = {
@@ -1469,13 +1412,6 @@
 				16102E4E35FAA0FC4161282FECE56469 /* Timeline.swift in Sources */,
 				5BC19E6E0F199276003F0AF96838BCE5 /* Upload.swift in Sources */,
 				2D3405986FC586FA6C0A5E0B6BA7E64E /* Validation.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9EF83CCE20740223E4AE90DDE5325241 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1615,12 +1551,6 @@
 			target = C5CBCAA97E951CC882334464FBDF983D /* ObjectMapper */;
 			targetProxy = 177232D480083C0EDEDE2D5A556DA82F /* PBXContainerItemProxy */;
 		};
-		E5F2824115D45A3A2FFE669FA72B211D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "PokemonKit-PokemonKit";
-			target = 023AE136B26AF35B46FBBB319622E10E /* PokemonKit-PokemonKit */;
-			targetProxy = B40FD92F1991A6A81419D6006B4DFC3D /* PBXContainerItemProxy */;
-		};
 		ED0E8F503DB2AA3730F054CB9B6229D5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AlamofireObjectMapper;
@@ -1667,40 +1597,6 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
-		};
-		0BA252250E2A3F42EF98A3A2A74E7DB8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 644180EAAFB30A221AFEDAA7EA10ED2B /* PokemonKit.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PokemonKit";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/PokemonKit/ResourceBundle-PokemonKit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = PokemonKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		13021C16F6F38A3D8F57CDBCE173E978 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 644180EAAFB30A221AFEDAA7EA10ED2B /* PokemonKit.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PokemonKit";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/PokemonKit/ResourceBundle-PokemonKit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = PokemonKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
 		};
 		272B403F9CB8A59371D70E36F0F46294 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1763,7 +1659,7 @@
 		};
 		301F808F0BDF183CEBF0F5B8EB95C135 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 644180EAAFB30A221AFEDAA7EA10ED2B /* PokemonKit.xcconfig */;
+			baseConfigurationReference = D8C8C01F460492F8A402B8E13EA6D4C7 /* PokemonKit.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -2199,7 +2095,7 @@
 		};
 		FA274188B442EF6238B7B61FC78B45F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 644180EAAFB30A221AFEDAA7EA10ED2B /* PokemonKit.xcconfig */;
+			baseConfigurationReference = D8C8C01F460492F8A402B8E13EA6D4C7 /* PokemonKit.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -2293,15 +2189,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00F77703A703FA7721DAA85E26365E47 /* Build configuration list for PBXNativeTarget "PokemonKit-PokemonKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				13021C16F6F38A3D8F57CDBCE173E978 /* Debug */,
-				0BA252250E2A3F42EF98A3A2A74E7DB8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1196A1174E0782EF361764142DFDB98B /* Build configuration list for PBXNativeTarget "OHHTTPStubs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

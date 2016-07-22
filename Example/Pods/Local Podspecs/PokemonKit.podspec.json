@@ -18,11 +18,6 @@
   },
   "requires_arc": true,
   "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "PokemonKit": [
-      "Pod/Assets/*.png"
-    ]
-  },
   "dependencies": {
     "Alamofire": [
       "~> 3.0"
@@ -31,7 +26,7 @@
       "~> 2.1"
     ],
     "PromiseKit": [
-
+      "~> 3.2"
     ]
   }
 }
