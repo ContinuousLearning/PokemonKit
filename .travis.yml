@@ -12,5 +12,5 @@ before_install:
 - pod install --project-directory=Example
 - brew upgrade xctool --HEAD
 script:
-- xctool -workspace Example/PokemonKit.xcworkspace -scheme PokemonKit-Example test -sdk iphonesimulator -parallelize
+- xctool -workspace Example/PokemonKit.xcworkspace -scheme PokemonKit-Example run-tests -parallelize -sdk iphonesimulator
 - pod lib lint --allow-warnings
