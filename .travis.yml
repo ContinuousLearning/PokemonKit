@@ -14,4 +14,4 @@ script:
 # - xctool -project PokemonKit.xcodeproj -scheme "PokemonKit iOS" test -sdk iphonesimulator
 # - xctool -project PokemonKit.xcodeproj -scheme "PokemonKit OSX" test -sdk macosx
 # - xctool -project PokemonKit.xcodeproj -scheme "PokemonKit tvOS" test -sdk appletvsimulator
-- pod lib lint --allow-warnings
+- pod lib lint --allow-warnings --quick
