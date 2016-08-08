@@ -29,6 +29,9 @@ PokemonKit.fetchBerry("1")
 - [x] Wrap all API end points
 - [x] Fully [Documented](http://continuouslearning.github.io/PokemonKit/)
 - [ ] Fully tested
+- [ ] Carthage Support
+- [ ] Unit test don't call server
+- [ ] Remove PromiseKit (So many build errors, not worth it)
 
 ## Installation
 
