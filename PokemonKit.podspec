@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PokemonKit"
-  s.version          = "1.0.2"
+  s.version          = "2.0.0"
   s.summary          = "A wrapper for pokeapi v2"
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
 PokemonKit is a swift wrapper for Pokeapi.
-PokemonKit use Alamofire and PromiseKit for async web requests handling.
+PokemonKit use Alamofire web requests handling.
                        DESC
 
   s.homepage         = "https://github.com/ContinuousLearning/PokemonKit"
@@ -28,14 +28,17 @@ PokemonKit use Alamofire and PromiseKit for async web requests handling.
   s.source           = { :git => "https://github.com/ContinuousLearning/PokemonKit.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/darkcl_dev'
 
-  s.platform     = :ios, '8.0'
+  s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.9'
+  s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
+
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files = 'Classes/**/*'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'Alamofire', '~> 3.0'
   s.dependency 'AlamofireObjectMapper', '~> 2.1'
-  s.dependency 'PromiseKit'
 end

@@ -17,21 +17,13 @@
     "ios": "8.0"
   },
   "requires_arc": true,
-  "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "PokemonKit": [
-      "Pod/Assets/*.png"
-    ]
-  },
+  "source_files": "Classes/**/*",
   "dependencies": {
     "Alamofire": [
       "~> 3.0"
     ],
     "AlamofireObjectMapper": [
       "~> 2.1"
-    ],
-    "PromiseKit": [
-
     ]
   }
 }
