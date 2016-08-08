@@ -10,7 +10,8 @@ podfile: Example/Podfile
 before_install:
 - gem install cocoapods # Since Travis is not always on latest version
 - pod install --project-directory=Example
-# - brew upgrade xctool --HEAD
 script:
-# - xctool -workspace Example/PokemonKit.xcworkspace -scheme PokemonKit-Example run-tests -parallelize -sdk iphonesimulator
+# - xctool -project PokemonKit.xcodeproj -scheme "PokemonKit iOS" test -sdk iphonesimulator
+# - xctool -project PokemonKit.xcodeproj -scheme "PokemonKit OSX" test -sdk macosx
+# - xctool -project PokemonKit.xcodeproj -scheme "PokemonKit tvOS" test -sdk appletvsimulator
 - pod lib lint --allow-warnings

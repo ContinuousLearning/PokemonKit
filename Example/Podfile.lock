@@ -1,38 +1,14 @@
 PODS:
-  - Alamofire (3.2.1)
+  - Alamofire (3.4.1)
   - AlamofireObjectMapper (2.1.2):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
-  - ObjectMapper (1.1.5)
-  - OHHTTPStubs/Core (4.7.1)
-  - OHHTTPStubs/Swift (4.7.1):
-    - OHHTTPStubs/Core
-  - OMGHTTPURLRQ (3.1.2):
-    - OMGHTTPURLRQ/RQ (= 3.1.2)
-  - OMGHTTPURLRQ/FormURLEncode (3.1.2)
-  - OMGHTTPURLRQ/RQ (3.1.2):
-    - OMGHTTPURLRQ/FormURLEncode
-    - OMGHTTPURLRQ/UserAgent
-  - OMGHTTPURLRQ/UserAgent (3.1.2)
+  - ObjectMapper (1.3.0)
   - PokemonKit (1.0.2):
     - Alamofire (~> 3.0)
     - AlamofireObjectMapper (~> 2.1)
-    - PromiseKit (~> 3.2)
-  - PromiseKit (3.2.1):
-    - PromiseKit/Foundation (= 3.2.1)
-    - PromiseKit/QuartzCore (= 3.2.1)
-    - PromiseKit/UIKit (= 3.2.1)
-  - PromiseKit/CorePromise (3.2.1)
-  - PromiseKit/Foundation (3.2.1):
-    - OMGHTTPURLRQ (~> 3.1.0)
-    - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (3.2.1):
-    - PromiseKit/CorePromise
-  - PromiseKit/UIKit (3.2.1):
-    - PromiseKit/CorePromise
 
 DEPENDENCIES:
-  - OHHTTPStubs/Swift
   - PokemonKit (from `../`)
 
 EXTERNAL SOURCES:
@@ -40,14 +16,11 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AlamofireObjectMapper: 82391c31f23e37bdb2660da174bcf81b202da39d
-  ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
-  OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
-  OMGHTTPURLRQ: 38316b56d88125c600bcdb16df8329147da2b0ee
-  PokemonKit: f8831e3dc0a873534d5278df11434c18688f2855
-  PromiseKit: ef54f61501541bf18a87b25115c372184d180cea
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
+  PokemonKit: bb2e57fa81c1aff1cde28867a6d860f636e550fe
 
-PODFILE CHECKSUM: 3ea0816422bf40192ac189a9ba4ab19ece1e42fb
+PODFILE CHECKSUM: 9f9664916892a0cb09dd87f24ca96219fba90699
 
 COCOAPODS: 1.0.0
