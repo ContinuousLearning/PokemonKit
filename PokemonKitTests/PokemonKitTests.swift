@@ -23,7 +23,7 @@ class PokemonKitTests: XCTestCase {
     }
     
     func testFetchingBerries() {
-        let asyncExpectation = expectationWithDescription("Fetch berries")
+        let asyncExpectation = expectation(description: "Fetch berries")
         
         PokemonKit.fetchBerryList().then { response in
             asyncExpectation.fulfill()
@@ -32,14 +32,14 @@ class PokemonKitTests: XCTestCase {
             asyncExpectation.fulfill();
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
         
     }
     
     func testFectingBerryInfo() {
-        let asyncExpectation = expectationWithDescription("Fetch berries")
+        let asyncExpectation = expectation(description: "Fetch berries")
         PokemonKit.fetchBerry("1")
             .then { response  -> Void in
                 XCTAssertNotNil(response);
@@ -50,13 +50,13 @@ class PokemonKitTests: XCTestCase {
                 asyncExpectation.fulfill();
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchingEvolution() {
-        let asyncExpectation = expectationWithDescription("Fetch Evo Chain")
+        let asyncExpectation = expectation(description: "Fetch Evo Chain")
         PokemonKit.fetchEvolutionChain("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -67,13 +67,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchVersionGroup() {
-        let asyncExpectation = expectationWithDescription("Fetch Version Group")
+        let asyncExpectation = expectation(description: "Fetch Version Group")
         PokemonKit.fetchVersionGroup("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -84,13 +84,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchitem() {
-        let asyncExpectation = expectationWithDescription("Fetch Item")
+        let asyncExpectation = expectation(description: "Fetch Item")
         PokemonKit.fetchItem("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -101,13 +101,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchitemAttr() {
-        let asyncExpectation = expectationWithDescription("Fetch Item Attr")
+        let asyncExpectation = expectation(description: "Fetch Item Attr")
         PokemonKit.fetchItemAttribute("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -118,13 +118,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchitemCategory() {
-        let asyncExpectation = expectationWithDescription("Fetch Item Category")
+        let asyncExpectation = expectation(description: "Fetch Item Category")
         PokemonKit.fetchItemCategory("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -135,13 +135,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchitemFlingEffect() {
-        let asyncExpectation = expectationWithDescription("Fetch Item Fling Effect")
+        let asyncExpectation = expectation(description: "Fetch Item Fling Effect")
         PokemonKit.fetchItemFlingEffect("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -152,13 +152,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchItemPocket() {
-        let asyncExpectation = expectationWithDescription("Fetch Item Pocket")
+        let asyncExpectation = expectation(description: "Fetch Item Pocket")
         PokemonKit.fetchItemPocket("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -169,13 +169,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchMove() {
-        let asyncExpectation = expectationWithDescription("Fetch Move")
+        let asyncExpectation = expectation(description: "Fetch Move")
         PokemonKit.fetchMove("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -187,13 +187,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchMoveAilment() {
-        let asyncExpectation = expectationWithDescription("Fetch Move Ailment")
+        let asyncExpectation = expectation(description: "Fetch Move Ailment")
         PokemonKit.fetchMoveAilment("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -205,13 +205,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchMoveBattleStyle() {
-        let asyncExpectation = expectationWithDescription("Fetch Move Battle Style")
+        let asyncExpectation = expectation(description: "Fetch Move Battle Style")
         PokemonKit.fetchMoveBattleStyle("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -223,13 +223,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchMoveCategory() {
-        let asyncExpectation = expectationWithDescription("Fetch move category")
+        let asyncExpectation = expectation(description: "Fetch move category")
         PokemonKit.fetchMoveCategory("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -241,13 +241,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchMoveDamageClass() {
-        let asyncExpectation = expectationWithDescription("Fetch move damage class")
+        let asyncExpectation = expectation(description: "Fetch move damage class")
         PokemonKit.fetchMoveDamageClass("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -259,13 +259,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchMoveLearnMethod() {
-        let asyncExpectation = expectationWithDescription("Fetch move learn method")
+        let asyncExpectation = expectation(description: "Fetch move learn method")
         PokemonKit.fetchMoveLearnMethod("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -277,13 +277,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchMoveTarget() {
-        let asyncExpectation = expectationWithDescription("Fetch move target")
+        let asyncExpectation = expectation(description: "Fetch move target")
         PokemonKit.fetchMoveTarget("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -295,13 +295,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchLocation() {
-        let asyncExpectation = expectationWithDescription("Fetch location")
+        let asyncExpectation = expectation(description: "Fetch location")
         PokemonKit.fetchLocation("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -313,13 +313,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchLocationArea() {
-        let asyncExpectation = expectationWithDescription("Fetch location area")
+        let asyncExpectation = expectation(description: "Fetch location area")
         PokemonKit.fetchLocationArea("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -331,13 +331,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchPalPark() {
-        let asyncExpectation = expectationWithDescription("Fetch pal park area")
+        let asyncExpectation = expectation(description: "Fetch pal park area")
         PokemonKit.fetchPalParkArea("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -349,13 +349,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchRegion() {
-        let asyncExpectation = expectationWithDescription("Fetch Region")
+        let asyncExpectation = expectation(description: "Fetch Region")
         PokemonKit.fetchRegion("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -367,13 +367,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchAbility() {
-        let asyncExpectation = expectationWithDescription("Fetch Ability")
+        let asyncExpectation = expectation(description: "Fetch Ability")
         PokemonKit.fetchAbility("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -385,13 +385,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchCharacteristic() {
-        let asyncExpectation = expectationWithDescription("Fetch Ability")
+        let asyncExpectation = expectation(description: "Fetch Ability")
         PokemonKit.fetchCharacteristic("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -403,13 +403,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchEggGroup() {
-        let asyncExpectation = expectationWithDescription("Fetch Egg Group")
+        let asyncExpectation = expectation(description: "Fetch Egg Group")
         PokemonKit.fetchEggGroup("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -421,13 +421,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchGender() {
-        let asyncExpectation = expectationWithDescription("Fetch Gender")
+        let asyncExpectation = expectation(description: "Fetch Gender")
         PokemonKit.fetchGender("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -439,13 +439,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchGrowthRate() {
-        let asyncExpectation = expectationWithDescription("Fetch Growth Rate")
+        let asyncExpectation = expectation(description: "Fetch Growth Rate")
         PokemonKit.fetchGrowthRate("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -457,13 +457,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchNature() {
-        let asyncExpectation = expectationWithDescription("Fetch Nature")
+        let asyncExpectation = expectation(description: "Fetch Nature")
         PokemonKit.fetchNature("2")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -475,13 +475,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchPokeathlonStat() {
-        let asyncExpectation = expectationWithDescription("Fetch Pokeathlon Stat")
+        let asyncExpectation = expectation(description: "Fetch Pokeathlon Stat")
         PokemonKit.fetchPokeathlonStat("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -493,13 +493,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchPokemon() {
-        let asyncExpectation = expectationWithDescription("Fetch Pokemon")
+        let asyncExpectation = expectation(description: "Fetch Pokemon")
         PokemonKit.fetchPokemon("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -511,13 +511,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchPokemonColor() {
-        let asyncExpectation = expectationWithDescription("Fetch Pokemon Color")
+        let asyncExpectation = expectation(description: "Fetch Pokemon Color")
         PokemonKit.fetchPokemonColor("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -529,13 +529,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchPokemonForm() {
-        let asyncExpectation = expectationWithDescription("Fetch Pokemon Form")
+        let asyncExpectation = expectation(description: "Fetch Pokemon Form")
         PokemonKit.fetchPokemonForm("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -547,13 +547,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchPokemonHabitat() {
-        let asyncExpectation = expectationWithDescription("Fetch Pokemon Habitat")
+        let asyncExpectation = expectation(description: "Fetch Pokemon Habitat")
         PokemonKit.fetchPokemonHabitat("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -565,13 +565,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchPokemonShape() {
-        let asyncExpectation = expectationWithDescription("Fetch Pokemon Shape")
+        let asyncExpectation = expectation(description: "Fetch Pokemon Shape")
         PokemonKit.fetchPokemonShape("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -583,13 +583,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchPokemonSpecies() {
-        let asyncExpectation = expectationWithDescription("Fetch Pokemon Species")
+        let asyncExpectation = expectation(description: "Fetch Pokemon Species")
         PokemonKit.fetchPokemonSpecies("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -601,13 +601,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchPokemonStat() {
-        let asyncExpectation = expectationWithDescription("Fetch Pokemon Stat")
+        let asyncExpectation = expectation(description: "Fetch Pokemon Stat")
         PokemonKit.fetchStat("2")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -619,13 +619,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testFetchPokemonType() {
-        let asyncExpectation = expectationWithDescription("Fetch Pokemon Type")
+        let asyncExpectation = expectation(description: "Fetch Pokemon Type")
         PokemonKit.fetchType("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -637,13 +637,13 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
     
     func testLanguage() {
-        let asyncExpectation = expectationWithDescription("Fetch Language")
+        let asyncExpectation = expectation(description: "Fetch Language")
         PokemonKit.fetchLanguage("1")
             .then{ response -> Void in
                 XCTAssertNotNil(response);
@@ -655,7 +655,7 @@ class PokemonKitTests: XCTestCase {
                 
         }
         
-        self.waitForExpectationsWithTimeout(30) { (err) -> Void in
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
     }
