@@ -9,10 +9,15 @@ rvm: 2.2.2
 podfile: Example/Podfile
 before_install:
 - gem install cocoapods # Since Travis is not always on latest version
-- pod repo update
 - pod install --project-directory=Example
+# - brew upgrade xctool --HEAD
 script:
+<<<<<<< HEAD
 # - xctool -project PokemonKit.xcodeproj -scheme "PokemonKit iOS" test -sdk iphonesimulator
 # - xctool -project PokemonKit.xcodeproj -scheme "PokemonKit OSX" test -sdk macosx
 # - xctool -project PokemonKit.xcodeproj -scheme "PokemonKit tvOS" test -sdk appletvsimulator
-- pod lib lint --allow-warnings --quick
+- pod lib lint --allow-warnings
+=======
+# - xctool -workspace Example/PokemonKit.xcworkspace -scheme PokemonKit-Example run-tests -parallelize -sdk iphonesimulator
+- pod lib lint --allow-warnings
+>>>>>>> master
