@@ -34,6 +34,7 @@ PokemonKit.fetchBerry("1")
 - [x] Carthage Support
 - [ ] Unit test don't call server
 - [x] Remove PromiseKit (So many build errors, not worth it)
+- [ ] Porting back to Objective-C
 
 ## Installation
 
