@@ -18,14 +18,14 @@ class ViewController: UIViewController {
         PokemonKit.fetchBerryList()
             .then { berryList in
                 print(berryList)
-            }.onError { error in
+            }.catch { error in
                 print(error)
         }
         
         PokemonKit.fetchBerry("1")
             .then { berryInfo in
-                print(berryInfo.name)
-            }.onError {error in
+                print(berryInfo.name!)
+            }.catch {error in
                 print(error)
         }
     }
