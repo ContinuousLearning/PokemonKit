@@ -1,6 +1,6 @@
 {
   "name": "PokemonKit",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "summary": "A wrapper for pokeapi v2",
   "description": "PokemonKit is a swift wrapper for Pokeapi.\nPokemonKit use Alamofire web requests handling.",
   "homepage": "https://github.com/ContinuousLearning/PokemonKit",
@@ -10,15 +10,13 @@
   },
   "source": {
     "git": "https://github.com/ContinuousLearning/PokemonKit.git",
-    "tag": "2.0.1"
+    "tag": "3.0.0"
   },
   "social_media_url": "https://twitter.com/darkcl_dev",
   "platforms": {
-    "ios": "8.0",
-    "osx": "10.9",
-    "tvos": "9.0",
-    "watchos": "2.0"
+    "ios": "12.0"
   },
+  "swift_version": "4.2",
   "requires_arc": true,
   "source_files": "Classes/**/*",
   "dependencies": {
@@ -26,10 +24,10 @@
       "~> 4.2"
     ],
     "AlamofireObjectMapper": [
-      "~> 4.0"
+      "~> 5.2"
     ],
     "PromiseKit": [
-      "~> 4.0"
+      "~> 6.8"
     ]
   }
 }

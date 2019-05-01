@@ -8,26 +8,18 @@
 
 import UIKit
 import PokemonKit
+import PromiseKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        PokemonKit.fetchBerryList()
-            .then { berryList in
-                print(berryList)
-            }.catch { error in
-                print(error)
-        }
-        
-        PokemonKit.fetchBerry("1")
-            .then { berryInfo in
-                print(berryInfo.name!)
-            }.catch {error in
-                print(error)
-        }
+
+        PokemonKit.fetchBerry("1").done({ berry in
+            print(berry.name!)
+        })
+
     }
 
     override func didReceiveMemoryWarning() {

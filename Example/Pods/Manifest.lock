@@ -1,39 +1,44 @@
 PODS:
-  - Alamofire (4.2.0)
-  - AlamofireObjectMapper (4.0.1):
-    - Alamofire (~> 4.1)
-    - ObjectMapper (~> 2.0)
-  - ObjectMapper (2.2.2)
-  - PokemonKit (2.0.1):
+  - Alamofire (4.8.2)
+  - AlamofireObjectMapper (5.2.0):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
+  - ObjectMapper (3.4.2)
+  - PokemonKit (3.0.0):
     - Alamofire (~> 4.2)
-    - AlamofireObjectMapper (~> 4.0)
-    - PromiseKit (~> 4.0)
-  - PromiseKit (4.1.0):
-    - PromiseKit/Foundation (= 4.1.0)
-    - PromiseKit/QuartzCore (= 4.1.0)
-    - PromiseKit/UIKit (= 4.1.0)
-  - PromiseKit/CorePromise (4.1.0)
-  - PromiseKit/Foundation (4.1.0):
+    - AlamofireObjectMapper (~> 5.2)
+    - PromiseKit (~> 6.8)
+  - PromiseKit (6.8.4):
+    - PromiseKit/CorePromise (= 6.8.4)
+    - PromiseKit/Foundation (= 6.8.4)
+    - PromiseKit/UIKit (= 6.8.4)
+  - PromiseKit/CorePromise (6.8.4)
+  - PromiseKit/Foundation (6.8.4):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.1.0):
-    - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.1.0):
+  - PromiseKit/UIKit (6.8.4):
     - PromiseKit/CorePromise
 
 DEPENDENCIES:
   - PokemonKit (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireObjectMapper
+    - ObjectMapper
+    - PromiseKit
 
 EXTERNAL SOURCES:
   PokemonKit:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
-  AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
-  ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
-  PokemonKit: 6533014b16ba3adaa76857788a68391bf1f200a7
-  PromiseKit: c98453ff78544c0ad5bb0ea980782e6875f47978
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  PokemonKit: 716cd82a0b48e836294eba12f75964d4d66f41bf
+  PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
 
-PODFILE CHECKSUM: 9f9664916892a0cb09dd87f24ca96219fba90699
+PODFILE CHECKSUM: cab145f5c18823d5fff1114c0f25a7ef2cb20d72
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.5.3

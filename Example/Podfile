@@ -1,5 +1,7 @@
 use_frameworks!
 
+platform :ios, '12.0'
+
 target 'PokemonKit-Example' do
   pod 'PokemonKit', :path => '../'
 end

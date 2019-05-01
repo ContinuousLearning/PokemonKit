@@ -6,7 +6,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014-2016 Hearst
+//  Copyright (c) 2014-2018 Tristan Himmelman
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -89,12 +89,9 @@ public extension Array where Element: BaseMappable {
 	}
 	
 	/// Initialize Array from a JSON Array
-	public init?(JSONArray: [[String: Any]], context: MapContext? = nil) {
-		if let obj: [Element] = Mapper(context: context).mapArray(JSONArray: JSONArray) {
-			self = obj
-		} else {
-			return nil
-		}
+	public init(JSONArray: [[String: Any]], context: MapContext? = nil) {
+		let obj: [Element] = Mapper(context: context).mapArray(JSONArray: JSONArray)
+		self = obj
 	}
 	
 	/// Returns the JSON Array

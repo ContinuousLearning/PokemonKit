@@ -13,7 +13,9 @@
 + (instancetype)delegateWithPromise:(AnyPromise **)promise;
 @end
 
-
+@interface UIViewController ()
+- (AnyPromise*) promise;
+@end
 
 @implementation UIViewController (PromiseKit)
 
@@ -40,7 +42,7 @@
         promise = [[AnyPromise alloc] initWithResolver:&resolve];
         [vc setValue:^(NSInteger result){
             if (result == 0) {
-                resolve([NSError cancelledError]);
+                resolve([NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]);
             } else {
                 resolve(@(result));
             }
@@ -56,7 +58,7 @@
     }
 
     if (!promise) {
-        if (![vc respondsToSelector:NSSelectorFromString(@"promise")]) {
+        if (![vc respondsToSelector:@selector(promise)]) {
             id userInfo = @{NSLocalizedDescriptionKey: @"ViewController is not promisable"};
             id err = [NSError errorWithDomain:PMKErrorDomain code:PMKInvalidUsageError userInfo:userInfo];
             return [AnyPromise promiseWithValue:err];
@@ -76,7 +78,7 @@
 
     [self presentViewController:vc2present animated:animated completion:block];
 
-    promise.always(^{
+    promise.ensure(^{
         [vc2present.presentingViewController dismissViewControllerAnimated:animated completion:nil];
     });
 
@@ -102,7 +104,7 @@
     if (error != nil) {
         resolve(error);
     } else if (result == 0) {
-        resolve([NSError cancelledError]);
+        resolve([NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]);
     } else {
         resolve(@(result));
     }
@@ -129,7 +131,7 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    resolve([NSError cancelledError]);
+    resolve([NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]);
     retainCycle = nil;
 }
 

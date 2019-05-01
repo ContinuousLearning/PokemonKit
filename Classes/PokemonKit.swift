@@ -3054,14 +3054,14 @@ Fetch Berry list
 - returns: A promise with PKMPagedObject
 */
 public func fetchBerryList() -> Promise<PKMPagedObject>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/berry"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     };
@@ -3075,14 +3075,14 @@ public func fetchBerryList() -> Promise<PKMPagedObject>{
  - returns: A promise with PKMBerry
  */
 public func fetchBerry(_ berryId: String) -> Promise<PKMBerry>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/berry/" + berryId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMBerry>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3094,14 +3094,14 @@ Fetch Berry Firmness list
 - returns: A promise with PKMPagedObject
 */
 public func fetchBerryFirmnessList() -> Promise<PKMPagedObject>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/berry-firmness"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3115,15 +3115,15 @@ public func fetchBerryFirmnessList() -> Promise<PKMPagedObject>{
  - returns: A promise with PKMBerryFirmness
  */
 public func fetchBerryFirmness(_ berryFirmnessId: String) -> Promise<PKMBerryFirmness>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/berry-firmness/" + berryFirmnessId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMBerryFirmness>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3136,14 +3136,14 @@ Fetch Berry Flavours list
 - returns: A promise with PKMPagedObject
 */
 public func fetchBerryFlavours() -> Promise<PKMPagedObject>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/berry-flavor"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3157,15 +3157,15 @@ public func fetchBerryFlavours() -> Promise<PKMPagedObject>{
  - returns: A promise with PKMBerryFlavour
  */
 public func fetchBerryFlavour(_ berryFlavourId: String) -> Promise<PKMBerryFlavour>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/berry-flavor/" + berryFlavourId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMBerryFlavour>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3178,14 +3178,14 @@ Fetch Contest list
 - returns: A promise with PKMPagedObject
 */
 public func fetchContestList() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/contest-type"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3199,15 +3199,15 @@ public func fetchContestList() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMContestType
  */
 public func fetchContestType(_ contestTypeId: String) -> Promise<PKMContestType>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/contest-type/" + contestTypeId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMContestType>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3220,14 +3220,14 @@ Fetch Contest Effects list
 - returns: A promise with PKMPagedObject
 */
 public func fetchContestEffects() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/contest-effect"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3241,15 +3241,15 @@ public func fetchContestEffects() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMContestEffect
  */
 public func fetchContestEffect(_ contestEffectId: String) -> Promise<PKMContestEffect>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/contest-effect/" + contestEffectId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMContestEffect>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3262,14 +3262,14 @@ Fetch Super Contest Effects list
 - returns: A promise with PKMPagedObject
 */
 public func fetchSuperContestEffects() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/contest-effect"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3283,15 +3283,15 @@ public func fetchSuperContestEffects() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMSuperContestEffect
  */
 public func fetchSuperContestEffect(_ superContestEffectId: String) -> Promise<PKMSuperContestEffect>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/super-contest-effect/" + superContestEffectId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMSuperContestEffect>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3304,14 +3304,14 @@ Fetch Encounter Methods list
 - returns: A promise with PKMPagedObject
 */
 public func fetchEncounterMethods() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/encounter-method"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3325,15 +3325,15 @@ public func fetchEncounterMethods() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEncounterMethod
  */
 public func fetchEncounterMethod(_ encounterMethodId: String) -> Promise<PKMEncounterMethod>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/encounter-method/" + encounterMethodId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEncounterMethod>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3346,14 +3346,14 @@ Fetch Encounter Conditions list
 - returns: A promise with PKMPagedObject
 */
 public func fetchEncounterConditions() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/encounter-condition"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3367,15 +3367,15 @@ public func fetchEncounterConditions() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEncounterCondition
  */
 public func fetchEncounterCondition(_ encounterConditionId: String) -> Promise<PKMEncounterCondition>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/encounter-condition/" + encounterConditionId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEncounterCondition>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3388,14 +3388,14 @@ Fetch Encounter Condition Values list
 - returns: A promise with PKMPagedObject
 */
 public func fetchEncounterConditionValues() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/encounter-condition-value"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3409,15 +3409,15 @@ public func fetchEncounterConditionValues() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEncounterConditionValue
  */
 public func fetchEncounterConditionValue(_ encounterConditionValueId: String) -> Promise<PKMEncounterConditionValue>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/encounter-condition-value/" + encounterConditionValueId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEncounterConditionValue>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3430,14 +3430,14 @@ Fetch Encounter Chains list
 - returns: A promise with PKMPagedObject
 */
 public func fetchEvolutionChains() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/evolution-chain"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3451,15 +3451,15 @@ public func fetchEvolutionChains() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEvolutionChain
  */
 public func fetchEvolutionChain(_ evolutionChainId: String) -> Promise<PKMEvolutionChain>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/evolution-chain/" + evolutionChainId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEvolutionChain>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3472,14 +3472,14 @@ Fetch Encounter Triggers list
 - returns: A promise with PKMPagedObject
 */
 public func fetchEvolutionTriggers() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/evolution-trigger"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3493,15 +3493,15 @@ public func fetchEvolutionTriggers() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEvolutionTrigger
  */
 public func fetchEvolutionTrigger(_ evolutionTriggerId: String) -> Promise<PKMEvolutionTrigger>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/evolution-trigger/" + evolutionTriggerId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEvolutionTrigger>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3514,14 +3514,14 @@ Fetch Generations list
 - returns: A promise with PKMPagedObject
 */
 public func fetchGenerations() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/generation"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3535,15 +3535,15 @@ public func fetchGenerations() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMGeneration
  */
 public func fetchGeneration(_ generationId: String) -> Promise<PKMGeneration>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/generation/" + generationId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMGeneration>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3556,14 +3556,14 @@ Fetch Pokedexes list
 - returns: A promise with PKMPagedObject
 */
 public func fetchPokedexes() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokedex"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3577,15 +3577,15 @@ public func fetchPokedexes() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokedex
  */
 public func fetchPokedex(_ pokedexId: String) -> Promise<PKMPokedex>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokedex/" + pokedexId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokedex>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3598,14 +3598,14 @@ Fetch Versions list
 - returns: A promise with PKMPagedObject
 */
 public func fetchVersions() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/version"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3619,15 +3619,15 @@ public func fetchVersions() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMVersion
  */
 public func fetchVersion(_ versionId: String) -> Promise<PKMVersion>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/version/" + versionId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMVersion>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3640,14 +3640,14 @@ Fetch Versions Groups list
 - returns: A promise with PKMPagedObject
 */
 public func fetchVersionGroups() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/version-group"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3661,15 +3661,15 @@ public func fetchVersionGroups() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMVersionGroup
  */
 public func fetchVersionGroup(_ versionGroupId: String) -> Promise<PKMVersionGroup>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/version-group/" + versionGroupId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMVersionGroup>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3682,14 +3682,14 @@ Fetch Items list
 - returns: A promise with PKMPagedObject
 */
 public func fetchItems() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/item"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3703,15 +3703,15 @@ public func fetchItems() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMItem
  */
 public func fetchItem(_ itemId: String) -> Promise<PKMItem>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/item/" + itemId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMItem>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3724,14 +3724,14 @@ Fetch Item Attributes list
 - returns: A promise with PKMPagedObject
 */
 public func fetchItemAttributes() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/item-attribute"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3745,15 +3745,15 @@ public func fetchItemAttributes() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMItemAttribute
  */
 public func fetchItemAttribute(_ itemAttributeId: String) -> Promise<PKMItemAttribute>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/item-attribute/" + itemAttributeId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMItemAttribute>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3766,14 +3766,14 @@ Fetch Item Categories list
 - returns: A promise with PKMPagedObject
 */
 public func fetchItemCategories() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/item-category"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3787,15 +3787,15 @@ public func fetchItemCategories() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMItemCategory
  */
 public func fetchItemCategory(_ itemCategoryId: String) -> Promise<PKMItemCategory>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/item-category/" + itemCategoryId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMItemCategory>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3808,14 +3808,14 @@ Fetch Item Fling Effects list
 - returns: A promise with PKMPagedObject
 */
 public func fetchItemFlingEffects() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/item-fling-effect"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3829,15 +3829,15 @@ public func fetchItemFlingEffects() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMItemFlingEffect
  */
 public func fetchItemFlingEffect(_ itemFlingEffectsId: String) -> Promise<PKMItemFlingEffect>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/item-fling-effect/" + itemFlingEffectsId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMItemFlingEffect>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3850,14 +3850,14 @@ Fetch Item Pockets list
 - returns: A promise with PKMPagedObject
 */
 public func fetchItemPockets() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/item-pocket"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3871,15 +3871,15 @@ public func fetchItemPockets() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMItemPocket
  */
 public func fetchItemPocket(_ itemPocketId: String) -> Promise<PKMItemPocket>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/item-pocket/" + itemPocketId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMItemPocket>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3892,14 +3892,14 @@ Fetch Moves list
 - returns: A promise with PKMPagedObject
 */
 public func fetchMoves() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3913,15 +3913,15 @@ public func fetchMoves() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMove
  */
 public func fetchMove(_ moveId: String) -> Promise<PKMMove>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move/" + moveId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMove>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3934,14 +3934,14 @@ Fetch Moves Ailments list
 - returns: A promise with PKMPagedObject
 */
 public func fetchMoveAilments() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-ailment"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3955,15 +3955,15 @@ public func fetchMoveAilments() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveAilment
  */
 public func fetchMoveAilment(_ moveAilmentId: String) -> Promise<PKMMoveAilment>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-ailment/" + moveAilmentId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveAilment>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -3976,14 +3976,14 @@ Fetch Moves Battle Styles list
 - returns: A promise with PKMPagedObject
 */
 public func fetchMoveBattleStyles() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-battle-style"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -3997,15 +3997,15 @@ public func fetchMoveBattleStyles() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveBattleStyle
  */
 public func fetchMoveBattleStyle(_ moveBattleStyleId: String) -> Promise<PKMMoveBattleStyle>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-battle-style/" + moveBattleStyleId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveBattleStyle>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4018,14 +4018,14 @@ Fetch Moves Categories list
 - returns: A promise with PKMPagedObject
 */
 public func fetchMoveCategories() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-category"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4039,15 +4039,15 @@ public func fetchMoveCategories() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveCategory
  */
 public func fetchMoveCategory(_ moveCategoryId: String) -> Promise<PKMMoveCategory>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-category/" + moveCategoryId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveCategory>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4060,14 +4060,14 @@ Fetch Moves Damage Classes list
 - returns: A promise with PKMPagedObject
 */
 public func fetchMoveDamageClasses() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-damage-class"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4081,15 +4081,15 @@ public func fetchMoveDamageClasses() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveDamageClass
  */
 public func fetchMoveDamageClass(_ moveDamageClassId: String) -> Promise<PKMMoveDamageClass>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-damage-class/" + moveDamageClassId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveDamageClass>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4102,14 +4102,14 @@ Fetch Moves Learn Methods list
 - returns: A promise with PKMPagedObject
 */
 public func fetchMoveLearnMethods() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-learn-method"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4123,15 +4123,15 @@ public func fetchMoveLearnMethods() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveLearnMethod
  */
 public func fetchMoveLearnMethod(_ moveLearnMethodId: String) -> Promise<PKMMoveLearnMethod>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-learn-method/" + moveLearnMethodId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveLearnMethod>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4144,14 +4144,14 @@ Fetch Moves Targets list
 - returns: A promise with PKMPagedObject
 */
 public func fetchMoveTargets() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-target"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4165,15 +4165,15 @@ public func fetchMoveTargets() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveTarget
  */
 public func fetchMoveTarget(_ moveTargetId: String) -> Promise<PKMMoveTarget>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/move-target/" + moveTargetId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveTarget>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4186,14 +4186,14 @@ Fetch Locations list
 - returns: A promise with PKMPagedObject
 */
 public func fetchLocations() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/location"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4207,15 +4207,15 @@ public func fetchLocations() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMLocation
  */
 public func fetchLocation(_ locationId: String) -> Promise<PKMLocation>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/location/" + locationId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMLocation>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4228,14 +4228,14 @@ Fetch Location Area list
 - returns: A promise with PKMPagedObject
 */
 public func fetchLocationAreas() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/location-area"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4249,15 +4249,15 @@ public func fetchLocationAreas() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMLocationArea
  */
 public func fetchLocationArea(_ locationAreaId: String) -> Promise<PKMLocationArea>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/location-area/" + locationAreaId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMLocationArea>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4270,14 +4270,14 @@ Fetch Pal Park Areas list
 - returns: A promise with PKMPagedObject
 */
 public func fetchPalParkAreas() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pal-park-area"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4291,15 +4291,15 @@ public func fetchPalParkAreas() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPalParkArea
  */
 public func fetchPalParkArea(_ palParkAreaId: String) -> Promise<PKMPalParkArea>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pal-park-area/" + palParkAreaId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPalParkArea>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4312,14 +4312,14 @@ Fetch Regions list
 - returns: A promise with PKMPagedObject
 */
 public func fetchRegions() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/region"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4333,15 +4333,15 @@ public func fetchRegions() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMRegion
  */
 public func fetchRegion(_ regionId: String) -> Promise<PKMRegion>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/region/" + regionId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMRegion>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4354,14 +4354,14 @@ Fetch Abilities list
 - returns: A promise with PKMPagedObject
 */
 public func fetchAbilities() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/ability"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4375,15 +4375,15 @@ public func fetchAbilities() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMAbility
  */
 public func fetchAbility(_ abilityId: String) -> Promise<PKMAbility>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/ability/" + abilityId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMAbility>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4396,14 +4396,14 @@ Fetch Characteristics list
 - returns: A promise with PKMPagedObject
 */
 public func fetchCharacteristics() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/characteristic"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4417,15 +4417,15 @@ public func fetchCharacteristics() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMCharacteristic
  */
 public func fetchCharacteristic(_ characteristicId: String) -> Promise<PKMCharacteristic>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/characteristic/" + characteristicId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMCharacteristic>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4438,14 +4438,14 @@ Fetch Egg Group list
 - returns: A promise with PKMPagedObject
 */
 public func fetchEggGroup() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/egg-group"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4459,15 +4459,15 @@ public func fetchEggGroup() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEggGroup
  */
 public func fetchEggGroup(_ eggGroupId: String) -> Promise<PKMEggGroup>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/egg-group/" + eggGroupId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEggGroup>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4480,14 +4480,14 @@ Fetch Genders list
 - returns: A promise with PKMPagedObject
 */
 public func fetchGenders() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/gender"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4501,15 +4501,15 @@ public func fetchGenders() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMGender
  */
 public func fetchGender(_ genderId: String) -> Promise<PKMGender>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/gender/" + genderId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMGender>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4522,14 +4522,14 @@ Fetch Growth Rate list
 - returns: A promise with PKMPagedObject
 */
 public func fetchGrowthRates() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/growth-rate"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4543,15 +4543,15 @@ public func fetchGrowthRates() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMGrowthRate
  */
 public func fetchGrowthRate(_ growthRateId: String) -> Promise<PKMGrowthRate>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/growth-rate/" + growthRateId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMGrowthRate>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4564,14 +4564,14 @@ Fetch Nature list
 - returns: A promise with PKMPagedObject
 */
 public func fetchNatures() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/nature"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4585,15 +4585,15 @@ public func fetchNatures() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMNature
  */
 public func fetchNature(_ natureId: String) -> Promise<PKMNature>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/nature/" + natureId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMNature>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4606,14 +4606,14 @@ Fetch Pokeathlon Stat list
 - returns: A promise with PKMPagedObject
 */
 public func fetchPokeathlonStats() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokeathlon-stat"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4627,15 +4627,15 @@ public func fetchPokeathlonStats() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokeathlonStat
  */
 public func fetchPokeathlonStat(_ pokeathlonStatId: String) -> Promise<PKMPokeathlonStat>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokeathlon-stat/" + pokeathlonStatId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokeathlonStat>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4648,14 +4648,14 @@ Fetch Pokemon list
 - returns: A promise with PKMPagedObject
 */
 public func fetchPokemons() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4669,15 +4669,15 @@ public func fetchPokemons() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemon
  */
 public func fetchPokemon(_ pokemonId: String) -> Promise<PKMPokemon>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon/" + pokemonId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemon>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4690,14 +4690,14 @@ Fetch Pokemon Color list
 - returns: A promise with PKMPagedObject
 */
 public func fetchPokemonColors() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon-color"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4711,15 +4711,15 @@ public func fetchPokemonColors() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemonColor
  */
 public func fetchPokemonColor(_ pokemonColorId: String) -> Promise<PKMPokemonColor>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon-color/" + pokemonColorId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemonColor>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4732,14 +4732,14 @@ Fetch Pokemon Form list
 - returns: A promise with PKMPagedObject
 */
 public func fetchPokemonForms() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon-form"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4753,15 +4753,15 @@ public func fetchPokemonForms() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemonForm
  */
 public func fetchPokemonForm(_ pokemonFormId: String) -> Promise<PKMPokemonForm>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon-form/" + pokemonFormId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemonForm>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4774,14 +4774,14 @@ Fetch Pokemon Habitat list
 - returns: A promise with PKMPagedObject
 */
 public func fetchPokemonHabitats() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon-habitat"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4795,15 +4795,15 @@ public func fetchPokemonHabitats() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemonHabitat
  */
 public func fetchPokemonHabitat(_ pokemonHabitatId: String) -> Promise<PKMPokemonHabitat>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon-habitat/" + pokemonHabitatId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemonHabitat>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4816,14 +4816,14 @@ Fetch Pokemon Shape list
 - returns: A promise with PKMPagedObject
 */
 public func fetchPokemonShapes() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon-shape"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4837,15 +4837,15 @@ public func fetchPokemonShapes() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemonShape
  */
 public func fetchPokemonShape(_ pokemonShapeId: String) -> Promise<PKMPokemonShape>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon-shape/" + pokemonShapeId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemonShape>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4858,14 +4858,14 @@ Fetch Pokemon Species list
 - returns: A promise with PKMPagedObject
 */
 public func fetchPokemonSpecies() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon-species"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4879,15 +4879,15 @@ public func fetchPokemonSpecies() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemonSpecies
  */
 public func fetchPokemonSpecies(_ pokemonSpeciesId: String) -> Promise<PKMPokemonSpecies>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/pokemon-species/" + pokemonSpeciesId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemonSpecies>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4900,14 +4900,14 @@ Fetch Stat list
 - returns: A promise with PKMPagedObject
 */
 public func fetchStats() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/stat"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4921,15 +4921,15 @@ public func fetchStats() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMStat
  */
 public func fetchStat(_ statId: String) -> Promise<PKMStat>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/stat/" + statId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMStat>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4942,14 +4942,14 @@ Fetch Type list
 - returns: A promise with PKMPagedObject
 */
 public func fetchType() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/type"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -4963,15 +4963,15 @@ public func fetchType() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMType
  */
 public func fetchType(_ typeId: String) -> Promise<PKMType>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/type/" + typeId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMType>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
@@ -4984,14 +4984,14 @@ Fetch Languages list
 - returns: A promise with PKMPagedObject
 */
 public func fetchLanguages() -> Promise<PKMPagedObject> {
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/language"
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
         }
     }
@@ -5005,15 +5005,15 @@ public func fetchLanguages() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMLanguage
  */
 public func fetchLanguage(_ languageId: String) -> Promise<PKMLanguage>{
-    return Promise { fulfill, reject in
+    return Promise { seal in
         let URL = baseURL + "/language/" + languageId
         
         Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMLanguage>) in
             
             if (response.result.isSuccess) {
-                fulfill(response.result.value!)
+                seal.fulfill(response.result.value!)
             }else{
-                reject(response.result.error!)
+                seal.reject(response.result.error!)
             }
             
         }
