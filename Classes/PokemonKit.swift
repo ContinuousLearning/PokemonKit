@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import Alamofire
-import ObjectMapper
-import AlamofireObjectMapper
 import PromiseKit
+import Moya
+
 // MARK: Constant
 
 let baseURL: String = "http://pokeapi.co/api/v2"
@@ -18,7 +17,7 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 // MARK: Classes
 
 /// Languages for translations of API resource information.
-open class PKMLanguage: Mappable {
+open class PKMLanguage: Codable {
     
     /// The identifier for this language resource
     open var id: Int?
@@ -38,22 +37,10 @@ open class PKMLanguage: Mappable {
     /// The name of this language listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        official <- map["official"]
-        iso639 <- map["iso639"]
-        iso3166 <- map["iso3166"]
-        names <- map["names"]
-    }
 }
 
 /// Pokemon Type
-open class PKMTypePokemon: Mappable {
+open class PKMTypePokemon: Codable {
     
     /// The order the Pokémon's types are listed in
     open var slot: Int?
@@ -61,18 +48,10 @@ open class PKMTypePokemon: Mappable {
     /// The Pokémon that has the referenced type
     open var pokemon: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        slot <- map["slot"]
-        pokemon <- map["pokemon"]
-    }
 }
 
 /// Pokemon Type Relations
-open class PKMTypeRelations: Mappable {
+open class PKMTypeRelations: Codable {
     
     /// A list of types this type has no effect on
     open var noDamageTo: [PKMNamedAPIResource]?
@@ -92,22 +71,10 @@ open class PKMTypeRelations: Mappable {
     /// A list of types that are very effective against this type
     open var doubleDamageFrom: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        noDamageTo <- map["no_damage_to"]
-        halfDamageTo <- map["half_damage_to"]
-        doubleDamageTo <- map["double_damage_to"]
-        noDamageFrom <- map["no_damage_from"]
-        halfDamageFrom <- map["half_damage_from"]
-        doubleDamageFrom <- map["double_damage_from"]
-    }
 }
 
 /// Types are properties for Pokémon and their moves. Each type has three properties: which types of Pokémon it is super effective against, which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against.
-open class PKMType: Mappable {
+open class PKMType: Codable {
     
     /// The identifier for this type resource
     open var id: Int?
@@ -136,26 +103,11 @@ open class PKMType: Mappable {
     /// A list of moves that have this type
     open var moves: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        damageRelations <- map["damage_relations"]
-        gameIndices <- map["game_indices"]
-        generation <- map["generation"]
-        moveDamageClass <- map["move_damage_class"]
-        names <- map["names"]
-        pokemon <- map["pokemon"]
-        moves <- map["moves"]
-    }
 }
 
 
 /// Nature Affect Set
-open class PKMNatureStatAffectSets: Mappable {
+open class PKMNatureStatAffectSets: Codable {
     
     /// A list of natures and how they change the referenced stat
     open var increase: [PKMNatureStatAffect]?
@@ -163,19 +115,11 @@ open class PKMNatureStatAffectSets: Mappable {
     /// A list of nature sand how they change the referenced stat
     open var decrease: [PKMNatureStatAffect]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        increase <- map["increase"]
-        decrease <- map["decrease"]
-    }
 }
 
 
 /// Nature Stat Affect
-open class PKMNatureStatAffect: Mappable {
+open class PKMNatureStatAffect: Codable {
     
     /// The maximum amount of change to the referenced stat
     open var maxChange: Int?
@@ -183,18 +127,10 @@ open class PKMNatureStatAffect: Mappable {
     /// The nature causing the change
     open var nature: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        maxChange <- map["max_change"]
-        nature <- map["nature"]
-    }
 }
 
 /// Move Stat Affect
-open class PKMMoveStatAffect: Mappable {
+open class PKMMoveStatAffect: Codable {
     
     /// The maximum amount of change to the referenced stat
     open var maxChange: Int?
@@ -202,18 +138,10 @@ open class PKMMoveStatAffect: Mappable {
     /// The move causing the change
     open var move: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        maxChange <- map["max_change"]
-        move <- map["move"]
-    }
 }
 
 /// Move Stat Affect Sets
-open class PKMMoveStatAffectSets: Mappable {
+open class PKMMoveStatAffectSets: Codable {
     
     /// A list of natures and how they change the referenced stat
     open var increase: [PKMMoveStatAffect]?
@@ -221,18 +149,10 @@ open class PKMMoveStatAffectSets: Mappable {
     /// A list of nature sand how they change the referenced stat
     open var decrease: [PKMMoveStatAffect]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        increase <- map["increase"]
-        decrease <- map["decrease"]
-    }
 }
 
 /// Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.
-open class PKMStat: Mappable {
+open class PKMStat: Codable {
     
     /// The identifier for this stat resource
     open var id: Int?
@@ -261,25 +181,10 @@ open class PKMStat: Mappable {
     /// The name of this region listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        gameIndex <- map["game_index"]
-        isBattleOnly <- map["is_battle_only"]
-        affectingMoves <- map["affecting_moves"]
-        affectingNatures <- map["affecting_natures"]
-        characteristics <- map["characteristics"]
-        moveDamageClass <- map["move_damage_class"]
-        names <- map["names"]
-    }
 }
 
 /// Pokemon Species Dex Entry
-open class PKMPokemonSpeciesDexEntry: Mappable {
+open class PKMPokemonSpeciesDexEntry: Codable {
     
     /// The index number within the Pokédex
     open var entryNumber: Int?
@@ -287,18 +192,10 @@ open class PKMPokemonSpeciesDexEntry: Mappable {
     /// The Pokédex the referenced Pokémon species can be found in
     open var name: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        entryNumber <- map["entry_number"]
-        name <- map["name"]
-    }
 }
 
 /// PalPark Encounter Area
-open class PKMPalParkEncounterArea: Mappable {
+open class PKMPalParkEncounterArea: Codable {
     
     /// The base score given to the player when the referenced Pokémon is caught during a pal park run
     open var baseScore: Int?
@@ -309,19 +206,10 @@ open class PKMPalParkEncounterArea: Mappable {
     /// The pal park area where this encounter happens
     open var area: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        baseScore <- map["base_score"]
-        rate <- map["rate"]
-        area <- map["area"]
-    }
 }
 
 /// Pokemon Species Flavor Text
-open class PKMPokemonSpeciesFlavorText: Mappable {
+open class PKMPokemonSpeciesFlavorText: Codable {
     
     /// The localized flavor text for an API resource in a specific language
     open var flavorText: String?
@@ -332,19 +220,10 @@ open class PKMPokemonSpeciesFlavorText: Mappable {
     /// The version this flavor text entry is used in
     open var version: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        flavorText <- map["flavor_text"]
-        language <- map["language"]
-        version <- map["version"]
-    }
 }
 
 /// Genus
-open class PKMGenus: Mappable {
+open class PKMGenus: Codable {
     
     /// The localized genus for the referenced pokemon species
     open var genus: String?
@@ -352,18 +231,10 @@ open class PKMGenus: Mappable {
     /// The language this genus is in
     open var language: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        genus <- map["genus"]
-        language <- map["language"]
-    }
 }
 
 /// A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species are shared across all varieties of Pokémon within the species. A good example is Wormadam; Wormadam is the species which can be found in three different varieties, Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant.
-open class PKMPokemonSpecies: Mappable {
+open class PKMPokemonSpecies: Codable {
     
     /// The identifier for this Pokémon species resource
     open var id: Int?
@@ -440,41 +311,10 @@ open class PKMPokemonSpecies: Mappable {
     /// A list of the Pokémon that exist within this Pokémon species
     open var varieties: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        order <- map["order"]
-        genderRate <- map["gender_rate"]
-        captureRate <- map["capture_rate"]
-        baseHappiness <- map["base_happiness"]
-        isBaby <- map["is_baby"]
-        hatchCounter <- map["hatch_counter"]
-        hasGenderDifferences <- map["has_gender_differences"]
-        formsSwitchable <- map["forms_switchable"]
-        growthRate <- map["growth_rate"]
-        pokedexNumbers <- map["pokedex_numbers"]
-        eggGroups <- map["egg_groups"]
-        color <- map["color"]
-        shape <- map["shape"]
-        evolvesFromSpecies <- map["evolves_from_species"]
-        evolutionChain <- map["evolution_chain"]
-        habitat <- map["habitat"]
-        generation <- map["generation"]
-        names <- map["names"]
-        palParkEncounters <- map["pal_park_encounters"]
-        flavorTextEntries <- map["flavor_text_entries"]
-        formDescriptions <- map["form_descriptions"]
-        genera <- map["genera"]
-        varieties <- map["varieties"]
-    }
 }
 
 /// An Awesome Name
-open class PKMAwesomeName: Mappable {
+open class PKMAwesomeName: Codable {
     
     /// The localized "scientific" name for an API resource in a specific language
     open var awesomeName: String?
@@ -482,18 +322,10 @@ open class PKMAwesomeName: Mappable {
     /// The language this "scientific" name is in
     open var language: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        awesomeName <- map["awesome_name"]
-        language <- map["language"]
-    }
 }
 
 /// Shapes used for sorting Pokémon in a Pokédex.
-open class PKMPokemonShape: Mappable {
+open class PKMPokemonShape: Codable {
     
     /// The identifier for this Pokémon shape
     open var id: Int?
@@ -510,21 +342,10 @@ open class PKMPokemonShape: Mappable {
     /// A list of the Pokémon species that have this shape
     open var pokemonSpecies: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        awesomeNames <- map["awesome_names"]
-        names <- map["names"]
-        pokemonSpecies <- map["pokemon_species"]
-    }
 }
 
 /// Habitats are generally different terrain Pokémon can be found in but can also be areas designated for rare or legendary Pokémon.
-open class PKMPokemonHabitat: Mappable {
+open class PKMPokemonHabitat: Codable {
     
     /// The identifier for this Pokémon habitat resource
     open var id: Int?
@@ -538,20 +359,10 @@ open class PKMPokemonHabitat: Mappable {
     /// A list of the Pokémon species that can be found in this habitat
     open var pokemonSpecies: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        names <- map["names"]
-        pokemonSpecies <- map["pokemon_species"]
-    }
 }
 
 /// Pokemon Form Sprites
-open class PKMPokemonFormSprites: Mappable {
+open class PKMPokemonFormSprites: Codable {
     
     /// The default depiction of this Pokémon form from the front in battle
     open var frontDefault: String?
@@ -565,20 +376,10 @@ open class PKMPokemonFormSprites: Mappable {
     /// The shiny depiction of this Pokémon form from the back in battle
     open var backShiny: String?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        frontDefault <- map["front_default"]
-        frontShiny <- map["front_shiny"]
-        backDefault <- map["back_default"]
-        backShiny <- map["back_shiny"]
-    }
 }
 
 /// Some Pokémon have the ability to take on different forms. At times, these differences are purely cosmetic and have no bearing on the difference in the Pokémon's stats from another; however, several Pokémon differ in stats (other than HP), type, and Ability depending on their form.
-open class PKMPokemonForm: Mappable {
+open class PKMPokemonForm: Codable {
     
     /// The identifier for this Pokémon form resource
     open var id: Int?
@@ -613,27 +414,10 @@ open class PKMPokemonForm: Mappable {
     /// The version group this Pokémon form was introduced in
     open var versionGroup: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        order <- map["order"]
-        formOrder <- map["form_order"]
-        isDefault <- map["is_default"]
-        isBattleOnly <- map["is_battle_only"]
-        isMega <- map["is_mega"]
-        formName <- map["form_name"]
-        pokemon <- map["pokemon"]
-        sprites <- map["sprites"]
-        versionGroup <- map["version_group"]
-    }
 }
 
 /// Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that are primarily orange are listed as red or brown.
-open class PKMPokemonColor: Mappable {
+open class PKMPokemonColor: Codable {
     
     /// The identifier for this Pokémon color resource
     open var id: Int?
@@ -647,20 +431,10 @@ open class PKMPokemonColor: Mappable {
     /// A list of the Pokémon species that have this color
     open var pokemonSpecies: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        names <- map["names"]
-        pokemonSpecies <- map["pokemon_species"]
-    }
 }
 
 /// Version Game Index
-open class PKMVersionGameIndex: Mappable {
+open class PKMVersionGameIndex: Codable {
     
     /// The internal id of an API resource within game data
     open var gameIndex: Int?
@@ -668,18 +442,10 @@ open class PKMVersionGameIndex: Mappable {
     /// The version relevent to this game index
     open var version: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        gameIndex <- map["game_index"]
-        version <- map["version"]
-    }
 }
 
 /// Pokemon Ability
-open class PKMPokemonAbility: Mappable {
+open class PKMPokemonAbility: Codable {
     
     /// Whether or not this is a hidden ability
     open var isHidden: Bool?
@@ -690,19 +456,10 @@ open class PKMPokemonAbility: Mappable {
     /// The ability the Pokémon may have
     open var ability: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        isHidden <- map["is_hidden"]
-        slot <- map["slot"]
-        ability <- map["ability"]
-    }
 }
 
 /// Location Area Encounter
-open class PKMLocationAreaEncounter: Mappable {
+open class PKMLocationAreaEncounter: Codable {
     
     /// The location area the referenced Pokémon can be encountered in
     open var locationArea: PKMAPIResource?
@@ -710,18 +467,10 @@ open class PKMLocationAreaEncounter: Mappable {
     /// A list of versions and encounters with the referenced Pokémon that might happen
     open var versionDetails: [PKMVersionEncounterDetail]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        locationArea <- map["location_area"]
-        versionDetails <- map["version_details"]
-    }
 }
 
 /// Pokemon Sprites
-open class PKMPokemonSprites: Mappable {
+open class PKMPokemonSprites: Codable {
     
     /// The default depiction of this Pokémon from the front in battle
     open var frontDefault: String?
@@ -747,24 +496,10 @@ open class PKMPokemonSprites: Mappable {
     /// The shiny female depiction of this Pokémon from the back in battle
     open var backShinyFemale: String?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        frontDefault <- map["front_default"]
-        frontShiny <- map["front_shiny"]
-        frontFemale <- map["front_female"]
-        frontShinyFemale <- map["front_shiny_female"]
-        backDefault <- map["back_default"]
-        backShiny <- map["back_shiny"]
-        backFemale <- map["back_female"]
-        backShinyFemale <- map["back_shiny_female"]
-    }
 }
 
 /// Pokemon Type
-open class PKMPokemonType: Mappable {
+open class PKMPokemonType: Codable {
     
     /// The order the Pokémon's types are listed in
     open var slot: Int?
@@ -772,18 +507,10 @@ open class PKMPokemonType: Mappable {
     /// The type the referenced Pokémon has
     open var type: String?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        slot <- map["slot"]
-        type <- map["type"]
-    }
 }
 
 /// Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon. See Bulbapedia for greater detail.
-open class PKMPokemon: Mappable {
+open class PKMPokemon: Codable {
     
     /// The identifier for this Pokémon resource
     open var id: Int?
@@ -836,33 +563,10 @@ open class PKMPokemon: Mappable {
     /// A list of details showing types this Pokémon has
     open var types: [PKMPokemonType]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        base_experience <- map["base_experience"]
-        height <- map["height"]
-        isDefault <- map["is_default"]
-        order <- map["order"]
-        weight <- map["weight"]
-        abilities <- map["abilities"]
-        forms <- map["forms"]
-        gameIndices <- map["game_indices"]
-        heldItems <- map["held_items"]
-        locationAreaEncounters <- map["location_area_encounters"]
-        moves <- map["moves"]
-        sprites <- map["sprites"]
-        species <- map["species"]
-        stats <- map["stats"]
-        types <- map["types"]
-    }
 }
 
 /// Nature Pokeathlon Stat Affect
-open class PKMNaturePokeathlonStatAffect: Mappable {
+open class PKMNaturePokeathlonStatAffect: Codable {
     
     /// The maximum amount of change to the referenced Pokéathlon stat
     open var maxChange: Int?
@@ -870,18 +574,10 @@ open class PKMNaturePokeathlonStatAffect: Mappable {
     /// The nature causing the change
     open var nature: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        maxChange <- map["max_change"]
-        nature <- map["nature"]
-    }
 }
 
 /// Nature Pokeathlon Stat Affect Sets
-open class PKMNaturePokeathlonStatAffectSets: Mappable {
+open class PKMNaturePokeathlonStatAffectSets: Codable {
     
     /// A list of natures and how they change the referenced Pokéathlon stat
     open var increase: [PKMNaturePokeathlonStatAffect]?
@@ -889,18 +585,10 @@ open class PKMNaturePokeathlonStatAffectSets: Mappable {
     /// A list of natures and how they change the referenced Pokéathlon stat
     open var decrease: [PKMNaturePokeathlonStatAffect]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        increase <- map["increase"]
-        decrease <- map["decrease"]
-    }
 }
 
 /// Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In Pokéathlons, competitions happen on different courses; one for each of the different Pokéathlon stats. See Bulbapedia for greater detail.
-open class PKMPokeathlonStat: Mappable {
+open class PKMPokeathlonStat: Codable {
     
     /// The identifier for this Pokéathlon stat resource
     open var id: Int?
@@ -914,20 +602,10 @@ open class PKMPokeathlonStat: Mappable {
     /// A detail of natures which affect this Pokéathlon stat positively or negatively
     open var affectingNatures: PKMNaturePokeathlonStatAffectSets?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        names <- map["names"]
-        affectingNatures <- map["affecting_natures"]
-    }
 }
 
 /// Move Battle Style Preference
-open class PKMMoveBattleStylePreference: Mappable {
+open class PKMMoveBattleStylePreference: Codable {
     
     /// Chance of using the move, in percent, if HP is under one half
     open var lowHpPreference: Int?
@@ -938,38 +616,21 @@ open class PKMMoveBattleStylePreference: Mappable {
     /// The move battle style
     open var moveBattleStyle: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        lowHpPreference <- map["low_hp_preference"]
-        highHpPreference <- map["high_hp_preference"]
-        moveBattleStyle <- map["move_battle_style"]
-    }
 }
 
 
 /*
-change	The amount of change	integer
-stat	The stat being affected	NamedAPIResource (PokeathlonStat)
-*/
-open class PKMNatureStatChange: Mappable {
+ change	The amount of change	integer
+ stat	The stat being affected	NamedAPIResource (PokeathlonStat)
+ */
+open class PKMNatureStatChange: Codable {
     open var maxChange: Int?
     open var pokeathlonStat: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        maxChange <- map["max_change"]
-        pokeathlonStat <- map["pokeathlon_stat"]
-    }
 }
 
 /// Natures influence how a Pokémon's stats grow. See Bulbapedia ( http://bulbapedia.bulbagarden.net/wiki/Nature ) for greater detail.
-open class PKMNature: Mappable {
+open class PKMNature: Codable {
     
     /// The identifier for this nature resource
     open var id: Int?
@@ -998,31 +659,16 @@ open class PKMNature: Mappable {
     /// The name of this nature listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        decreasedStat <- map["decreased_stat"]
-        increasedStat <- map["increased_stat"]
-        hatesFlavor <- map["hates_flavor"]
-        likesFlavor <- map["likes_flavor"]
-        pokeathlonStatChanges <- map["pokeathlon_stat_changes"]
-        moveBattleStylePreferences <- map["move_battle_style_preferences"]
-        names <- map["names"]
-    }
 }
 
 
 /*
-level	The level gained	integer
-experience	The amount of experience required to reach the referenced level	integer
-*/
+ level	The level gained	integer
+ experience	The amount of experience required to reach the referenced level	integer
+ */
 
 /// Growth Rate Experience Level
-open class PKMGrowthRateExperienceLevel: Mappable {
+open class PKMGrowthRateExperienceLevel: Codable {
     
     /// The level gained
     open var level: Int?
@@ -1030,18 +676,10 @@ open class PKMGrowthRateExperienceLevel: Mappable {
     /// The amount of experience required to reach the referenced level
     open var experience: Int?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        level <- map["level"]
-        experience <- map["experience"]
-    }
 }
 
 /// Growth rates are the speed with which Pokémon gain levels through experience. Check out Bulbapedia ( http://bulbapedia.bulbagarden.net/wiki/Experience ) for greater detail.
-open class PKMGrowthRate: Mappable {
+open class PKMGrowthRate: Codable {
     
     /// The identifier for this gender resource
     open var id: Int?
@@ -1061,22 +699,10 @@ open class PKMGrowthRate: Mappable {
     /// A list of Pokémon species that gain levels at this growth rate
     open var pokemonSpecies: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        formula <- map["formula"]
-        descriptions <- map["descriptions"]
-        levels <- map["levels"]
-        pokemonSpecies <- map["pokemon_species"]
-    }
 }
 
 /// Pokemon Species Gender
-open class PKMPokemonSpeciesGender: Mappable {
+open class PKMPokemonSpeciesGender: Codable {
     
     /// The chance of this Pokémon being female, in eighths; or -1 for genderless
     open var rate: Int?
@@ -1084,18 +710,10 @@ open class PKMPokemonSpeciesGender: Mappable {
     /// A Pokémon species that can be the referenced gender
     open var pokemonSpecies: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        rate <- map["rate"]
-        pokemonSpecies <- map["pokemon_species"]
-    }
 }
 
 /// Genders were introduced in Generation II for the purposes of breeding Pokémon but can also result in visual differences or even different evolutionary lines. Check out Bulbapedia for greater detail.
-open class PKMGender: Mappable {
+open class PKMGender: Codable {
     
     /// The identifier for this gender resource
     open var id: Int?
@@ -1109,20 +727,10 @@ open class PKMGender: Mappable {
     /// A list of Pokémon species that required this gender in order for a Pokémon to evolve into them
     open var requiredForEvolution: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        pokemonSpeciesDetails <- map["pokemon_species_details"]
-        requiredForEvolution <- map["required_for_evolution"]
-    }
 }
 
 /// Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may belong to either one or two Egg Groups. Check out Bulbapedia for greater detail.
-open class PKMEggGroup: Mappable {
+open class PKMEggGroup: Codable {
     
     /// The identifier for this egg group resource
     open var id: Int?
@@ -1136,20 +744,10 @@ open class PKMEggGroup: Mappable {
     /// A list of all Pokémon species that are members of this egg group
     open var pokemonSpecies: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        names <- map["names"]
-        pokemonSpecies <- map["pokemon_species"]
-    }
 }
 
 /// Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo). Check out Bulbapedia for greater detail.
-open class PKMCharacteristic: Mappable {
+open class PKMCharacteristic: Codable {
     
     /// The identifier for this characteristic resource
     open var id: Int?
@@ -1163,20 +761,10 @@ open class PKMCharacteristic: Mappable {
     /// The descriptions of this characteristic listed in different languages
     open var descriptions: [PKMDescription]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        geneModulo <- map["gene_modulo"]
-        possibleValues <- map["possible_values"]
-        descriptions <- map["descriptions"]
-    }
 }
 
 /// Ability Pokemon
-open class PKMAbilityPokemon: Mappable {
+open class PKMAbilityPokemon: Codable {
     
     /// Whether or not this a hidden ability for the referenced Pokémon
     open var isHidden: Bool?
@@ -1187,19 +775,10 @@ open class PKMAbilityPokemon: Mappable {
     /// The Pokémon this ability could belong to
     open var pokemon: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        isHidden <- map["is_hidden"]
-        slot <- map["slot"]
-        pokemon <- map["pokemon"]
-    }
 }
 
 /// Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have mutiple possible abilities but can have only one ability at a time. Check out Bulbapedia for greater detail.
-open class PKMAbility: Mappable {
+open class PKMAbility: Codable {
     
     /// The identifier for this ability resource
     open var id: Int?
@@ -1228,25 +807,10 @@ open class PKMAbility: Mappable {
     /// A list of Pokémon that could potentially have this ability
     open var pokemon: [PKMAbilityPokemon]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        isMainSeries <- map["is_main_series"]
-        generation <- map["generation"]
-        names <- map["names"]
-        effectEntries <- map["effect_entries"]
-        effectChanges <- map["effect_changes"]
-        flavorTextEntries <- map["flavor_text_entries"]
-        pokemon <- map["pokemon"]
-    }
 }
 
 /// A region is an organized area of the Pokémon world. Most often, the main difference between regions is the species of Pokémon that can be encountered within them.
-open class PKMRegion: Mappable {
+open class PKMRegion: Codable {
     
     /// The identifier for this region resource
     open var id: Bool?
@@ -1269,23 +833,10 @@ open class PKMRegion: Mappable {
     /// A list of version groups where this region can be visited
     open var versionGroups: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        locations <- map["locations"]
-        mainGeneration <- map["main_generation"]
-        names <- map["names"]
-        pokedexes <- map["pokedexes"]
-        versionGroups <- map["version_groups"]
-    }
 }
 
 /// Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are specific to Pal Park.
-open class PKMPalParkEncounterSpecies: Mappable {
+open class PKMPalParkEncounterSpecies: Codable {
     
     /// The base score given to the player when this Pokémon is caught during a pal park run
     open var baseScore: Int?
@@ -1296,19 +847,10 @@ open class PKMPalParkEncounterSpecies: Mappable {
     /// The Pokémon species being encountered
     open var pokemonSpecies: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        baseScore <- map["base_score"]
-        rate <- map["rate"]
-        pokemonSpecies <- map["pokemon_species"]
-    }
 }
 
 /// Pal Park Area
-open class PKMPalParkArea: Mappable {
+open class PKMPalParkArea: Codable {
     
     /// The identifier for this pal park area resource
     open var id: Int?
@@ -1322,20 +864,10 @@ open class PKMPalParkArea: Mappable {
     /// A list of Pokémon encountered in thi pal park area along with details
     open var pokemonEncounters: [PKMPalParkEncounterSpecies]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        names <- map["names"]
-        pokemonEncounters <- map["pokemon_encounters"]
-    }
 }
 
 /// Locations that can be visited within the games. Locations make up sizable portions of regions, like cities or routes.
-open class PKMLocation: Mappable {
+open class PKMLocation: Codable {
     
     /// The identifier for this location resource
     open var id: Int?
@@ -1355,22 +887,10 @@ open class PKMLocation: Mappable {
     /// Areas that can be found within this location
     open var areas: PKMAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        region <- map["region"]
-        names <- map["names"]
-        gameIndices <- map["game_indices"]
-        areas <- map["areas"]
-    }
 }
 
 /// Encounter
-open class PKMEncounter: Mappable {
+open class PKMEncounter: Codable {
     
     /// The lowest level the Pokémon could be encountered at
     open var minLevel: Int?
@@ -1387,21 +907,10 @@ open class PKMEncounter: Mappable {
     /// The method by which this encounter happens
     open var method: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        minLevel <- map["min_level"]
-        maxLevel <- map["max_level"]
-        conditionValues <- map["condition_values"]
-        chance <- map["chance"]
-        method <- map["method"]
-    }
 }
 
 /// Version Encounter Detail
-open class PKMVersionEncounterDetail: Mappable {
+open class PKMVersionEncounterDetail: Codable {
     
     /// The game version this encounter happens in
     open var version: PKMNamedAPIResource?
@@ -1412,19 +921,10 @@ open class PKMVersionEncounterDetail: Mappable {
     /// A list of encounters and their specifics
     open var encounterDetails: [PKMEncounter]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        version <- map["version"]
-        maxChance <- map["max_chance"]
-        encounterDetails <- map["encounter_details"]
-    }
 }
 
 /// Pokemon Encounter
-open class PKMPokemonEncounter: Mappable {
+open class PKMPokemonEncounter: Codable {
     
     /// The Pokémon being encountered
     open var pokemon: PKMNamedAPIResource?
@@ -1432,18 +932,10 @@ open class PKMPokemonEncounter: Mappable {
     /// A list of versions and encounters with Pokémon that might happen in the referenced location area
     open var versionDetails: [PKMVersionEncounterDetail]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        pokemon <- map["pokemon"]
-        versionDetails <- map["version_details"]
-    }
 }
 
 /// Encounter Version Details
-open class PKMEncounterVersionDetails: Mappable {
+open class PKMEncounterVersionDetails: Codable {
     
     /// The chance of an encounter to occur.
     open var rate: Int?
@@ -1451,18 +943,10 @@ open class PKMEncounterVersionDetails: Mappable {
     /// The version of the game in which the encounter can occur with the given chance.
     open var version: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        rate <- map["rate"]
-        version <- map["version"]
-    }
 }
 
 /// Encounter Method Rate
-open class PKMEncounterMethodRate: Mappable {
+open class PKMEncounterMethodRate: Codable {
     
     /// The method in which Pokémon may be encountered in an area.
     open var encounterEethod: PKMEncounterMethod?
@@ -1470,18 +954,10 @@ open class PKMEncounterMethodRate: Mappable {
     /// The chance of the encounter to occur on a version of the game.
     open var versionDetails: [PKMEncounterVersionDetails]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        encounterEethod <- map["encounter_method"]
-        versionDetails <- map["version_details"]
-    }
 }
 
 /// Location areas are sections of areas, such as floors in a building or cave. Each area has its own set of possible Pokémon encounters.
-open class PKMLocationArea: Mappable {
+open class PKMLocationArea: Codable {
     
     /// The identifier for this location resource
     open var id: Int?
@@ -1504,23 +980,10 @@ open class PKMLocationArea: Mappable {
     /// A list of Pokémon that can be encountered in this area along with version specific details about the encounter
     open var pokemonEncounters: [PKMPokemonEncounter]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        gameIndex <- map["game_index"]
-        encounterMethodRates <- map["encounter_method_rates"]
-        location <- map["location"]
-        names <- map["names"]
-        pokemonEncounters <- map["pokemon_encounters"]
-    }
 }
 
 /// Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.
-open class PKMMoveTarget: Mappable {
+open class PKMMoveTarget: Codable {
     
     /// The identifier for this move target resource
     open var id: Int?
@@ -1537,21 +1000,10 @@ open class PKMMoveTarget: Mappable {
     /// The name of this move target listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        descriptions <- map["descriptions"]
-        moves <- map["moves"]
-        names <- map["names"]
-    }
 }
 
 /// Methods by which Pokémon can learn moves.
-open class PKMMoveLearnMethod: Mappable {
+open class PKMMoveLearnMethod: Codable {
     
     /// The identifier for this move learn method resource
     open var id: Int?
@@ -1568,21 +1020,10 @@ open class PKMMoveLearnMethod: Mappable {
     /// A list of version groups where moves can be learned through this method
     open var versionGroups: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        descriptions <- map["descriptions"]
-        names <- map["names"]
-        versionGroups <- map["version_groups"]
-    }
 }
 
 /// Damage classes moves can have, e.g. physical, special, or non-damaging.
-open class PKMMoveDamageClass: Mappable {
+open class PKMMoveDamageClass: Codable {
     
     /// The identifier for this move damage class resource
     open var id: Int?
@@ -1599,21 +1040,10 @@ open class PKMMoveDamageClass: Mappable {
     /// The name of this move damage class listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        descriptions <- map["descriptions"]
-        moves <- map["moves"]
-        names <- map["names"]
-    }
 }
 
 /// Very general categories that loosely group move effects.
-open class PKMMoveCategory: Mappable {
+open class PKMMoveCategory: Codable {
     
     /// The identifier for this move category resource
     open var id: Int?
@@ -1627,20 +1057,10 @@ open class PKMMoveCategory: Mappable {
     /// The description of this move ailment listed in different languages
     open var descriptions: [PKMDescription]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        moves <- map["moves"]
-        descriptions <- map["descriptions"]
-    }
 }
 
 /// Styles of moves when used in the Battle Palace. See Bulbapedia for greater detail.
-open class PKMMoveBattleStyle: Mappable {
+open class PKMMoveBattleStyle: Codable {
     
     /// The identifier for this move battle style resource
     open var id: Int?
@@ -1651,19 +1071,10 @@ open class PKMMoveBattleStyle: Mappable {
     /// The name of this move battle style listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        names <- map["names"]
-    }
 }
 
 /// Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for greater detail.
-open class PKMMoveAilment: Mappable {
+open class PKMMoveAilment: Codable {
     
     /// The identifier for this move ailment resource
     open var id: Int?
@@ -1677,20 +1088,10 @@ open class PKMMoveAilment: Mappable {
     /// The name of this move ailment listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        moves <- map["moves"]
-        names <- map["names"]
-    }
 }
 
 /// Move Stat Change
-open class PKMMoveStatChange: Mappable {
+open class PKMMoveStatChange: Codable {
     
     /// The amount of change
     open var change: Int?
@@ -1698,18 +1099,10 @@ open class PKMMoveStatChange: Mappable {
     /// The stat being affected
     open var stat: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        change <- map["change"]
-        stat <- map["stat"]
-    }
 }
 
 /// Past Move Stat Values
-open class PKMPastMoveStatValues: Mappable {
+open class PKMPastMoveStatValues: Codable {
     
     /// The percent value of how likely this move is to be successful
     open var accuracy: Int?
@@ -1732,23 +1125,10 @@ open class PKMPastMoveStatValues: Mappable {
     /// The version group in which these move stat values were in effect
     open var versionGroup: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        accuracy <- map["accuracy"]
-        effectChance <- map["effect_chance"]
-        power <- map["power"]
-        pp <- map["pp"]
-        effectEntries <- map["effect_entries"]
-        type <- map["type"]
-        versionGroup <- map["version_group"]
-    }
 }
 
 /// Move Meta Data
-open class PKMMoveMetaData: Mappable {
+open class PKMMoveMetaData: Codable {
     
     /// The status ailment this move inflicts on its target
     open var ailment: PKMNamedAPIResource?
@@ -1786,28 +1166,10 @@ open class PKMMoveMetaData: Mappable {
     /// The likelyhood this attack will cause a stat change in the target pokemon
     open var statChance: Int?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        ailment <- map["ailment"]
-        category <- map["category"]
-        minHits <- map["min_hits"]
-        maxHits <- map["max_hits"]
-        minTurns <- map["min_turns"]
-        maxTurns <- map["max_turns"]
-        drain <- map["drain"]
-        healing <- map["healing"]
-        critRate <- map["crit_rate"]
-        ailmentChance <- map["ailment_chance"]
-        flinchEhance <- map["flinch_chance"]
-        statChance <- map["stat_chance"]
-    }
 }
 
 /// Ability Effect Change
-open class PKMAbilityEffectChange: Mappable {
+open class PKMAbilityEffectChange: Codable {
     
     /// The previous effect of this ability listed in different languages
     open var effectEntries: PKMEffect?
@@ -1815,18 +1177,10 @@ open class PKMAbilityEffectChange: Mappable {
     /// The version group in which the previous effect of this ability originated
     open var versionGroup: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        effectEntries <- map["effect_entries"]
-        versionGroup <- map["version_group"]
-    }
 }
 
 /// Contest Combo Detail
-open class PKMContestComboDetail: Mappable {
+open class PKMContestComboDetail: Codable {
     
     /// A list of moves to use before this move
     open var useBefore: [PKMNamedAPIResource]?
@@ -1834,18 +1188,10 @@ open class PKMContestComboDetail: Mappable {
     /// A list of moves to use after this move
     open var useAfter: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        useBefore <- map["use_before"]
-        useAfter <- map["use_after"]
-    }
 }
 
 /// Contest Combo Sets
-open class PKMContestComboSets: Mappable {
+open class PKMContestComboSets: Codable {
     
     /// A detail of moves this move can be used before or after, granting additional appeal points in contests
     open var normalMove: [PKMContestComboDetail]?
@@ -1853,18 +1199,10 @@ open class PKMContestComboSets: Mappable {
     /// A detail of moves this move can be used before or after, granting additional appeal points in super contests
     open var superMove: [PKMContestComboDetail]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        normalMove <- map["normal"]
-        superMove <- map["super"]
-    }
 }
 
 /// Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.
-open class PKMMove: Mappable {
+open class PKMMove: Codable {
     
     /// The identifier for this move resource
     open var id: Int?
@@ -1929,38 +1267,10 @@ open class PKMMove: Mappable {
     /// The elemental type of this move	NamedAPIResource
     open var type: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        names <- map["name"]
-        accuracy <- map["accuracy"]
-        effect_chance <- map["effect_chance"]
-        pp <- map["pp"]
-        priority <- map["priority"]
-        power <- map["power"]
-        contestCombos <- map["contest_combos"]
-        contestType <- map["contest_type"]
-        
-        contestEffect <- map["contest_effect"]
-        damageClass <- map["damage_class"]
-        effectEntries <- map["effect_entries"]
-        effectChanges <- map["effect_changes"]
-        generation <- map["generation"]
-        meta <- map["meta"]
-        pastValues <- map["past_values"]
-        statChanges <- map["stat_changes"]
-        superContestEffect <- map["super_contest_effect"]
-        target <- map["target"]
-        type <- map["type"]
-    }
 }
 
 /// Pockets within the players bag used for storing items by category.
-open class PKMItemPocket: Mappable {
+open class PKMItemPocket: Codable {
     
     /// The identifier for this item pocket resource
     open var id: Int?
@@ -1974,20 +1284,10 @@ open class PKMItemPocket: Mappable {
     /// The name of this item pocket listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        categories <- map["categories"]
-        names <- map["names"]
-    }
 }
 
 /// Effect
-open class PKMEffect: Mappable {
+open class PKMEffect: Codable {
     
     /// The localized effect text for an API resource in a specific language
     open var effect: String?
@@ -1995,18 +1295,10 @@ open class PKMEffect: Mappable {
     /// The language this effect is in
     open var language: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        effect <- map["effect"]
-        language <- map["language"]
-    }
 }
 
 /// The various effects of the move "Fling" when used with different items.
-open class PKMItemFlingEffect: Mappable {
+open class PKMItemFlingEffect: Codable {
     
     /// The identifier for this fling effect resource
     open var id: Int?
@@ -2020,20 +1312,10 @@ open class PKMItemFlingEffect: Mappable {
     /// A list of items that have this fling effect	list
     open var items: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        effectEntries <- map["effect_entries"]
-        items <- map["items"]
-    }
 }
 
 /// Item categories determine where items will be placed in the players bag.
-open class PKMItemCategory: Mappable {
+open class PKMItemCategory: Codable {
     
     /// The identifier for this item category resource
     open var id: Int?
@@ -2050,21 +1332,10 @@ open class PKMItemCategory: Mappable {
     /// The pocket items in this category would be put in
     open var pocket: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        items <- map["items"]
-        names <- map["names"]
-        pocket <- map["pocket"]
-    }
 }
 
 /// Item attributes define particular aspects of items, e.g. "usable in battle" or "consumable".
-open class PKMItemAttribute: Mappable {
+open class PKMItemAttribute: Codable {
     
     /// The identifier for this item attribute resource
     open var id: Int?
@@ -2081,21 +1352,10 @@ open class PKMItemAttribute: Mappable {
     /// The description of this item attribute listed in different languages
     open var descriptions: [PKMDescription]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        items <- map["items"]
-        names <- map["names"]
-        descriptions <- map["descriptions"]
-    }
 }
 
 /// Verbose Effect
-open class PKMVerboseEffect: Mappable {
+open class PKMVerboseEffect: Codable {
     
     /// The localized effect text for an API resource in a specific language
     open var effect: String?
@@ -2106,19 +1366,10 @@ open class PKMVerboseEffect: Mappable {
     /// The language this effect is in
     open var language: Bool?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        effect <- map["effect"]
-        shortEffect <- map["short_effect"]
-        language <- map["language"]
-    }
 }
 
 /// Version Group Flavor Text
-open class PKMVersionGroupFlavorText: Mappable {
+open class PKMVersionGroupFlavorText: Codable {
     
     /// The localized name for an API resource in a specific language
     open var text: String?
@@ -2129,19 +1380,10 @@ open class PKMVersionGroupFlavorText: Mappable {
     /// The version group which uses this flavor text
     open var versionGroup: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        text <- map["text"]
-        language <- map["language"]
-        versionGroup <- map["version_group"]
-    }
 }
 
 /// Generation Game Index
-open class PKMGenerationGameIndex: Mappable {
+open class PKMGenerationGameIndex: Codable {
     
     /// The internal id of an API resource within game data
     open var gameIndex: Int?
@@ -2149,47 +1391,25 @@ open class PKMGenerationGameIndex: Mappable {
     /// The generation relevent to this game index
     open var generation: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        gameIndex <- map["game_index"]
-        generation <- map["generation"]
-    }
 }
 
 /// Item Sprites
-open class PKMItemSprites: Mappable {
+open class PKMItemSprites: Codable {
     /// The default depiction of this item
     open var defaultDepiction: String?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        defaultDepiction <- map["default"]
-    }
 }
 
 
 /// API Referenced Resource
-open class PKMAPIResource: Mappable {
+open class PKMAPIResource: Codable {
     /// The URL of the referenced resource
     open var url: String?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        url <- map["url"]
-    }
 }
 
 /// An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.
-open class PKMItem: Mappable {
+open class PKMItem: Codable {
     
     /// The identifier for this item resource
     open var id: Int?
@@ -2233,30 +1453,10 @@ open class PKMItem: Mappable {
     /// An evolution chain this item requires to produce a bay during mating
     open var baby_trigger_for: [PKMAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        cost <- map["cost"]
-        fling_power <- map["fling_power"]
-        fling_effect <- map["fling_effect"]
-        attributes <- map["attributes"]
-        category <- map["category"]
-        effect_entries <- map["effect_entries"]
-        flavor_text_entries <- map["flavor_text_entries"]
-        game_indices <- map["game_indices"]
-        names <- map["names"]
-        sprites <- map["sprites"]
-        held_by_pokemon <- map["held_by_pokemon"]
-        baby_trigger_for <- map["baby_trigger_for"]
-    }
 }
 
 /// Version groups categorize highly similar versions of the games.
-open class PKMVersionGroup: Mappable {
+open class PKMVersionGroup: Codable {
     
     /// The identifier for this version group resource
     open var id: Int?
@@ -2285,25 +1485,10 @@ open class PKMVersionGroup: Mappable {
     /// The versions this version group owns
     open var versions: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        order <- map["order"]
-        generation <- map["generation"]
-        moveLearnMethods <- map["move_learn_methods"]
-        names <- map["names"]
-        pokedexes <- map["pokedexes"]
-        regions <- map["regions"]
-        versions <- map["versions"]
-    }
 }
 
 /// Versions of the games, e.g., Red, Blue or Yellow.
-open class PKMVersion: Mappable {
+open class PKMVersion: Codable {
     
     /// The identifier for this version resource
     open var id: Int?
@@ -2317,20 +1502,10 @@ open class PKMVersion: Mappable {
     /// The version group this version belongs to
     open var versionGroup: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        names <- map["names"]
-        versionGroup <- map["version_group"]
-    }
 }
 
 /// Description
-open class PKMDescription: Mappable {
+open class PKMDescription: Codable {
     
     /// The localized description for an API resource in a specific language
     open var description: String?
@@ -2338,18 +1513,10 @@ open class PKMDescription: Mappable {
     /// The language this name is in
     open var language: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        description <- map["description"]
-        language <- map["language"]
-    }
 }
 
 /// Entry
-open class PKMEntry: Mappable {
+open class PKMEntry: Codable {
     
     /// The index of this pokemon species entry within the Pokédex
     open var entryNumber: Int?
@@ -2357,18 +1524,10 @@ open class PKMEntry: Mappable {
     /// The Pokémon species being encountered
     open var pokemonSpecies: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        entryNumber <- map["entry_number"]
-        pokemonSpecies <- map["pokemon_species"]
-    }
 }
 
 /// A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and retaining information of the various Pokémon in a given region with the exception of the national dex and some smaller dexes related to portions of a region. See Bulbapedia for greater detail.
-open class PKMPokedex: Mappable {
+open class PKMPokedex: Codable {
     
     /// The identifier for this Pokédex resource
     open var id: Int?
@@ -2394,24 +1553,10 @@ open class PKMPokedex: Mappable {
     /// A list of version groups this Pokédex is relevent to
     open var versionGroups: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        isMainSeries <- map["is_main_series"]
-        descriptions <- map["descriptions"]
-        names <- map["names"]
-        pokemonEntries <- map["pokemon_entries"]
-        region <- map["region"]
-        versionGroups <- map["version_groups"]
-    }
 }
 
 /// A generation is a grouping of the Pokémon games that separates them based on the Pokémon they include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not exist in the previous generation are released.
-open class PKMGeneration: Mappable {
+open class PKMGeneration: Codable {
     
     /// The identifier for this generation resource
     open var id: Int?
@@ -2440,25 +1585,10 @@ open class PKMGeneration: Mappable {
     /// A list of version groups that were introduced in this generation
     open var versionGroups: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        names <- map["names"]
-        abilities <- map["abilities"]
-        mainRegion <- map["id"]
-        moves <- map["moves"]
-        pokemonSpecies <- map["pokemon_species"]
-        types <- map["types"]
-        versionGroups <- map["versionGroups"]
-    }
 }
 
 /// Evolution triggers are the events and conditions that cause a pokemon to evolve. Check out Bulbapedia for greater detail.
-open class PKMEvolutionTrigger: Mappable {
+open class PKMEvolutionTrigger: Codable {
     
     /// The identifier for this evolution trigger resource
     open var id: Int?
@@ -2472,20 +1602,10 @@ open class PKMEvolutionTrigger: Mappable {
     /// A list of pokemon species that result from this evolution trigger
     open var pokemonSpecies: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        names <- map["names"]
-        pokemonSpecies <- map["pokemon_species"]
-    }
 }
 
 /// Evolution Detail
-open class PKMEvolutionDetail: Mappable {
+open class PKMEvolutionDetail: Codable {
     
     /// The item required to cause evolution this into Pokémon species
     open var item: PKMNamedAPIResource?
@@ -2541,34 +1661,10 @@ open class PKMEvolutionDetail: Mappable {
     /// Whether or not the 3DS needs to be turned upside-down as this Pokémon levels up.
     open var turnUpsideDown: Bool?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        item <- map["item"];
-        trigger <- map["trigger"];
-        gender <- map["gender"];
-        heldItem <- map["held_item"];
-        knownMove <- map["known_move"];
-        knownMoveType <- map["known_move_type"];
-        location <- map["location"];
-        minLevel <- map["min_level"];
-        minHappiness <- map["min_happiness"];
-        minBeauty <- map["min_beauty"];
-        minAffection <- map["min_affection"];
-        needsOverworldRain <- map["needs_overworld_rain"];
-        partySpecies <- map["party_species"];
-        partyType <- map["party_type"];
-        relativePhysicalStats <- map["relative_physical_stats"];
-        timeOfDay <- map["time_of_day"];
-        tradeSpecies <- map["trade_species"];
-        turnUpsideDown <- map["turn_upside_down"];
-    }
 }
 
 /// Clain Link
-open class PKMClainLink: Mappable {
+open class PKMClainLink: Codable {
     
     /// Whether or not this link is for a baby Pokémon. This would only ever be true on the base link.
     open var isBaby: Bool?
@@ -2582,20 +1678,10 @@ open class PKMClainLink: Mappable {
     /// A List of chain objects.
     open var evolvesTo: [PKMClainLink]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        isBaby <- map["is_baby"]
-        species <- map["species"]
-        evolutionDetails <- map["evolution_details"]
-        evolvesTo <- map["evolves_to"]
-    }
 }
 
 /// Evolution Chain
-open class PKMEvolutionChain: Mappable {
+open class PKMEvolutionChain: Codable {
     
     /// The identifier for this evolution chain resource
     open var id: Int?
@@ -2606,20 +1692,11 @@ open class PKMEvolutionChain: Mappable {
     /// The base chain link object. Each link contains evolution details for a Pokémon in the chain. Each link references the next Pokémon in the natural evolution order.
     open var chain: PKMClainLink?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        babyTriggerItem <- map["baby_trigger_item"]
-        chain <- map["chain"]
-    }
 }
 
 
 /// Encounter Condition Value
-open class PKMEncounterConditionValue: Mappable {
+open class PKMEncounterConditionValue: Codable {
     
     /// The identifier for this encounter condition value resource
     open var id: Int?
@@ -2633,20 +1710,10 @@ open class PKMEncounterConditionValue: Mappable {
     /// The name of this encounter condition value listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["flavor_text"]
-        name <- map["name"]
-        condition <- map["condition"]
-        names <- map["names"]
-    }
 }
 
 /// Encounter Condition
-open class PKMEncounterCondition: Mappable {
+open class PKMEncounterCondition: Codable {
     
     /// The identifier for this encounter condition resource
     open var id: Int?
@@ -2660,20 +1727,10 @@ open class PKMEncounterCondition: Mappable {
     /// The name of this encounter method listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["flavor_text"]
-        name <- map["name"]
-        values <- map["values"]
-        names <- map["names"]
-    }
 }
 
 /// Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall grass. Check out Bulbapedia for greater detail.
-open class PKMEncounterMethod: Mappable {
+open class PKMEncounterMethod: Codable {
     
     /// The identifier for this encounter method resource
     open var id: Int?
@@ -2687,20 +1744,10 @@ open class PKMEncounterMethod: Mappable {
     /// The name of this encounter method listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["flavor_text"]
-        name <- map["name"]
-        order <- map["order"]
-        names <- map["names"]
-    }
 }
 
 /// Super contest effects refer to the effects of moves when used in super contests.
-open class PKMSuperContestEffect: Mappable {
+open class PKMSuperContestEffect: Codable {
     
     /// The identifier for this super contest effect resource
     open var id: Int?
@@ -2714,21 +1761,11 @@ open class PKMSuperContestEffect: Mappable {
     /// A list of moves that have the effect when used in super contests
     open var moves: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["flavor_text"]
-        appeal <- map["appeal"]
-        flavorTextEntries <- map["flavor_text_entries"]
-        moves <- map["moves"]
-    }
 }
 
 
 /// Flavor Text
-open class PKMFlavorText: Mappable {
+open class PKMFlavorText: Codable {
     
     /// The localized flavor text for an API resource in a specific language
     open var flavorText: String?
@@ -2736,19 +1773,11 @@ open class PKMFlavorText: Mappable {
     /// The language this name is in
     open var language: PKMName?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        flavorText <- map["flavor_text"]
-        language <- map["language"]
-    }
 }
 
 
 /// Effect Entry
-open class PKMEffectEntry: Mappable {
+open class PKMEffectEntry: Codable {
     
     /// The localized effect text for an API resource in a specific language
     open var effect: String?
@@ -2756,18 +1785,10 @@ open class PKMEffectEntry: Mappable {
     /// The language this effect is in
     open var language: PKMName?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        effect <- map["effect"]
-        language <- map["language"]
-    }
 }
 
 /// Contest effects refer to the effects of moves when used in contests.
-open class PKMContestEffect: Mappable {
+open class PKMContestEffect: Codable {
     
     /// The identifier for this contest type resource
     open var id: Int?
@@ -2784,21 +1805,10 @@ open class PKMContestEffect: Mappable {
     /// The flavor text of this contest effect listed in different languages
     open var flavorTextEntries: [PKMFlavorText]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        appeal <- map["appeal"]
-        jam <- map["jam"]
-        effectEntries <- map["effect_entries"]
-        flavorTextEntries <- map["flavor_text_entries"]
-    }
 }
 
 /// Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests. Check out Bulbapedia for greater detail.
-open class PKMContestType: Mappable {
+open class PKMContestType: Codable {
     
     /// The identifier for this contest type resource
     open var id: Int?
@@ -2812,20 +1822,10 @@ open class PKMContestType: Mappable {
     /// The name of this contest type listed in different languages
     open var names: [PKMName]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        berryFlavor <- map["berry_flavor"]
-        names <- map["results"]
-    }
 }
 
 /// Paged Object
-open class PKMPagedObject: Mappable{
+open class PKMPagedObject: Codable {
     
     /// The total number of resources abailable from this API
     open var count: Int?
@@ -2839,20 +1839,10 @@ open class PKMPagedObject: Mappable{
     /// List of unnamed API resources
     open var results: [PKMNamedAPIResource]?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        count <- map["count"]
-        next <- map["next"]
-        previous <- map["previous"]
-        results <- map["results"]
-    }
 }
 
 /// Name
-open class PKMName: Mappable{
+open class PKMName: Codable {
     
     /// The localized name for an API resource in a specific language
     open var name: String?
@@ -2860,56 +1850,32 @@ open class PKMName: Mappable{
     /// The language this name is in
     open var language: PKMNamedAPIResource?
     
-    required public init?(map: Map) {
-        
-    }
-    
-    open func mapping(map: Map) {
-        name <- map["name"]
-        language <- map["language"]
-    }
 }
 
 
 /// Named API Resource
-open class PKMNamedAPIResource: Mappable{
+open class PKMNamedAPIResource: Codable {
     
     /// The name of the referenced resource
     open var name: String?
     
     /// The URL of the referenced resource
     open var url: String?
-    
-    required public init?(map: Map){
-        
-    }
-    
-    open func mapping(map: Map) {
-        name <- map["name"]
-        url <- map["url"]
-    }
+
 }
 
-open class PKMBerryFlavourMap: Mappable{
+open class PKMBerryFlavourMap: Codable {
     
     /// How powerful the referenced flavor is for this berry
     open var potency: Int?
     
     /// The berry with the referenced flavor
     open var flavor: PKMNamedAPIResource?
-    
-    required public init?(map: Map){
-        
-    }
-    
-    open func mapping(map: Map) {
-        potency <- map["potency"]
-        flavor <- map["flavor"]
-    }
+
 }
 
 /// Flavors determine whether a Pokémon will benefit or suffer from eating a berry based on their nature. Check out Bulbapedia for greater detail.
-open class PKMBerryFlavour: Mappable{
+open class PKMBerryFlavour: Codable {
     
     /// The identifier for this berry flavor resource
     open var id: Int?
@@ -2925,41 +1891,22 @@ open class PKMBerryFlavour: Mappable{
     
     /// The name of this berry flavor listed in different languages
     open var names:[PKMName]?
-    
-    required public init?(map: Map){
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        berries <- map["berries"]
-        contestType <- map["contest_type"]
-        names <- map["names"]
-    }
+
 }
 
 /// Flavour Berry Map
-open class PKMFlavourBerryMap: Mappable {
+open class PKMFlavourBerryMap: Codable {
     
     /// How powerful the referenced flavor is for this berry
     open var potency: Int?
     
     /// The berry with the referenced flavor
     open var berry: PKMNamedAPIResource?
-    
-    required public init?(map: Map){
-        
-    }
-    
-    open func mapping(map: Map) {
-        potency <- map["potency"]
-        berry <- map["berry"]
-    }
+
 }
 
 /// Berries are small fruits that can provide HP and status condition restoration, stat enhancement, and even damage negation when eaten by Pokémon. Check out Bulbapedia for greater detail.
-open class PKMBerry: Mappable{
+open class PKMBerry: Codable {
     
     /// The identifier for this berry resource
     open var id: Int?
@@ -2996,29 +1943,11 @@ open class PKMBerry: Mappable{
     
     /// The Type the move "Natural Gift" has when used with this Berry
     open var naturalGiftType: PKMNamedAPIResource?
-    
-    required public init?(map: Map){
-        
-    }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        growthTime <- map["growth_time"]
-        maxHarvest <- map["max_harvest"]
-        naturalGiftPower <- map["natural_gift_power"]
-        size <- map["size"]
-        smoothness <- map["smoothness"]
-        soilDryness <- map["soil_dryness"]
-        firmness <- map["firmness"]
-        flavors <- map["flavors"]
-        item <- map["item"]
-        naturalGiftType <- map["natural_gift_type"]
-    }
+
 }
 
 /// Berry Firmness
-open class PKMBerryFirmness: Mappable {
+open class PKMBerryFirmness: Codable {
     
     /// The identifier for this berry firmness resource
     open var id: Int?
@@ -3031,40 +1960,445 @@ open class PKMBerryFirmness: Mappable {
     
     /// The name for this berry firmness resource
     open var name: String?
-    
-    
-    required public init?(map: Map){
-        
+
+}
+
+// MARK: PokeAPI
+public enum PokeAPI: TargetType {
+    case berryList
+    case berry(id: String)
+
+
+    case berryFirmnessList
+    case berryFirmness(id: String)
+
+
+    case berryFlavorList
+    case berryFlavor(id: String)
+
+
+    case contestTypeList
+    case contestType(id: String)
+
+
+    case contestEffectList
+    case contestEffect(id: String)
+
+
+    case superContestEffectList
+    case superContestEffect(id: String)
+
+
+    case encounterMethodList
+    case encounterMethod(id: String)
+
+
+    case encounterConditionList
+    case encounterCondition(id: String)
+
+
+    case encounterConditionValueList
+    case encounterConditionValue(id: String)
+
+
+    case evolutionChainList
+    case evolutionChain(id: String)
+
+
+    case evolutionTriggerList
+    case evolutionTrigger(id: String)
+
+
+    case generationList
+    case generation(id: String)
+
+
+    case pokedexList
+    case pokedex(id: String)
+
+
+    case versionList
+    case version(id: String)
+
+
+    case versionGroupList
+    case versionGroup(id: String)
+
+
+    case itemList
+    case item(id: String)
+
+
+    case itemAttributeList
+    case itemAttribute(id: String)
+
+
+    case itemCategoryList
+    case itemCategory(id: String)
+
+
+    case itemFlingEffectList
+    case itemFlingEffect(id: String)
+
+
+    case itemPocketList
+    case itemPocket(id: String)
+
+
+    case moveList
+    case move(id: String)
+
+
+    case moveAilmentList
+    case moveAilment(id: String)
+
+
+    case moveBattleStyleList
+    case moveBattleStyle(id: String)
+
+
+    case moveCategoryList
+    case moveCategory(id: String)
+
+
+    case moveDamageClassList
+    case moveDamageClass(id: String)
+
+
+    case moveLearnMethodList
+    case moveLearnMethod(id: String)
+
+
+    case moveTargetList
+    case moveTarget(id: String)
+
+
+    case locationList
+    case location(id: String)
+
+
+    case locationAreaList
+    case locationArea(id: String)
+
+
+    case palParkAreaList
+    case palParkArea(id: String)
+
+
+    case regionList
+    case region(id: String)
+
+
+    case abilityList
+    case ability(id: String)
+
+
+    case characteristicList
+    case characteristic(id: String)
+
+
+    case eggGroupList
+    case eggGroup(id: String)
+
+
+    case genderList
+    case gender(id: String)
+
+
+    case growthRateList
+    case growthRate(id: String)
+
+
+    case natureList
+    case nature(id: String)
+
+
+    case pokeathlonStatList
+    case pokeathlonStat(id: String)
+
+
+    case pokemonList
+    case pokemon(id: String)
+
+
+    case pokemonColorList
+    case pokemonColor(id: String)
+
+
+    case pokemonFormList
+    case pokemonForm(id: String)
+
+
+    case pokemonHabitatList
+    case pokemonHabitat(id: String)
+
+
+    case pokemonShapeList
+    case pokemonShape(id: String)
+
+
+    case pokemonSpeciesList
+    case pokemonSpecies(id: String)
+
+
+    case statList
+    case stat(id: String)
+
+
+    case typeList
+    case type(id: String)
+
+
+    case languageList
+    case language(id: String)
+
+}
+
+extension PokeAPI {
+    public var baseURL: URL {
+        return URL(string: "http://pokeapi.co/api/v2")!
     }
-    
-    open func mapping(map: Map) {
-        id <- map["id"]
-        berries <- map["berries"]
-        names <- map["names"]
-        name <- map["name"]
+
+    public var path: String {
+        switch self {
+        case .berryList: return "/berry"
+        case .berry(let id): return "/berry/" + id
+
+
+        case .berryFirmnessList: return "/berry-firmness"
+        case .berryFirmness(let id): return "/berry-firmness/" + id
+
+
+        case .berryFlavorList: return "/berry-flavor"
+        case .berryFlavor(let id): return "/berry-flavor/" + id
+
+
+        case .contestTypeList: return "/contest-type"
+        case .contestType(let id): return "/contest-type/" + id
+
+
+        case .contestEffectList: return "/contest-effect"
+        case .contestEffect(let id): return "/contest-effect/" + id
+
+
+        case .superContestEffectList: return "/super-contest-effect"
+        case .superContestEffect(let id): return "/super-contest-effect/" + id
+
+
+        case .encounterMethodList: return "/encounter-method"
+        case .encounterMethod(let id): return "/encounter-method/" + id
+
+
+        case .encounterConditionList: return "/encounter-condition"
+        case .encounterCondition(let id): return "/encounter-condition/" + id
+
+
+        case .encounterConditionValueList: return "/encounter-condition-value"
+        case .encounterConditionValue(let id): return "/encounter-condition-value/" + id
+
+
+        case .evolutionChainList: return "/evolution-chain"
+        case .evolutionChain(let id): return "/evolution-chain/" + id
+
+
+        case .evolutionTriggerList: return "/evolution-trigger"
+        case .evolutionTrigger(let id): return "/evolution-trigger/" + id
+
+
+        case .generationList: return "/generation"
+        case .generation(let id): return "/generation/" + id
+
+
+        case .pokedexList: return "/pokedex"
+        case .pokedex(let id): return "/pokedex/" + id
+
+
+        case .versionList: return "/version"
+        case .version(let id): return "/version/" + id
+
+
+        case .versionGroupList: return "/version-group"
+        case .versionGroup(let id): return "/version-group/" + id
+
+
+        case .itemList: return "/item"
+        case .item(let id): return "/item/" + id
+
+
+        case .itemAttributeList: return "/item-attribute"
+        case .itemAttribute(let id): return "/item-attribute/" + id
+
+
+        case .itemCategoryList: return "/item-category"
+        case .itemCategory(let id): return "/item-category/" + id
+
+
+        case .itemFlingEffectList: return "/item-fling-effect"
+        case .itemFlingEffect(let id): return "/item-fling-effect/" + id
+
+
+        case .itemPocketList: return "/item-pocket"
+        case .itemPocket(let id): return "/item-pocket/" + id
+
+
+        case .moveList: return "/move"
+        case .move(let id): return "/move/" + id
+
+
+        case .moveAilmentList: return "/move-ailment"
+        case .moveAilment(let id): return "/move-ailment/" + id
+
+
+        case .moveBattleStyleList: return "/move-battle-style"
+        case .moveBattleStyle(let id): return "/move-battle-style/" + id
+
+
+        case .moveCategoryList: return "/move-category"
+        case .moveCategory(let id): return "/move-category/" + id
+
+
+        case .moveDamageClassList: return "/move-damage-class"
+        case .moveDamageClass(let id): return "/move-damage-class/" + id
+
+
+        case .moveLearnMethodList: return "/move-learn-method"
+        case .moveLearnMethod(let id): return "/move-learn-method/" + id
+
+
+        case .moveTargetList: return "/move-target"
+        case .moveTarget(let id): return "/move-target/" + id
+
+
+        case .locationList: return "/location"
+        case .location(let id): return "/location/" + id
+
+
+        case .locationAreaList: return "/location-area"
+        case .locationArea(let id): return "/location-area/" + id
+
+
+        case .palParkAreaList: return "/pal-park-area"
+        case .palParkArea(let id): return "/pal-park-area/" + id
+
+
+        case .regionList: return "/region"
+        case .region(let id): return "/region/" + id
+
+
+        case .abilityList: return "/ability"
+        case .ability(let id): return "/ability/" + id
+
+
+        case .characteristicList: return "/characteristic"
+        case .characteristic(let id): return "/characteristic/" + id
+
+
+        case .eggGroupList: return "/egg-group"
+        case .eggGroup(let id): return "/egg-group/" + id
+
+
+        case .genderList: return "/gender"
+        case .gender(let id): return "/gender/" + id
+
+
+        case .growthRateList: return "/growth-rate"
+        case .growthRate(let id): return "/growth-rate/" + id
+
+
+        case .natureList: return "/nature"
+        case .nature(let id): return "/nature/" + id
+
+
+        case .pokeathlonStatList: return "/pokeathlon-stat"
+        case .pokeathlonStat(let id): return "/pokeathlon-stat/" + id
+
+
+        case .pokemonList: return "/pokemon"
+        case .pokemon(let id): return "/pokemon/" + id
+
+
+        case .pokemonColorList: return "/pokemon-color"
+        case .pokemonColor(let id): return "/pokemon-color/" + id
+
+
+        case .pokemonFormList: return "/pokemon-form"
+        case .pokemonForm(let id): return "/pokemon-form/" + id
+
+
+        case .pokemonHabitatList: return "/pokemon-habitat"
+        case .pokemonHabitat(let id): return "/pokemon-habitat/" + id
+
+
+        case .pokemonShapeList: return "/pokemon-shape"
+        case .pokemonShape(let id): return "/pokemon-shape/" + id
+
+
+        case .pokemonSpeciesList: return "/pokemon-species"
+        case .pokemonSpecies(let id): return "/pokemon-species/" + id
+
+
+        case .statList: return "/stat"
+        case .stat(let id): return "/stat/" + id
+
+
+        case .typeList: return "/type"
+        case .type(let id): return "/type/" + id
+
+
+        case .languageList: return "/language"
+        case .language(let id): return "/language/" + id
+
+        }
+    }
+
+    public var method: Moya.Method {
+        return .get
+    }
+
+    public var sampleData: Data {
+        return Data()
+    }
+
+    public var task: Task {
+        return .requestPlain
+    }
+
+    public var headers: [String : String]? {
+        return nil
+    }
+}
+// MARK: -
+// MARK: Functions
+let provider = MoyaProvider<PokeAPI>()
+let decoder = JSONDecoder()
+
+internal func request(target: PokeAPI) -> Promise<Response> {
+    return Promise<Response> { seal in
+        provider.request(target) { result in
+            switch result {
+            case .success(let response):
+                seal.fulfill(response)
+            case .failure(let error):
+                seal.reject(error)
+            }
+        }
     }
 }
 
-// MARK: -
-// MARK: Functions
+internal func decode<T: Decodable>(_ promise: Promise<Response>) -> Promise<T> {
+    return promise.map({ (response) in
+        let object = try decoder.decode(T.self, from: response.data)
+        return object
+    })
+}
 
 /**
-Fetch Berry list
+ Fetch Berry list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchBerryList() -> Promise<PKMPagedObject>{
-    return Promise { seal in
-        let URL = baseURL + "/berry"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    };
+    return decode(request(target: .berryList))
 }
 
 /**
@@ -3075,36 +2409,16 @@ public func fetchBerryList() -> Promise<PKMPagedObject>{
  - returns: A promise with PKMBerry
  */
 public func fetchBerry(_ berryId: String) -> Promise<PKMBerry>{
-    return Promise { seal in
-        let URL = baseURL + "/berry/" + berryId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMBerry>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .berry(id: berryId)))
 }
 
 /**
-Fetch Berry Firmness list
+ Fetch Berry Firmness list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchBerryFirmnessList() -> Promise<PKMPagedObject>{
-    return Promise { seal in
-        let URL = baseURL + "/berry-firmness"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .berryFirmnessList))
 }
 
 /**
@@ -3115,38 +2429,16 @@ public func fetchBerryFirmnessList() -> Promise<PKMPagedObject>{
  - returns: A promise with PKMBerryFirmness
  */
 public func fetchBerryFirmness(_ berryFirmnessId: String) -> Promise<PKMBerryFirmness>{
-    return Promise { seal in
-        let URL = baseURL + "/berry-firmness/" + berryFirmnessId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMBerryFirmness>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .berryFirmness(id: berryFirmnessId)))
 }
 
 /**
-Fetch Berry Flavours list
+ Fetch Berry Flavours list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchBerryFlavours() -> Promise<PKMPagedObject>{
-    return Promise { seal in
-        let URL = baseURL + "/berry-flavor"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .berryFlavorList))
 }
 
 /**
@@ -3157,38 +2449,16 @@ public func fetchBerryFlavours() -> Promise<PKMPagedObject>{
  - returns: A promise with PKMBerryFlavour
  */
 public func fetchBerryFlavour(_ berryFlavourId: String) -> Promise<PKMBerryFlavour>{
-    return Promise { seal in
-        let URL = baseURL + "/berry-flavor/" + berryFlavourId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMBerryFlavour>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .berryFlavor(id: berryFlavourId)))
 }
 
 /**
-Fetch Contest list
+ Fetch Contest list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchContestList() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/contest-type"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .contestTypeList))
 }
 
 /**
@@ -3199,38 +2469,16 @@ public func fetchContestList() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMContestType
  */
 public func fetchContestType(_ contestTypeId: String) -> Promise<PKMContestType>{
-    return Promise { seal in
-        let URL = baseURL + "/contest-type/" + contestTypeId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMContestType>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .contestType(id: contestTypeId)))
 }
 
 /**
-Fetch Contest Effects list
+ Fetch Contest Effects list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchContestEffects() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/contest-effect"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .contestEffectList))
 }
 
 /**
@@ -3241,38 +2489,16 @@ public func fetchContestEffects() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMContestEffect
  */
 public func fetchContestEffect(_ contestEffectId: String) -> Promise<PKMContestEffect>{
-    return Promise { seal in
-        let URL = baseURL + "/contest-effect/" + contestEffectId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMContestEffect>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .contestEffect(id: contestEffectId)))
 }
 
 /**
-Fetch Super Contest Effects list
+ Fetch Super Contest Effects list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchSuperContestEffects() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/contest-effect"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .superContestEffectList))
 }
 
 /**
@@ -3283,38 +2509,16 @@ public func fetchSuperContestEffects() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMSuperContestEffect
  */
 public func fetchSuperContestEffect(_ superContestEffectId: String) -> Promise<PKMSuperContestEffect>{
-    return Promise { seal in
-        let URL = baseURL + "/super-contest-effect/" + superContestEffectId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMSuperContestEffect>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .superContestEffect(id: superContestEffectId)))
 }
 
 /**
-Fetch Encounter Methods list
+ Fetch Encounter Methods list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchEncounterMethods() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/encounter-method"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .encounterMethodList))
 }
 
 /**
@@ -3325,38 +2529,16 @@ public func fetchEncounterMethods() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEncounterMethod
  */
 public func fetchEncounterMethod(_ encounterMethodId: String) -> Promise<PKMEncounterMethod>{
-    return Promise { seal in
-        let URL = baseURL + "/encounter-method/" + encounterMethodId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEncounterMethod>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .encounterMethod(id: encounterMethodId)))
 }
 
 /**
-Fetch Encounter Conditions list
+ Fetch Encounter Conditions list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchEncounterConditions() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/encounter-condition"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .encounterConditionList))
 }
 
 /**
@@ -3367,38 +2549,16 @@ public func fetchEncounterConditions() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEncounterCondition
  */
 public func fetchEncounterCondition(_ encounterConditionId: String) -> Promise<PKMEncounterCondition>{
-    return Promise { seal in
-        let URL = baseURL + "/encounter-condition/" + encounterConditionId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEncounterCondition>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .encounterCondition(id: encounterConditionId)))
 }
 
 /**
-Fetch Encounter Condition Values list
+ Fetch Encounter Condition Values list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchEncounterConditionValues() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/encounter-condition-value"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .encounterConditionValueList))
 }
 
 /**
@@ -3409,38 +2569,16 @@ public func fetchEncounterConditionValues() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEncounterConditionValue
  */
 public func fetchEncounterConditionValue(_ encounterConditionValueId: String) -> Promise<PKMEncounterConditionValue>{
-    return Promise { seal in
-        let URL = baseURL + "/encounter-condition-value/" + encounterConditionValueId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEncounterConditionValue>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .encounterConditionValue(id: encounterConditionValueId)))
 }
 
 /**
-Fetch Encounter Chains list
+ Fetch Encounter Chains list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchEvolutionChains() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/evolution-chain"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .evolutionChainList))
 }
 
 /**
@@ -3451,38 +2589,16 @@ public func fetchEvolutionChains() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEvolutionChain
  */
 public func fetchEvolutionChain(_ evolutionChainId: String) -> Promise<PKMEvolutionChain>{
-    return Promise { seal in
-        let URL = baseURL + "/evolution-chain/" + evolutionChainId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEvolutionChain>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .evolutionChain(id: evolutionChainId)))
 }
 
 /**
-Fetch Encounter Triggers list
+ Fetch Encounter Triggers list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchEvolutionTriggers() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/evolution-trigger"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .evolutionTriggerList))
 }
 
 /**
@@ -3493,38 +2609,16 @@ public func fetchEvolutionTriggers() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEvolutionTrigger
  */
 public func fetchEvolutionTrigger(_ evolutionTriggerId: String) -> Promise<PKMEvolutionTrigger>{
-    return Promise { seal in
-        let URL = baseURL + "/evolution-trigger/" + evolutionTriggerId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEvolutionTrigger>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .evolutionTrigger(id: evolutionTriggerId)))
 }
 
 /**
-Fetch Generations list
+ Fetch Generations list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchGenerations() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/generation"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .generationList))
 }
 
 /**
@@ -3535,38 +2629,16 @@ public func fetchGenerations() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMGeneration
  */
 public func fetchGeneration(_ generationId: String) -> Promise<PKMGeneration>{
-    return Promise { seal in
-        let URL = baseURL + "/generation/" + generationId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMGeneration>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .generation(id: generationId)))
 }
 
 /**
-Fetch Pokedexes list
+ Fetch Pokedexes list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchPokedexes() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/pokedex"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .pokedexList))
 }
 
 /**
@@ -3577,38 +2649,16 @@ public func fetchPokedexes() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokedex
  */
 public func fetchPokedex(_ pokedexId: String) -> Promise<PKMPokedex>{
-    return Promise { seal in
-        let URL = baseURL + "/pokedex/" + pokedexId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokedex>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .pokedex(id: pokedexId)))
 }
 
 /**
-Fetch Versions list
+ Fetch Versions list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchVersions() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/version"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .versionList))
 }
 
 /**
@@ -3619,38 +2669,16 @@ public func fetchVersions() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMVersion
  */
 public func fetchVersion(_ versionId: String) -> Promise<PKMVersion>{
-    return Promise { seal in
-        let URL = baseURL + "/version/" + versionId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMVersion>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .version(id: versionId)))
 }
 
 /**
-Fetch Versions Groups list
+ Fetch Versions Groups list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchVersionGroups() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/version-group"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .versionGroupList))
 }
 
 /**
@@ -3661,38 +2689,16 @@ public func fetchVersionGroups() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMVersionGroup
  */
 public func fetchVersionGroup(_ versionGroupId: String) -> Promise<PKMVersionGroup>{
-    return Promise { seal in
-        let URL = baseURL + "/version-group/" + versionGroupId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMVersionGroup>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .versionGroup(id: versionGroupId)))
 }
 
 /**
-Fetch Items list
+ Fetch Items list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchItems() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/item"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .itemList))
 }
 
 /**
@@ -3703,38 +2709,16 @@ public func fetchItems() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMItem
  */
 public func fetchItem(_ itemId: String) -> Promise<PKMItem>{
-    return Promise { seal in
-        let URL = baseURL + "/item/" + itemId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMItem>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .item(id: itemId)))
 }
 
 /**
-Fetch Item Attributes list
+ Fetch Item Attributes list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchItemAttributes() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/item-attribute"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .itemAttributeList))
 }
 
 /**
@@ -3745,38 +2729,16 @@ public func fetchItemAttributes() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMItemAttribute
  */
 public func fetchItemAttribute(_ itemAttributeId: String) -> Promise<PKMItemAttribute>{
-    return Promise { seal in
-        let URL = baseURL + "/item-attribute/" + itemAttributeId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMItemAttribute>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .itemAttribute(id: itemAttributeId)))
 }
 
 /**
-Fetch Item Categories list
+ Fetch Item Categories list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchItemCategories() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/item-category"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .itemCategoryList))
 }
 
 /**
@@ -3787,38 +2749,16 @@ public func fetchItemCategories() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMItemCategory
  */
 public func fetchItemCategory(_ itemCategoryId: String) -> Promise<PKMItemCategory>{
-    return Promise { seal in
-        let URL = baseURL + "/item-category/" + itemCategoryId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMItemCategory>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .itemCategory(id: itemCategoryId)))
 }
 
 /**
-Fetch Item Fling Effects list
+ Fetch Item Fling Effects list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchItemFlingEffects() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/item-fling-effect"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .itemFlingEffectList))
 }
 
 /**
@@ -3829,38 +2769,16 @@ public func fetchItemFlingEffects() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMItemFlingEffect
  */
 public func fetchItemFlingEffect(_ itemFlingEffectsId: String) -> Promise<PKMItemFlingEffect>{
-    return Promise { seal in
-        let URL = baseURL + "/item-fling-effect/" + itemFlingEffectsId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMItemFlingEffect>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .itemFlingEffect(id: itemFlingEffectsId)))
 }
 
 /**
-Fetch Item Pockets list
+ Fetch Item Pockets list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchItemPockets() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/item-pocket"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .itemPocketList))
 }
 
 /**
@@ -3871,38 +2789,16 @@ public func fetchItemPockets() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMItemPocket
  */
 public func fetchItemPocket(_ itemPocketId: String) -> Promise<PKMItemPocket>{
-    return Promise { seal in
-        let URL = baseURL + "/item-pocket/" + itemPocketId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMItemPocket>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .itemPocket(id: itemPocketId)))
 }
 
 /**
-Fetch Moves list
+ Fetch Moves list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchMoves() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/move"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .moveList))
 }
 
 /**
@@ -3913,38 +2809,16 @@ public func fetchMoves() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMove
  */
 public func fetchMove(_ moveId: String) -> Promise<PKMMove>{
-    return Promise { seal in
-        let URL = baseURL + "/move/" + moveId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMove>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .move(id: moveId)))
 }
 
 /**
-Fetch Moves Ailments list
+ Fetch Moves Ailments list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchMoveAilments() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/move-ailment"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .moveAilmentList))
 }
 
 /**
@@ -3955,38 +2829,16 @@ public func fetchMoveAilments() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveAilment
  */
 public func fetchMoveAilment(_ moveAilmentId: String) -> Promise<PKMMoveAilment>{
-    return Promise { seal in
-        let URL = baseURL + "/move-ailment/" + moveAilmentId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveAilment>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .moveAilment(id: moveAilmentId)))
 }
 
 /**
-Fetch Moves Battle Styles list
+ Fetch Moves Battle Styles list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchMoveBattleStyles() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/move-battle-style"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .moveBattleStyleList))
 }
 
 /**
@@ -3997,38 +2849,16 @@ public func fetchMoveBattleStyles() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveBattleStyle
  */
 public func fetchMoveBattleStyle(_ moveBattleStyleId: String) -> Promise<PKMMoveBattleStyle>{
-    return Promise { seal in
-        let URL = baseURL + "/move-battle-style/" + moveBattleStyleId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveBattleStyle>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .moveBattleStyle(id: moveBattleStyleId)))
 }
 
 /**
-Fetch Moves Categories list
+ Fetch Moves Categories list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchMoveCategories() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/move-category"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .moveCategoryList))
 }
 
 /**
@@ -4039,38 +2869,16 @@ public func fetchMoveCategories() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveCategory
  */
 public func fetchMoveCategory(_ moveCategoryId: String) -> Promise<PKMMoveCategory>{
-    return Promise { seal in
-        let URL = baseURL + "/move-category/" + moveCategoryId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveCategory>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .moveCategory(id: moveCategoryId)))
 }
 
 /**
-Fetch Moves Damage Classes list
+ Fetch Moves Damage Classes list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchMoveDamageClasses() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/move-damage-class"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .moveDamageClassList))
 }
 
 /**
@@ -4081,38 +2889,16 @@ public func fetchMoveDamageClasses() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveDamageClass
  */
 public func fetchMoveDamageClass(_ moveDamageClassId: String) -> Promise<PKMMoveDamageClass>{
-    return Promise { seal in
-        let URL = baseURL + "/move-damage-class/" + moveDamageClassId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveDamageClass>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .moveDamageClass(id: moveDamageClassId)))
 }
 
 /**
-Fetch Moves Learn Methods list
+ Fetch Moves Learn Methods list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchMoveLearnMethods() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/move-learn-method"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .moveLearnMethodList))
 }
 
 /**
@@ -4123,38 +2909,16 @@ public func fetchMoveLearnMethods() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveLearnMethod
  */
 public func fetchMoveLearnMethod(_ moveLearnMethodId: String) -> Promise<PKMMoveLearnMethod>{
-    return Promise { seal in
-        let URL = baseURL + "/move-learn-method/" + moveLearnMethodId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveLearnMethod>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .moveLearnMethod(id: moveLearnMethodId)))
 }
 
 /**
-Fetch Moves Targets list
+ Fetch Moves Targets list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchMoveTargets() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/move-target"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .moveTargetList))
 }
 
 /**
@@ -4165,38 +2929,16 @@ public func fetchMoveTargets() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMMoveTarget
  */
 public func fetchMoveTarget(_ moveTargetId: String) -> Promise<PKMMoveTarget>{
-    return Promise { seal in
-        let URL = baseURL + "/move-target/" + moveTargetId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMMoveTarget>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .moveTarget(id: moveTargetId)))
 }
 
 /**
-Fetch Locations list
+ Fetch Locations list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchLocations() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/location"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .locationList))
 }
 
 /**
@@ -4207,38 +2949,16 @@ public func fetchLocations() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMLocation
  */
 public func fetchLocation(_ locationId: String) -> Promise<PKMLocation>{
-    return Promise { seal in
-        let URL = baseURL + "/location/" + locationId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMLocation>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .location(id: locationId)))
 }
 
 /**
-Fetch Location Area list
+ Fetch Location Area list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchLocationAreas() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/location-area"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .locationAreaList))
 }
 
 /**
@@ -4249,38 +2969,16 @@ public func fetchLocationAreas() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMLocationArea
  */
 public func fetchLocationArea(_ locationAreaId: String) -> Promise<PKMLocationArea>{
-    return Promise { seal in
-        let URL = baseURL + "/location-area/" + locationAreaId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMLocationArea>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .locationArea(id: locationAreaId)))
 }
 
 /**
-Fetch Pal Park Areas list
+ Fetch Pal Park Areas list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchPalParkAreas() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/pal-park-area"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .palParkAreaList))
 }
 
 /**
@@ -4291,38 +2989,16 @@ public func fetchPalParkAreas() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPalParkArea
  */
 public func fetchPalParkArea(_ palParkAreaId: String) -> Promise<PKMPalParkArea>{
-    return Promise { seal in
-        let URL = baseURL + "/pal-park-area/" + palParkAreaId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPalParkArea>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .palParkArea(id: palParkAreaId)))
 }
 
 /**
-Fetch Regions list
+ Fetch Regions list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchRegions() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/region"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .regionList))
 }
 
 /**
@@ -4333,38 +3009,16 @@ public func fetchRegions() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMRegion
  */
 public func fetchRegion(_ regionId: String) -> Promise<PKMRegion>{
-    return Promise { seal in
-        let URL = baseURL + "/region/" + regionId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMRegion>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .region(id: regionId)))
 }
 
 /**
-Fetch Abilities list
+ Fetch Abilities list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchAbilities() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/ability"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .abilityList))
 }
 
 /**
@@ -4375,38 +3029,16 @@ public func fetchAbilities() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMAbility
  */
 public func fetchAbility(_ abilityId: String) -> Promise<PKMAbility>{
-    return Promise { seal in
-        let URL = baseURL + "/ability/" + abilityId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMAbility>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .ability(id: abilityId)))
 }
 
 /**
-Fetch Characteristics list
+ Fetch Characteristics list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchCharacteristics() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/characteristic"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .characteristicList))
 }
 
 /**
@@ -4417,38 +3049,16 @@ public func fetchCharacteristics() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMCharacteristic
  */
 public func fetchCharacteristic(_ characteristicId: String) -> Promise<PKMCharacteristic>{
-    return Promise { seal in
-        let URL = baseURL + "/characteristic/" + characteristicId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMCharacteristic>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .characteristic(id: characteristicId)))
 }
 
 /**
-Fetch Egg Group list
+ Fetch Egg Group list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchEggGroup() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/egg-group"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .eggGroupList))
 }
 
 /**
@@ -4459,38 +3069,16 @@ public func fetchEggGroup() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMEggGroup
  */
 public func fetchEggGroup(_ eggGroupId: String) -> Promise<PKMEggGroup>{
-    return Promise { seal in
-        let URL = baseURL + "/egg-group/" + eggGroupId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMEggGroup>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .eggGroup(id: eggGroupId)))
 }
 
 /**
-Fetch Genders list
+ Fetch Genders list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchGenders() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/gender"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .genderList))
 }
 
 /**
@@ -4501,38 +3089,16 @@ public func fetchGenders() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMGender
  */
 public func fetchGender(_ genderId: String) -> Promise<PKMGender>{
-    return Promise { seal in
-        let URL = baseURL + "/gender/" + genderId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMGender>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .gender(id: genderId)))
 }
 
 /**
-Fetch Growth Rate list
+ Fetch Growth Rate list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchGrowthRates() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/growth-rate"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .growthRateList))
 }
 
 /**
@@ -4543,38 +3109,16 @@ public func fetchGrowthRates() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMGrowthRate
  */
 public func fetchGrowthRate(_ growthRateId: String) -> Promise<PKMGrowthRate>{
-    return Promise { seal in
-        let URL = baseURL + "/growth-rate/" + growthRateId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMGrowthRate>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .growthRate(id: growthRateId)))
 }
 
 /**
-Fetch Nature list
+ Fetch Nature list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchNatures() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/nature"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .natureList))
 }
 
 /**
@@ -4585,38 +3129,16 @@ public func fetchNatures() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMNature
  */
 public func fetchNature(_ natureId: String) -> Promise<PKMNature>{
-    return Promise { seal in
-        let URL = baseURL + "/nature/" + natureId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMNature>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .nature(id: natureId)))
 }
 
 /**
-Fetch Pokeathlon Stat list
+ Fetch Pokeathlon Stat list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchPokeathlonStats() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/pokeathlon-stat"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .pokeathlonStatList))
 }
 
 /**
@@ -4627,38 +3149,16 @@ public func fetchPokeathlonStats() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokeathlonStat
  */
 public func fetchPokeathlonStat(_ pokeathlonStatId: String) -> Promise<PKMPokeathlonStat>{
-    return Promise { seal in
-        let URL = baseURL + "/pokeathlon-stat/" + pokeathlonStatId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokeathlonStat>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .pokeathlonStat(id: pokeathlonStatId)))
 }
 
 /**
-Fetch Pokemon list
+ Fetch Pokemon list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchPokemons() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/pokemon"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .pokemonList))
 }
 
 /**
@@ -4669,38 +3169,16 @@ public func fetchPokemons() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemon
  */
 public func fetchPokemon(_ pokemonId: String) -> Promise<PKMPokemon>{
-    return Promise { seal in
-        let URL = baseURL + "/pokemon/" + pokemonId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemon>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .pokemon(id: pokemonId)))
 }
 
 /**
-Fetch Pokemon Color list
+ Fetch Pokemon Color list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchPokemonColors() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/pokemon-color"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .pokemonColorList))
 }
 
 /**
@@ -4711,38 +3189,16 @@ public func fetchPokemonColors() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemonColor
  */
 public func fetchPokemonColor(_ pokemonColorId: String) -> Promise<PKMPokemonColor>{
-    return Promise { seal in
-        let URL = baseURL + "/pokemon-color/" + pokemonColorId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemonColor>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .pokemonColor(id: pokemonColorId)))
 }
 
 /**
-Fetch Pokemon Form list
+ Fetch Pokemon Form list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchPokemonForms() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/pokemon-form"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .pokemonFormList))
 }
 
 /**
@@ -4753,38 +3209,16 @@ public func fetchPokemonForms() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemonForm
  */
 public func fetchPokemonForm(_ pokemonFormId: String) -> Promise<PKMPokemonForm>{
-    return Promise { seal in
-        let URL = baseURL + "/pokemon-form/" + pokemonFormId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemonForm>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .pokemonForm(id: pokemonFormId)))
 }
 
 /**
-Fetch Pokemon Habitat list
+ Fetch Pokemon Habitat list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchPokemonHabitats() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/pokemon-habitat"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .pokemonHabitatList))
 }
 
 /**
@@ -4795,38 +3229,16 @@ public func fetchPokemonHabitats() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemonHabitat
  */
 public func fetchPokemonHabitat(_ pokemonHabitatId: String) -> Promise<PKMPokemonHabitat>{
-    return Promise { seal in
-        let URL = baseURL + "/pokemon-habitat/" + pokemonHabitatId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemonHabitat>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .pokemonHabitat(id: pokemonHabitatId)))
 }
 
 /**
-Fetch Pokemon Shape list
+ Fetch Pokemon Shape list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchPokemonShapes() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/pokemon-shape"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .pokemonShapeList))
 }
 
 /**
@@ -4837,38 +3249,16 @@ public func fetchPokemonShapes() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemonShape
  */
 public func fetchPokemonShape(_ pokemonShapeId: String) -> Promise<PKMPokemonShape>{
-    return Promise { seal in
-        let URL = baseURL + "/pokemon-shape/" + pokemonShapeId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemonShape>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .pokemonShape(id: pokemonShapeId)))
 }
 
 /**
-Fetch Pokemon Species list
+ Fetch Pokemon Species list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchPokemonSpecies() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/pokemon-species"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .pokemonSpeciesList))
 }
 
 /**
@@ -4879,38 +3269,16 @@ public func fetchPokemonSpecies() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMPokemonSpecies
  */
 public func fetchPokemonSpecies(_ pokemonSpeciesId: String) -> Promise<PKMPokemonSpecies>{
-    return Promise { seal in
-        let URL = baseURL + "/pokemon-species/" + pokemonSpeciesId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPokemonSpecies>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .pokemonSpecies(id: pokemonSpeciesId)))
 }
 
 /**
-Fetch Stat list
+ Fetch Stat list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchStats() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/stat"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .statList))
 }
 
 /**
@@ -4921,38 +3289,16 @@ public func fetchStats() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMStat
  */
 public func fetchStat(_ statId: String) -> Promise<PKMStat>{
-    return Promise { seal in
-        let URL = baseURL + "/stat/" + statId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMStat>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .stat(id: statId)))
 }
 
 /**
-Fetch Type list
+ Fetch Type list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchType() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/type"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .typeList))
 }
 
 /**
@@ -4963,38 +3309,16 @@ public func fetchType() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMType
  */
 public func fetchType(_ typeId: String) -> Promise<PKMType>{
-    return Promise { seal in
-        let URL = baseURL + "/type/" + typeId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMType>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .type(id: typeId)))
 }
 
 /**
-Fetch Languages list
+ Fetch Languages list
 
-- returns: A promise with PKMPagedObject
-*/
+ - returns: A promise with PKMPagedObject
+ */
 public func fetchLanguages() -> Promise<PKMPagedObject> {
-    return Promise { seal in
-        let URL = baseURL + "/language"
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMPagedObject>) in
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-        }
-    }
+    return decode(request(target: .languageList))
 }
 
 /**
@@ -5005,17 +3329,5 @@ public func fetchLanguages() -> Promise<PKMPagedObject> {
  - returns: A promise with PKMLanguage
  */
 public func fetchLanguage(_ languageId: String) -> Promise<PKMLanguage>{
-    return Promise { seal in
-        let URL = baseURL + "/language/" + languageId
-        
-        Alamofire.request(URL, method: .get).responseObject { (response: DataResponse<PKMLanguage>) in
-            
-            if (response.result.isSuccess) {
-                seal.fulfill(response.result.value!)
-            }else{
-                seal.reject(response.result.error!)
-            }
-            
-        }
-    }
+    return decode(request(target: .language(id: languageId)))
 }

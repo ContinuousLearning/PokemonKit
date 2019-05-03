@@ -20,14 +20,11 @@
   "requires_arc": true,
   "source_files": "Classes/**/*",
   "dependencies": {
-    "Alamofire": [
-      "~> 4.2"
-    ],
-    "AlamofireObjectMapper": [
-      "~> 5.2"
-    ],
     "PromiseKit": [
       "~> 6.8"
+    ],
+    "Moya": [
+      "~> 12.0"
     ]
   }
 }

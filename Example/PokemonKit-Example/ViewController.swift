@@ -8,7 +8,6 @@
 
 import UIKit
 import PokemonKit
-import PromiseKit
 
 class ViewController: UIViewController {
 
@@ -16,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        PokemonKit.fetchBerry("1").done({ berry in
+        let _ = PokemonKit.fetchBerry("1").done({ berry in
             print(berry.name!)
         })
 
