@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
         let _ = PokemonKit.fetchBerry("1").done({ berry in
-            print(berry.name!)
+            print(berry.name)
         })
 
     }

@@ -10,7 +10,7 @@ import Foundation
 import PromiseKit
 import Moya
 
-// - MARK: - Constant
+// MARK: - Constant
 
 let baseURL: String = "http://pokeapi.co/api/v2"
 
@@ -20,89 +20,120 @@ let baseURL: String = "http://pokeapi.co/api/v2"
 open class PKMLanguage: Codable {
     
     /// The identifier for this language resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this language resource
-    open var name: String?
+    open var name: String
     
     /// Whether or not the games are published in this language
-    open var official: Bool?
+    open var official: Bool
     
     /// The two-letter code of the country where this language is spoken. Note that it is not unique.
-    open var iso639: String?
+    open var iso639: String
     
     /// The two-letter code of the language. Note that it is not unique.
-    open var iso3166: String?
+    open var iso3166: String
     
     /// The name of this language listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case official = "official"
+        case iso639 = "iso639"
+        case iso3166 = "iso3166"
+        case names = "names"
+    }
 }
 
 /// Pokemon Type
 open class PKMTypePokemon: Codable {
     
     /// The order the Pokémon's types are listed in
-    open var slot: Int?
+    open var slot: Int
     
     /// The Pokémon that has the referenced type
-    open var pokemon: PKMNamedAPIResource?
-    
+    open var pokemon: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case slot = "slot"
+        case pokemon = "pokemon"
+    }
 }
 
 /// Pokemon Type Relations
 open class PKMTypeRelations: Codable {
     
     /// A list of types this type has no effect on
-    open var noDamageTo: [PKMNamedAPIResource]?
+    open var noDamageTo: [PKMNamedAPIResource]
     
     /// A list of types this type is not very effect against
-    open var halfDamageTo: [PKMNamedAPIResource]?
+    open var halfDamageTo: [PKMNamedAPIResource]
     
     /// A list of types this type is very effect against
-    open var doubleDamageTo: [PKMNamedAPIResource]?
+    open var doubleDamageTo: [PKMNamedAPIResource]
     
     /// A list of types that have no effect on this type
-    open var noDamageFrom: [PKMNamedAPIResource]?
+    open var noDamageFrom: [PKMNamedAPIResource]
     
     /// A list of types that are not very effective against this type
-    open var halfDamageFrom: [PKMNamedAPIResource]?
+    open var halfDamageFrom: [PKMNamedAPIResource]
     
     /// A list of types that are very effective against this type
-    open var doubleDamageFrom: [PKMNamedAPIResource]?
-    
+    open var doubleDamageFrom: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case noDamageTo = "no_damage_to"
+        case halfDamageTo = "half_damage_to"
+        case doubleDamageTo = "double_damage_to"
+        case noDamageFrom = "no_damage_from"
+        case halfDamageFrom = "half_damage_from"
+        case doubleDamageFrom = "double_damage_from"
+    }
 }
 
 /// Types are properties for Pokémon and their moves. Each type has three properties: which types of Pokémon it is super effective against, which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against.
 open class PKMType: Codable {
     
     /// The identifier for this type resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this type resource
-    open var name: String?
+    open var name: String
     
     /// A detail of how effective this type is toward others and vice versa
-    open var damageRelations: PKMTypeRelations?
+    open var damageRelations: PKMTypeRelations
     
     /// A list of game indices relevent to this item by generation
-    open var gameIndices: [PKMGenerationGameIndex]?
+    open var gameIndices: [PKMGenerationGameIndex]
     
     /// The generation this type was introduced in
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource
     
     /// The class of damage inflicted by this type
-    open var moveDamageClass: PKMNamedAPIResource?
+    open var moveDamageClass: PKMNamedAPIResource
     
     /// The name of this type listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of details of Pokémon that have this type
-    open var pokemon: [PKMTypePokemon]?
+    open var pokemon: [PKMTypePokemon]
     
     /// A list of moves that have this type
-    open var moves: [PKMNamedAPIResource]?
-    
+    open var moves: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case damageRelations = "damage_relations"
+        case gameIndices = "game_indices"
+        case generation = "generation"
+        case moveDamageClass = "move_damage_class"
+        case names = "names"
+        case pokemon = "pokemon"
+        case moves = "moves"
+    }
 }
 
 
@@ -110,11 +141,15 @@ open class PKMType: Codable {
 open class PKMNatureStatAffectSets: Codable {
     
     /// A list of natures and how they change the referenced stat
-    open var increase: [PKMNatureStatAffect]?
+    open var increase: [PKMNatureStatAffect]
     
     /// A list of nature sand how they change the referenced stat
-    open var decrease: [PKMNatureStatAffect]?
-    
+    open var decrease: [PKMNatureStatAffect]
+
+    enum CodingKeys: String, CodingKey {
+        case increase = "increase"
+        case decrease = "decrease"
+    }
 }
 
 
@@ -122,351 +157,508 @@ open class PKMNatureStatAffectSets: Codable {
 open class PKMNatureStatAffect: Codable {
     
     /// The maximum amount of change to the referenced stat
-    open var maxChange: Int?
+    open var maxChange: Int
     
     /// The nature causing the change
-    open var nature: PKMNamedAPIResource?
-    
+    open var nature: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case maxChange = "max_change"
+        case nature = "nature"
+    }
 }
 
 /// Move Stat Affect
 open class PKMMoveStatAffect: Codable {
     
     /// The maximum amount of change to the referenced stat
-    open var maxChange: Int?
+    open var change: Int
     
     /// The move causing the change
-    open var move: PKMNamedAPIResource?
-    
+    open var move: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case change = "change"
+        case move = "move"
+    }
 }
 
 /// Move Stat Affect Sets
 open class PKMMoveStatAffectSets: Codable {
     
     /// A list of natures and how they change the referenced stat
-    open var increase: [PKMMoveStatAffect]?
+    open var increase: [PKMMoveStatAffect]
     
     /// A list of nature sand how they change the referenced stat
-    open var decrease: [PKMMoveStatAffect]?
-    
+    open var decrease: [PKMMoveStatAffect]
+
+    enum CodingKeys: String, CodingKey {
+        case increase = "increase"
+        case decrease = "decrease"
+    }
 }
 
 /// Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.
 open class PKMStat: Codable {
     
     /// The identifier for this stat resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this stat resource
-    open var name: String?
+    open var name: String
     
     /// ID the games use for this stat
-    open var gameIndex: Int?
+    open var gameIndex: Int
     
     /// Whether this stat only exists within a battle
-    open var isBattleOnly: Bool?
+    open var isBattleOnly: Bool
     
     /// A detail of moves which affect this stat positively or negatively
-    open var affectingMoves: PKMMoveStatAffectSets?
+    open var affectingMoves: PKMMoveStatAffectSets
     
     //// A detail of natures which affect this stat positively or negatively
-    open var affectingNatures: PKMNatureStatAffectSets?
+    open var affectingNatures: PKMNatureStatAffectSets
     
     /// A list of characteristics that are set on a Pokémon when its highest base stat is this stat
-    open var characteristics: [PKMAPIResource]?
+    open var characteristics: [PKMAPIResource]
     
     /// The class of damage this stat is directly related to
     open var moveDamageClass: PKMNamedAPIResource?
-    
+
     /// The name of this region listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case gameIndex = "game_index"
+        case isBattleOnly = "is_battle_only"
+        case affectingMoves = "affecting_moves"
+        case affectingNatures = "affecting_natures"
+        case characteristics = "characteristics"
+        case moveDamageClass = "move_damage_class"
+        case names = "names"
+    }
 }
 
 /// Pokemon Species Dex Entry
 open class PKMPokemonSpeciesDexEntry: Codable {
     
     /// The index number within the Pokédex
-    open var entryNumber: Int?
+    open var entryNumber: Int
     
     /// The Pokédex the referenced Pokémon species can be found in
-    open var name: PKMNamedAPIResource?
-    
+    open var pokedex: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case entryNumber = "entry_number"
+        case pokedex = "pokedex"
+    }
 }
 
 /// PalPark Encounter Area
 open class PKMPalParkEncounterArea: Codable {
     
     /// The base score given to the player when the referenced Pokémon is caught during a pal park run
-    open var baseScore: Int?
+    open var baseScore: Int
     
     /// The base rate for encountering the referenced Pokémon in this pal park area
-    open var rate: Int?
+    open var rate: Int
     
     /// The pal park area where this encounter happens
-    open var area: PKMNamedAPIResource?
-    
+    open var area: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case baseScore = "base_score"
+        case rate = "rate"
+        case area = "area"
+    }
 }
 
 /// Pokemon Species Flavor Text
 open class PKMPokemonSpeciesFlavorText: Codable {
     
     /// The localized flavor text for an API resource in a specific language
-    open var flavorText: String?
+    open var flavorText: String
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource
     
     /// The version this flavor text entry is used in
-    open var version: PKMNamedAPIResource?
-    
+    open var version: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case flavorText = "flavor_text"
+        case language = "language"
+        case version = "version"
+    }
+}
+
+/// TODO: Documentation
+open class PKMAbilityFlavorText: Codable {
+
+    /// The localized flavor text for an API resource in a specific language
+    open var flavorText: String
+
+    /// The language this name is in
+    open var language: PKMNamedAPIResource
+
+    /// The version this flavor text entry is used in
+    open var versionGroup: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case flavorText = "flavor_text"
+        case language = "language"
+        case versionGroup = "version_group"
+    }
 }
 
 /// Genus
 open class PKMGenus: Codable {
     
     /// The localized genus for the referenced pokemon species
-    open var genus: String?
+    open var genus: String
     
     /// The language this genus is in
-    open var language: PKMNamedAPIResource?
-    
+    open var language: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case genus = "genus"
+        case language = "language"
+    }
+}
+
+/// TODO: Documentation
+open class PKMPokemonSpeciesVariety: Codable {
+
+    /// TODO: Documentation
+    open var isDefault: Bool
+
+    /// TODO: Documentation
+    open var pokemon: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case isDefault = "is_default"
+        case pokemon = "pokemon"
+    }
 }
 
 /// A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species are shared across all varieties of Pokémon within the species. A good example is Wormadam; Wormadam is the species which can be found in three different varieties, Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant.
 open class PKMPokemonSpecies: Codable {
     
     /// The identifier for this Pokémon species resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this Pokémon species resource
-    open var name: String?
+    open var name: String
     
     /// The order in which species should be sorted. Based on National Dex order, except families are grouped together and sorted by stage.
-    open var order: Int?
+    open var order: Int
     
     /// The chance of this Pokémon being female, in eighths; or -1 for genderless
-    open var genderRate: Int?
+    open var genderRate: Int
     
     /// The base capture rate; up to 255. The higher the number, the easier the catch.
-    open var captureRate: Int?
+    open var captureRate: Int
     
     /// The happiness when caught by a normal Pokéball; up to 255. The higher the number, the happier the Pokémon.
-    open var baseHappiness: Int?
+    open var baseHappiness: Int
     
     /// Whether or not this is a baby Pokémon
-    open var isBaby: Bool?
+    open var isBaby: Bool
     
     /// Initial hatch counter: one must walk 255 × (hatch_counter + 1) steps before this Pokémon's egg hatches, unless utilizing bonuses like Flame Body's
-    open var hatchCounter: Int?
+    open var hatchCounter: Int
     
     /// Whether or not this Pokémon can have different genders
-    open var hasGenderDifferences: Bool?
+    open var hasGenderDifferences: Bool
     
     /// Whether or not this Pokémon has multiple forms and can switch between them
-    open var formsSwitchable: Bool?
+    open var formsSwitchable: Bool
     
     /// The rate at which this Pokémon species gains levels
-    open var growthRate: PKMNamedAPIResource?
+    open var growthRate: PKMNamedAPIResource
     
     /// A list of pokedexes and the indexes reserved within them for this Pokémon species
-    open var pokedexNumbers: [PKMPokemonSpeciesDexEntry]?
+    open var pokedexNumbers: [PKMPokemonSpeciesDexEntry]
     
     /// A list of egg groups this Pokémon species is a member of
-    open var eggGroups: [PKMNamedAPIResource]?
+    open var eggGroups: [PKMNamedAPIResource]
     
     /// The color of this Pokémon for gimmicky Pokédex search
-    open var color: PKMNamedAPIResource?
+    open var color: PKMNamedAPIResource
     
     /// The shape of this Pokémon for gimmicky Pokédex search
-    open var shape: PKMNamedAPIResource?
+    open var shape: PKMNamedAPIResource
     
     /// The Pokémon species that evolves into this pokemon_species
     open var evolvesFromSpecies: PKMNamedAPIResource?
     
     /// The evolution chain this Pokémon species is a member of
-    open var evolutionChain: PKMAPIResource?
+    open var evolutionChain: PKMAPIResource
     
     /// The habitat this Pokémon species can be encountered in
-    open var habitat: PKMNamedAPIResource?
+    open var habitat: PKMNamedAPIResource
     
     /// The generation this Pokémon species was introduced in
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource
     
     /// The name of this Pokémon species listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of encounters that can be had with this Pokémon species in pal park
-    open var palParkEncounters: [PKMPalParkEncounterArea]?
+    open var palParkEncounters: [PKMPalParkEncounterArea]
     
     /// The flavor text of this flavor text listed in different languages
-    open var flavorTextEntries: [PKMPokemonSpeciesFlavorText]?
+    open var flavorTextEntries: [PKMPokemonSpeciesFlavorText]
     
     /// Descriptions of different forms Pokémon take on within the Pokémon species
-    open var formDescriptions: [PKMDescription]?
+    open var formDescriptions: [PKMDescription]
     
     /// The genus of this Pokémon species listed in multiple languages
-    open var genera: [PKMGenus]?
+    open var genera: [PKMGenus]
     
     /// A list of the Pokémon that exist within this Pokémon species
-    open var varieties: [PKMNamedAPIResource]?
-    
+    open var varieties: [PKMPokemonSpeciesVariety]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case order = "order"
+        case genderRate = "gender_rate"
+        case captureRate = "capture_rate"
+        case baseHappiness = "base_happiness"
+        case isBaby = "is_baby"
+        case hatchCounter = "hatch_counter"
+        case hasGenderDifferences = "has_gender_differences"
+        case formsSwitchable = "forms_switchable"
+        case growthRate = "growth_rate"
+        case pokedexNumbers = "pokedex_numbers"
+        case eggGroups = "egg_groups"
+        case color = "color"
+        case shape = "shape"
+        case evolvesFromSpecies = "evolves_from_species"
+        case evolutionChain = "evolution_chain"
+        case habitat = "habitat"
+        case generation = "generation"
+        case names = "names"
+        case palParkEncounters = "pal_park_encounters"
+        case flavorTextEntries = "flavor_text_entries"
+        case formDescriptions = "form_descriptions"
+        case genera = "genera"
+        case varieties = "varieties"
+    }
 }
 
 /// An Awesome Name
 open class PKMAwesomeName: Codable {
     
     /// The localized "scientific" name for an API resource in a specific language
-    open var awesomeName: String?
+    open var awesomeName: String
     
     /// The language this "scientific" name is in
-    open var language: PKMNamedAPIResource?
-    
+    open var language: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case awesomeName = "awesome_name"
+        case language = "language"
+    }
 }
 
 /// Shapes used for sorting Pokémon in a Pokédex.
 open class PKMPokemonShape: Codable {
     
     /// The identifier for this Pokémon shape
-    open var id: Int?
+    open var id: Int
     
     /// The name for this Pokémon shape resource
-    open var name: String?
+    open var name: String
     
     /// The "scientific" name of this Pokémon shape listed in different languages
-    open var awesomeNames: [PKMAwesomeName]?
+    open var awesomeNames: [PKMAwesomeName]
     
     /// The name of this Pokémon shape listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of the Pokémon species that have this shape
-    open var pokemonSpecies: [PKMNamedAPIResource]?
-    
+    open var pokemonSpecies: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case awesomeNames = "awesome_names"
+        case names = "names"
+        case pokemonSpecies = "pokemon_species"
+    }
 }
 
 /// Habitats are generally different terrain Pokémon can be found in but can also be areas designated for rare or legendary Pokémon.
 open class PKMPokemonHabitat: Codable {
     
     /// The identifier for this Pokémon habitat resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this Pokémon habitat resource
-    open var name: String?
+    open var name: String
     
     /// The name of this Pokémon habitat listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of the Pokémon species that can be found in this habitat
-    open var pokemonSpecies: [PKMNamedAPIResource]?
-    
+    open var pokemonSpecies: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case names = "names"
+        case pokemonSpecies = "pokemon_species"
+    }
 }
 
 /// Pokemon Form Sprites
 open class PKMPokemonFormSprites: Codable {
     
     /// The default depiction of this Pokémon form from the front in battle
-    open var frontDefault: String?
+    open var frontDefault: String
     
     /// The shiny depiction of this Pokémon form from the front in battle
-    open var frontShiny: String?
+    open var frontShiny: String
     
     /// The default depiction of this Pokémon form from the back in battle
-    open var backDefault: String?
+    open var backDefault: String
     
     /// The shiny depiction of this Pokémon form from the back in battle
-    open var backShiny: String?
-    
+    open var backShiny: String
+
+    enum CodingKeys: String, CodingKey {
+        case frontDefault = "front_default"
+        case frontShiny = "front_shiny"
+        case backDefault = "back_default"
+        case backShiny = "back_shiny"
+    }
 }
 
 /// Some Pokémon have the ability to take on different forms. At times, these differences are purely cosmetic and have no bearing on the difference in the Pokémon's stats from another; however, several Pokémon differ in stats (other than HP), type, and Ability depending on their form.
 open class PKMPokemonForm: Codable {
     
     /// The identifier for this Pokémon form resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this Pokémon form resource
-    open var name: String?
+    open var name: String
     
     /// The order in which forms should be sorted within all forms. Multiple forms may have equal order, in which case they should fall back on sorting by name.
-    open var order: Int?
+    open var order: Int
     
     /// The order in which forms should be sorted within a species' forms
-    open var formOrder: Int?
+    open var formOrder: Int
     
     /// True for exactly one form used as the default for each Pokémon
-    open var isDefault: Bool?
+    open var isDefault: Bool
     
     /// Whether or not this form can only happen during battle
-    open var isBattleOnly: Bool?
+    open var isBattleOnly: Bool
     
     /// Whether or not this form requires mega evolution
-    open var isMega: Bool?
+    open var isMega: Bool
     
     /// The name of this form
-    open var formName: String?
+    open var formName: String
     
     /// The Pokémon that can take on this form
-    open var pokemon: PKMNamedAPIResource?
+    open var pokemon: PKMNamedAPIResource
     
     /// A set of sprites used to depict this Pokémon form in the game
-    open var sprites: PKMPokemonFormSprites?
+    open var sprites: PKMPokemonFormSprites
     
     /// The version group this Pokémon form was introduced in
-    open var versionGroup: PKMNamedAPIResource?
-    
+    open var versionGroup: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case order = "order"
+        case formOrder = "form_order"
+        case isDefault = "is_default"
+        case isBattleOnly = "is_battle_only"
+        case isMega = "is_mega"
+        case formName = "form_name"
+        case pokemon = "pokemon"
+        case sprites = "sprites"
+        case versionGroup = "version_group"
+    }
 }
 
 /// Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that are primarily orange are listed as red or brown.
 open class PKMPokemonColor: Codable {
     
     /// The identifier for this Pokémon color resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this Pokémon color resource
-    open var name: String?
+    open var name: String
     
     /// The name of this Pokémon color listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of the Pokémon species that have this color
-    open var pokemonSpecies: [PKMNamedAPIResource]?
-    
+    open var pokemonSpecies: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case names = "names"
+        case pokemonSpecies = "pokemon_species"
+    }
 }
 
 /// Version Game Index
 open class PKMVersionGameIndex: Codable {
     
     /// The internal id of an API resource within game data
-    open var gameIndex: Int?
+    open var gameIndex: Int
     
     /// The version relevent to this game index
-    open var version: PKMNamedAPIResource?
-    
+    open var version: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case gameIndex = "game_index"
+        case version = "version"
+    }
 }
 
 /// Pokemon Ability
 open class PKMPokemonAbility: Codable {
     
     /// Whether or not this is a hidden ability
-    open var isHidden: Bool?
+    open var isHidden: Bool
     
     /// The slot this ability occupies in this Pokémon species
-    open var slot: Int?
+    open var slot: Int
     
     /// The ability the Pokémon may have
-    open var ability: PKMNamedAPIResource?
-    
+    open var ability: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case isHidden = "is_hidden"
+        case slot = "slot"
+        case ability = "ability"
+    }
 }
 
 /// Location Area Encounter
 open class PKMLocationAreaEncounter: Codable {
     
     /// The location area the referenced Pokémon can be encountered in
-    open var locationArea: PKMAPIResource?
+    open var locationArea: PKMAPIResource
     
     /// A list of versions and encounters with the referenced Pokémon that might happen
-    open var versionDetails: [PKMVersionEncounterDetail]?
-    
+    open var versionDetails: [PKMVersionEncounterDetail]
+
+    enum CodingKeys: String, CodingKey {
+        case locationArea = "location_area"
+        case versionDetails = "version_details"
+    }
 }
 
 /// Pokemon Sprites
@@ -495,127 +687,232 @@ open class PKMPokemonSprites: Codable {
     
     /// The shiny female depiction of this Pokémon from the back in battle
     open var backShinyFemale: String?
-    
+
+    enum CodingKeys: String, CodingKey {
+        case frontDefault = "front_default"
+        case frontShiny = "front_shiny"
+        case frontFemale = "front_female"
+        case frontShinyFemale = "front_shiny_female"
+        case backDefault = "back_default"
+        case backShiny = "back_shiny"
+        case backFemale = "back_female"
+        case backShinyFemale = "back_shiny_female"
+    }
 }
 
 /// Pokemon Type
 open class PKMPokemonType: Codable {
     
     /// The order the Pokémon's types are listed in
-    open var slot: Int?
+    open var slot: Int
     
     /// The type the referenced Pokémon has
-    open var type: PKMNamedAPIResource?
-    
+    open var type: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case slot = "slot"
+        case type = "type"
+    }
+}
+
+/// TODO: Documentation
+open class PKMPokemonMoveVersion: Codable {
+
+    /// TODO: Documentation
+    open var moveLearnMethod: PKMNamedAPIResource
+
+    /// TODO: Documentation
+    open var versionGroup: PKMNamedAPIResource
+
+    /// TODO: Documentation
+    open var levelLearnedAt: Int
+
+    enum CodingKeys: String, CodingKey {
+        case moveLearnMethod = "move_learn_method"
+        case versionGroup = "version_group"
+        case levelLearnedAt = "level_learned_at"
+    }
+}
+
+/// TODO: Documentation
+open class PKMPokemonMove: Codable {
+
+    /// TODO: Documentation
+    open var move: PKMNamedAPIResource
+
+    /// TODO: Documentation
+    open var versionGroupDetails: [PKMPokemonMoveVersion]
+
+    enum CodingKeys: String, CodingKey {
+        case move = "move"
+        case versionGroupDetails = "version_group_details"
+    }
+}
+
+/// TODO: Documentation
+open class PKMPokemonStat: Codable {
+
+    /// TODO: Documentation
+    open var stat: PKMNamedAPIResource
+
+    /// TODO: Documentation
+    open var effort: Int
+
+    /// TODO: Documentation
+    open var baseStat: Int
+
+    enum CodingKeys: String, CodingKey {
+        case stat = "stat"
+        case effort = "effort"
+        case baseStat = "base_stat"
+    }
 }
 
 /// Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon. See Bulbapedia for greater detail.
 open class PKMPokemon: Codable {
     
     /// The identifier for this Pokémon resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this Pokémon resource
-    open var name: String?
+    open var name: String
     
     /// The base experience gained for defeating this Pokémon
-    open var base_experience: Int?
+    open var baseExperience: Int
     
     /// The height of this Pokémon
-    open var height: Int?
+    open var height: Int
     
     /// Set for exactly one Pokémon used as the default for each species
-    open var isDefault: Bool?
+    open var isDefault: Bool
     
     /// Order for sorting. Almost national order, except families are grouped together.
-    open var order: Int?
+    open var order: Int
     
     /// The weight of this Pokémon
-    open var weight: Int?
+    open var weight: Int
     
     /// A list of abilities this Pokémon could potentially have
-    open var abilities: [PKMPokemonAbility]?
+    open var abilities: [PKMPokemonAbility]
     
     /// A list of forms this Pokémon can take on
-    open var forms: [PKMNamedAPIResource]?
+    open var forms: [PKMNamedAPIResource]
     
     /// A list of game indices relevent to Pokémon item by generation
-    open var gameIndices: [PKMVersionGameIndex]?
+    open var gameIndices: [PKMVersionGameIndex]
     
     /// A list of items this Pokémon may be holding when encountered
-    open var heldItems: [PKMNamedAPIResource]?
+    open var heldItems: [PKMNamedAPIResource]
     
     /// A list of location areas as well as encounter details pertaining to specific versions
-    open var locationAreaEncounters: [PKMLocationAreaEncounter]?
+    open var locationAreaEncounters: String
     
     /// A list of moves along with learn methods and level details pertaining to specific version groups
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMPokemonMove]
     
     /// A set of sprites used to depict this Pokémon in the game
-    open var sprites: PKMPokemonSprites?
+    open var sprites: PKMPokemonSprites
     
     /// The species this Pokémon belongs to
-    open var species: PKMNamedAPIResource?
+    open var species: PKMNamedAPIResource
     
     /// A list of base stat values for this Pokémon
-    open var stats: [PKMNamedAPIResource]?
+    open var stats: [PKMPokemonStat]
     
     /// A list of details showing types this Pokémon has
-    open var types: [PKMPokemonType]?
-    
+    open var types: [PKMPokemonType]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case baseExperience = "base_experience"
+        case height = "height"
+        case isDefault = "is_default"
+        case order = "order"
+        case weight = "weight"
+        case abilities = "abilities"
+        case forms = "forms"
+        case gameIndices = "game_indices"
+        case heldItems = "held_items"
+        case locationAreaEncounters = "location_area_encounters"
+        case moves = "moves"
+        case sprites = "sprites"
+        case species = "species"
+        case stats = "stats"
+        case types = "types"
+    }
 }
 
 /// Nature Pokeathlon Stat Affect
 open class PKMNaturePokeathlonStatAffect: Codable {
     
     /// The maximum amount of change to the referenced Pokéathlon stat
-    open var maxChange: Int?
+    open var maxChange: Int
     
     /// The nature causing the change
-    open var nature: PKMNamedAPIResource?
-    
+    open var nature: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case maxChange = "max_change"
+        case nature = "nature"
+    }
 }
 
 /// Nature Pokeathlon Stat Affect Sets
 open class PKMNaturePokeathlonStatAffectSets: Codable {
     
     /// A list of natures and how they change the referenced Pokéathlon stat
-    open var increase: [PKMNaturePokeathlonStatAffect]?
+    open var increase: [PKMNaturePokeathlonStatAffect]
     
     /// A list of natures and how they change the referenced Pokéathlon stat
-    open var decrease: [PKMNaturePokeathlonStatAffect]?
-    
+    open var decrease: [PKMNaturePokeathlonStatAffect]
+
+    enum CodingKeys: String, CodingKey {
+        case increase = "increase"
+        case decrease = "decrease"
+    }
 }
 
 /// Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In Pokéathlons, competitions happen on different courses; one for each of the different Pokéathlon stats. See Bulbapedia for greater detail.
 open class PKMPokeathlonStat: Codable {
     
     /// The identifier for this Pokéathlon stat resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this Pokéathlon stat resource
-    open var name: String?
+    open var name: String
     
     /// The name of this Pokéathlon stat listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A detail of natures which affect this Pokéathlon stat positively or negatively
-    open var affectingNatures: PKMNaturePokeathlonStatAffectSets?
-    
+    open var affectingNatures: PKMNaturePokeathlonStatAffectSets
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case names = "names"
+        case affectingNatures = "affecting_natures"
+    }
 }
 
 /// Move Battle Style Preference
 open class PKMMoveBattleStylePreference: Codable {
     
     /// Chance of using the move, in percent, if HP is under one half
-    open var lowHpPreference: Int?
+    open var lowHpPreference: Int
     
     /// Chance of using the move, in percent, if HP is over one half
-    open var highHpPreference: Int?
+    open var highHpPreference: Int
     
     /// The move battle style
-    open var moveBattleStyle: PKMNamedAPIResource?
-    
+    open var moveBattleStyle: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case lowHpPreference = "low_hp_preference"
+        case highHpPreference = "high_hp_preference"
+        case moveBattleStyle = "move_battle_style"
+    }
 }
 
 
@@ -624,19 +921,23 @@ open class PKMMoveBattleStylePreference: Codable {
  stat	The stat being affected	NamedAPIResource (PokeathlonStat)
  */
 open class PKMNatureStatChange: Codable {
-    open var maxChange: Int?
-    open var pokeathlonStat: PKMNamedAPIResource?
-    
+    open var maxChange: Int
+    open var pokeathlonStat: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case maxChange = "max_change"
+        case pokeathlonStat = "pokeathlon_stat"
+    }
 }
 
 /// Natures influence how a Pokémon's stats grow. See Bulbapedia ( http://bulbapedia.bulbagarden.net/wiki/Nature ) for greater detail.
 open class PKMNature: Codable {
     
     /// The identifier for this nature resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this nature resource
-    open var name: String?
+    open var name: String
     
     /// The stat decreased by 10% in Pokémon with this nature
     open var decreasedStat: PKMNamedAPIResource?
@@ -651,14 +952,25 @@ open class PKMNature: Codable {
     open var likesFlavor: PKMNamedAPIResource?
     
     /// A list of Pokéathlon stats this nature effects and how much it effects them
-    open var pokeathlonStatChanges: [PKMNatureStatChange]?
+    open var pokeathlonStatChanges: [PKMNatureStatChange]
     
     /// A list of battle styles and how likely a Pokémon with this nature is to use them in the Battle Palace or Battle Tent.
-    open var moveBattleStylePreferences: [PKMMoveBattleStylePreference]?
+    open var moveBattleStylePreferences: [PKMMoveBattleStylePreference]
     
     /// The name of this nature listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case decreasedStat = "decreased_stat"
+        case increasedStat = "increased_stat"
+        case hatesFlavor = "hates_flavor"
+        case likesFlavor = "likes_flavor"
+        case pokeathlonStatChanges = "pokeathlon_stat_changes"
+        case moveBattleStylePreferences = "move_battle_style_preferences"
+        case names = "names"
+    }
 }
 
 
@@ -671,470 +983,632 @@ open class PKMNature: Codable {
 open class PKMGrowthRateExperienceLevel: Codable {
     
     /// The level gained
-    open var level: Int?
+    open var level: Int
     
     /// The amount of experience required to reach the referenced level
-    open var experience: Int?
-    
+    open var experience: Int
+
+    enum CodingKeys: String, CodingKey {
+        case level = "level"
+        case experience = "experience"
+    }
 }
 
 /// Growth rates are the speed with which Pokémon gain levels through experience. Check out Bulbapedia ( http://bulbapedia.bulbagarden.net/wiki/Experience ) for greater detail.
 open class PKMGrowthRate: Codable {
     
     /// The identifier for this gender resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this gender resource
-    open var name: String?
+    open var name: String
     
     /// The formula used to calculate the rate at which the Pokémon species gains level
-    open var formula: String?
+    open var formula: String
     
     /// The descriptions of this characteristic listed in different languages
-    open var descriptions: [PKMDescription]?
+    open var descriptions: [PKMDescription]
     
     /// A list of levels and the amount of experienced needed to atain them based on this growth rate
-    open var levels: [PKMGrowthRateExperienceLevel]?
+    open var levels: [PKMGrowthRateExperienceLevel]
     
     /// A list of Pokémon species that gain levels at this growth rate
-    open var pokemonSpecies: [PKMNamedAPIResource]?
-    
+    open var pokemonSpecies: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case formula = "formula"
+        case descriptions = "descriptions"
+        case levels = "levels"
+        case pokemonSpecies = "pokemon_species"
+    }
 }
 
 /// Pokemon Species Gender
 open class PKMPokemonSpeciesGender: Codable {
     
     /// The chance of this Pokémon being female, in eighths; or -1 for genderless
-    open var rate: Int?
+    open var rate: Int
     
     /// A Pokémon species that can be the referenced gender
-    open var pokemonSpecies: PKMNamedAPIResource?
-    
+    open var pokemonSpecies: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case rate = "rate"
+        case pokemonSpecies = "pokemon_species"
+    }
 }
 
 /// Genders were introduced in Generation II for the purposes of breeding Pokémon but can also result in visual differences or even different evolutionary lines. Check out Bulbapedia for greater detail.
 open class PKMGender: Codable {
     
     /// The identifier for this gender resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this gender resource
-    open var name: String?
+    open var name: String
     
     /// A list of Pokémon species that can be this gender and how likely it is that they will be
-    open var pokemonSpeciesDetails: [PKMPokemonSpeciesGender]?
+    open var pokemonSpeciesDetails: [PKMPokemonSpeciesGender]
     
     /// A list of Pokémon species that required this gender in order for a Pokémon to evolve into them
-    open var requiredForEvolution: [PKMNamedAPIResource]?
-    
+    open var requiredForEvolution: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case pokemonSpeciesDetails = "pokemon_species_details"
+        case requiredForEvolution = "required_for_evolution"
+    }
 }
 
 /// Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may belong to either one or two Egg Groups. Check out Bulbapedia for greater detail.
 open class PKMEggGroup: Codable {
     
     /// The identifier for this egg group resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this egg group resource
-    open var name: String?
+    open var name: String
     
     /// The name of this egg group listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of all Pokémon species that are members of this egg group
-    open var pokemonSpecies: [PKMNamedAPIResource]?
-    
+    open var pokemonSpecies: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case names = "names"
+        case pokemonSpecies = "pokemon_species"
+    }
 }
 
 /// Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo). Check out Bulbapedia for greater detail.
 open class PKMCharacteristic: Codable {
     
     /// The identifier for this characteristic resource
-    open var id: Int?
+    open var id: Int
     
     /// The remainder of the highest stat/IV divided by 5
-    open var geneModulo: Int?
+    open var geneModulo: Int
     
     /// The possible values of the highest stat that would result in a Pokémon recieving this characteristic when divided by 5
-    open var possibleValues: [Int]?
+    open var possibleValues: [Int]
     
     /// The descriptions of this characteristic listed in different languages
-    open var descriptions: [PKMDescription]?
-    
+    open var descriptions: [PKMDescription]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case geneModulo = "gene_modulo"
+        case possibleValues = "possible_values"
+        case descriptions = "descriptions"
+    }
 }
 
 /// Ability Pokemon
 open class PKMAbilityPokemon: Codable {
     
     /// Whether or not this a hidden ability for the referenced Pokémon
-    open var isHidden: Bool?
+    open var isHidden: Bool
     
     /// Pokémon have 3 ability 'slots' which hold references to possible abilities they could have. This is the slot of this ability for the referenced pokemon.
-    open var slot: Int?
+    open var slot: Int
     
     /// The Pokémon this ability could belong to
-    open var pokemon: PKMNamedAPIResource?
-    
+    open var pokemon: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case isHidden = "is_hidden"
+        case slot = "slot"
+        case pokemon = "pokemon"
+    }
 }
 
 /// Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have mutiple possible abilities but can have only one ability at a time. Check out Bulbapedia for greater detail.
 open class PKMAbility: Codable {
     
     /// The identifier for this ability resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this ability resource
-    open var name: String?
+    open var name: String
     
     /// Whether or not this ability originated in the main series of the video games
-    open var isMainSeries: Bool?
+    open var isMainSeries: Bool
     
     /// The generation this ability originated in
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource
     
     /// The name of this ability listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// The effect of this ability listed in different languages
-    open var effectEntries: [PKMVerboseEffect]?
+    open var effectEntries: [PKMVerboseEffect]
     
     /// The list of previous effects this ability has had across version groups
-    open var effectChanges: [PKMAbilityEffectChange]?
+    open var effectChanges: [PKMAbilityEffectChange]
     
     /// The flavor text of this ability listed in different languages
-    open var flavorTextEntries: [PKMVersionGroupFlavorText]?
-    
+    open var flavorTextEntries: [PKMAbilityFlavorText]
+
     /// A list of Pokémon that could potentially have this ability
-    open var pokemon: [PKMAbilityPokemon]?
-    
+    open var pokemon: [PKMAbilityPokemon]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case isMainSeries = "is_main_series"
+        case generation = "generation"
+        case names = "names"
+        case effectEntries = "effect_entries"
+        case effectChanges = "effect_changes"
+        case flavorTextEntries = "flavor_text_entries"
+        case pokemon = "pokemon"
+    }
 }
 
 /// A region is an organized area of the Pokémon world. Most often, the main difference between regions is the species of Pokémon that can be encountered within them.
 open class PKMRegion: Codable {
     
     /// The identifier for this region resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this region resource
-    open var name: String?
+    open var name: String
     
     /// A list of locations that can be found in this region
-    open var locations: [PKMNamedAPIResource]?
+    open var locations: [PKMNamedAPIResource]
     
     /// The generation this region was introduced in
-    open var mainGeneration: [PKMNamedAPIResource]?
+    open var mainGeneration: PKMNamedAPIResource
     
     /// The name of this region listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of pokédexes that catalogue Pokémon in this region
-    open var pokedexes: [PKMNamedAPIResource]?
+    open var pokedexes: [PKMNamedAPIResource]
     
     /// A list of version groups where this region can be visited
-    open var versionGroups: [PKMNamedAPIResource]?
-    
+    open var versionGroups: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case locations = "locations"
+        case mainGeneration = "main_generation"
+        case names = "names"
+        case pokedexes = "pokedexes"
+        case versionGroups = "version_groups"
+    }
 }
 
 /// Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are specific to Pal Park.
 open class PKMPalParkEncounterSpecies: Codable {
     
     /// The base score given to the player when this Pokémon is caught during a pal park run
-    open var baseScore: Int?
+    open var baseScore: Int
     
     /// The base rate for encountering this Pokémon in this pal park area
-    open var rate: Int?
+    open var rate: Int
     
     /// The Pokémon species being encountered
-    open var pokemonSpecies: PKMNamedAPIResource?
-    
+    open var pokemonSpecies: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case baseScore = "base_score"
+        case rate = "rate"
+        case pokemonSpecies = "pokemon_species"
+    }
 }
 
 /// Pal Park Area
 open class PKMPalParkArea: Codable {
     
     /// The identifier for this pal park area resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this pal park area resource
-    open var name: String?
+    open var name: String
     
     /// The name of this pal park area listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of Pokémon encountered in thi pal park area along with details
-    open var pokemonEncounters: [PKMPalParkEncounterSpecies]?
-    
+    open var pokemonEncounters: [PKMPalParkEncounterSpecies]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case names = "names"
+        case pokemonEncounters = "pokemon_encounters"
+    }
 }
 
 /// Locations that can be visited within the games. Locations make up sizable portions of regions, like cities or routes.
 open class PKMLocation: Codable {
     
     /// The identifier for this location resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this location resource
-    open var name: String?
+    open var name: String
     
     /// The region this location can be found in
-    open var region: PKMNamedAPIResource?
+    open var region: PKMNamedAPIResource
     
     /// The name of this language listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of game indices relevent to this location by generation
-    open var gameIndices: [PKMGenerationGameIndex]?
+    open var gameIndices: [PKMGenerationGameIndex]
     
     /// Areas that can be found within this location
-    open var areas: [PKMNamedAPIResource]?
-    
+    open var areas: [PKMAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case region = "region"
+        case names = "names"
+        case gameIndices = "game_indices"
+        case areas = "areas"
+    }
 }
 
 /// Encounter
 open class PKMEncounter: Codable {
     
     /// The lowest level the Pokémon could be encountered at
-    open var minLevel: Int?
+    open var minLevel: Int
     
     /// The highest level the Pokémon could be encountered at
-    open var maxLevel: Int?
+    open var maxLevel: Int
     
     /// A list of condition values that must be in effect for this encounter to occur
-    open var conditionValues: [PKMNamedAPIResource]?
+    open var conditionValues: [PKMNamedAPIResource]
     
     /// percent chance that this encounter will occur
-    open var chance: Int?
+    open var chance: Int
     
     /// The method by which this encounter happens
-    open var method: PKMNamedAPIResource?
-    
+    open var method: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case minLevel = "min_level"
+        case maxLevel = "max_level"
+        case conditionValues = "condition_values"
+        case chance = "chance"
+        case method = "method"
+    }
 }
 
 /// Version Encounter Detail
 open class PKMVersionEncounterDetail: Codable {
     
     /// The game version this encounter happens in
-    open var version: PKMNamedAPIResource?
+    open var version: PKMNamedAPIResource
     
     /// The total percentage of all encounter potential
-    open var maxChance: Int?
+    open var maxChance: Int
     
     /// A list of encounters and their specifics
-    open var encounterDetails: [PKMEncounter]?
-    
+    open var encounterDetails: [PKMEncounter]
+
+    enum CodingKeys: String, CodingKey {
+        case version = "version"
+        case maxChance = "max_chance"
+        case encounterDetails = "encounter_details"
+    }
 }
 
 /// Pokemon Encounter
 open class PKMPokemonEncounter: Codable {
     
     /// The Pokémon being encountered
-    open var pokemon: PKMNamedAPIResource?
+    open var pokemon: PKMNamedAPIResource
     
     /// A list of versions and encounters with Pokémon that might happen in the referenced location area
-    open var versionDetails: [PKMVersionEncounterDetail]?
-    
+    open var versionDetails: [PKMVersionEncounterDetail]
+
+    enum CodingKeys: String, CodingKey {
+        case pokemon = "pokemon"
+        case versionDetails = "version_details"
+    }
 }
 
 /// Encounter Version Details
 open class PKMEncounterVersionDetails: Codable {
     
     /// The chance of an encounter to occur.
-    open var rate: Int?
+    open var rate: Int
     
     /// The version of the game in which the encounter can occur with the given chance.
-    open var version: PKMNamedAPIResource?
-    
+    open var version: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case rate = "rate"
+        case version = "version"
+    }
 }
 
 /// Encounter Method Rate
 open class PKMEncounterMethodRate: Codable {
     
     /// The method in which Pokémon may be encountered in an area.
-    open var encounterEethod: PKMEncounterMethod?
+    open var encounterMethod: PKMNamedAPIResource
     
     /// The chance of the encounter to occur on a version of the game.
-    open var versionDetails: [PKMEncounterVersionDetails]?
-    
+    open var versionDetails: [PKMEncounterVersionDetails]
+
+    enum CodingKeys: String, CodingKey {
+        case encounterMethod = "encounter_method"
+        case versionDetails = "version_details"
+    }
 }
 
 /// Location areas are sections of areas, such as floors in a building or cave. Each area has its own set of possible Pokémon encounters.
 open class PKMLocationArea: Codable {
     
     /// The identifier for this location resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this location resource
-    open var name: String?
+    open var name: String
     
     /// The internal id of an API resource within game data
-    open var gameIndex: Int?
+    open var gameIndex: Int
     
     /// A list of methods in which Pokémon may be encountered in this area and how likely the method will occur depending on the version of the game
-    open var encounterMethodRates: [PKMEncounterMethodRate]?
+    open var encounterMethodRates: [PKMEncounterMethodRate]
     
     /// The region this location can be found in
-    open var location: PKMNamedAPIResource?
+    open var location: PKMNamedAPIResource
     
     /// The name of this location area listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of Pokémon that can be encountered in this area along with version specific details about the encounter
-    open var pokemonEncounters: [PKMPokemonEncounter]?
-    
+    open var pokemonEncounters: [PKMPokemonEncounter]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case gameIndex = "game_index"
+        case encounterMethodRates = "encounter_method_rates"
+        case location = "location"
+        case names = "names"
+        case pokemonEncounters = "pokemon_encounters"
+    }
 }
 
 /// Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.
 open class PKMMoveTarget: Codable {
     
     /// The identifier for this move target resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this move target resource
-    open var name: String?
+    open var name: String
     
     /// The description of this move target listed in different languages
-    open var descriptions: [PKMDescription]?
+    open var descriptions: [PKMDescription]
     
     /// A list of moves that that are directed at this target
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource]
     
     /// The name of this move target listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case descriptions = "descriptions"
+        case moves = "moves"
+        case names = "names"
+    }
 }
 
 /// Methods by which Pokémon can learn moves.
 open class PKMMoveLearnMethod: Codable {
     
     /// The identifier for this move learn method resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this move learn method resource
-    open var name: String?
+    open var name: String
     
     /// The description of this move learn method listed in different languages
-    open var descriptions: [PKMDescription]?
+    open var descriptions: [PKMDescription]
     
     /// The name of this move learn method listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of version groups where moves can be learned through this method
-    open var versionGroups: [PKMNamedAPIResource]?
-    
+    open var versionGroups: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case descriptions = "descriptions"
+        case names = "names"
+        case versionGroups = "version_groups"
+    }
 }
 
 /// Damage classes moves can have, e.g. physical, special, or non-damaging.
 open class PKMMoveDamageClass: Codable {
     
     /// The identifier for this move damage class resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this move damage class resource
-    open var name: String?
+    open var name: String
     
     /// The description of this move damage class listed in different languages
-    open var descriptions: [PKMDescription]?
+    open var descriptions: [PKMDescription]
     
     /// A list of moves that fall into this damage class
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource]
     
     /// The name of this move damage class listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case descriptions = "descriptions"
+        case moves = "moves"
+        case names = "names"
+    }
 }
 
 /// Very general categories that loosely group move effects.
 open class PKMMoveCategory: Codable {
     
     /// The identifier for this move category resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this move category resource
-    open var name: String?
+    open var name: String
     
     /// A list of moves that fall into this category
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource]
     
     /// The description of this move ailment listed in different languages
-    open var descriptions: [PKMDescription]?
-    
+    open var descriptions: [PKMDescription]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case moves = "moves"
+        case descriptions = "descriptions"
+    }
 }
 
 /// Styles of moves when used in the Battle Palace. See Bulbapedia for greater detail.
 open class PKMMoveBattleStyle: Codable {
     
     /// The identifier for this move battle style resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this move battle style resource
-    open var name: String?
+    open var name: String
     
     /// The name of this move battle style listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case names = "names"
+    }
 }
 
 /// Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for greater detail.
 open class PKMMoveAilment: Codable {
     
     /// The identifier for this move ailment resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this move ailment resource
-    open var name: String?
+    open var name: String
     
     /// A list of moves that cause this ailment
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource]
     
     /// The name of this move ailment listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case moves = "moves"
+        case names = "names"
+    }
 }
 
 /// Move Stat Change
 open class PKMMoveStatChange: Codable {
     
     /// The amount of change
-    open var change: Int?
+    open var change: Int
     
     /// The stat being affected
-    open var stat: PKMNamedAPIResource?
-    
+    open var stat: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case change = "change"
+        case stat = "stat"
+    }
 }
 
 /// Past Move Stat Values
 open class PKMPastMoveStatValues: Codable {
     
     /// The percent value of how likely this move is to be successful
-    open var accuracy: Int?
+    open var accuracy: Int
     
     /// The percent value of how likely it is this moves effect will take effect
-    open var effectChance: Int?
+    open var effectChance: Int
     
     /// The base power of this move with a value of 0 if it does not have a base power
-    open var power: Int?
+    open var power: Int
     
     /// Power points. The number of times this move can be used
-    open var pp: Int?
+    open var pp: Int
     
     /// The effect of this move listed in different languages
-    open var effectEntries: [PKMVerboseEffect]?
+    open var effectEntries: [PKMVerboseEffect]
     
     /// The elemental type of this move
-    open var type: PKMNamedAPIResource?
+    open var type: PKMNamedAPIResource
     
     /// The version group in which these move stat values were in effect
-    open var versionGroup: PKMNamedAPIResource?
-    
+    open var versionGroup: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case accuracy = "accuracy"
+        case effectChance = "effect_chance"
+        case power = "power"
+        case pp = "pp"
+        case effectEntries = "effect_entries"
+        case type = "type"
+        case versionGroup = "version_group"
+    }
 }
 
 /// Move Meta Data
 open class PKMMoveMetaData: Codable {
     
     /// The status ailment this move inflicts on its target
-    open var ailment: PKMNamedAPIResource?
+    open var ailment: PKMNamedAPIResource
     
     /// The category of move this move falls under, e.g. damage or ailment
-    open var category: PKMNamedAPIResource?
+    open var category: PKMNamedAPIResource
     
     /// The minimum number of times this move hits. Null if it always only hits once.
     open var minHits: Int?
@@ -1149,34 +1623,52 @@ open class PKMMoveMetaData: Codable {
     open var maxTurns: Int?
     
     /// HP drain (if positive) or Recoil damage (if negative), in percent of damage done
-    open var drain: Int?
+    open var drain: Int
     
     /// The amount of hp gained by the attacking pokemon, in percent of it's maximum HP
-    open var healing: Int?
+    open var healing: Int
     
     /// Critical hit rate bonus
-    open var critRate: Int?
+    open var critRate: Int
     
     /// The likelyhood this attack will cause an ailment
-    open var ailmentChance: Int?
+    open var ailmentChance: Int
     
     /// The likelyhood this attack will cause the target pokemon to flinch
-    open var flinchEhance: Int?
+    open var flinchEhance: Int
     
     /// The likelyhood this attack will cause a stat change in the target pokemon
-    open var statChance: Int?
-    
+    open var statChance: Int
+
+    enum CodingKeys: String, CodingKey {
+        case ailment = "ailment"
+        case category = "category"
+        case minHits = "min_hits"
+        case maxHits = "max_hits"
+        case minTurns = "min_turns"
+        case maxTurns = "max_turns"
+        case drain = "drain"
+        case healing = "healing"
+        case critRate = "crit_rate"
+        case ailmentChance = "ailment_chance"
+        case flinchEhance = "flinch_chance"
+        case statChance = "stat_chance"
+    }
 }
 
 /// Ability Effect Change
 open class PKMAbilityEffectChange: Codable {
     
     /// The previous effect of this ability listed in different languages
-    open var effectEntries: PKMEffect?
+    open var effectEntries: [PKMEffect]
     
     /// The version group in which the previous effect of this ability originated
-    open var versionGroup: PKMNamedAPIResource?
-    
+    open var versionGroup: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case effectEntries = "effect_entries"
+        case versionGroup = "version_group"
+    }
 }
 
 /// Contest Combo Detail
@@ -1187,421 +1679,566 @@ open class PKMContestComboDetail: Codable {
     
     /// A list of moves to use after this move
     open var useAfter: [PKMNamedAPIResource]?
-    
+
+    enum CodingKeys: String, CodingKey {
+        case useBefore = "use_before"
+        case useAfter = "use_after"
+    }
 }
 
 /// Contest Combo Sets
 open class PKMContestComboSets: Codable {
     
     /// A detail of moves this move can be used before or after, granting additional appeal points in contests
-    open var normalMove: [PKMContestComboDetail]?
+    open var normalMove: PKMContestComboDetail
     
     /// A detail of moves this move can be used before or after, granting additional appeal points in super contests
-    open var superMove: [PKMContestComboDetail]?
-    
+    open var superMove: PKMContestComboDetail
+
+    enum CodingKeys: String, CodingKey {
+        case normalMove = "normal"
+        case superMove = "super"
+    }
 }
 
 /// Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.
 open class PKMMove: Codable {
     
     /// The identifier for this move resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this move resource
-    open var name: String?
+    open var name: String
     
     /// The percent value of how likely this move is to be successful
-    open var accuracy: Int?
+    open var accuracy: Int
     
     /// The percent value of how likely it is this moves effect will happen
-    open var effect_chance: Int?
+    open var effectChance: Int?
     
     /// Power points. The number of times this move can be used
-    open var pp: Int?
+    open var pp: Int
     
     /// A value between -8 and 8. Sets the order in which moves are executed during battle. See Bulbapedia for greater detail.
-    open var priority: Int?
+    open var priority: Int
     
     /// The base power of this move with a value of 0 if it does not have a base power
-    open var power: Int?
+    open var power: Int
     
     /// A detail of normal and super contest combos that require this move
-    open var contestCombos: [PKMContestComboSets]?
+    open var contestCombos: PKMContestComboSets
     
     /// The type of appeal this move gives a Pokémon when used in a contest
-    open var contestType: PKMNamedAPIResource?
+    open var contestType: PKMNamedAPIResource
     
     /// The effect the move has when used in a contest
-    open var contestEffect: PKMNamedAPIResource?
+    open var contestEffect: PKMAPIResource
     
     /// The type of damage the move inflicts on the target, e.g. physical
-    open var damageClass: PKMNamedAPIResource?
+    open var damageClass: PKMNamedAPIResource
     
     /// The effect of this move listed in different languages
-    open var effectEntries: [PKMVerboseEffect]?
+    open var effectEntries: [PKMVerboseEffect]
     
     /// The list of previous effects this move has had across version groups of the games
-    open var effectChanges: [PKMAbilityEffectChange]?
+    open var effectChanges: [PKMAbilityEffectChange]
     
     /// The generation in which this move was introduced
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource
     
     /// Metadata about this move
-    open var meta: PKMMoveMetaData?
+    open var meta: PKMMoveMetaData
     
     /// The name of this move listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of move resource value changes across ersion groups of the game
-    open var pastValues: [PKMPastMoveStatValues]?
+    open var pastValues: [PKMPastMoveStatValues]
     
     /// A list of stats this moves effects and how much it effects them
-    open var statChanges: [PKMMoveStatChange]?
+    open var statChanges: [PKMMoveStatChange]
     
     /// The effect the move has when used in a super contest
-    open var superContestEffect: PKMAPIResource?
+    open var superContestEffect: PKMAPIResource
     
     /// The type of target that will recieve the effects of the attack
-    open var target: PKMNamedAPIResource?
+    open var target: PKMNamedAPIResource
     
     /// The elemental type of this move	NamedAPIResource
-    open var type: PKMNamedAPIResource?
-    
+    open var type: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case names = "names"
+        case accuracy = "accuracy"
+        case effectChance = "effect_chance"
+        case pp = "pp"
+        case priority = "priority"
+        case power = "power"
+        case contestCombos = "contest_combos"
+        case contestType = "contest_type"
+        case contestEffect = "contest_effect"
+        case damageClass = "damage_class"
+        case effectEntries = "effect_entries"
+        case effectChanges = "effect_changes"
+        case generation = "generation"
+        case meta = "meta"
+        case pastValues = "past_values"
+        case statChanges = "stat_changes"
+        case superContestEffect = "super_contest_effect"
+        case target = "target"
+        case type = "type"
+    }
 }
 
 /// Pockets within the players bag used for storing items by category.
 open class PKMItemPocket: Codable {
     
     /// The identifier for this item pocket resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this item pocket resource
-    open var name: String?
+    open var name: String
     
     /// A list of item categories that are relevent to this item pocket
-    open var categories: [PKMNamedAPIResource]?
+    open var categories: [PKMNamedAPIResource]
     
     /// The name of this item pocket listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case categories = "categories"
+        case names = "names"
+    }
 }
 
 /// Effect
 open class PKMEffect: Codable {
     
     /// The localized effect text for an API resource in a specific language
-    open var effect: String?
+    open var effect: String
     
     /// The language this effect is in
-    open var language: PKMNamedAPIResource?
-    
+    open var language: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case effect = "effect"
+        case language = "language"
+    }
 }
 
 /// The various effects of the move "Fling" when used with different items.
 open class PKMItemFlingEffect: Codable {
     
     /// The identifier for this fling effect resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this fling effect resource
-    open var name: String?
+    open var name: String
     
     /// The result of this fling effect listed in different languages
-    open var effectEntries: [PKMEffect]?
+    open var effectEntries: [PKMEffect]
     
     /// A list of items that have this fling effect	list
-    open var items: [PKMNamedAPIResource]?
-    
+    open var items: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case effectEntries = "effect_entries"
+        case items = "items"
+    }
 }
 
 /// Item categories determine where items will be placed in the players bag.
 open class PKMItemCategory: Codable {
     
     /// The identifier for this item category resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this item category resource
-    open var name: String?
+    open var name: String
     
     /// A list of items that are a part of this category
-    open var items: [PKMNamedAPIResource]?
+    open var items: [PKMNamedAPIResource]
     
     /// The name of this item category listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// The pocket items in this category would be put in
-    open var pocket: PKMNamedAPIResource?
-    
+    open var pocket: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case items = "items"
+        case names = "names"
+        case pocket = "pocket"
+    }
 }
 
 /// Item attributes define particular aspects of items, e.g. "usable in battle" or "consumable".
 open class PKMItemAttribute: Codable {
     
     /// The identifier for this item attribute resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this item attribute resource
-    open var name: String?
+    open var name: String
     
     /// A list of items that have this attribute
-    open var items: [PKMNamedAPIResource]?
+    open var items: [PKMNamedAPIResource]
     
     /// The name of this item attribute listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// The description of this item attribute listed in different languages
-    open var descriptions: [PKMDescription]?
-    
+    open var descriptions: [PKMDescription]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case items = "items"
+        case names = "names"
+        case descriptions = "descriptions"
+    }
 }
 
 /// Verbose Effect
 open class PKMVerboseEffect: Codable {
     
     /// The localized effect text for an API resource in a specific language
-    open var effect: String?
+    open var effect: String
     
     /// The localized effect text in brief
-    open var shortEffect: String?
+    open var shortEffect: String
     
     /// The language this effect is in
-    open var language: PKMNamedAPIResource?
-    
+    open var language: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case effect = "effect"
+        case shortEffect = "short_effect"
+        case language = "language"
+    }
 }
 
 /// Version Group Flavor Text
 open class PKMVersionGroupFlavorText: Codable {
     
     /// The localized name for an API resource in a specific language
-    open var text: String?
+    open var text: String
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource
     
     /// The version group which uses this flavor text
-    open var versionGroup: PKMNamedAPIResource?
-    
+    open var versionGroup: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case text = "text"
+        case language = "language"
+        case versionGroup = "version_group"
+    }
 }
 
 /// Generation Game Index
 open class PKMGenerationGameIndex: Codable {
     
     /// The internal id of an API resource within game data
-    open var gameIndex: Int?
+    open var gameIndex: Int
     
     /// The generation relevent to this game index
-    open var generation: PKMNamedAPIResource?
-    
+    open var generation: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case gameIndex = "game_index"
+        case generation = "generation"
+    }
 }
 
 /// Item Sprites
 open class PKMItemSprites: Codable {
     /// The default depiction of this item
-    open var defaultDepiction: String?
-    
+    open var defaultDepiction: String
+
+    enum CodingKeys: String, CodingKey {
+        case defaultDepiction = "default"
+    }
 }
 
 
 /// API Referenced Resource
 open class PKMAPIResource: Codable {
     /// The URL of the referenced resource
-    open var url: String?
-    
+    open var url: String
+
+    enum CodingKeys: String, CodingKey {
+        case url = "url"
+    }
 }
 
 /// An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.
 open class PKMItem: Codable {
     
     /// The identifier for this item resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this item resource
-    open var name: String?
+    open var name: String
     
     /// The price of this item in stores
-    open var cost: Int?
+    open var cost: Int
     
     /// The power of the move Fling when used with this item.
-    open var fling_power: Int?
+    open var flingPower: Int?
     
     /// The effect of the move Fling when used with this item
-    open var fling_effect: PKMNamedAPIResource?
+    open var flingEffect: PKMNamedAPIResource?
     
     /// A list of attributes this item has
-    open var attributes: [PKMNamedAPIResource]?
+    open var attributes: [PKMNamedAPIResource]
     
     /// The category of items this item falls into
-    open var category: PKMNamedAPIResource?
+    open var category: PKMNamedAPIResource
     
     /// The effect of this ability listed in different languages
-    open var effect_entries: [PKMVerboseEffect]?
+    open var effectEntries: [PKMVerboseEffect]
     
     /// The flavor text of this ability listed in different languages
-    open var flavor_text_entries: [PKMVersionGroupFlavorText]?
+    open var flavorTextEntries: [PKMVersionGroupFlavorText]
     
     /// A list of game indices relevent to this item by generation
-    open var game_indices: [PKMGenerationGameIndex]?
+    open var gameIndices: [PKMGenerationGameIndex]
     
     /// The name of this item listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A set of sprites used to depict this item in the game
-    open var sprites: PKMItemSprites?
+    open var sprites: PKMItemSprites
     
     /// A list of Pokémon that might be found in the wild holding this item
-    open var held_by_pokemon: [PKMNamedAPIResource]?
+    open var heldByPokemon: [PKMNamedAPIResource]
     
     /// An evolution chain this item requires to produce a bay during mating
-    open var baby_trigger_for: [PKMAPIResource]?
-    
+    open var babyTriggerFor: [PKMAPIResource]?
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case cost = "cost"
+        case flingPower = "fling_power"
+        case flingEffect = "fling_effect"
+        case attributes = "attributes"
+        case category = "category"
+        case effectEntries = "effect_entries"
+        case flavorTextEntries = "flavor_text_entries"
+        case gameIndices = "game_indices"
+        case names = "names"
+        case sprites = "sprites"
+        case heldByPokemon = "held_by_pokemon"
+        case babyTriggerFor = "baby_trigger_for"
+    }
 }
 
 /// Version groups categorize highly similar versions of the games.
 open class PKMVersionGroup: Codable {
     
     /// The identifier for this version group resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this version group resource
-    open var name: String?
+    open var name: String
     
     /// Order for sorting. Almost by date of release, except similar versions are grouped together.
-    open var order: Int?
+    open var order: Int
     
     /// The generation this version was introduced in
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource
     
     /// A list of methods in which Pokémon can learn moves in this version group
-    open var moveLearnMethods: [PKMNamedAPIResource]?
-    
-    /// The name of this version group listed in different languages
-    open var names: [PKMName]?
+    open var moveLearnMethods: [PKMNamedAPIResource]
     
     /// A list of Pokédexes introduces in this version group
-    open var pokedexes: [PKMNamedAPIResource]?
+    open var pokedexes: [PKMNamedAPIResource]
     
     /// A list of regions that can be visited in this version group	list
-    open var regions: [PKMNamedAPIResource]?
+    open var regions: [PKMNamedAPIResource]
     
     /// The versions this version group owns
-    open var versions: [PKMNamedAPIResource]?
-    
+    open var versions: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case order = "order"
+        case generation = "generation"
+        case moveLearnMethods = "move_learn_methods"
+        case pokedexes = "pokedexes"
+        case regions = "regions"
+        case versions = "versions"
+    }
 }
 
 /// Versions of the games, e.g., Red, Blue or Yellow.
 open class PKMVersion: Codable {
     
     /// The identifier for this version resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this version resource
-    open var name: String?
+    open var name: String
     
     /// The name of this version listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// The version group this version belongs to
-    open var versionGroup: PKMNamedAPIResource?
-    
+    open var versionGroup: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case names = "names"
+        case versionGroup = "version_group"
+    }
 }
 
 /// Description
 open class PKMDescription: Codable {
     
     /// The localized description for an API resource in a specific language
-    open var description: String?
+    open var description: String
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource?
-    
+    open var language: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case description = "description"
+        case language = "language"
+    }
 }
 
 /// Entry
 open class PKMEntry: Codable {
     
     /// The index of this pokemon species entry within the Pokédex
-    open var entryNumber: Int?
+    open var entryNumber: Int
     
     /// The Pokémon species being encountered
-    open var pokemonSpecies: PKMNamedAPIResource?
-    
+    open var pokemonSpecies: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case entryNumber = "entry_number"
+        case pokemonSpecies = "pokemon_species"
+    }
 }
 
 /// A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and retaining information of the various Pokémon in a given region with the exception of the national dex and some smaller dexes related to portions of a region. See Bulbapedia for greater detail.
 open class PKMPokedex: Codable {
     
     /// The identifier for this Pokédex resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this Pokédex resource
-    open var name: String?
+    open var name: String
     
     /// Whether or not this Pokédex originated in the main series of the video games
-    open var isMainSeries: Bool?
+    open var isMainSeries: Bool
     
     /// The description of this Pokédex listed in different languages
-    open var descriptions: [PKMDescription]?
+    open var descriptions: [PKMDescription]
     
     /// The name of this Pokédex listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of pokemon catalogued in this Pokédex and their indexes
-    open var pokemonEntries: [PKMEntry]?
+    open var pokemonEntries: [PKMEntry]
     
     /// The region this Pokédex catalogues pokemon for
     open var region: PKMNamedAPIResource?
     
     /// A list of version groups this Pokédex is relevent to
-    open var versionGroups: [PKMNamedAPIResource]?
-    
+    open var versionGroups: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case isMainSeries = "is_main_series"
+        case descriptions = "descriptions"
+        case names = "names"
+        case pokemonEntries = "pokemon_entries"
+        case region = "region"
+        case versionGroups = "version_groups"
+    }
 }
 
 /// A generation is a grouping of the Pokémon games that separates them based on the Pokémon they include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not exist in the previous generation are released.
 open class PKMGeneration: Codable {
     
     /// The identifier for this generation resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this generation resource
-    open var name: String?
+    open var name: String
     
     /// The name of this generation listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of abilities that were introduced in this generation
-    open var abilities: [PKMNamedAPIResource]?
+    open var abilities: [PKMNamedAPIResource]
     
     /// The main region travelled in this generation
-    open var mainRegion: PKMNamedAPIResource?
+    open var mainRegion: PKMNamedAPIResource
     
     /// A list of moves that were introduced in this generation
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource]
     
     /// A list of Pokémon species that were introduced in this generation
-    open var pokemonSpecies: [PKMNamedAPIResource]?
+    open var pokemonSpecies: [PKMNamedAPIResource]
     
     /// A list of types that were introduced in this generation
-    open var types: [PKMNamedAPIResource]?
+    open var types: [PKMNamedAPIResource]
     
     /// A list of version groups that were introduced in this generation
-    open var versionGroups: [PKMNamedAPIResource]?
-    
+    open var versionGroups: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case names = "names"
+        case abilities = "abilities"
+        case mainRegion = "main_region"
+        case moves = "moves"
+        case pokemonSpecies = "pokemon_species"
+        case types = "types"
+        case versionGroups = "version_groups"
+    }
 }
 
 /// Evolution triggers are the events and conditions that cause a pokemon to evolve. Check out Bulbapedia for greater detail.
 open class PKMEvolutionTrigger: Codable {
     
     /// The identifier for this evolution trigger resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this evolution trigger resource
-    open var name: String?
+    open var name: String
     
     /// The name of this evolution trigger listed in different languages
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// A list of pokemon species that result from this evolution trigger
-    open var pokemonSpecies: PKMNamedAPIResource?
-    
+    open var pokemonSpecies: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case names = "names"
+        case pokemonSpecies = "pokemon_species"
+    }
 }
 
 /// Evolution Detail
@@ -1611,7 +2248,7 @@ open class PKMEvolutionDetail: Codable {
     open var item: PKMNamedAPIResource?
     
     /// The type of event that triggers evolution into this Pokémon species
-    open var trigger: PKMNamedAPIResource?
+    open var trigger: PKMNamedAPIResource
     
     /// The gender the evolving Pokémon species must be in order to evolve into this Pokémon species
     open var gender: PKMNamedAPIResource?
@@ -1629,7 +2266,7 @@ open class PKMEvolutionDetail: Codable {
     open var location: PKMNamedAPIResource?
     
     /// The minimum required level of the evolving Pokémon species to evolve into this Pokémon species
-    open var minLevel: Int?
+    open var minLevel: Int
     
     /// The minimum required level of happiness the evolving Pokémon species to evolve into this Pokémon species
     open var minHappiness: Int?
@@ -1641,7 +2278,7 @@ open class PKMEvolutionDetail: Codable {
     open var minAffection: Int?
     
     /// Whether or not it must be raining in the overworld to cause evolution this Pokémon species
-    open var needsOverworldRain: Bool?
+    open var needsOverworldRain: Bool
     
     /// The pokemon species that must be in the players party in order for the evolving Pokémon species to evolve into this Pokémon species
     open var partySpecies: PKMNamedAPIResource?
@@ -1653,45 +2290,76 @@ open class PKMEvolutionDetail: Codable {
     open var relativePhysicalStats: Int?
     
     /// The required time of day. Day or night.
-    open var timeOfDay: String?
+    open var timeOfDay: String
     
     /// Pokémon species for which this one must be traded.
     open var tradeSpecies: PKMNamedAPIResource?
     
     /// Whether or not the 3DS needs to be turned upside-down as this Pokémon levels up.
-    open var turnUpsideDown: Bool?
-    
+    open var turnUpsideDown: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case item = "item"
+        case trigger = "trigger"
+        case gender = "gender"
+        case heldItem = "held_item"
+        case knownMove = "known_move"
+        case knownMoveType = "known_move_type"
+        case location = "location"
+        case minLevel = "min_level"
+        case minHappiness = "min_happiness"
+        case minBeauty = "min_beauty"
+        case minAffection = "min_affection"
+        case needsOverworldRain = "needs_overworld_rain"
+        case partySpecies = "party_species"
+        case partyType = "party_type"
+        case relativePhysicalStats = "relative_physical_stats"
+        case timeOfDay = "time_of_day"
+        case tradeSpecies = "trade_species"
+        case turnUpsideDown = "turn_upside_down"
+    }
 }
 
 /// Clain Link
 open class PKMClainLink: Codable {
     
     /// Whether or not this link is for a baby Pokémon. This would only ever be true on the base link.
-    open var isBaby: Bool?
+    open var isBaby: Bool
     
     /// The Pokémon species at this point in the evolution chain
-    open var species: PKMNamedAPIResource?
+    open var species: PKMNamedAPIResource
     
     /// All details regarding the specific details of the referenced Pokémon species evolution
-    open var evolutionDetails: PKMEvolutionDetail?
+    open var evolutionDetails: [PKMEvolutionDetail]
     
     /// A List of chain objects.
-    open var evolvesTo: [PKMClainLink]?
-    
+    open var evolvesTo: [PKMClainLink]
+
+    enum CodingKeys: String, CodingKey {
+        case isBaby = "is_baby"
+        case species = "species"
+        case evolutionDetails = "evolution_details"
+        case evolvesTo = "evolves_to"
+    }
 }
 
 /// Evolution Chain
 open class PKMEvolutionChain: Codable {
     
     /// The identifier for this evolution chain resource
-    open var id: Int?
+    open var id: Int
     
     /// The item that a Pokémon would be holding when mating that would trigger the egg hatching a baby Pokémon rather than a basic Pokémon
     open var babyTriggerItem: PKMNamedAPIResource?
     
     /// The base chain link object. Each link contains evolution details for a Pokémon in the chain. Each link references the next Pokémon in the natural evolution order.
-    open var chain: PKMClainLink?
-    
+    open var chain: PKMClainLink
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case babyTriggerItem = "baby_trigger_item"
+        case chain = "chain"
+    }
 }
 
 
@@ -1699,68 +2367,92 @@ open class PKMEvolutionChain: Codable {
 open class PKMEncounterConditionValue: Codable {
     
     /// The identifier for this encounter condition value resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this encounter condition value resource
-    open var name: String?
+    open var name: String
     
     /// The condition this encounter condition value pertains to
-    open var condition: PKMNamedAPIResource?
+    open var condition: PKMNamedAPIResource
     
     /// The name of this encounter condition value listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case condition = "condition"
+        case names = "names"
+    }
 }
 
 /// Encounter Condition
 open class PKMEncounterCondition: Codable {
     
     /// The identifier for this encounter condition resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this encounter condition resource
-    open var name: String?
+    open var name: String
     
     /// A list of possible values for this encounter condition
-    open var values: [PKMNamedAPIResource]?
+    open var values: [PKMNamedAPIResource]
     
     /// The name of this encounter method listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case values = "values"
+        case names = "names"
+    }
 }
 
 /// Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall grass. Check out Bulbapedia for greater detail.
 open class PKMEncounterMethod: Codable {
     
     /// The identifier for this encounter method resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this encounter method resource
-    open var name: String?
+    open var name: String
     
     /// A good value for sorting
-    open var order: Int?
+    open var order: Int
     
     /// The name of this encounter method listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case order = "order"
+        case names = "names"
+    }
 }
 
 /// Super contest effects refer to the effects of moves when used in super contests.
 open class PKMSuperContestEffect: Codable {
     
     /// The identifier for this super contest effect resource
-    open var id: Int?
+    open var id: Int
     
     /// The level of appeal this super contest effect has
-    open var appeal: Int?
+    open var appeal: Int
     
     /// The flavor text of this super contest effect listed in different languages
-    open var flavorTextEntries: [PKMFlavorText]?
+    open var flavorTextEntries: [PKMFlavorText]
     
     /// A list of moves that have the effect when used in super contests
-    open var moves: [PKMNamedAPIResource]?
-    
+    open var moves: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case appeal = "appeal"
+        case flavorTextEntries = "flavor_text_entries"
+        case moves = "moves"
+    }
 }
 
 
@@ -1768,11 +2460,15 @@ open class PKMSuperContestEffect: Codable {
 open class PKMFlavorText: Codable {
     
     /// The localized flavor text for an API resource in a specific language
-    open var flavorText: String?
+    open var flavorText: String
     
     /// The language this name is in
-    open var language: PKMName?
-    
+    open var language: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case flavorText = "flavor_text"
+        case language = "language"
+    }
 }
 
 
@@ -1780,55 +2476,72 @@ open class PKMFlavorText: Codable {
 open class PKMEffectEntry: Codable {
     
     /// The localized effect text for an API resource in a specific language
-    open var effect: String?
+    open var effect: String
     
     /// The language this effect is in
-    open var language: PKMName?
-    
+    open var language: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case effect = "effect"
+        case language = "language"
+    }
 }
 
 /// Contest effects refer to the effects of moves when used in contests.
 open class PKMContestEffect: Codable {
     
     /// The identifier for this contest type resource
-    open var id: Int?
+    open var id: Int
     
     /// The base number of hearts the user of this move gets
-    open var appeal: Int?
+    open var appeal: Int
     
     /// The base number of hearts the user's opponent loses
-    open var jam: Int?
+    open var jam: Int
     
     /// The result of this contest effect listed in different languages
-    open var effectEntries: [PKMEffectEntry]?
+    open var effectEntries: [PKMEffectEntry]
     
     /// The flavor text of this contest effect listed in different languages
-    open var flavorTextEntries: [PKMFlavorText]?
-    
+    open var flavorTextEntries: [PKMFlavorText]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case appeal = "appeal"
+        case jam = "jam"
+        case effectEntries = "effect_entries"
+        case flavorTextEntries = "flavor_text_entries"
+    }
 }
 
 /// Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests. Check out Bulbapedia for greater detail.
 open class PKMContestType: Codable {
     
     /// The identifier for this contest type resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this contest type resource
-    open var name: String?
+    open var name: String
     
     /// The berry flavor that correlates with this contest type
-    open var berryFlavor: PKMNamedAPIResource?
+    open var berryFlavor: PKMNamedAPIResource
     
     /// The name of this contest type listed in different languages
-    open var names: [PKMName]?
-    
+    open var names: [PKMName]
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case berryFlavor = "berry_flavor"
+        case names = "names"
+    }
 }
 
-/// Paged Object
-open class PKMPagedObject: Codable {
+/// Named API Resource List
+open class PKMNamedAPIResourceList: Codable {
     
     /// The total number of resources abailable from this API
-    open var count: Int?
+    open var count: Int
     
     /// The url for the next 'page' in the list
     open var next: String?
@@ -1836,20 +2549,53 @@ open class PKMPagedObject: Codable {
     /// The url for the previous page in the list
     open var previous: String?
     
+    /// List of named API resources
+    open var results: [PKMNamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case count = "count"
+        case next = "next"
+        case previous = "previous"
+        case results = "results"
+    }
+}
+
+/// API Resource List
+open class PKMAPIResourceList: Codable {
+
+    /// The total number of resources abailable from this API
+    open var count: Int
+
+    /// The url for the next 'page' in the list
+    open var next: String?
+
+    /// The url for the previous page in the list
+    open var previous: String?
+
     /// List of unnamed API resources
-    open var results: [PKMNamedAPIResource]?
-    
+    open var results: [PKMAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case count = "count"
+        case next = "next"
+        case previous = "previous"
+        case results = "results"
+    }
 }
 
 /// Name
 open class PKMName: Codable {
     
     /// The localized name for an API resource in a specific language
-    open var name: String?
+    open var name: String
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource?
-    
+    open var language: PKMNamedAPIResource
+
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case language = "language"
+    }
 }
 
 
@@ -1857,113 +2603,152 @@ open class PKMName: Codable {
 open class PKMNamedAPIResource: Codable {
     
     /// The name of the referenced resource
-    open var name: String?
+    open var name: String
     
     /// The URL of the referenced resource
-    open var url: String?
+    open var url: String
 
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case url = "url"
+    }
 }
 
 open class PKMBerryFlavourMap: Codable {
     
     /// How powerful the referenced flavor is for this berry
-    open var potency: Int?
+    open var potency: Int
     
     /// The berry with the referenced flavor
-    open var flavor: PKMNamedAPIResource?
+    open var flavor: PKMNamedAPIResource
 
+    enum CodingKeys: String, CodingKey {
+        case potency = "potency"
+        case flavor = "flavor"
+    }
 }
 
 /// Flavors determine whether a Pokémon will benefit or suffer from eating a berry based on their nature. Check out Bulbapedia for greater detail.
 open class PKMBerryFlavour: Codable {
     
     /// The identifier for this berry flavor resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this berry flavor resource
-    open var name: String?
+    open var name: String
     
     /// A list of the berries with this flavor
-    open var berries: [PKMFlavourBerryMap]?
+    open var berries: [PKMFlavourBerryMap]
     
     /// The contest type that correlates with this berry flavor
-    open var contestType: PKMNamedAPIResource?
+    open var contestType: PKMNamedAPIResource
     
     /// The name of this berry flavor listed in different languages
-    open var names:[PKMName]?
+    open var names:[PKMName]
 
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case berries = "berries"
+        case contestType = "contest_type"
+        case names = "names"
+    }
 }
 
 /// Flavour Berry Map
 open class PKMFlavourBerryMap: Codable {
     
     /// How powerful the referenced flavor is for this berry
-    open var potency: Int?
+    open var potency: Int
     
     /// The berry with the referenced flavor
-    open var berry: PKMNamedAPIResource?
+    open var berry: PKMNamedAPIResource
 
+    enum CodingKeys: String, CodingKey {
+        case potency = "potency"
+        case berry = "berry"
+    }
 }
 
 /// Berries are small fruits that can provide HP and status condition restoration, stat enhancement, and even damage negation when eaten by Pokémon. Check out Bulbapedia for greater detail.
 open class PKMBerry: Codable {
     
     /// The identifier for this berry resource
-    open var id: Int?
+    open var id: Int
     
     /// The name for this berry resource
-    open var name: String?
+    open var name: String
     
     /// Time it takes the tree to grow one stage, in hours. Berry trees go through four of these growth stages before they can be picked.
-    open var growthTime: Int?
+    open var growthTime: Int
     
     /// The maximum number of these berries that can grow on one tree in Generation IV
-    open var maxHarvest: Int?
+    open var maxHarvest: Int
     
     /// The power of the move "Natural Gift" when used with this Berry
-    open var naturalGiftPower: Int?
+    open var naturalGiftPower: Int
     
     /// The size of this Berry, in millimeters
-    open var size: Int?
+    open var size: Int
     
     /// The smoothness of this Berry, used in making Pokéblocks or Poffins
-    open var smoothness: Int?
+    open var smoothness: Int
     
     /// The speed at which this Berry dries out the soil as it grows. A higher rate means the soil dries more quickly.
-    open var soilDryness: Int?
+    open var soilDryness: Int
     
     /// The firmness of this berry, used in making Pokéblocks or Poffins
-    open var firmness: PKMNamedAPIResource?
+    open var firmness: PKMNamedAPIResource
     
     /// A list of references to each flavor a berry can have and the potency of each of those flavors in regard to this berry
-    open var flavors: [PKMBerryFlavourMap]?
+    open var flavors: [PKMBerryFlavourMap]
     
     /// Berries are actually items. This is a reference to the item specific data for this berry.
-    open var item: PKMNamedAPIResource?
+    open var item: PKMNamedAPIResource
     
     /// The Type the move "Natural Gift" has when used with this Berry
-    open var naturalGiftType: PKMNamedAPIResource?
+    open var naturalGiftType: PKMNamedAPIResource
 
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case growthTime = "growth_time"
+        case maxHarvest = "max_harvest"
+        case naturalGiftPower = "natural_gift_power"
+        case size = "size"
+        case smoothness = "smoothness"
+        case soilDryness = "soil_dryness"
+        case firmness = "firmness"
+        case flavors = "flavors"
+        case item = "item"
+        case naturalGiftType = "natural_gift_type"
+    }
 }
 
 /// Berry Firmness
 open class PKMBerryFirmness: Codable {
     
     /// The identifier for this berry firmness resource
-    open var id: Int?
+    open var id: Int
     
     /// The name of this berry firmness listed in different languages
-    open var berries: [PKMNamedAPIResource]?
+    open var berries: [PKMNamedAPIResource]
     
     /// A list of the berries with this firmness
-    open var names: [PKMName]?
+    open var names: [PKMName]
     
     /// The name for this berry firmness resource
-    open var name: String?
+    open var name: String
 
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case berries = "berries"
+        case names = "names"
+        case name = "name"
+    }
 }
 
-// MARK: - PokeAPI
+// MARK: PokeAPI
 public enum PokeAPI: TargetType {
     case berryList
     case berry(id: String)
@@ -2403,9 +3188,9 @@ internal func hide<T>(_ promise: Promise<T>) -> Promise<Void> {
 /**
  Fetch Berry list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchBerryList() -> Promise<PKMPagedObject>{
+public func fetchBerryList() -> Promise<PKMNamedAPIResourceList>{
     return decode(request(target: .berryList))
 }
 
@@ -2423,9 +3208,9 @@ public func fetchBerry(_ berryId: String) -> Promise<PKMBerry>{
 /**
  Fetch Berry Firmness list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchBerryFirmnessList() -> Promise<PKMPagedObject>{
+public func fetchBerryFirmnessList() -> Promise<PKMNamedAPIResourceList>{
     return decode(request(target: .berryFirmnessList))
 }
 
@@ -2443,9 +3228,9 @@ public func fetchBerryFirmness(_ berryFirmnessId: String) -> Promise<PKMBerryFir
 /**
  Fetch Berry Flavours list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchBerryFlavours() -> Promise<PKMPagedObject>{
+public func fetchBerryFlavours() -> Promise<PKMNamedAPIResourceList>{
     return decode(request(target: .berryFlavorList))
 }
 
@@ -2463,9 +3248,9 @@ public func fetchBerryFlavour(_ berryFlavourId: String) -> Promise<PKMBerryFlavo
 /**
  Fetch Contest list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchContestList() -> Promise<PKMPagedObject> {
+public func fetchContestList() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .contestTypeList))
 }
 
@@ -2483,9 +3268,9 @@ public func fetchContestType(_ contestTypeId: String) -> Promise<PKMContestType>
 /**
  Fetch Contest Effects list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMAPIResourceList
  */
-public func fetchContestEffects() -> Promise<PKMPagedObject> {
+public func fetchContestEffects() -> Promise<PKMAPIResourceList> {
     return decode(request(target: .contestEffectList))
 }
 
@@ -2503,9 +3288,9 @@ public func fetchContestEffect(_ contestEffectId: String) -> Promise<PKMContestE
 /**
  Fetch Super Contest Effects list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMAPIResourceList
  */
-public func fetchSuperContestEffects() -> Promise<PKMPagedObject> {
+public func fetchSuperContestEffects() -> Promise<PKMAPIResourceList> {
     return decode(request(target: .superContestEffectList))
 }
 
@@ -2523,9 +3308,9 @@ public func fetchSuperContestEffect(_ superContestEffectId: String) -> Promise<P
 /**
  Fetch Encounter Methods list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEncounterMethods() -> Promise<PKMPagedObject> {
+public func fetchEncounterMethods() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .encounterMethodList))
 }
 
@@ -2543,9 +3328,9 @@ public func fetchEncounterMethod(_ encounterMethodId: String) -> Promise<PKMEnco
 /**
  Fetch Encounter Conditions list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEncounterConditions() -> Promise<PKMPagedObject> {
+public func fetchEncounterConditions() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .encounterConditionList))
 }
 
@@ -2563,9 +3348,9 @@ public func fetchEncounterCondition(_ encounterConditionId: String) -> Promise<P
 /**
  Fetch Encounter Condition Values list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEncounterConditionValues() -> Promise<PKMPagedObject> {
+public func fetchEncounterConditionValues() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .encounterConditionValueList))
 }
 
@@ -2583,9 +3368,9 @@ public func fetchEncounterConditionValue(_ encounterConditionValueId: String) ->
 /**
  Fetch Encounter Chains list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMAPIResourceList
  */
-public func fetchEvolutionChains() -> Promise<PKMPagedObject> {
+public func fetchEvolutionChains() -> Promise<PKMAPIResourceList> {
     return decode(request(target: .evolutionChainList))
 }
 
@@ -2603,9 +3388,9 @@ public func fetchEvolutionChain(_ evolutionChainId: String) -> Promise<PKMEvolut
 /**
  Fetch Encounter Triggers list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEvolutionTriggers() -> Promise<PKMPagedObject> {
+public func fetchEvolutionTriggers() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .evolutionTriggerList))
 }
 
@@ -2623,9 +3408,9 @@ public func fetchEvolutionTrigger(_ evolutionTriggerId: String) -> Promise<PKMEv
 /**
  Fetch Generations list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchGenerations() -> Promise<PKMPagedObject> {
+public func fetchGenerations() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .generationList))
 }
 
@@ -2643,9 +3428,9 @@ public func fetchGeneration(_ generationId: String) -> Promise<PKMGeneration>{
 /**
  Fetch Pokedexes list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokedexes() -> Promise<PKMPagedObject> {
+public func fetchPokedexes() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .pokedexList))
 }
 
@@ -2663,9 +3448,9 @@ public func fetchPokedex(_ pokedexId: String) -> Promise<PKMPokedex>{
 /**
  Fetch Versions list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchVersions() -> Promise<PKMPagedObject> {
+public func fetchVersions() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .versionList))
 }
 
@@ -2683,9 +3468,9 @@ public func fetchVersion(_ versionId: String) -> Promise<PKMVersion>{
 /**
  Fetch Versions Groups list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchVersionGroups() -> Promise<PKMPagedObject> {
+public func fetchVersionGroups() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .versionGroupList))
 }
 
@@ -2703,9 +3488,9 @@ public func fetchVersionGroup(_ versionGroupId: String) -> Promise<PKMVersionGro
 /**
  Fetch Items list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchItems() -> Promise<PKMPagedObject> {
+public func fetchItems() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .itemList))
 }
 
@@ -2723,9 +3508,9 @@ public func fetchItem(_ itemId: String) -> Promise<PKMItem>{
 /**
  Fetch Item Attributes list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchItemAttributes() -> Promise<PKMPagedObject> {
+public func fetchItemAttributes() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .itemAttributeList))
 }
 
@@ -2743,9 +3528,9 @@ public func fetchItemAttribute(_ itemAttributeId: String) -> Promise<PKMItemAttr
 /**
  Fetch Item Categories list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchItemCategories() -> Promise<PKMPagedObject> {
+public func fetchItemCategories() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .itemCategoryList))
 }
 
@@ -2763,9 +3548,9 @@ public func fetchItemCategory(_ itemCategoryId: String) -> Promise<PKMItemCatego
 /**
  Fetch Item Fling Effects list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchItemFlingEffects() -> Promise<PKMPagedObject> {
+public func fetchItemFlingEffects() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .itemFlingEffectList))
 }
 
@@ -2783,9 +3568,9 @@ public func fetchItemFlingEffect(_ itemFlingEffectsId: String) -> Promise<PKMIte
 /**
  Fetch Item Pockets list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchItemPockets() -> Promise<PKMPagedObject> {
+public func fetchItemPockets() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .itemPocketList))
 }
 
@@ -2803,9 +3588,9 @@ public func fetchItemPocket(_ itemPocketId: String) -> Promise<PKMItemPocket>{
 /**
  Fetch Moves list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoves() -> Promise<PKMPagedObject> {
+public func fetchMoves() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .moveList))
 }
 
@@ -2823,9 +3608,9 @@ public func fetchMove(_ moveId: String) -> Promise<PKMMove>{
 /**
  Fetch Moves Ailments list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveAilments() -> Promise<PKMPagedObject> {
+public func fetchMoveAilments() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .moveAilmentList))
 }
 
@@ -2843,9 +3628,9 @@ public func fetchMoveAilment(_ moveAilmentId: String) -> Promise<PKMMoveAilment>
 /**
  Fetch Moves Battle Styles list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveBattleStyles() -> Promise<PKMPagedObject> {
+public func fetchMoveBattleStyles() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .moveBattleStyleList))
 }
 
@@ -2863,9 +3648,9 @@ public func fetchMoveBattleStyle(_ moveBattleStyleId: String) -> Promise<PKMMove
 /**
  Fetch Moves Categories list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveCategories() -> Promise<PKMPagedObject> {
+public func fetchMoveCategories() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .moveCategoryList))
 }
 
@@ -2883,9 +3668,9 @@ public func fetchMoveCategory(_ moveCategoryId: String) -> Promise<PKMMoveCatego
 /**
  Fetch Moves Damage Classes list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveDamageClasses() -> Promise<PKMPagedObject> {
+public func fetchMoveDamageClasses() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .moveDamageClassList))
 }
 
@@ -2903,9 +3688,9 @@ public func fetchMoveDamageClass(_ moveDamageClassId: String) -> Promise<PKMMove
 /**
  Fetch Moves Learn Methods list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveLearnMethods() -> Promise<PKMPagedObject> {
+public func fetchMoveLearnMethods() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .moveLearnMethodList))
 }
 
@@ -2923,9 +3708,9 @@ public func fetchMoveLearnMethod(_ moveLearnMethodId: String) -> Promise<PKMMove
 /**
  Fetch Moves Targets list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveTargets() -> Promise<PKMPagedObject> {
+public func fetchMoveTargets() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .moveTargetList))
 }
 
@@ -2943,9 +3728,9 @@ public func fetchMoveTarget(_ moveTargetId: String) -> Promise<PKMMoveTarget>{
 /**
  Fetch Locations list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchLocations() -> Promise<PKMPagedObject> {
+public func fetchLocations() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .locationList))
 }
 
@@ -2963,9 +3748,9 @@ public func fetchLocation(_ locationId: String) -> Promise<PKMLocation>{
 /**
  Fetch Location Area list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchLocationAreas() -> Promise<PKMPagedObject> {
+public func fetchLocationAreas() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .locationAreaList))
 }
 
@@ -2983,9 +3768,9 @@ public func fetchLocationArea(_ locationAreaId: String) -> Promise<PKMLocationAr
 /**
  Fetch Pal Park Areas list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPalParkAreas() -> Promise<PKMPagedObject> {
+public func fetchPalParkAreas() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .palParkAreaList))
 }
 
@@ -3003,9 +3788,9 @@ public func fetchPalParkArea(_ palParkAreaId: String) -> Promise<PKMPalParkArea>
 /**
  Fetch Regions list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchRegions() -> Promise<PKMPagedObject> {
+public func fetchRegions() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .regionList))
 }
 
@@ -3023,9 +3808,9 @@ public func fetchRegion(_ regionId: String) -> Promise<PKMRegion>{
 /**
  Fetch Abilities list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchAbilities() -> Promise<PKMPagedObject> {
+public func fetchAbilities() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .abilityList))
 }
 
@@ -3043,9 +3828,9 @@ public func fetchAbility(_ abilityId: String) -> Promise<PKMAbility>{
 /**
  Fetch Characteristics list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMAPIResourceList
  */
-public func fetchCharacteristics() -> Promise<PKMPagedObject> {
+public func fetchCharacteristics() -> Promise<PKMAPIResourceList> {
     return decode(request(target: .characteristicList))
 }
 
@@ -3063,9 +3848,9 @@ public func fetchCharacteristic(_ characteristicId: String) -> Promise<PKMCharac
 /**
  Fetch Egg Group list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEggGroup() -> Promise<PKMPagedObject> {
+public func fetchEggGroup() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .eggGroupList))
 }
 
@@ -3083,9 +3868,9 @@ public func fetchEggGroup(_ eggGroupId: String) -> Promise<PKMEggGroup>{
 /**
  Fetch Genders list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchGenders() -> Promise<PKMPagedObject> {
+public func fetchGenders() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .genderList))
 }
 
@@ -3103,9 +3888,9 @@ public func fetchGender(_ genderId: String) -> Promise<PKMGender>{
 /**
  Fetch Growth Rate list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchGrowthRates() -> Promise<PKMPagedObject> {
+public func fetchGrowthRates() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .growthRateList))
 }
 
@@ -3123,9 +3908,9 @@ public func fetchGrowthRate(_ growthRateId: String) -> Promise<PKMGrowthRate>{
 /**
  Fetch Nature list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchNatures() -> Promise<PKMPagedObject> {
+public func fetchNatures() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .natureList))
 }
 
@@ -3143,9 +3928,9 @@ public func fetchNature(_ natureId: String) -> Promise<PKMNature>{
 /**
  Fetch Pokeathlon Stat list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokeathlonStats() -> Promise<PKMPagedObject> {
+public func fetchPokeathlonStats() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .pokeathlonStatList))
 }
 
@@ -3163,9 +3948,9 @@ public func fetchPokeathlonStat(_ pokeathlonStatId: String) -> Promise<PKMPokeat
 /**
  Fetch Pokemon list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemons() -> Promise<PKMPagedObject> {
+public func fetchPokemons() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .pokemonList))
 }
 
@@ -3183,9 +3968,9 @@ public func fetchPokemon(_ pokemonId: String) -> Promise<PKMPokemon>{
 /**
  Fetch Pokemon Color list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonColors() -> Promise<PKMPagedObject> {
+public func fetchPokemonColors() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .pokemonColorList))
 }
 
@@ -3203,9 +3988,9 @@ public func fetchPokemonColor(_ pokemonColorId: String) -> Promise<PKMPokemonCol
 /**
  Fetch Pokemon Form list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonForms() -> Promise<PKMPagedObject> {
+public func fetchPokemonForms() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .pokemonFormList))
 }
 
@@ -3223,9 +4008,9 @@ public func fetchPokemonForm(_ pokemonFormId: String) -> Promise<PKMPokemonForm>
 /**
  Fetch Pokemon Habitat list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonHabitats() -> Promise<PKMPagedObject> {
+public func fetchPokemonHabitats() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .pokemonHabitatList))
 }
 
@@ -3243,9 +4028,9 @@ public func fetchPokemonHabitat(_ pokemonHabitatId: String) -> Promise<PKMPokemo
 /**
  Fetch Pokemon Shape list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonShapes() -> Promise<PKMPagedObject> {
+public func fetchPokemonShapes() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .pokemonShapeList))
 }
 
@@ -3263,9 +4048,9 @@ public func fetchPokemonShape(_ pokemonShapeId: String) -> Promise<PKMPokemonSha
 /**
  Fetch Pokemon Species list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonSpecies() -> Promise<PKMPagedObject> {
+public func fetchPokemonSpecies() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .pokemonSpeciesList))
 }
 
@@ -3283,9 +4068,9 @@ public func fetchPokemonSpecies(_ pokemonSpeciesId: String) -> Promise<PKMPokemo
 /**
  Fetch Stat list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchStats() -> Promise<PKMPagedObject> {
+public func fetchStats() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .statList))
 }
 
@@ -3303,9 +4088,9 @@ public func fetchStat(_ statId: String) -> Promise<PKMStat>{
 /**
  Fetch Type list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchType() -> Promise<PKMPagedObject> {
+public func fetchType() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .typeList))
 }
 
@@ -3323,9 +4108,9 @@ public func fetchType(_ typeId: String) -> Promise<PKMType>{
 /**
  Fetch Languages list
 
- - returns: A promise with PKMPagedObject
+ - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchLanguages() -> Promise<PKMPagedObject> {
+public func fetchLanguages() -> Promise<PKMNamedAPIResourceList> {
     return decode(request(target: .languageList))
 }
 
