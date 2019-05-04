@@ -1,12 +1,5 @@
 PODS:
-  - Alamofire (4.8.2)
-  - Moya (12.0.1):
-    - Moya/Core (= 12.0.1)
-  - Moya/Core (12.0.1):
-    - Alamofire (~> 4.1)
-    - Result (~> 4.0)
   - PokemonKit (3.0.0):
-    - Moya (~> 12.0)
     - PromiseKit (~> 6.8)
   - PromiseKit (6.8.4):
     - PromiseKit/CorePromise (= 6.8.4)
@@ -17,28 +10,21 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.8.4):
     - PromiseKit/CorePromise
-  - Result (4.1.0)
 
 DEPENDENCIES:
   - PokemonKit (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
-    - Moya
     - PromiseKit
-    - Result
 
 EXTERNAL SOURCES:
   PokemonKit:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  PokemonKit: 6b1594b5efddb50cef82852473c52f49e395b532
+  PokemonKit: b3b36e2b62088c54ab8bd4027e85eb6ea3df199c
   PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
-  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
 
 PODFILE CHECKSUM: cab145f5c18823d5fff1114c0f25a7ef2cb20d72
 

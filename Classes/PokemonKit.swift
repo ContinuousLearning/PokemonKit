@@ -8,14 +8,8 @@
 
 import Foundation
 import PromiseKit
-import Moya
-
-// MARK: - Constant
-
-let baseURL: String = "http://pokeapi.co/api/v2"
 
 // MARK: - Classes
-
 /// Languages for translations of API resource information.
 open class PKMLanguage: Codable {
     
@@ -2748,8 +2742,8 @@ open class PKMBerryFirmness: Codable {
     }
 }
 
-// MARK: PokeAPI
-public enum PokeAPI: TargetType {
+// MARK: - Networking
+public enum PokeAPI {
     case berryList
     case berry(id: String)
 
@@ -2940,8 +2934,8 @@ public enum PokeAPI: TargetType {
 }
 
 extension PokeAPI {
-    public var baseURL: URL {
-        return URL(string: "http://pokeapi.co/api/v2")!
+    public var baseURL: String {
+        return "http://pokeapi.co/api/v2"
     }
 
     public var path: String {
@@ -3135,45 +3129,44 @@ extension PokeAPI {
 
         }
     }
-
-    public var method: Moya.Method {
-        return .get
-    }
-
-    public var sampleData: Data {
-        return Data()
-    }
-
-    public var task: Task {
-        return .requestPlain
-    }
-
-    public var headers: [String : String]? {
-        return nil
-    }
 }
 
-// MARK: - Functions
-// MARK: Internal
-let provider = MoyaProvider<PokeAPI>()
-let decoder = JSONDecoder()
+enum PokemonKitError: String, Error {
+    case badURL
+    case missingData
+}
 
-internal func request(target: PokeAPI) -> Promise<Response> {
-    return Promise<Response> { seal in
-        provider.request(target) { result in
-            switch result {
-            case .success(let response):
-                seal.fulfill(response)
-            case .failure(let error):
+internal typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
+
+internal func request(target: PokeAPI) -> Promise<Data> {
+    return Promise<Data> { seal in
+        guard let url = URL(string: target.baseURL + target.path) else {
+            seal.reject(PokemonKitError.badURL)
+            return
+        }
+
+        let completionHandler: CompletionHandler = { (data, _, error) in
+            switch (data, error) {
+            case (_, let error?):
                 seal.reject(error)
+            case (let data?, _):
+                seal.fulfill(data)
+            case (.none, .none):
+                seal.reject(PokemonKitError.missingData)
             }
         }
+
+        let task = URLSession.shared.dataTask(with: url,
+                                              completionHandler: completionHandler)
+        task.resume()
     }
 }
 
-internal func decode<T: Decodable>(_ promise: Promise<Response>) -> Promise<T> {
+let decoder = JSONDecoder()
+
+internal func decode<T: Decodable>(_ promise: Promise<Data>) -> Promise<T> {
     return promise.map({ (response) in
-        let object = try decoder.decode(T.self, from: response.data)
+        let object = try decoder.decode(T.self, from: response)
         return object
     })
 }
@@ -3184,7 +3177,7 @@ internal func hide<T>(_ promise: Promise<T>) -> Promise<Void> {
     })
 }
 
-// MARK: Public
+// MARK: - Functions
 /**
  Fetch Berry list
 

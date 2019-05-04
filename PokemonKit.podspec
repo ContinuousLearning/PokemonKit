@@ -36,5 +36,4 @@ PokemonKit use Alamofire web requests handling.
   s.source_files = 'Classes/**/*'
 
   s.dependency 'PromiseKit', '~> 6.8'
-  s.dependency 'Moya', '~> 12.0'
 end

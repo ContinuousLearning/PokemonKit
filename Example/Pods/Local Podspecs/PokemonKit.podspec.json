@@ -22,9 +22,6 @@
   "dependencies": {
     "PromiseKit": [
       "~> 6.8"
-    ],
-    "Moya": [
-      "~> 12.0"
     ]
   }
 }
