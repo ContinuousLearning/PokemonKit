@@ -342,9 +342,3 @@ internal func decode<T: Decodable>(_ promise: Promise<Data>) -> Promise<T> {
         return object
     })
 }
-
-internal func hide<T>(_ promise: Promise<T>) -> Promise<Void> {
-    return promise.map({ _ in
-        return ()
-    })
-}
