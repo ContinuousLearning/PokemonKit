@@ -1,7 +1,6 @@
 // PokemonKit 2019
 
 import Foundation
-import PromiseKit
 
 public enum PokeAPI {
 
@@ -153,6 +152,10 @@ extension PokeAPI {
         return "http://pokeapi.co/api/v2"
     }
 
+    public var url: URL {
+        return URL(string: baseURL + path)!
+    }
+
     public var path: String {
         switch self {
 
@@ -299,46 +302,4 @@ extension PokeAPI {
 
         }
     }
-}
-
-enum PokemonKitError: String, Error {
-
-    case badURL
-    case missingData
-
-}
-
-internal typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
-
-internal func request(target: PokeAPI) -> Promise<Data> {
-    return Promise<Data> { seal in
-        guard let url = URL(string: target.baseURL + target.path) else {
-            seal.reject(PokemonKitError.badURL)
-            return
-        }
-
-        let completionHandler: CompletionHandler = { (data, _, error) in
-            switch (data, error) {
-            case (_, let error?):
-                seal.reject(error)
-            case (let data?, _):
-                seal.fulfill(data)
-            case (.none, .none):
-                seal.reject(PokemonKitError.missingData)
-            }
-        }
-
-        let task = URLSession.shared.dataTask(with: url,
-                                              completionHandler: completionHandler)
-        task.resume()
-    }
-}
-
-let decoder = JSONDecoder()
-
-internal func decode<T: Decodable>(_ promise: Promise<Data>) -> Promise<T> {
-    return promise.map({ (response) in
-        let object = try decoder.decode(T.self, from: response)
-        return object
-    })
 }

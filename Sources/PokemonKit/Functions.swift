@@ -8,7 +8,7 @@ import PromiseKit
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchBerryList() -> Promise<PKMNamedAPIResourceList>{
-    return decode(request(target: .berryList))
+    return Provider.shared.fetch(target: .berryList)
 }
 
 /**
@@ -19,7 +19,7 @@ public func fetchBerryList() -> Promise<PKMNamedAPIResourceList>{
  - returns: A promise with PKMBerry
  */
 public func fetchBerry(_ berryId: String) -> Promise<PKMBerry>{
-    return decode(request(target: .berry(id: berryId)))
+    return Provider.shared.fetch(target: .berry(id: berryId))
 }
 
 /**
@@ -28,7 +28,7 @@ public func fetchBerry(_ berryId: String) -> Promise<PKMBerry>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchBerryFirmnessList() -> Promise<PKMNamedAPIResourceList>{
-    return decode(request(target: .berryFirmnessList))
+    return Provider.shared.fetch(target: .berryFirmnessList)
 }
 
 /**
@@ -39,7 +39,7 @@ public func fetchBerryFirmnessList() -> Promise<PKMNamedAPIResourceList>{
  - returns: A promise with PKMBerryFirmness
  */
 public func fetchBerryFirmness(_ berryFirmnessId: String) -> Promise<PKMBerryFirmness>{
-    return decode(request(target: .berryFirmness(id: berryFirmnessId)))
+    return Provider.shared.fetch(target: .berryFirmness(id: berryFirmnessId))
 }
 
 /**
@@ -48,7 +48,7 @@ public func fetchBerryFirmness(_ berryFirmnessId: String) -> Promise<PKMBerryFir
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchBerryFlavours() -> Promise<PKMNamedAPIResourceList>{
-    return decode(request(target: .berryFlavorList))
+    return Provider.shared.fetch(target: .berryFlavorList)
 }
 
 /**
@@ -59,7 +59,7 @@ public func fetchBerryFlavours() -> Promise<PKMNamedAPIResourceList>{
  - returns: A promise with PKMBerryFlavour
  */
 public func fetchBerryFlavour(_ berryFlavourId: String) -> Promise<PKMBerryFlavour>{
-    return decode(request(target: .berryFlavor(id: berryFlavourId)))
+    return Provider.shared.fetch(target: .berryFlavor(id: berryFlavourId))
 }
 
 /**
@@ -68,7 +68,7 @@ public func fetchBerryFlavour(_ berryFlavourId: String) -> Promise<PKMBerryFlavo
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchContestList() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .contestTypeList))
+    return Provider.shared.fetch(target: .contestTypeList)
 }
 
 /**
@@ -79,7 +79,7 @@ public func fetchContestList() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMContestType
  */
 public func fetchContestType(_ contestTypeId: String) -> Promise<PKMContestType>{
-    return decode(request(target: .contestType(id: contestTypeId)))
+    return Provider.shared.fetch(target: .contestType(id: contestTypeId))
 }
 
 /**
@@ -88,7 +88,7 @@ public func fetchContestType(_ contestTypeId: String) -> Promise<PKMContestType>
  - returns: A promise with PKMAPIResourceList
  */
 public func fetchContestEffects() -> Promise<PKMAPIResourceList> {
-    return decode(request(target: .contestEffectList))
+    return Provider.shared.fetch(target: .contestEffectList)
 }
 
 /**
@@ -99,7 +99,7 @@ public func fetchContestEffects() -> Promise<PKMAPIResourceList> {
  - returns: A promise with PKMContestEffect
  */
 public func fetchContestEffect(_ contestEffectId: String) -> Promise<PKMContestEffect>{
-    return decode(request(target: .contestEffect(id: contestEffectId)))
+    return Provider.shared.fetch(target: .contestEffect(id: contestEffectId))
 }
 
 /**
@@ -108,7 +108,7 @@ public func fetchContestEffect(_ contestEffectId: String) -> Promise<PKMContestE
  - returns: A promise with PKMAPIResourceList
  */
 public func fetchSuperContestEffects() -> Promise<PKMAPIResourceList> {
-    return decode(request(target: .superContestEffectList))
+    return Provider.shared.fetch(target: .superContestEffectList)
 }
 
 /**
@@ -119,7 +119,7 @@ public func fetchSuperContestEffects() -> Promise<PKMAPIResourceList> {
  - returns: A promise with PKMSuperContestEffect
  */
 public func fetchSuperContestEffect(_ superContestEffectId: String) -> Promise<PKMSuperContestEffect>{
-    return decode(request(target: .superContestEffect(id: superContestEffectId)))
+    return Provider.shared.fetch(target: .superContestEffect(id: superContestEffectId))
 }
 
 /**
@@ -128,7 +128,7 @@ public func fetchSuperContestEffect(_ superContestEffectId: String) -> Promise<P
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchEncounterMethods() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .encounterMethodList))
+    return Provider.shared.fetch(target: .encounterMethodList)
 }
 
 /**
@@ -139,7 +139,7 @@ public func fetchEncounterMethods() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMEncounterMethod
  */
 public func fetchEncounterMethod(_ encounterMethodId: String) -> Promise<PKMEncounterMethod>{
-    return decode(request(target: .encounterMethod(id: encounterMethodId)))
+    return Provider.shared.fetch(target: .encounterMethod(id: encounterMethodId))
 }
 
 /**
@@ -148,7 +148,7 @@ public func fetchEncounterMethod(_ encounterMethodId: String) -> Promise<PKMEnco
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchEncounterConditions() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .encounterConditionList))
+    return Provider.shared.fetch(target: .encounterConditionList)
 }
 
 /**
@@ -159,7 +159,7 @@ public func fetchEncounterConditions() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMEncounterCondition
  */
 public func fetchEncounterCondition(_ encounterConditionId: String) -> Promise<PKMEncounterCondition>{
-    return decode(request(target: .encounterCondition(id: encounterConditionId)))
+    return Provider.shared.fetch(target: .encounterCondition(id: encounterConditionId))
 }
 
 /**
@@ -168,7 +168,7 @@ public func fetchEncounterCondition(_ encounterConditionId: String) -> Promise<P
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchEncounterConditionValues() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .encounterConditionValueList))
+    return Provider.shared.fetch(target: .encounterConditionValueList)
 }
 
 /**
@@ -179,7 +179,7 @@ public func fetchEncounterConditionValues() -> Promise<PKMNamedAPIResourceList> 
  - returns: A promise with PKMEncounterConditionValue
  */
 public func fetchEncounterConditionValue(_ encounterConditionValueId: String) -> Promise<PKMEncounterConditionValue>{
-    return decode(request(target: .encounterConditionValue(id: encounterConditionValueId)))
+    return Provider.shared.fetch(target: .encounterConditionValue(id: encounterConditionValueId))
 }
 
 /**
@@ -188,7 +188,7 @@ public func fetchEncounterConditionValue(_ encounterConditionValueId: String) ->
  - returns: A promise with PKMAPIResourceList
  */
 public func fetchEvolutionChains() -> Promise<PKMAPIResourceList> {
-    return decode(request(target: .evolutionChainList))
+    return Provider.shared.fetch(target: .evolutionChainList)
 }
 
 /**
@@ -199,7 +199,7 @@ public func fetchEvolutionChains() -> Promise<PKMAPIResourceList> {
  - returns: A promise with PKMEvolutionChain
  */
 public func fetchEvolutionChain(_ evolutionChainId: String) -> Promise<PKMEvolutionChain>{
-    return decode(request(target: .evolutionChain(id: evolutionChainId)))
+    return Provider.shared.fetch(target: .evolutionChain(id: evolutionChainId))
 }
 
 /**
@@ -208,7 +208,7 @@ public func fetchEvolutionChain(_ evolutionChainId: String) -> Promise<PKMEvolut
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchEvolutionTriggers() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .evolutionTriggerList))
+    return Provider.shared.fetch(target: .evolutionTriggerList)
 }
 
 /**
@@ -219,7 +219,7 @@ public func fetchEvolutionTriggers() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMEvolutionTrigger
  */
 public func fetchEvolutionTrigger(_ evolutionTriggerId: String) -> Promise<PKMEvolutionTrigger>{
-    return decode(request(target: .evolutionTrigger(id: evolutionTriggerId)))
+    return Provider.shared.fetch(target: .evolutionTrigger(id: evolutionTriggerId))
 }
 
 /**
@@ -228,7 +228,7 @@ public func fetchEvolutionTrigger(_ evolutionTriggerId: String) -> Promise<PKMEv
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchGenerations() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .generationList))
+    return Provider.shared.fetch(target: .generationList)
 }
 
 /**
@@ -239,7 +239,7 @@ public func fetchGenerations() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMGeneration
  */
 public func fetchGeneration(_ generationId: String) -> Promise<PKMGeneration>{
-    return decode(request(target: .generation(id: generationId)))
+    return Provider.shared.fetch(target: .generation(id: generationId))
 }
 
 /**
@@ -248,7 +248,7 @@ public func fetchGeneration(_ generationId: String) -> Promise<PKMGeneration>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchPokedexes() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .pokedexList))
+    return Provider.shared.fetch(target: .pokedexList)
 }
 
 /**
@@ -259,7 +259,7 @@ public func fetchPokedexes() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMPokedex
  */
 public func fetchPokedex(_ pokedexId: String) -> Promise<PKMPokedex>{
-    return decode(request(target: .pokedex(id: pokedexId)))
+    return Provider.shared.fetch(target: .pokedex(id: pokedexId))
 }
 
 /**
@@ -268,7 +268,7 @@ public func fetchPokedex(_ pokedexId: String) -> Promise<PKMPokedex>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchVersions() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .versionList))
+    return Provider.shared.fetch(target: .versionList)
 }
 
 /**
@@ -279,7 +279,7 @@ public func fetchVersions() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMVersion
  */
 public func fetchVersion(_ versionId: String) -> Promise<PKMVersion>{
-    return decode(request(target: .version(id: versionId)))
+    return Provider.shared.fetch(target: .version(id: versionId))
 }
 
 /**
@@ -288,7 +288,7 @@ public func fetchVersion(_ versionId: String) -> Promise<PKMVersion>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchVersionGroups() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .versionGroupList))
+    return Provider.shared.fetch(target: .versionGroupList)
 }
 
 /**
@@ -299,7 +299,7 @@ public func fetchVersionGroups() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMVersionGroup
  */
 public func fetchVersionGroup(_ versionGroupId: String) -> Promise<PKMVersionGroup>{
-    return decode(request(target: .versionGroup(id: versionGroupId)))
+    return Provider.shared.fetch(target: .versionGroup(id: versionGroupId))
 }
 
 /**
@@ -308,7 +308,7 @@ public func fetchVersionGroup(_ versionGroupId: String) -> Promise<PKMVersionGro
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchItems() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .itemList))
+    return Provider.shared.fetch(target: .itemList)
 }
 
 /**
@@ -319,7 +319,7 @@ public func fetchItems() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMItem
  */
 public func fetchItem(_ itemId: String) -> Promise<PKMItem>{
-    return decode(request(target: .item(id: itemId)))
+    return Provider.shared.fetch(target: .item(id: itemId))
 }
 
 /**
@@ -328,7 +328,7 @@ public func fetchItem(_ itemId: String) -> Promise<PKMItem>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchItemAttributes() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .itemAttributeList))
+    return Provider.shared.fetch(target: .itemAttributeList)
 }
 
 /**
@@ -339,7 +339,7 @@ public func fetchItemAttributes() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMItemAttribute
  */
 public func fetchItemAttribute(_ itemAttributeId: String) -> Promise<PKMItemAttribute>{
-    return decode(request(target: .itemAttribute(id: itemAttributeId)))
+    return Provider.shared.fetch(target: .itemAttribute(id: itemAttributeId))
 }
 
 /**
@@ -348,7 +348,7 @@ public func fetchItemAttribute(_ itemAttributeId: String) -> Promise<PKMItemAttr
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchItemCategories() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .itemCategoryList))
+    return Provider.shared.fetch(target: .itemCategoryList)
 }
 
 /**
@@ -359,7 +359,7 @@ public func fetchItemCategories() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMItemCategory
  */
 public func fetchItemCategory(_ itemCategoryId: String) -> Promise<PKMItemCategory>{
-    return decode(request(target: .itemCategory(id: itemCategoryId)))
+    return Provider.shared.fetch(target: .itemCategory(id: itemCategoryId))
 }
 
 /**
@@ -368,7 +368,7 @@ public func fetchItemCategory(_ itemCategoryId: String) -> Promise<PKMItemCatego
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchItemFlingEffects() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .itemFlingEffectList))
+    return Provider.shared.fetch(target: .itemFlingEffectList)
 }
 
 /**
@@ -379,7 +379,7 @@ public func fetchItemFlingEffects() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMItemFlingEffect
  */
 public func fetchItemFlingEffect(_ itemFlingEffectsId: String) -> Promise<PKMItemFlingEffect>{
-    return decode(request(target: .itemFlingEffect(id: itemFlingEffectsId)))
+    return Provider.shared.fetch(target: .itemFlingEffect(id: itemFlingEffectsId))
 }
 
 /**
@@ -388,7 +388,7 @@ public func fetchItemFlingEffect(_ itemFlingEffectsId: String) -> Promise<PKMIte
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchItemPockets() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .itemPocketList))
+    return Provider.shared.fetch(target: .itemPocketList)
 }
 
 /**
@@ -399,7 +399,7 @@ public func fetchItemPockets() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMItemPocket
  */
 public func fetchItemPocket(_ itemPocketId: String) -> Promise<PKMItemPocket>{
-    return decode(request(target: .itemPocket(id: itemPocketId)))
+    return Provider.shared.fetch(target: .itemPocket(id: itemPocketId))
 }
 
 /**
@@ -408,7 +408,7 @@ public func fetchItemPocket(_ itemPocketId: String) -> Promise<PKMItemPocket>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchMoves() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .moveList))
+    return Provider.shared.fetch(target: .moveList)
 }
 
 /**
@@ -419,7 +419,7 @@ public func fetchMoves() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMMove
  */
 public func fetchMove(_ moveId: String) -> Promise<PKMMove>{
-    return decode(request(target: .move(id: moveId)))
+    return Provider.shared.fetch(target: .move(id: moveId))
 }
 
 /**
@@ -428,7 +428,7 @@ public func fetchMove(_ moveId: String) -> Promise<PKMMove>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchMoveAilments() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .moveAilmentList))
+    return Provider.shared.fetch(target: .moveAilmentList)
 }
 
 /**
@@ -439,7 +439,7 @@ public func fetchMoveAilments() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMMoveAilment
  */
 public func fetchMoveAilment(_ moveAilmentId: String) -> Promise<PKMMoveAilment>{
-    return decode(request(target: .moveAilment(id: moveAilmentId)))
+    return Provider.shared.fetch(target: .moveAilment(id: moveAilmentId))
 }
 
 /**
@@ -448,7 +448,7 @@ public func fetchMoveAilment(_ moveAilmentId: String) -> Promise<PKMMoveAilment>
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchMoveBattleStyles() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .moveBattleStyleList))
+    return Provider.shared.fetch(target: .moveBattleStyleList)
 }
 
 /**
@@ -459,7 +459,7 @@ public func fetchMoveBattleStyles() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMMoveBattleStyle
  */
 public func fetchMoveBattleStyle(_ moveBattleStyleId: String) -> Promise<PKMMoveBattleStyle>{
-    return decode(request(target: .moveBattleStyle(id: moveBattleStyleId)))
+    return Provider.shared.fetch(target: .moveBattleStyle(id: moveBattleStyleId))
 }
 
 /**
@@ -468,7 +468,7 @@ public func fetchMoveBattleStyle(_ moveBattleStyleId: String) -> Promise<PKMMove
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchMoveCategories() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .moveCategoryList))
+    return Provider.shared.fetch(target: .moveCategoryList)
 }
 
 /**
@@ -479,7 +479,7 @@ public func fetchMoveCategories() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMMoveCategory
  */
 public func fetchMoveCategory(_ moveCategoryId: String) -> Promise<PKMMoveCategory>{
-    return decode(request(target: .moveCategory(id: moveCategoryId)))
+    return Provider.shared.fetch(target: .moveCategory(id: moveCategoryId))
 }
 
 /**
@@ -488,7 +488,7 @@ public func fetchMoveCategory(_ moveCategoryId: String) -> Promise<PKMMoveCatego
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchMoveDamageClasses() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .moveDamageClassList))
+    return Provider.shared.fetch(target: .moveDamageClassList)
 }
 
 /**
@@ -499,7 +499,7 @@ public func fetchMoveDamageClasses() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMMoveDamageClass
  */
 public func fetchMoveDamageClass(_ moveDamageClassId: String) -> Promise<PKMMoveDamageClass>{
-    return decode(request(target: .moveDamageClass(id: moveDamageClassId)))
+    return Provider.shared.fetch(target: .moveDamageClass(id: moveDamageClassId))
 }
 
 /**
@@ -508,7 +508,7 @@ public func fetchMoveDamageClass(_ moveDamageClassId: String) -> Promise<PKMMove
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchMoveLearnMethods() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .moveLearnMethodList))
+    return Provider.shared.fetch(target: .moveLearnMethodList)
 }
 
 /**
@@ -519,7 +519,7 @@ public func fetchMoveLearnMethods() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMMoveLearnMethod
  */
 public func fetchMoveLearnMethod(_ moveLearnMethodId: String) -> Promise<PKMMoveLearnMethod>{
-    return decode(request(target: .moveLearnMethod(id: moveLearnMethodId)))
+    return Provider.shared.fetch(target: .moveLearnMethod(id: moveLearnMethodId))
 }
 
 /**
@@ -528,7 +528,7 @@ public func fetchMoveLearnMethod(_ moveLearnMethodId: String) -> Promise<PKMMove
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchMoveTargets() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .moveTargetList))
+    return Provider.shared.fetch(target: .moveTargetList)
 }
 
 /**
@@ -539,7 +539,7 @@ public func fetchMoveTargets() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMMoveTarget
  */
 public func fetchMoveTarget(_ moveTargetId: String) -> Promise<PKMMoveTarget>{
-    return decode(request(target: .moveTarget(id: moveTargetId)))
+    return Provider.shared.fetch(target: .moveTarget(id: moveTargetId))
 }
 
 /**
@@ -548,7 +548,7 @@ public func fetchMoveTarget(_ moveTargetId: String) -> Promise<PKMMoveTarget>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchLocations() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .locationList))
+    return Provider.shared.fetch(target: .locationList)
 }
 
 /**
@@ -559,7 +559,7 @@ public func fetchLocations() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMLocation
  */
 public func fetchLocation(_ locationId: String) -> Promise<PKMLocation>{
-    return decode(request(target: .location(id: locationId)))
+    return Provider.shared.fetch(target: .location(id: locationId))
 }
 
 /**
@@ -568,7 +568,7 @@ public func fetchLocation(_ locationId: String) -> Promise<PKMLocation>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchLocationAreas() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .locationAreaList))
+    return Provider.shared.fetch(target: .locationAreaList)
 }
 
 /**
@@ -579,7 +579,7 @@ public func fetchLocationAreas() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMLocationArea
  */
 public func fetchLocationArea(_ locationAreaId: String) -> Promise<PKMLocationArea>{
-    return decode(request(target: .locationArea(id: locationAreaId)))
+    return Provider.shared.fetch(target: .locationArea(id: locationAreaId))
 }
 
 /**
@@ -588,7 +588,7 @@ public func fetchLocationArea(_ locationAreaId: String) -> Promise<PKMLocationAr
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchPalParkAreas() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .palParkAreaList))
+    return Provider.shared.fetch(target: .palParkAreaList)
 }
 
 /**
@@ -599,7 +599,7 @@ public func fetchPalParkAreas() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMPalParkArea
  */
 public func fetchPalParkArea(_ palParkAreaId: String) -> Promise<PKMPalParkArea>{
-    return decode(request(target: .palParkArea(id: palParkAreaId)))
+    return Provider.shared.fetch(target: .palParkArea(id: palParkAreaId))
 }
 
 /**
@@ -608,7 +608,7 @@ public func fetchPalParkArea(_ palParkAreaId: String) -> Promise<PKMPalParkArea>
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchRegions() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .regionList))
+    return Provider.shared.fetch(target: .regionList)
 }
 
 /**
@@ -619,7 +619,7 @@ public func fetchRegions() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMRegion
  */
 public func fetchRegion(_ regionId: String) -> Promise<PKMRegion>{
-    return decode(request(target: .region(id: regionId)))
+    return Provider.shared.fetch(target: .region(id: regionId))
 }
 
 /**
@@ -628,7 +628,7 @@ public func fetchRegion(_ regionId: String) -> Promise<PKMRegion>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchAbilities() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .abilityList))
+    return Provider.shared.fetch(target: .abilityList)
 }
 
 /**
@@ -639,7 +639,7 @@ public func fetchAbilities() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMAbility
  */
 public func fetchAbility(_ abilityId: String) -> Promise<PKMAbility>{
-    return decode(request(target: .ability(id: abilityId)))
+    return Provider.shared.fetch(target: .ability(id: abilityId))
 }
 
 /**
@@ -648,7 +648,7 @@ public func fetchAbility(_ abilityId: String) -> Promise<PKMAbility>{
  - returns: A promise with PKMAPIResourceList
  */
 public func fetchCharacteristics() -> Promise<PKMAPIResourceList> {
-    return decode(request(target: .characteristicList))
+    return Provider.shared.fetch(target: .characteristicList)
 }
 
 /**
@@ -659,7 +659,7 @@ public func fetchCharacteristics() -> Promise<PKMAPIResourceList> {
  - returns: A promise with PKMCharacteristic
  */
 public func fetchCharacteristic(_ characteristicId: String) -> Promise<PKMCharacteristic>{
-    return decode(request(target: .characteristic(id: characteristicId)))
+    return Provider.shared.fetch(target: .characteristic(id: characteristicId))
 }
 
 /**
@@ -668,7 +668,7 @@ public func fetchCharacteristic(_ characteristicId: String) -> Promise<PKMCharac
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchEggGroup() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .eggGroupList))
+    return Provider.shared.fetch(target: .eggGroupList)
 }
 
 /**
@@ -679,7 +679,7 @@ public func fetchEggGroup() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMEggGroup
  */
 public func fetchEggGroup(_ eggGroupId: String) -> Promise<PKMEggGroup>{
-    return decode(request(target: .eggGroup(id: eggGroupId)))
+    return Provider.shared.fetch(target: .eggGroup(id: eggGroupId))
 }
 
 /**
@@ -688,7 +688,7 @@ public func fetchEggGroup(_ eggGroupId: String) -> Promise<PKMEggGroup>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchGenders() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .genderList))
+    return Provider.shared.fetch(target: .genderList)
 }
 
 /**
@@ -699,7 +699,7 @@ public func fetchGenders() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMGender
  */
 public func fetchGender(_ genderId: String) -> Promise<PKMGender>{
-    return decode(request(target: .gender(id: genderId)))
+    return Provider.shared.fetch(target: .gender(id: genderId))
 }
 
 /**
@@ -708,7 +708,7 @@ public func fetchGender(_ genderId: String) -> Promise<PKMGender>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchGrowthRates() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .growthRateList))
+    return Provider.shared.fetch(target: .growthRateList)
 }
 
 /**
@@ -719,7 +719,7 @@ public func fetchGrowthRates() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMGrowthRate
  */
 public func fetchGrowthRate(_ growthRateId: String) -> Promise<PKMGrowthRate>{
-    return decode(request(target: .growthRate(id: growthRateId)))
+    return Provider.shared.fetch(target: .growthRate(id: growthRateId))
 }
 
 /**
@@ -728,7 +728,7 @@ public func fetchGrowthRate(_ growthRateId: String) -> Promise<PKMGrowthRate>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchNatures() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .natureList))
+    return Provider.shared.fetch(target: .natureList)
 }
 
 /**
@@ -739,7 +739,7 @@ public func fetchNatures() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMNature
  */
 public func fetchNature(_ natureId: String) -> Promise<PKMNature>{
-    return decode(request(target: .nature(id: natureId)))
+    return Provider.shared.fetch(target: .nature(id: natureId))
 }
 
 /**
@@ -748,7 +748,7 @@ public func fetchNature(_ natureId: String) -> Promise<PKMNature>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchPokeathlonStats() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .pokeathlonStatList))
+    return Provider.shared.fetch(target: .pokeathlonStatList)
 }
 
 /**
@@ -759,7 +759,7 @@ public func fetchPokeathlonStats() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMPokeathlonStat
  */
 public func fetchPokeathlonStat(_ pokeathlonStatId: String) -> Promise<PKMPokeathlonStat>{
-    return decode(request(target: .pokeathlonStat(id: pokeathlonStatId)))
+    return Provider.shared.fetch(target: .pokeathlonStat(id: pokeathlonStatId))
 }
 
 /**
@@ -768,7 +768,7 @@ public func fetchPokeathlonStat(_ pokeathlonStatId: String) -> Promise<PKMPokeat
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchPokemons() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .pokemonList))
+    return Provider.shared.fetch(target: .pokemonList)
 }
 
 /**
@@ -779,7 +779,7 @@ public func fetchPokemons() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMPokemon
  */
 public func fetchPokemon(_ pokemonId: String) -> Promise<PKMPokemon>{
-    return decode(request(target: .pokemon(id: pokemonId)))
+    return Provider.shared.fetch(target: .pokemon(id: pokemonId))
 }
 
 /**
@@ -788,7 +788,7 @@ public func fetchPokemon(_ pokemonId: String) -> Promise<PKMPokemon>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchPokemonColors() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .pokemonColorList))
+    return Provider.shared.fetch(target: .pokemonColorList)
 }
 
 /**
@@ -799,7 +799,7 @@ public func fetchPokemonColors() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMPokemonColor
  */
 public func fetchPokemonColor(_ pokemonColorId: String) -> Promise<PKMPokemonColor>{
-    return decode(request(target: .pokemonColor(id: pokemonColorId)))
+    return Provider.shared.fetch(target: .pokemonColor(id: pokemonColorId))
 }
 
 /**
@@ -808,7 +808,7 @@ public func fetchPokemonColor(_ pokemonColorId: String) -> Promise<PKMPokemonCol
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchPokemonForms() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .pokemonFormList))
+    return Provider.shared.fetch(target: .pokemonFormList)
 }
 
 /**
@@ -819,7 +819,7 @@ public func fetchPokemonForms() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMPokemonForm
  */
 public func fetchPokemonForm(_ pokemonFormId: String) -> Promise<PKMPokemonForm>{
-    return decode(request(target: .pokemonForm(id: pokemonFormId)))
+    return Provider.shared.fetch(target: .pokemonForm(id: pokemonFormId))
 }
 
 /**
@@ -828,7 +828,7 @@ public func fetchPokemonForm(_ pokemonFormId: String) -> Promise<PKMPokemonForm>
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchPokemonHabitats() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .pokemonHabitatList))
+    return Provider.shared.fetch(target: .pokemonHabitatList)
 }
 
 /**
@@ -839,7 +839,7 @@ public func fetchPokemonHabitats() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMPokemonHabitat
  */
 public func fetchPokemonHabitat(_ pokemonHabitatId: String) -> Promise<PKMPokemonHabitat>{
-    return decode(request(target: .pokemonHabitat(id: pokemonHabitatId)))
+    return Provider.shared.fetch(target: .pokemonHabitat(id: pokemonHabitatId))
 }
 
 /**
@@ -848,7 +848,7 @@ public func fetchPokemonHabitat(_ pokemonHabitatId: String) -> Promise<PKMPokemo
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchPokemonShapes() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .pokemonShapeList))
+    return Provider.shared.fetch(target: .pokemonShapeList)
 }
 
 /**
@@ -859,7 +859,7 @@ public func fetchPokemonShapes() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMPokemonShape
  */
 public func fetchPokemonShape(_ pokemonShapeId: String) -> Promise<PKMPokemonShape>{
-    return decode(request(target: .pokemonShape(id: pokemonShapeId)))
+    return Provider.shared.fetch(target: .pokemonShape(id: pokemonShapeId))
 }
 
 /**
@@ -868,7 +868,7 @@ public func fetchPokemonShape(_ pokemonShapeId: String) -> Promise<PKMPokemonSha
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchPokemonSpecies() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .pokemonSpeciesList))
+    return Provider.shared.fetch(target: .pokemonSpeciesList)
 }
 
 /**
@@ -879,7 +879,7 @@ public func fetchPokemonSpecies() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMPokemonSpecies
  */
 public func fetchPokemonSpecies(_ pokemonSpeciesId: String) -> Promise<PKMPokemonSpecies>{
-    return decode(request(target: .pokemonSpecies(id: pokemonSpeciesId)))
+    return Provider.shared.fetch(target: .pokemonSpecies(id: pokemonSpeciesId))
 }
 
 /**
@@ -888,7 +888,7 @@ public func fetchPokemonSpecies(_ pokemonSpeciesId: String) -> Promise<PKMPokemo
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchStats() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .statList))
+    return Provider.shared.fetch(target: .statList)
 }
 
 /**
@@ -899,7 +899,7 @@ public func fetchStats() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMStat
  */
 public func fetchStat(_ statId: String) -> Promise<PKMStat>{
-    return decode(request(target: .stat(id: statId)))
+    return Provider.shared.fetch(target: .stat(id: statId))
 }
 
 /**
@@ -908,7 +908,7 @@ public func fetchStat(_ statId: String) -> Promise<PKMStat>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchType() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .typeList))
+    return Provider.shared.fetch(target: .typeList)
 }
 
 /**
@@ -919,7 +919,7 @@ public func fetchType() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMType
  */
 public func fetchType(_ typeId: String) -> Promise<PKMType>{
-    return decode(request(target: .type(id: typeId)))
+    return Provider.shared.fetch(target: .type(id: typeId))
 }
 
 /**
@@ -928,7 +928,7 @@ public func fetchType(_ typeId: String) -> Promise<PKMType>{
  - returns: A promise with PKMNamedAPIResourceList
  */
 public func fetchLanguages() -> Promise<PKMNamedAPIResourceList> {
-    return decode(request(target: .languageList))
+    return Provider.shared.fetch(target: .languageList)
 }
 
 /**
@@ -939,5 +939,5 @@ public func fetchLanguages() -> Promise<PKMNamedAPIResourceList> {
  - returns: A promise with PKMLanguage
  */
 public func fetchLanguage(_ languageId: String) -> Promise<PKMLanguage>{
-    return decode(request(target: .language(id: languageId)))
+    return Provider.shared.fetch(target: .language(id: languageId))
 }
