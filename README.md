@@ -5,14 +5,19 @@ PokemonKit is a swift wrapper for [PokeAPI](https://pokeapi.co).
 
 PokemonKit uses Foundation's URLSession and PromiseKit for asynchronous web requests.
 
+## Features
+
+- [x] Wrap all API end points
+- [x] Fully Documented
+- [x] Fully tested
+
 ## Usage
 
 ```swift
 import PokemonKit
 
-PokemonKit.fetchBerry("1")
-.then { berryInfo in
-self.testLabel.text = berryInfo.name;
+PokemonKit.fetchBerry("1").then { berryInfo in
+    print(berryInfo.name)
 }
 ```
 
@@ -23,12 +28,6 @@ Add the following line to your dependencies in your Package.swift file:
 .package(url: "https://github.com/nityanandaz/PokemonKit.git", from: "3.0.0")
 ```
 See [Swift Package Manager](https://swift.org/package-manager/) for more information.
-
-## Features
-
-- [x] Wrap all API end points
-- [x] Fully Documented
-- [x] Fully tested
 
 ## License
 
