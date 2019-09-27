@@ -1,15 +1,12 @@
 // PokemonKit 2019
 
-import PromiseKit
 
 /**
  Fetch Berry list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchBerryList() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .berryList)
-}
+public func fetchBerryList(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .berryList, completion: completion) }
 
 /**
  Fetch Berry Information
@@ -18,18 +15,14 @@ public func fetchBerryList() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMBerry
  */
-public func fetchBerry(_ berryId: String) -> Promise<PKMBerry> {
-    return Provider.shared.fetch(target: .berry(id: berryId))
-}
+public func fetchBerry(_ berryId: String, completion: @escaping (Result<PKMBerry, Error>) -> Void) { fetch(api: .berry(id: berryId), completion: completion) }
 
 /**
  Fetch Berry Firmness list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchBerryFirmnessList() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .berryFirmnessList)
-}
+public func fetchBerryFirmnessList(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .berryFirmnessList, completion: completion) }
 
 /**
  Fetch Berry Firmness Information
@@ -38,18 +31,14 @@ public func fetchBerryFirmnessList() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMBerryFirmness
  */
-public func fetchBerryFirmness(_ berryFirmnessId: String) -> Promise<PKMBerryFirmness> {
-    return Provider.shared.fetch(target: .berryFirmness(id: berryFirmnessId))
-}
+public func fetchBerryFirmness(_ berryFirmnessId: String, completion: @escaping (Swift.Result<PKMBerryFirmness, Error>) -> Void) { fetch(api: .berryFirmness(id: berryFirmnessId), completion: completion) }
 
 /**
  Fetch Berry Flavours list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchBerryFlavours() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .berryFlavorList)
-}
+public func fetchBerryFlavours(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .berryFlavorList, completion: completion) }
 
 /**
  Fetch Berry Flavour Information
@@ -58,18 +47,14 @@ public func fetchBerryFlavours() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMBerryFlavour
  */
-public func fetchBerryFlavour(_ berryFlavourId: String) -> Promise<PKMBerryFlavour> {
-    return Provider.shared.fetch(target: .berryFlavor(id: berryFlavourId))
-}
+public func fetchBerryFlavour(_ berryFlavourId: String, completion: @escaping (Result<PKMBerryFlavour, Error>) -> Void) { fetch(api: .berryFlavor(id: berryFlavourId), completion: completion) }
 
 /**
  Fetch Contest list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchContestList() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .contestTypeList)
-}
+public func fetchContestList(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .contestTypeList, completion: completion) }
 
 /**
  Fetch Contest Type Information
@@ -78,18 +63,14 @@ public func fetchContestList() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMContestType
  */
-public func fetchContestType(_ contestTypeId: String) -> Promise<PKMContestType> {
-    return Provider.shared.fetch(target: .contestType(id: contestTypeId))
-}
+public func fetchContestType(_ contestTypeId: String, completion: @escaping (Result<PKMContestType, Error>) -> Void) { fetch(api: .contestType(id: contestTypeId), completion: completion) }
 
 /**
  Fetch Contest Effects list
 
  - returns: A promise with PKMAPIResourceList
  */
-public func fetchContestEffects() -> Promise<PKMAPIResourceList> {
-    return Provider.shared.fetch(target: .contestEffectList)
-}
+public func fetchContestEffects(completion: @escaping (Result<PKMAPIResourceList, Error>) -> Void) { fetch(api: .contestEffectList, completion: completion) }
 
 /**
  Fetch Contest Effect Information
@@ -98,18 +79,14 @@ public func fetchContestEffects() -> Promise<PKMAPIResourceList> {
 
  - returns: A promise with PKMContestEffect
  */
-public func fetchContestEffect(_ contestEffectId: String) -> Promise<PKMContestEffect> {
-    return Provider.shared.fetch(target: .contestEffect(id: contestEffectId))
-}
+public func fetchContestEffect(_ contestEffectId: String, completion: @escaping (Result<PKMContestEffect, Error>) -> Void) { fetch(api: .contestEffect(id: contestEffectId), completion: completion) }
 
 /**
  Fetch Super Contest Effects list
 
  - returns: A promise with PKMAPIResourceList
  */
-public func fetchSuperContestEffects() -> Promise<PKMAPIResourceList> {
-    return Provider.shared.fetch(target: .superContestEffectList)
-}
+public func fetchSuperContestEffects(completion: @escaping (Result<PKMAPIResourceList, Error>) -> Void) { fetch(api: .superContestEffectList, completion: completion) }
 
 /**
  Fetch Super Contest Effect Information
@@ -118,18 +95,14 @@ public func fetchSuperContestEffects() -> Promise<PKMAPIResourceList> {
 
  - returns: A promise with PKMSuperContestEffect
  */
-public func fetchSuperContestEffect(_ superContestEffectId: String) -> Promise<PKMSuperContestEffect> {
-    return Provider.shared.fetch(target: .superContestEffect(id: superContestEffectId))
-}
+public func fetchSuperContestEffect(_ superContestEffectId: String, completion: @escaping (Result<PKMSuperContestEffect, Error>) -> Void) { fetch(api: .superContestEffect(id: superContestEffectId), completion: completion) }
 
 /**
  Fetch Encounter Methods list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEncounterMethods() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .encounterMethodList)
-}
+public func fetchEncounterMethods(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .encounterMethodList, completion: completion) }
 
 /**
  Fetch Encounter Method Information
@@ -138,18 +111,14 @@ public func fetchEncounterMethods() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMEncounterMethod
  */
-public func fetchEncounterMethod(_ encounterMethodId: String) -> Promise<PKMEncounterMethod> {
-    return Provider.shared.fetch(target: .encounterMethod(id: encounterMethodId))
-}
+public func fetchEncounterMethod(_ encounterMethodId: String, completion: @escaping (Result<PKMEncounterMethod, Error>) -> Void) { fetch(api: .encounterMethod(id: encounterMethodId), completion: completion) }
 
 /**
  Fetch Encounter Conditions list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEncounterConditions() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .encounterConditionList)
-}
+public func fetchEncounterConditions(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .encounterConditionList, completion: completion) }
 
 /**
  Fetch Encounter Condition Information
@@ -158,18 +127,14 @@ public func fetchEncounterConditions() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMEncounterCondition
  */
-public func fetchEncounterCondition(_ encounterConditionId: String) -> Promise<PKMEncounterCondition> {
-    return Provider.shared.fetch(target: .encounterCondition(id: encounterConditionId))
-}
+public func fetchEncounterCondition(_ encounterConditionId: String, completion: @escaping (Result<PKMEncounterCondition, Error>) -> Void) { fetch(api: .encounterCondition(id: encounterConditionId), completion: completion) }
 
 /**
  Fetch Encounter Condition Values list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEncounterConditionValues() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .encounterConditionValueList)
-}
+public func fetchEncounterConditionValues(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .encounterConditionValueList, completion: completion) }
 
 /**
  Fetch Encounter Condition Value Information
@@ -178,18 +143,14 @@ public func fetchEncounterConditionValues() -> Promise<PKMNamedAPIResourceList> 
 
  - returns: A promise with PKMEncounterConditionValue
  */
-public func fetchEncounterConditionValue(_ encounterConditionValueId: String) -> Promise<PKMEncounterConditionValue> {
-    return Provider.shared.fetch(target: .encounterConditionValue(id: encounterConditionValueId))
-}
+public func fetchEncounterConditionValue(_ encounterConditionValueId: String, completion: @escaping (Result<PKMEncounterConditionValue, Error>) -> Void) { fetch(api: .encounterConditionValue(id: encounterConditionValueId), completion: completion) }
 
 /**
  Fetch Encounter Chains list
 
  - returns: A promise with PKMAPIResourceList
  */
-public func fetchEvolutionChains() -> Promise<PKMAPIResourceList> {
-    return Provider.shared.fetch(target: .evolutionChainList)
-}
+public func fetchEvolutionChains(completion: @escaping (Result<PKMAPIResourceList, Error>) -> Void) { fetch(api: .evolutionChainList, completion: completion) }
 
 /**
  Fetch Evolution Chain Information
@@ -198,18 +159,14 @@ public func fetchEvolutionChains() -> Promise<PKMAPIResourceList> {
 
  - returns: A promise with PKMEvolutionChain
  */
-public func fetchEvolutionChain(_ evolutionChainId: String) -> Promise<PKMEvolutionChain> {
-    return Provider.shared.fetch(target: .evolutionChain(id: evolutionChainId))
-}
+public func fetchEvolutionChain(_ evolutionChainId: String, completion: @escaping (Result<PKMEvolutionChain, Error>) -> Void) { fetch(api: .evolutionChain(id: evolutionChainId), completion: completion) }
 
 /**
  Fetch Encounter Triggers list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEvolutionTriggers() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .evolutionTriggerList)
-}
+public func fetchEvolutionTriggers(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .evolutionTriggerList, completion: completion) }
 
 /**
  Fetch Evolution Trigger Information
@@ -218,18 +175,14 @@ public func fetchEvolutionTriggers() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMEvolutionTrigger
  */
-public func fetchEvolutionTrigger(_ evolutionTriggerId: String) -> Promise<PKMEvolutionTrigger> {
-    return Provider.shared.fetch(target: .evolutionTrigger(id: evolutionTriggerId))
-}
+public func fetchEvolutionTrigger(_ evolutionTriggerId: String, completion: @escaping (Result<PKMEvolutionTrigger, Error>) -> Void) { fetch(api: .evolutionTrigger(id: evolutionTriggerId), completion: completion) }
 
 /**
  Fetch Generations list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchGenerations() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .generationList)
-}
+public func fetchGenerations(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .generationList, completion: completion) }
 
 /**
  Fetch Generation Information
@@ -238,18 +191,14 @@ public func fetchGenerations() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMGeneration
  */
-public func fetchGeneration(_ generationId: String) -> Promise<PKMGeneration> {
-    return Provider.shared.fetch(target: .generation(id: generationId))
-}
+public func fetchGeneration(_ generationId: String, completion: @escaping (Result<PKMGeneration, Error>) -> Void) { fetch(api: .generation(id: generationId), completion: completion) }
 
 /**
  Fetch Pokedexes list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokedexes() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .pokedexList)
-}
+public func fetchPokedexes(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .pokedexList, completion: completion) }
 
 /**
  Fetch Pokedex Information
@@ -258,18 +207,14 @@ public func fetchPokedexes() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMPokedex
  */
-public func fetchPokedex(_ pokedexId: String) -> Promise<PKMPokedex> {
-    return Provider.shared.fetch(target: .pokedex(id: pokedexId))
-}
+public func fetchPokedex(_ pokedexId: String, completion: @escaping (Result<PKMPokedex, Error>) -> Void) { fetch(api: .pokedex(id: pokedexId), completion: completion) }
 
 /**
  Fetch Versions list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchVersions() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .versionList)
-}
+public func fetchVersions(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .versionList, completion: completion) }
 
 /**
  Fetch Version Information
@@ -278,18 +223,14 @@ public func fetchVersions() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMVersion
  */
-public func fetchVersion(_ versionId: String) -> Promise<PKMVersion> {
-    return Provider.shared.fetch(target: .version(id: versionId))
-}
+public func fetchVersion(_ versionId: String, completion: @escaping (Result<PKMVersion, Error>) -> Void) { fetch(api: .version(id: versionId), completion: completion) }
 
 /**
  Fetch Versions Groups list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchVersionGroups() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .versionGroupList)
-}
+public func fetchVersionGroups(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .versionGroupList, completion: completion) }
 
 /**
  Fetch Version Group Information
@@ -298,18 +239,14 @@ public func fetchVersionGroups() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMVersionGroup
  */
-public func fetchVersionGroup(_ versionGroupId: String) -> Promise<PKMVersionGroup> {
-    return Provider.shared.fetch(target: .versionGroup(id: versionGroupId))
-}
+public func fetchVersionGroup(_ versionGroupId: String, completion: @escaping (Result<PKMVersionGroup, Error>) -> Void) { fetch(api: .versionGroup(id: versionGroupId), completion: completion) }
 
 /**
  Fetch Items list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchItems() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .itemList)
-}
+public func fetchItems(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .itemList, completion: completion) }
 
 /**
  Fetch Item Information
@@ -318,18 +255,14 @@ public func fetchItems() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMItem
  */
-public func fetchItem(_ itemId: String) -> Promise<PKMItem> {
-    return Provider.shared.fetch(target: .item(id: itemId))
-}
+public func fetchItem(_ itemId: String, completion: @escaping (Result<PKMItem, Error>) -> Void) { fetch(api: .item(id: itemId), completion: completion) }
 
 /**
  Fetch Item Attributes list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchItemAttributes() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .itemAttributeList)
-}
+public func fetchItemAttributes(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .itemAttributeList, completion: completion) }
 
 /**
  Fetch Item Attribute Information
@@ -338,18 +271,14 @@ public func fetchItemAttributes() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMItemAttribute
  */
-public func fetchItemAttribute(_ itemAttributeId: String) -> Promise<PKMItemAttribute> {
-    return Provider.shared.fetch(target: .itemAttribute(id: itemAttributeId))
-}
+public func fetchItemAttribute(_ itemAttributeId: String, completion: @escaping (Result<PKMItemAttribute, Error>) -> Void) { fetch(api: .itemAttribute(id: itemAttributeId), completion: completion) }
 
 /**
  Fetch Item Categories list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchItemCategories() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .itemCategoryList)
-}
+public func fetchItemCategories(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .itemCategoryList, completion: completion) }
 
 /**
  Fetch Item Category Information
@@ -358,18 +287,14 @@ public func fetchItemCategories() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMItemCategory
  */
-public func fetchItemCategory(_ itemCategoryId: String) -> Promise<PKMItemCategory> {
-    return Provider.shared.fetch(target: .itemCategory(id: itemCategoryId))
-}
+public func fetchItemCategory(_ itemCategoryId: String, completion: @escaping (Result<PKMItemCategory, Error>) -> Void) { fetch(api: .itemCategory(id: itemCategoryId), completion: completion) }
 
 /**
  Fetch Item Fling Effects list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchItemFlingEffects() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .itemFlingEffectList)
-}
+public func fetchItemFlingEffects(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .itemFlingEffectList, completion: completion) }
 
 /**
  Fetch Item Fling Effect Information
@@ -378,18 +303,14 @@ public func fetchItemFlingEffects() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMItemFlingEffect
  */
-public func fetchItemFlingEffect(_ itemFlingEffectsId: String) -> Promise<PKMItemFlingEffect> {
-    return Provider.shared.fetch(target: .itemFlingEffect(id: itemFlingEffectsId))
-}
+public func fetchItemFlingEffect(_ itemFlingEffectsId: String, completion: @escaping (Result<PKMItemFlingEffect, Error>) -> Void) { fetch(api: .itemFlingEffect(id: itemFlingEffectsId), completion: completion) }
 
 /**
  Fetch Item Pockets list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchItemPockets() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .itemPocketList)
-}
+public func fetchItemPockets(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .itemPocketList, completion: completion) }
 
 /**
  Fetch Item Pocket Information
@@ -398,18 +319,14 @@ public func fetchItemPockets() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMItemPocket
  */
-public func fetchItemPocket(_ itemPocketId: String) -> Promise<PKMItemPocket> {
-    return Provider.shared.fetch(target: .itemPocket(id: itemPocketId))
-}
+public func fetchItemPocket(_ itemPocketId: String, completion: @escaping (Result<PKMItemPocket, Error>) -> Void) { fetch(api: .itemPocket(id: itemPocketId), completion: completion) }
 
 /**
  Fetch Moves list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoves() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .moveList)
-}
+public func fetchMoves(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .moveList, completion: completion) }
 
 /**
  Fetch Move Information
@@ -418,18 +335,14 @@ public func fetchMoves() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMMove
  */
-public func fetchMove(_ moveId: String) -> Promise<PKMMove> {
-    return Provider.shared.fetch(target: .move(id: moveId))
-}
+public func fetchMove(_ moveId: String, completion: @escaping (Result<PKMMove, Error>) -> Void) { fetch(api: .move(id: moveId), completion: completion) }
 
 /**
  Fetch Moves Ailments list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveAilments() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .moveAilmentList)
-}
+public func fetchMoveAilments(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .moveAilmentList, completion: completion) }
 
 /**
  Fetch Move Ailment Information
@@ -438,18 +351,14 @@ public func fetchMoveAilments() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMMoveAilment
  */
-public func fetchMoveAilment(_ moveAilmentId: String) -> Promise<PKMMoveAilment> {
-    return Provider.shared.fetch(target: .moveAilment(id: moveAilmentId))
-}
+public func fetchMoveAilment(_ moveAilmentId: String, completion: @escaping (Result<PKMMoveAilment, Error>) -> Void) { fetch(api: .moveAilment(id: moveAilmentId), completion: completion) }
 
 /**
  Fetch Moves Battle Styles list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveBattleStyles() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .moveBattleStyleList)
-}
+public func fetchMoveBattleStyles(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .moveBattleStyleList, completion: completion) }
 
 /**
  Fetch Move Battle Style Information
@@ -458,18 +367,14 @@ public func fetchMoveBattleStyles() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMMoveBattleStyle
  */
-public func fetchMoveBattleStyle(_ moveBattleStyleId: String) -> Promise<PKMMoveBattleStyle> {
-    return Provider.shared.fetch(target: .moveBattleStyle(id: moveBattleStyleId))
-}
+public func fetchMoveBattleStyle(_ moveBattleStyleId: String, completion: @escaping (Result<PKMMoveBattleStyle, Error>) -> Void) { fetch(api: .moveBattleStyle(id: moveBattleStyleId), completion: completion) }
 
 /**
  Fetch Moves Categories list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveCategories() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .moveCategoryList)
-}
+public func fetchMoveCategories(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .moveCategoryList, completion: completion) }
 
 /**
  Fetch Move Category Information
@@ -478,18 +383,14 @@ public func fetchMoveCategories() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMMoveCategory
  */
-public func fetchMoveCategory(_ moveCategoryId: String) -> Promise<PKMMoveCategory> {
-    return Provider.shared.fetch(target: .moveCategory(id: moveCategoryId))
-}
+public func fetchMoveCategory(_ moveCategoryId: String, completion: @escaping (Result<PKMMoveCategory, Error>) -> Void) { fetch(api: .moveCategory(id: moveCategoryId), completion: completion) }
 
 /**
  Fetch Moves Damage Classes list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveDamageClasses() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .moveDamageClassList)
-}
+public func fetchMoveDamageClasses(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .moveDamageClassList, completion: completion) }
 
 /**
  Fetch Move Damage Class Information
@@ -498,18 +399,14 @@ public func fetchMoveDamageClasses() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMMoveDamageClass
  */
-public func fetchMoveDamageClass(_ moveDamageClassId: String) -> Promise<PKMMoveDamageClass> {
-    return Provider.shared.fetch(target: .moveDamageClass(id: moveDamageClassId))
-}
+public func fetchMoveDamageClass(_ moveDamageClassId: String, completion: @escaping (Result<PKMMoveDamageClass, Error>) -> Void) { fetch(api: .moveDamageClass(id: moveDamageClassId), completion: completion) }
 
 /**
  Fetch Moves Learn Methods list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveLearnMethods() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .moveLearnMethodList)
-}
+public func fetchMoveLearnMethods(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .moveLearnMethodList, completion: completion) }
 
 /**
  Fetch Move Learn Method Information
@@ -518,18 +415,14 @@ public func fetchMoveLearnMethods() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMMoveLearnMethod
  */
-public func fetchMoveLearnMethod(_ moveLearnMethodId: String) -> Promise<PKMMoveLearnMethod> {
-    return Provider.shared.fetch(target: .moveLearnMethod(id: moveLearnMethodId))
-}
+public func fetchMoveLearnMethod(_ moveLearnMethodId: String, completion: @escaping (Result<PKMMoveLearnMethod, Error>) -> Void) { fetch(api: .moveLearnMethod(id: moveLearnMethodId), completion: completion) }
 
 /**
  Fetch Moves Targets list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchMoveTargets() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .moveTargetList)
-}
+public func fetchMoveTargets(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .moveTargetList, completion: completion) }
 
 /**
  Fetch Move Target Information
@@ -538,18 +431,14 @@ public func fetchMoveTargets() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMMoveTarget
  */
-public func fetchMoveTarget(_ moveTargetId: String) -> Promise<PKMMoveTarget> {
-    return Provider.shared.fetch(target: .moveTarget(id: moveTargetId))
-}
+public func fetchMoveTarget(_ moveTargetId: String, completion: @escaping (Result<PKMMoveTarget, Error>) -> Void) { fetch(api: .moveTarget(id: moveTargetId), completion: completion) }
 
 /**
  Fetch Locations list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchLocations() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .locationList)
-}
+public func fetchLocations(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .locationList, completion: completion) }
 
 /**
  Fetch Location Information
@@ -558,18 +447,14 @@ public func fetchLocations() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMLocation
  */
-public func fetchLocation(_ locationId: String) -> Promise<PKMLocation> {
-    return Provider.shared.fetch(target: .location(id: locationId))
-}
+public func fetchLocation(_ locationId: String, completion: @escaping (Result<PKMLocation, Error>) -> Void) { fetch(api: .location(id: locationId), completion: completion) }
 
 /**
  Fetch Location Area list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchLocationAreas() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .locationAreaList)
-}
+public func fetchLocationAreas(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .locationAreaList, completion: completion) }
 
 /**
  Fetch Location Area Information
@@ -578,18 +463,14 @@ public func fetchLocationAreas() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMLocationArea
  */
-public func fetchLocationArea(_ locationAreaId: String) -> Promise<PKMLocationArea> {
-    return Provider.shared.fetch(target: .locationArea(id: locationAreaId))
-}
+public func fetchLocationArea(_ locationAreaId: String, completion: @escaping (Result<PKMLocationArea, Error>) -> Void) { fetch(api: .locationArea(id: locationAreaId), completion: completion) }
 
 /**
  Fetch Pal Park Areas list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPalParkAreas() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .palParkAreaList)
-}
+public func fetchPalParkAreas(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .palParkAreaList, completion: completion) }
 
 /**
  Fetch Pal Park Area Information
@@ -598,18 +479,14 @@ public func fetchPalParkAreas() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMPalParkArea
  */
-public func fetchPalParkArea(_ palParkAreaId: String) -> Promise<PKMPalParkArea> {
-    return Provider.shared.fetch(target: .palParkArea(id: palParkAreaId))
-}
+public func fetchPalParkArea(_ palParkAreaId: String, completion: @escaping (Result<PKMPalParkArea, Error>) -> Void) { fetch(api: .palParkArea(id: palParkAreaId), completion: completion) }
 
 /**
  Fetch Regions list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchRegions() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .regionList)
-}
+public func fetchRegions(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .regionList, completion: completion) }
 
 /**
  Fetch Region Information
@@ -618,18 +495,14 @@ public func fetchRegions() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMRegion
  */
-public func fetchRegion(_ regionId: String) -> Promise<PKMRegion> {
-    return Provider.shared.fetch(target: .region(id: regionId))
-}
+public func fetchRegion(_ regionId: String, completion: @escaping (Result<PKMRegion, Error>) -> Void) { fetch(api: .region(id: regionId), completion: completion) }
 
 /**
  Fetch Abilities list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchAbilities() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .abilityList)
-}
+public func fetchAbilities(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .abilityList, completion: completion) }
 
 /**
  Fetch Ability Information
@@ -638,18 +511,14 @@ public func fetchAbilities() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMAbility
  */
-public func fetchAbility(_ abilityId: String) -> Promise<PKMAbility> {
-    return Provider.shared.fetch(target: .ability(id: abilityId))
-}
+public func fetchAbility(_ abilityId: String, completion: @escaping (Result<PKMAbility, Error>) -> Void) { fetch(api: .ability(id: abilityId), completion: completion) }
 
 /**
  Fetch Characteristics list
 
  - returns: A promise with PKMAPIResourceList
  */
-public func fetchCharacteristics() -> Promise<PKMAPIResourceList> {
-    return Provider.shared.fetch(target: .characteristicList)
-}
+public func fetchCharacteristics(completion: @escaping (Result<PKMAPIResourceList, Error>) -> Void) { fetch(api: .characteristicList, completion: completion) }
 
 /**
  Fetch Characteristic Information
@@ -658,18 +527,14 @@ public func fetchCharacteristics() -> Promise<PKMAPIResourceList> {
 
  - returns: A promise with PKMCharacteristic
  */
-public func fetchCharacteristic(_ characteristicId: String) -> Promise<PKMCharacteristic> {
-    return Provider.shared.fetch(target: .characteristic(id: characteristicId))
-}
+public func fetchCharacteristic(_ characteristicId: String, completion: @escaping (Result<PKMCharacteristic, Error>) -> Void) { fetch(api: .characteristic(id: characteristicId), completion: completion) }
 
 /**
  Fetch Egg Group list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEggGroup() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .eggGroupList)
-}
+public func fetchEggGroup(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .eggGroupList, completion: completion) }
 
 /**
  Fetch Egg Group Information
@@ -678,18 +543,14 @@ public func fetchEggGroup() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMEggGroup
  */
-public func fetchEggGroup(_ eggGroupId: String) -> Promise<PKMEggGroup> {
-    return Provider.shared.fetch(target: .eggGroup(id: eggGroupId))
-}
+public func fetchEggGroup(_ eggGroupId: String, completion: @escaping (Result<PKMEggGroup, Error>) -> Void) { fetch(api: .eggGroup(id: eggGroupId), completion: completion) }
 
 /**
  Fetch Genders list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchGenders() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .genderList)
-}
+public func fetchGenders(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .genderList, completion: completion) }
 
 /**
  Fetch Gender Information
@@ -698,18 +559,14 @@ public func fetchGenders() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMGender
  */
-public func fetchGender(_ genderId: String) -> Promise<PKMGender> {
-    return Provider.shared.fetch(target: .gender(id: genderId))
-}
+public func fetchGender(_ genderId: String, completion: @escaping (Result<PKMGender, Error>) -> Void) { fetch(api: .gender(id: genderId), completion: completion) }
 
 /**
  Fetch Growth Rate list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchGrowthRates() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .growthRateList)
-}
+public func fetchGrowthRates(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .growthRateList, completion: completion) }
 
 /**
  Fetch Growth Rate Information
@@ -718,18 +575,14 @@ public func fetchGrowthRates() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMGrowthRate
  */
-public func fetchGrowthRate(_ growthRateId: String) -> Promise<PKMGrowthRate> {
-    return Provider.shared.fetch(target: .growthRate(id: growthRateId))
-}
+public func fetchGrowthRate(_ growthRateId: String, completion: @escaping (Result<PKMGrowthRate, Error>) -> Void) { fetch(api: .growthRate(id: growthRateId), completion: completion) }
 
 /**
  Fetch Nature list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchNatures() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .natureList)
-}
+public func fetchNatures(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .natureList, completion: completion) }
 
 /**
  Fetch Nature Information
@@ -738,18 +591,14 @@ public func fetchNatures() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMNature
  */
-public func fetchNature(_ natureId: String) -> Promise<PKMNature> {
-    return Provider.shared.fetch(target: .nature(id: natureId))
-}
+public func fetchNature(_ natureId: String, completion: @escaping (Result<PKMNature, Error>) -> Void) { fetch(api: .nature(id: natureId), completion: completion) }
 
 /**
  Fetch Pokeathlon Stat list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokeathlonStats() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .pokeathlonStatList)
-}
+public func fetchPokeathlonStats(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .pokeathlonStatList, completion: completion) }
 
 /**
  Fetch Pokeathlon Stat Information
@@ -758,18 +607,14 @@ public func fetchPokeathlonStats() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMPokeathlonStat
  */
-public func fetchPokeathlonStat(_ pokeathlonStatId: String) -> Promise<PKMPokeathlonStat> {
-    return Provider.shared.fetch(target: .pokeathlonStat(id: pokeathlonStatId))
-}
+public func fetchPokeathlonStat(_ pokeathlonStatId: String, completion: @escaping (Result<PKMPokeathlonStat, Error>) -> Void) { fetch(api: .pokeathlonStat(id: pokeathlonStatId), completion: completion) }
 
 /**
  Fetch Pokemon list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemons() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .pokemonList)
-}
+public func fetchPokemons(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .pokemonList, completion: completion) }
 
 /**
  Fetch Pokemon Information
@@ -778,18 +623,14 @@ public func fetchPokemons() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMPokemon
  */
-public func fetchPokemon(_ pokemonId: String) -> Promise<PKMPokemon> {
-    return Provider.shared.fetch(target: .pokemon(id: pokemonId))
-}
+public func fetchPokemon(_ pokemonId: String, completion: @escaping (Result<PKMPokemon, Error>) -> Void) { fetch(api: .pokemon(id: pokemonId), completion: completion) }
 
 /**
  Fetch Pokemon Color list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonColors() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .pokemonColorList)
-}
+public func fetchPokemonColors(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .pokemonColorList, completion: completion) }
 
 /**
  Fetch Pokemon Color Information
@@ -798,18 +639,14 @@ public func fetchPokemonColors() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMPokemonColor
  */
-public func fetchPokemonColor(_ pokemonColorId: String) -> Promise<PKMPokemonColor> {
-    return Provider.shared.fetch(target: .pokemonColor(id: pokemonColorId))
-}
+public func fetchPokemonColor(_ pokemonColorId: String, completion: @escaping (Result<PKMPokemonColor, Error>) -> Void) { fetch(api: .pokemonColor(id: pokemonColorId), completion: completion) }
 
 /**
  Fetch Pokemon Form list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonForms() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .pokemonFormList)
-}
+public func fetchPokemonForms(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .pokemonFormList, completion: completion) }
 
 /**
  Fetch Pokemon Form Information
@@ -818,18 +655,14 @@ public func fetchPokemonForms() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMPokemonForm
  */
-public func fetchPokemonForm(_ pokemonFormId: String) -> Promise<PKMPokemonForm> {
-    return Provider.shared.fetch(target: .pokemonForm(id: pokemonFormId))
-}
+public func fetchPokemonForm(_ pokemonFormId: String, completion: @escaping (Result<PKMPokemonForm, Error>) -> Void) { fetch(api: .pokemonForm(id: pokemonFormId), completion: completion) }
 
 /**
  Fetch Pokemon Habitat list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonHabitats() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .pokemonHabitatList)
-}
+public func fetchPokemonHabitats(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .pokemonHabitatList, completion: completion) }
 
 /**
  Fetch Pokemon Habitat Information
@@ -838,18 +671,14 @@ public func fetchPokemonHabitats() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMPokemonHabitat
  */
-public func fetchPokemonHabitat(_ pokemonHabitatId: String) -> Promise<PKMPokemonHabitat> {
-    return Provider.shared.fetch(target: .pokemonHabitat(id: pokemonHabitatId))
-}
+public func fetchPokemonHabitat(_ pokemonHabitatId: String, completion: @escaping (Result<PKMPokemonHabitat, Error>) -> Void) { fetch(api: .pokemonHabitat(id: pokemonHabitatId), completion: completion) }
 
 /**
  Fetch Pokemon Shape list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonShapes() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .pokemonShapeList)
-}
+public func fetchPokemonShapes(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .pokemonShapeList, completion: completion) }
 
 /**
  Fetch Pokemon Shape Information
@@ -858,18 +687,14 @@ public func fetchPokemonShapes() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMPokemonShape
  */
-public func fetchPokemonShape(_ pokemonShapeId: String) -> Promise<PKMPokemonShape> {
-    return Provider.shared.fetch(target: .pokemonShape(id: pokemonShapeId))
-}
+public func fetchPokemonShape(_ pokemonShapeId: String, completion: @escaping (Result<PKMPokemonShape, Error>) -> Void) { fetch(api: .pokemonShape(id: pokemonShapeId), completion: completion) }
 
 /**
  Fetch Pokemon Species list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonSpecies() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .pokemonSpeciesList)
-}
+public func fetchPokemonSpecies(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .pokemonSpeciesList, completion: completion) }
 
 /**
  Fetch Pokemon Species Information
@@ -878,18 +703,14 @@ public func fetchPokemonSpecies() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMPokemonSpecies
  */
-public func fetchPokemonSpecies(_ pokemonSpeciesId: String) -> Promise<PKMPokemonSpecies> {
-    return Provider.shared.fetch(target: .pokemonSpecies(id: pokemonSpeciesId))
-}
+public func fetchPokemonSpecies(_ pokemonSpeciesId: String, completion: @escaping (Result<PKMPokemonSpecies, Error>) -> Void) { fetch(api: .pokemonSpecies(id: pokemonSpeciesId), completion: completion) }
 
 /**
  Fetch Stat list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchStats() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .statList)
-}
+public func fetchStats(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .statList, completion: completion) }
 
 /**
  Fetch Stat Information
@@ -898,18 +719,14 @@ public func fetchStats() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMStat
  */
-public func fetchStat(_ statId: String) -> Promise<PKMStat> {
-    return Provider.shared.fetch(target: .stat(id: statId))
-}
+public func fetchStat(_ statId: String, completion: @escaping (Result<PKMStat, Error>) -> Void) { fetch(api: .stat(id: statId), completion: completion) }
 
 /**
  Fetch Type list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchType() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .typeList)
-}
+public func fetchType(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .typeList, completion: completion) }
 
 /**
  Fetch Type Information
@@ -918,18 +735,14 @@ public func fetchType() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMType
  */
-public func fetchType(_ typeId: String) -> Promise<PKMType> {
-    return Provider.shared.fetch(target: .type(id: typeId))
-}
+public func fetchType(_ typeId: String, completion: @escaping (Result<PKMType, Error>) -> Void) { fetch(api: .type(id: typeId), completion: completion) }
 
 /**
  Fetch Languages list
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchLanguages() -> Promise<PKMNamedAPIResourceList> {
-    return Provider.shared.fetch(target: .languageList)
-}
+public func fetchLanguages(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .languageList, completion: completion) }
 
 /**
  Fetch Language Information
@@ -938,6 +751,4 @@ public func fetchLanguages() -> Promise<PKMNamedAPIResourceList> {
 
  - returns: A promise with PKMLanguage
  */
-public func fetchLanguage(_ languageId: String) -> Promise<PKMLanguage> {
-    return Provider.shared.fetch(target: .language(id: languageId))
-}
+public func fetchLanguage(_ languageId: String, completion: @escaping (Result<PKMLanguage, Error>) -> Void) { fetch(api: .language(id: languageId), completion: completion) }

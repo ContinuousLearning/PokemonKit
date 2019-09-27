@@ -8,8 +8,8 @@ PokemonKit uses Foundation's URLSession and PromiseKit for asynchronous web requ
 ## Features
 
 - [x] Wrap all API end points
-- [x] Fully Documented
-- [x] Fully tested
+- [ ] Fully Documented
+- [ ] Fully tested
 
 ## Usage
 
