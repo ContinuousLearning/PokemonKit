@@ -1,6 +1,5 @@
 // PokemonKit 2019
 
-
 /**
  Fetch Berry list
 
@@ -534,7 +533,7 @@ public func fetchCharacteristic(_ characteristicId: String, completion: @escapin
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchEggGroup(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .eggGroupList, completion: completion) }
+public func fetchEggGroupList(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .eggGroupList, completion: completion) }
 
 /**
  Fetch Egg Group Information
@@ -694,7 +693,7 @@ public func fetchPokemonShape(_ pokemonShapeId: String, completion: @escaping (R
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchPokemonSpecies(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .pokemonSpeciesList, completion: completion) }
+public func fetchPokemonSpeciesList(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .pokemonSpeciesList, completion: completion) }
 
 /**
  Fetch Pokemon Species Information
@@ -726,7 +725,7 @@ public func fetchStat(_ statId: String, completion: @escaping (Result<PKMStat, E
 
  - returns: A promise with PKMNamedAPIResourceList
  */
-public func fetchType(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .typeList, completion: completion) }
+public func fetchTypeList(completion: @escaping (Result<PKMNamedAPIResourceList, Error>) -> Void) { fetch(api: .typeList, completion: completion) }
 
 /**
  Fetch Type Information
