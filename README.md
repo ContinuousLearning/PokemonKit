@@ -3,12 +3,13 @@
 ## What is this?
 PokemonKit is a swift wrapper for [PokeAPI](https://pokeapi.co). 
 
-PokemonKit uses Foundation's URLSession and PromiseKit for asynchronous web requests.
+PokemonKit uses Foundation's URLSession and Swift's _Result_ type.
+The Result completion works beautifully with the _Combine_ framework.
 
 ## Features
 
 - [x] Wrap all API end points
-- [ ] Fully Documented
+- [x] Fully Documented
 - [x] Fully tested
 
 ## Usage
@@ -16,16 +17,26 @@ PokemonKit uses Foundation's URLSession and PromiseKit for asynchronous web requ
 ```swift
 import PokemonKit
 
-PokemonKit.fetchBerry("1").then { berryInfo in
-    print(berryInfo.name)
+fetchBerry(id: "1") { (result) in
+    if case .success(let berry) = result {
+        print(berry.name)
+    }
 }
+```
+with Combine
+```swift
+import Combine
+import PokemonKit
+
+let future = Future(fetchPokemonList)
+// future.subscribe(/* subscriber */)
 ```
 
 ## Installation
 
 Add the following line to your dependencies in your Package.swift file:
 ```swift
-.package(url: "https://github.com/nityanandaz/PokemonKit.git", from: "3.0.0")
+.package(url: "https://github.com/nityanandaz/PokemonKit.git", from: "4.0.0")
 ```
 See [Swift Package Manager](https://swift.org/package-manager/) for more information.
 
@@ -53,9 +64,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Author
+## Authors
 
 Nityananda Zbil
 
-Special thanks to
-Yeung Yiu Hung, hkclex@gmail.com
+Special thanks to Yeung Yiu Hung, hkclex@gmail.com
+They initially wrote all the classes and functions.
