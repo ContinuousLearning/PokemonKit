@@ -149,7 +149,7 @@ public enum PokeAPI {
 
 extension PokeAPI {
     public var baseURL: String {
-        return "http://pokeapi.co/api/v2"
+        return "https://pokeapi.co/api/v2"
     }
 
     public var url: URL {

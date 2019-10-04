@@ -1,6 +1,7 @@
 # PokemonKit
 
 ## What is this?
+
 PokemonKit is a swift wrapper for [PokeAPI](https://pokeapi.co). 
 
 PokemonKit uses Foundation's URLSession and Swift's _Result_ type.
@@ -13,6 +14,7 @@ The Result completion works beautifully with the _Combine_ framework.
 - [x] Fully tested
 
 ## Usage
+### Completion
 
 ```swift
 import PokemonKit
@@ -23,7 +25,8 @@ fetchBerry(id: "1") { (result) in
     }
 }
 ```
-with Combine
+### Combine
+
 ```swift
 import Combine
 import PokemonKit
@@ -37,6 +40,12 @@ let future = Future(fetchPokemonList)
 Add the following line to your dependencies in your Package.swift file:
 ```swift
 .package(url: "https://github.com/nityanandaz/PokemonKit.git", from: "4.0.0")
+```
+Then, add PokemonKit to your target dependencies:
+```swift
+.target(
+    name: "MyTarget",
+    dependencies: ["PokemonKit"]),
 ```
 See [Swift Package Manager](https://swift.org/package-manager/) for more information.
 
@@ -68,5 +77,5 @@ SOFTWARE.
 
 Nityananda Zbil
 
-Special thanks to Yeung Yiu Hung, hkclex@gmail.com
+Special thanks to Yeung Yiu Hung, hkclex@gmail.com.
 They initially wrote all the classes and functions.
