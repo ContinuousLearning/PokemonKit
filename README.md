@@ -19,8 +19,8 @@ Example: Fetch berry with id 1.
 ```swift
 import PokemonKit
 
-fetchBerry(id: "1") { (result) in
-    if case .success(let berry) = result {
+PKMBerry.fetch(id: "1") { (result) in
+    if case let .success(berry) = result {
         print(berry.name)
     }
 }
