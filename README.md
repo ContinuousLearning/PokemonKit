@@ -29,7 +29,6 @@ fetchBerry(id: "1") { (result) in
 ## References
 - [PokeAPI](https://github.com/PokeAPI/pokeapi)
 - [GYB](https://nshipster.com/swift-gyb/)
-- [Python (re)](https://docs.python.org/3/library/re.html)
 
 ## Authors
 - Nityananda Zbil

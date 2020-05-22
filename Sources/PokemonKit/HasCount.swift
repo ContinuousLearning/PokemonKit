@@ -5,7 +5,7 @@
 //  Created by Nityananda Zbil on 22.05.20.
 //
 
-protocol HasCount {
+internal protocol HasCount {
     var count: Int { get }
 }
 
