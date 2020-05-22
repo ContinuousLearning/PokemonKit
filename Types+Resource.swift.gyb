@@ -7,10 +7,10 @@ import sys
 
 extension ${row["type-name"]}: Resource {
 % if row["is-named-resource"] == "true":
-    typealias List = PKMNamedAPIResourceList
+    public typealias List = PKMNamedAPIResourceList
 % else:
-    typealias List = PKMAPIResourceList
+    public typealias List = PKMAPIResourceList
 %end
-    static var path: String { "/${row["path-component"]}/" }
+    public static var path: String { "/${row["path-component"]}/" }
 }
 % end
