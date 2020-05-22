@@ -9,60 +9,108 @@ import XCTest
 
 @testable import PokemonKit
 
-class _PokemonKitTests: XCTestCase {
-
-    typealias Signature = (@escaping (Result<Int, Error>) -> Void) -> ()
+struct AnyResource {
+    let function: (XCTestExpectation) -> Void
     
-    let list: [Signature] = [
-        PKMAbility.fetchCount,
-        PKMBerry.fetchCount,
-        PKMBerryFirmness.fetchCount,
-        PKMBerryFlavour.fetchCount,
-        PKMCharacteristic.fetchCount,
-        PKMContestEffect.fetchCount,
-        PKMContestType.fetchCount,
-        PKMEggGroup.fetchCount,
-        PKMEncounterCondition.fetchCount,
-        PKMEncounterConditionValue.fetchCount,
-        PKMEncounterMethod.fetchCount,
-        PKMEvolutionChain.fetchCount,
-        PKMEvolutionTrigger.fetchCount,
-        PKMGender.fetchCount,
-        PKMGeneration.fetchCount,
-        PKMGrowthRate.fetchCount,
-        PKMItem.fetchCount,
-        PKMItemAttribute.fetchCount,
-        PKMItemCategory.fetchCount,
-        PKMItemFlingEffect.fetchCount,
-        PKMItemPocket.fetchCount,
-        PKMLanguage.fetchCount,
-        PKMLocation.fetchCount,
-        PKMLocationArea.fetchCount,
-        PKMMove.fetchCount,
-        PKMMoveAilment.fetchCount,
-        PKMMoveBattleStyle.fetchCount,
-        PKMMoveCategory.fetchCount,
-        PKMMoveDamageClass.fetchCount,
-        PKMMoveLearnMethod.fetchCount,
-        PKMMoveTarget.fetchCount,
-        PKMNature.fetchCount,
-        PKMPalParkArea.fetchCount,
-        PKMPokeathlonStat.fetchCount,
-        PKMPokedex.fetchCount,
-        PKMPokemon.fetchCount,
-        PKMPokemonColor.fetchCount,
-        PKMPokemonForm.fetchCount,
-        PKMPokemonHabitat.fetchCount,
-        PKMPokemonShape.fetchCount,
-        PKMPokemonSpecies.fetchCount,
-        PKMRegion.fetchCount,
-        PKMStat.fetchCount,
-        PKMSuperContestEffect.fetchCount,
-        PKMType.fetchCount,
-        PKMVersion.fetchCount,
-        PKMVersionGroup.fetchCount,
+    init<T: Decodable & Resource>(
+        _ type: T.Type,
+        testResources: Bool = false) where T.List: Decodable & HasCount {
+
+//        let waiter = XCTWaiter()
+        
+        self.function = { (expectation) in
+            type.fetchCount { (result) in
+                
+                guard case let .success(count) = result else {
+                    XCTFail()
+                    return
+                }
+                
+                print("\(type) counts \(count)")
+                
+//                guard count > 0 && testResources else {
+//                    expectation.fulfill()
+//                    return
+//                }
+//
+//                let expectations = (1...count).map { (index) in
+//                    XCTestExpectation(description: "\(type) at \(index)")
+//                }
+//
+//                for (ix, ex) in zip(1...count, expectations) {
+//
+//                    type.fetch(id: String(ix)) { (result) in
+//                        switch result {
+//                        case .success:
+//                            ex.fulfill()
+//                        case let .failure(error):
+//                            XCTFail(error.localizedDescription)
+//                        }
+//                    }
+//
+//                }
+//
+//                waiter.wait(for: expectations, timeout: 5.0)
+                expectation.fulfill()
+            }
+        }
+    }
+}
+
+class _PokemonKitTests: XCTestCase {
+    
+    let resources: [AnyResource] = [
+        AnyResource(PKMAbility.self),
+        AnyResource(PKMBerry.self),
+        AnyResource(PKMBerryFirmness.self),
+        AnyResource(PKMBerryFlavour.self),
+        AnyResource(PKMCharacteristic.self),
+        AnyResource(PKMContestEffect.self),
+        AnyResource(PKMContestType.self),
+        AnyResource(PKMEggGroup.self),
+        AnyResource(PKMEncounterCondition.self),
+        AnyResource(PKMEncounterConditionValue.self),
+        AnyResource(PKMEncounterMethod.self),
+        AnyResource(PKMEvolutionChain.self),
+        AnyResource(PKMEvolutionTrigger.self),
+        AnyResource(PKMGender.self),
+        AnyResource(PKMGeneration.self),
+        AnyResource(PKMGrowthRate.self),
+        AnyResource(PKMItem.self),
+        AnyResource(PKMItemAttribute.self),
+        AnyResource(PKMItemCategory.self),
+        AnyResource(PKMItemFlingEffect.self),
+        AnyResource(PKMItemPocket.self),
+        AnyResource(PKMLanguage.self),
+        AnyResource(PKMLocation.self),
+        AnyResource(PKMLocationArea.self),
+        AnyResource(PKMMove.self),
+        AnyResource(PKMMoveAilment.self),
+        AnyResource(PKMMoveBattleStyle.self),
+        AnyResource(PKMMoveCategory.self),
+        AnyResource(PKMMoveDamageClass.self),
+        AnyResource(PKMMoveLearnMethod.self),
+        AnyResource(PKMMoveTarget.self),
+        AnyResource(PKMNature.self),
+        AnyResource(PKMPalParkArea.self),
+        AnyResource(PKMPokeathlonStat.self),
+        AnyResource(PKMPokedex.self),
+        AnyResource(PKMPokemon.self),
+        AnyResource(PKMPokemonColor.self),
+        AnyResource(PKMPokemonForm.self),
+        AnyResource(PKMPokemonHabitat.self),
+        AnyResource(PKMPokemonShape.self),
+        AnyResource(PKMPokemonSpecies.self),
+        AnyResource(PKMRegion.self),
+        AnyResource(PKMStat.self),
+        AnyResource(PKMSuperContestEffect.self),
+        AnyResource(PKMType.self),
+        AnyResource(PKMVersion.self),
+        AnyResource(PKMVersionGroup.self),
     ]
     
+    /// This test case should target a local server for testing.
+    /// The official API should not be stressed.
     override class func setUp() {
         super.setUp()
         
@@ -70,40 +118,16 @@ class _PokemonKitTests: XCTestCase {
     }
     
     
-    /// Decode all count of all resources.
+    /// Decode counts of all resources.
     /// Implicitly tests decoding the resource list of every type.
-    func testListCount() {
-        let expectations: [XCTestExpectation] = list.enumerated().map({ (offset, element) in
-            let expectation = XCTestExpectation(description: "List \(offset)")
-            
-            element { (result) in
-                switch result {
-                case let .success(count):
-                    print("List \(offset) counts \(count)")
-                    expectation.fulfill()
-                case let .failure(error):
-                    XCTFail(error.localizedDescription)
-                }
-            }
-            
-            return expectation
-        })
+    func testResources() {
+        let range =  0..<(resources.count)
+        let expectations = range.map { XCTestExpectation(description: "\($0)") }
         
-        wait(for: expectations, timeout: 5.0)
-    }
-    
-    func testParameter() {
-        let expectation = XCTestExpectation(description: "List")
-        
-        PKMPokemon.fetch(id: "1") { (result) in
-            switch result {
-            case .success(let response):
-                expectation.fulfill()
-            case .failure(let error):
-                return
-            }
+        for (r, e) in zip(resources, expectations) {
+            r.function(e)
         }
         
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: expectations, timeout: 470.0)
     }
 }
