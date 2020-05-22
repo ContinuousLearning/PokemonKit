@@ -153,7 +153,7 @@ extension PokeAPI {
     }
 
     public var url: URL {
-        return URL(string: baseURL + path)!
+        return URL(string: baseURL + path + "/")!
     }
 
     public var path: String {
