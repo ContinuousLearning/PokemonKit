@@ -7,25 +7,18 @@
 
 import Foundation
 
-protocol Resource {
+public protocol Resource {
     associatedtype List
     static var path: String { get }
 }
 
-protocol HasCount {
-    var count: Int { get }
-}
+typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
 
-extension PKMNamedAPIResourceList: HasCount { }
-extension PKMAPIResourceList: HasCount { }
-
-typealias _CompletionHandler = (Data?, URLResponse?, Error?) -> Void
-
-extension Resource where Self: Decodable {
+public extension Resource where Self: Decodable {
     static func fetch(id: String, completion: @escaping (Result<Self, Error>) -> Void) {
 
         
-        let completionHandler: _CompletionHandler = { (data, _, error) in
+        let completionHandler: CompletionHandler = { (data, _, error) in
             switch (data, error) {
             case (_, let error?):
                 completion(.failure(error))
@@ -55,7 +48,7 @@ extension Resource where List: Decodable {
     static func fetchList(completion: @escaping (Result<List, Error>) -> Void) {
 
         
-        let completionHandler: _CompletionHandler = { (data, _, error) in
+        let completionHandler: CompletionHandler = { (data, _, error) in
             switch (data, error) {
             case (_, let error?):
                 completion(.failure(error))
@@ -85,7 +78,7 @@ extension Resource where List: Decodable & HasCount {
     static func fetchCount(completion: @escaping (Result<Int, Error>) -> Void) {
 
         
-        let completionHandler: _CompletionHandler = { (data, _, error) in
+        let completionHandler: CompletionHandler = { (data, _, error) in
             switch (data, error) {
             case (_, let error?):
                 completion(.failure(error))
