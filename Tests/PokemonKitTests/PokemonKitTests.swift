@@ -44,6 +44,12 @@ final class PokemonKitTests: XCTestCase {
         ("testAllLists", testAllLists)
     ]
     
+    override class func setUp() {
+        super.setUp()
+        
+        PokemonKit._baseURL = "http://127.0.0.1:8000/api/v2"
+    }
+    
     func testAllParameter() {
         let promises: [HasError] = [
             EraseSuccessId(id: "1", fn: fetchAbility),
