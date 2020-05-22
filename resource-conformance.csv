@@ -3,14 +3,14 @@ PKMAbility,ability,true
 PKMBerry,berry,true
 PKMBerryFirmness,berry-firmness,true
 PKMBerryFlavour,berry-flavor,true
-PKMCharacteristic,characteristic,true
-PKMContestEffect,contest-effect,true
+PKMCharacteristic,characteristic,false
+PKMContestEffect,contest-effect,false
 PKMContestType,contest-type,true
 PKMEggGroup,egg-group,true
 PKMEncounterCondition,encounter-condition,true
 PKMEncounterConditionValue,encounter-condition-value,true
 PKMEncounterMethod,encounter-method,true
-PKMEvolutionChain,evolution-chain,true
+PKMEvolutionChain,evolution-chain,false
 PKMEvolutionTrigger,evolution-trigger,true
 PKMGender,gender,true
 PKMGeneration,generation,true
@@ -42,7 +42,7 @@ PKMPokemonShape,pokemon-shape,true
 PKMPokemonSpecies,pokemon-species,true
 PKMRegion,region,true
 PKMStat,stat,true
-PKMSuperContestEffect,super-contest-effect,true
+PKMSuperContestEffect,super-contest-effect,false
 PKMType,type,true
 PKMVersion,version,true
 PKMVersionGroup,version-group,true

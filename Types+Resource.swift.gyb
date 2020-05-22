@@ -9,7 +9,7 @@ extension ${row["type-name"]}: Resource {
 % if row["is-named-resource"] == "true":
     typealias List = PKMNamedAPIResourceList
 % else:
-    typealias List = PKMNamedAPIResourceList
+    typealias List = PKMAPIResourceList
 %end
     static var path: String { "/${row["path-component"]}/" }
 }

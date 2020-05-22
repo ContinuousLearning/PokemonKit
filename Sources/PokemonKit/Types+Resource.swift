@@ -21,12 +21,12 @@ extension PKMBerryFlavour: Resource {
 }
 
 extension PKMCharacteristic: Resource {
-    typealias List = PKMNamedAPIResourceList
+    typealias List = PKMAPIResourceList
     static var path: String { "/characteristic/" }
 }
 
 extension PKMContestEffect: Resource {
-    typealias List = PKMNamedAPIResourceList
+    typealias List = PKMAPIResourceList
     static var path: String { "/contest-effect/" }
 }
 
@@ -56,7 +56,7 @@ extension PKMEncounterMethod: Resource {
 }
 
 extension PKMEvolutionChain: Resource {
-    typealias List = PKMNamedAPIResourceList
+    typealias List = PKMAPIResourceList
     static var path: String { "/evolution-chain/" }
 }
 
@@ -216,7 +216,7 @@ extension PKMStat: Resource {
 }
 
 extension PKMSuperContestEffect: Resource {
-    typealias List = PKMNamedAPIResourceList
+    typealias List = PKMAPIResourceList
     static var path: String { "/super-contest-effect/" }
 }
 
