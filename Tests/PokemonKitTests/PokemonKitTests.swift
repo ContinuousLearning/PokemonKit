@@ -57,7 +57,9 @@ struct AnyResource {
     }
 }
 
-class _PokemonKitTests: XCTestCase {
+class PokemonKitTests: XCTestCase {
+    
+    static let allTests = [testResources]
     
     let resources: [AnyResource] = [
         AnyResource(PKMAbility.self),
