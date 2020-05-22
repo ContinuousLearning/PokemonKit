@@ -1,1 +1,16 @@
 // PokemonKit 2020
+%{
+import csv
+import sys
+}%
+% for row in list(csv.DictReader(sys.stdin, ["type-name", "path-component", "is-named-resource"], delimiter=","))[1:]:
+
+extension ${row["type-name"]}: Resource {
+% if row["is-named-resource"] == "true":
+    typealias List = PKMNamedAPIResourceList
+% else:
+    typealias List = PKMNamedAPIResourceList
+%end
+    static var path: String { "/${row["path-component"]}/" }
+}
+% end

@@ -79,8 +79,3 @@ extension Resource where List: Decodable {
         task.resume()
     }
 }
-
-extension PKMPokemon: Resource {
-    typealias List = PKMNamedAPIResourceList
-    static var path: String { "/pokemon/" }
-}
