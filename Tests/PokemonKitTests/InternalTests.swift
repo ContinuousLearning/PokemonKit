@@ -104,7 +104,7 @@ class InternalTests: XCTestCase {
     override class func setUp() {
         super.setUp()
         
-        PokemonKit._baseURL = "http://127.0.0.1:8000/api/v2"
+        PokemonKit.baseURL = "http://127.0.0.1:8000/api/v2"
     }
     
     func testResources() {

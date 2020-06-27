@@ -14,7 +14,7 @@ public protocol Resource {
 
 public extension Resource where Self: Decodable {
     static func fetch(id: String, completion: @escaping (Result<Self, Error>) -> Void) {
-        let url = URL(string: "\(_baseURL)\(Self.path)\(id)/")!
+        let url = URL(string: "\(baseURL)\(Self.path)\(id)/")!
         URLSession.shared.jsonTask(with: url, completion: completion)
     }
 }
@@ -27,7 +27,7 @@ internal extension Resource where Self: Decodable {
 
 public extension Resource where List: Decodable {
     static func fetchList(completion: @escaping (Result<List, Error>) -> Void) {
-        let url = URL(string: "\(_baseURL)\(Self.path)")!
+        let url = URL(string: "\(baseURL)\(Self.path)")!
         URLSession.shared.jsonTask(with: url, completion: completion)
     }
 }
