@@ -17,7 +17,7 @@ class PublicTests: XCTestCase {
     func testTriggerError() {
         let expectation = XCTestExpectation()
         
-        PKMPokemon.fetch(id: "0") { result in
+        Pokemon.fetch(id: "0") { result in
             do {
                 _ = try result.get()
             } catch {

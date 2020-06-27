@@ -18,7 +18,7 @@ class READMETests: XCTestCase {
     func testREADME() {
         let expectation = XCTestExpectation()
         
-        PKMBerry.fetch(id: "1") { (result) in
+        Berry.fetch(id: "1") { (result) in
             if case let .success(berry) = result {
                 print(berry.name)
                 expectation.fulfill()
