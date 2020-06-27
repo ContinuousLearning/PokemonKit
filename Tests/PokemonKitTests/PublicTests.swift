@@ -9,6 +9,11 @@ import XCTest
 import PokemonKit
 
 class PublicTests: XCTestCase {
+    
+    static let allTests = [
+        testTriggerError,
+    ]
+    
     func testTriggerError() {
         let expectation = XCTestExpectation()
         

@@ -10,14 +10,25 @@ import XCTest
 @testable import PokemonKit
 
 struct AnyResource {
-    let function: (XCTestExpectation, NSMutableString) -> Void
+    let getFirstElement: (XCTestExpectation) -> Void
+    let getList: (XCTestExpectation, NSMutableString) -> Void
     
     init<T: Decodable & Resource>(_ type: T.Type)
         where T.List: Decodable & HasCount {
+            
+        self.getFirstElement = { (expectation) in
+            type.fetch(id: "1") { (result) in
+                switch result {
+                case .success:
+                    expectation.fulfill()
+                case let .failure(error):
+                    XCTFail(error.localizedDescription)
+                }
+            }
+        }
         
-        self.function = { (expectation, string) in
+        self.getList = { (expectation, string) in
             type.fetchList { (result) in
-                
                 guard case let .success(list) = result else {
                     XCTFail()
                     return
@@ -31,10 +42,11 @@ struct AnyResource {
     }
 }
 
-class PokemonKitTests: XCTestCase {
+class InternalTests: XCTestCase {
     
     static let allTests = [
         testResources,
+        testFirstElements,
     ]
     
     let resources: [AnyResource] = [
@@ -95,9 +107,6 @@ class PokemonKitTests: XCTestCase {
         PokemonKit._baseURL = "http://127.0.0.1:8000/api/v2"
     }
     
-    
-    /// Decode counts of all resources.
-    /// Implicitly tests decoding the resource list of every type.
     func testResources() {
         let range =  0..<(resources.count)
         let expectations = range.map { XCTestExpectation(description: "\($0)") }
@@ -105,7 +114,7 @@ class PokemonKitTests: XCTestCase {
         let string: NSMutableString = ""
         
         for (r, e) in zip(resources, expectations) {
-            r.function(e, string)
+            r.getList(e, string)
         }
         
         wait(for: expectations, timeout: 1.0 * Double(resources.count))
@@ -114,5 +123,16 @@ class PokemonKitTests: XCTestCase {
         attachment.name = "Resources' Count"
         attachment.lifetime = .keepAlways
         self.add(attachment)
+    }
+    
+    func testFirstElements() {
+        let range =  0..<(resources.count)
+        let expectations = range.map { XCTestExpectation(description: "\($0)") }
+        
+        for (r, e) in zip(resources, expectations) {
+            r.getFirstElement(e)
+        }
+        
+        wait(for: expectations, timeout: 1.0 * Double(resources.count))
     }
 }
