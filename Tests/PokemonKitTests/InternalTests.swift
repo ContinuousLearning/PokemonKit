@@ -10,47 +10,21 @@ import XCTest
 @testable import PokemonKit
 
 struct AnyResource {
-    let function: (XCTestExpectation) -> Void
+    let function: (XCTestExpectation, NSMutableString) -> Void
     
-    init<T: Decodable & Resource>(
-        _ type: T.Type,
-        testResources: Bool = false) where T.List: Decodable & HasCount {
-
-//        let waiter = XCTWaiter()
+    init<T: Decodable & Resource>(_ type: T.Type)
+        where T.List: Decodable & HasCount {
         
-        self.function = { (expectation) in
-            type.fetchCount { (result) in
+        self.function = { (expectation, string) in
+            type.fetchList { (result) in
                 
-                guard case let .success(count) = result else {
+                guard case let .success(list) = result else {
                     XCTFail()
                     return
                 }
                 
-                print("\(type) counts \(count)")
+                string.append("\(type) counts \(list.count)\n")
                 
-//                guard count > 0 && testResources else {
-//                    expectation.fulfill()
-//                    return
-//                }
-//
-//                let expectations = (1...count).map { (index) in
-//                    XCTestExpectation(description: "\(type) at \(index)")
-//                }
-//
-//                for (ix, ex) in zip(1...count, expectations) {
-//
-//                    type.fetch(id: String(ix)) { (result) in
-//                        switch result {
-//                        case .success:
-//                            ex.fulfill()
-//                        case let .failure(error):
-//                            XCTFail(error.localizedDescription)
-//                        }
-//                    }
-//
-//                }
-//
-//                waiter.wait(for: expectations, timeout: 5.0)
                 expectation.fulfill()
             }
         }
@@ -128,32 +102,17 @@ class PokemonKitTests: XCTestCase {
         let range =  0..<(resources.count)
         let expectations = range.map { XCTestExpectation(description: "\($0)") }
         
+        let string: NSMutableString = ""
+        
         for (r, e) in zip(resources, expectations) {
-            r.function(e)
+            r.function(e, string)
         }
         
-        wait(for: expectations, timeout: 470.0)
-    }
-    
-}
-
-class READMETests: XCTestCase {
-    
-    static let allTests = [
-        testREADME,
-    ]
-    
-    /// Tests code displayed in README.
-    func testREADME() {
-        let expectation = XCTestExpectation()
+        wait(for: expectations, timeout: 1.0 * Double(resources.count))
         
-        PKMBerry.fetch(id: "1") { (result) in
-            if case let .success(berry) = result {
-                print(berry.name)
-                expectation.fulfill()
-            }
-        }
-        
-        wait(for: [expectation], timeout: 3.0)
+        let attachment = XCTAttachment(string: string as String)
+        attachment.name = "Resources' Count"
+        attachment.lifetime = .keepAlways
+        self.add(attachment)
     }
 }
