@@ -10,6 +10,10 @@ It uses Foundation's URLSession and Swift's Result type.
 - [x] Wraps all API endpoints,
 - [x] and is well tested.
 
+## Configuration
+
+Set `PokemonKit.baseURL` to another URL, e.g., if you want to host your own instance of PokeAPI.
+
 ## Installation
 
 Add `.package(url: "https://github.com/nityanandaz/PokemonKit.git", from: "4.0.0")` to your dependencies.
