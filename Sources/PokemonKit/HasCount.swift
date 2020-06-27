@@ -9,5 +9,5 @@ internal protocol HasCount {
     var count: Int { get }
 }
 
-extension PKMNamedAPIResourceList: HasCount { }
-extension PKMAPIResourceList: HasCount { }
+extension NamedAPIResourceList: HasCount { }
+extension APIResourceList: HasCount { }
