@@ -4,15 +4,7 @@
 
 PokemonKit is a [Swift package](https://swift.org/package-manager/) wrapping [PokeAPI](https://pokeapi.co).
 It uses Foundation's URLSession and Swift's Result type.
-
-## Features
-
-- [x] Wraps all API endpoints,
-- [x] and is well tested.
-
-## Configuration
-
-Set `PokemonKit.baseURL` to another URL, e.g., if you want to host your own instance of PokeAPI.
+Callbacks can easily be transformed into _Combine_ Futures.
 
 ## Installation
 
@@ -32,10 +24,28 @@ Berry.fetch(id: "1") { (result) in
 }
 ```
 
-## References
+Example: Create a _Combine_ Future.
 
-- [PokeAPI](https://github.com/PokeAPI/pokeapi)
-- [GYB](https://nshipster.com/swift-gyb/)
+```swift
+import Combine
+import PokemonKit
+
+let favoriteVersion = Future(Version.fetch(id: "alpha-sapphire"))
+favoriteVersion.subscribe(...)
+```
+
+## Configuration
+
+Set `PokemonKit.baseURL` to another URL, e.g., if you want to host your own instance of PokeAPI.
+
+## Code Generation
+
+`Types+Resource.swift.gyb` is a [GYB](https://nshipster.com/swift-gyb/) template to generate all protocol conformances to `Resource` that are listed in `resource-conformance.csv`.
+Execute `$ make generate` to renew `Types+Resource.swift`.
+
+## Testing
+
+`InternalTests.swift` sets intentionally `PokemonKit.baseURL` to a localhost URL.
 
 ## Authors
 
